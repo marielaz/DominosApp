@@ -9,6 +9,10 @@
 *.class
 /.idea
 /.gradle
+/.build.gradle
+/gradle.properties
+/gradleview
+/gradlew.bat
 
 # Generated files
 bin/
