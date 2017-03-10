@@ -1,10 +1,8 @@
 package karikuncheva.dominosapp.model;
 
-import products.Dessert;
-import products.Drink;
-import products.Pizza;
-import products.Product;
-import products.Product.ProductType;
+
+import karikuncheva.dominosapp.model.products.Product.ProductType;
+
 
 public final class Admin {
 
@@ -27,9 +25,25 @@ public final class Admin {
 	}
 
 	// only admin can remove products from the cart!
-	public void removeProduct(Product p) {
+	public void removeProduct(Cart.Product p) {
 		shop.removeProduct(p);
 		}
 
-	}
+	public static class Dessert extends Cart.Product {
+
+
+        public Dessert(String name, double price) {
+            super(ProductType.DESSERT, name, price);
+        }
+
+        @Override
+        public String toString() {
+            return "name = " + getName() + ", price = " + getPrice() + ", quantity = " + getQuantity() + ", sum = " + getPrice()*getQuantity();
+        }
+
+
+
+
+    }
+}
 

@@ -1,4 +1,4 @@
-package karikuncheva.dominosapp.model;
+package karikuncheva.dominosapp.model.products;
 
 public abstract class Product {
 
