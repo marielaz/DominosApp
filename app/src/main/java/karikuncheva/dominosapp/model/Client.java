@@ -1,17 +1,17 @@
 package karikuncheva.dominosapp.model;
 
-import java.util.HashMap;
 import java.util.Random;
-import java.util.Map.Entry;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import products.Dessert;
-import products.Drink;
-import products.Pizza;
-import products.Pizza.Size;
-import products.Pizza.Type;
-import products.Product;
-import products.Product.ProductType;
+
+import karikuncheva.dominosapp.model.products.Dessert;
+import karikuncheva.dominosapp.model.products.Drink;
+import karikuncheva.dominosapp.model.products.Pizza;
+import karikuncheva.dominosapp.model.products.Product;
+import karikuncheva.dominosapp.model.products.Pizza.Size;
+import karikuncheva.dominosapp.model.products.Pizza.Type;
+import karikuncheva.dominosapp.model.products.Product.ProductType;
+
 
 public class Client {
 

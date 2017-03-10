@@ -3,10 +3,9 @@ package karikuncheva.dominosapp.model;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map.Entry;
-import products.Pizza;
-import products.Product;
-import products.Product.ProductType;
-
+import karikuncheva.dominosapp.model.products.Pizza;
+import karikuncheva.dominosapp.model.products.Product;
+import karikuncheva.dominosapp.model.products.Product.ProductType;
 
 public class Cart {
 

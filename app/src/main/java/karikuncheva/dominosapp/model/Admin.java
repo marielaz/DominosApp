@@ -1,11 +1,7 @@
 package karikuncheva.dominosapp.model;
 
-import products.Dessert;
-import products.Drink;
-import products.Pizza;
-import products.Product;
-import products.Product.ProductType;
-
+import karikuncheva.dominosapp.model.products.Product;
+import karikuncheva.dominosapp.model.products.Product.ProductType;
 public final class Admin {
 
 	private String username;
