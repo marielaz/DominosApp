@@ -4,9 +4,14 @@ import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+
+import karikuncheva.dominosapp.model.products.Dessert;
+import karikuncheva.dominosapp.model.products.Drink;
+import karikuncheva.dominosapp.model.products.Pizza;
+import karikuncheva.dominosapp.model.products.Product;
 import karikuncheva.dominosapp.model.products.Pizza.Size;
 import karikuncheva.dominosapp.model.products.Pizza.Type;
-
+import karikuncheva.dominosapp.model.products.Product.ProductType;
 
 public class Client {
 

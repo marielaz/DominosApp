@@ -9,6 +9,12 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 import karikuncheva.dominosapp.model.products.Product.ProductType;
+import karikuncheva.dominosapp.model.products.Dessert;
+import karikuncheva.dominosapp.model.products.Drink;
+import karikuncheva.dominosapp.model.products.Pizza;
+import karikuncheva.dominosapp.model.products.Product;
+
+
 
 public class Shop {
 
@@ -87,7 +93,7 @@ public class Shop {
 		}
 
 		if (!this.catalog.containsKey(p.pType)) {
-			this.catalog.put(p.pType, new HashSet<>());
+			this.catalog.put(p.pType, new HashSet<karikuncheva.dominosapp.model.products.Product>());
 			
 		}
 		if (!this.catalog.get(p.pType).contains(p)) {
