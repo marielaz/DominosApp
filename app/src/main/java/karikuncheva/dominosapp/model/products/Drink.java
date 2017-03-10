@@ -1,5 +1,6 @@
 package karikuncheva.dominosapp.model.products;
 
+
 import karikuncheva.dominosapp.model.products.Product;
 
 public class Drink extends Product {

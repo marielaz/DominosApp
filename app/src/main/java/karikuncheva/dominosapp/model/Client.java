@@ -4,6 +4,7 @@ import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+
 import karikuncheva.dominosapp.model.products.Dessert;
 import karikuncheva.dominosapp.model.products.Drink;
 import karikuncheva.dominosapp.model.products.Pizza;
@@ -11,7 +12,6 @@ import karikuncheva.dominosapp.model.products.Product;
 import karikuncheva.dominosapp.model.products.Pizza.Size;
 import karikuncheva.dominosapp.model.products.Pizza.Type;
 import karikuncheva.dominosapp.model.products.Product.ProductType;
-
 
 public class Client {
 
@@ -111,13 +111,13 @@ public class Client {
 	}
 
 	// the client make order and put the product into the cart
-	public void chooseProduct(Product p) {
+	public void chooseProduct(Cart.Product p) {
 		if (this.cart != null) {
 			this.cart.addProduct(p);
 		}
 	}
 
-	public void removeProductFromCart(Product p) {
+	public void removeProductFromCart(Cart.Product p) {
 		this.cart.removeProduct(p);
 	}
 
@@ -168,13 +168,13 @@ public class Client {
 				if (countDigits > code.length() - countDigits) {
 					switch (new Random().nextInt(3)) {
 					case 0:
-						this.cart.addProduct(new Drink("Coca Cola", 0));
+						this.cart.addProduct(new Cart.Drink("Coca Cola", 0));
 						break;
 					case 1:
-						this.cart.addProduct(new Drink("Fanta", 0));
+						this.cart.addProduct(new Cart.Drink("Fanta", 0));
 						break;
 					case 2:
-						this.cart.addProduct(new Drink("Sprite", 0));
+						this.cart.addProduct(new Cart.Drink("Sprite", 0));
 						break;
 
 					default:
@@ -183,13 +183,13 @@ public class Client {
 				} else {
 					switch (new Random().nextInt(3)) {
 					case 0:
-						this.cart.addProduct(new Dessert("Choco Pie", 0));
+						this.cart.addProduct(new Admin.Dessert("Choco Pie", 0));
 						break;
 					case 1:
-						this.cart.addProduct(new Dessert("Nirvana", 0));
+						this.cart.addProduct(new Admin.Dessert("Nirvana", 0));
 						break;
 					case 2:
-						this.cart.addProduct(new Dessert("Mini pancakes", 0));
+						this.cart.addProduct(new Admin.Dessert("Mini pancakes", 0));
 						break;
 
 					default:
@@ -239,4 +239,85 @@ public class Client {
 				+ password + ", phoneNumber = " + phoneNumber + ", email = " + email;
 	}
 
+	public static class Pizza extends Cart.Product {
+
+        public enum Type {
+            TRADITIONAL, THIN_AND_CRISPY, FLUFFY
+        };
+
+        public enum Size {
+            SMALL, MEDIUM, LARGE
+        };
+
+        public Type type;
+        public Size size;
+
+        public Pizza(String name, double price) {
+            super(ProductType.PIZZA, name, price);
+            this.type = Type.TRADITIONAL;
+            this.size = Size.LARGE;
+
+        }
+
+
+        // change the size of the pizza and the crust and modify the price
+        // NE RABOTI!
+        public Pizza changePizza(Pizza pizza, Size size, Type type) {
+
+            if (size == Size.MEDIUM) {
+                Pizza p = new Pizza(pizza.getName(), pizza.getPrice() - 1.00);
+                p.size= Size.MEDIUM;
+                p.type= type;
+                return p;
+            } else if (size == size.SMALL) {
+                Pizza p = new Pizza(pizza.getName(), pizza.getPrice() - 1.50);
+                p.size= Size.SMALL;
+                p.type = type;
+                return p;
+            }
+            else if (size == size.LARGE && type != type.TRADITIONAL){
+                Pizza p = new Pizza(pizza.getName(), pizza.getPrice());
+                p.type = type;
+            }
+
+            return pizza;
+        }
+
+        @Override
+        public String toString() {
+            return "name = " + getName() + ", type = " + type + ", size = " + size + ", price = " + getPrice()
+                    + ", quantity = " + getQuantity() + ", after discount 5% = "
+                    + String.format("%.2f", getDiscPrice() * getQuantity());
+        }
+
+
+
+        @Override
+        public int hashCode() {
+            final int prime = 31;
+            int result = super.hashCode();
+            result = prime * result + ((size == null) ? 0 : size.hashCode());
+            result = prime * result + ((type == null) ? 0 : type.hashCode());
+            return result;
+        }
+
+
+        @Override
+        public boolean equals(Object obj) {
+            if (this == obj)
+                return true;
+            if (!super.equals(obj))
+                return false;
+            if (getClass() != obj.getClass())
+                return false;
+            Pizza other = (Pizza) obj;
+            if (size != other.size)
+                return false;
+            if (type != other.type)
+                return false;
+            return true;
+        }
+
+
+    }
 }
