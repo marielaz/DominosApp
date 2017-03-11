@@ -13,9 +13,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 
-//Implementing the interface OnTabSelectedListener to our MainActivity
+//Implementing the interface OnTabSelectedListener to our CatalogActivity
 //This interface would help in swiping views
-public class CatalogActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener{
+public class CatalogActivity extends AppCompatActivity {
 
     //This is our tablayout
     private TabLayout tabLayout;
@@ -51,21 +51,24 @@ public class CatalogActivity extends AppCompatActivity implements TabLayout.OnTa
         viewPager.setAdapter(adapter);
 
         //Adding onTabSelectedListener to swipe views
-        tabLayout.addOnTabSelectedListener(this);
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
     }
 
-    @Override
-    public void onTabSelected(TabLayout.Tab tab) {
-        viewPager.setCurrentItem(tab.getPosition());
-    }
 
-    @Override
-    public void onTabUnselected(TabLayout.Tab tab) {
-
-    }
-
-    @Override
-    public void onTabReselected(TabLayout.Tab tab) {
-
-    }
 }

@@ -2,82 +2,98 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/main_theme">
+    android:orientation="vertical"
+    android:background="@drawable/centered"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="85dp"
+        android:src="@drawable/logo_dominos" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/main_rounded_shape"
+        android:orientation="vertical"
+        android:layout_marginTop="90dp"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp">
 
 
-        <LinearLayout
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:text="Register"
+            android:textColor="@color/colorTitles"
+            android:textSize="35sp"
+            android:layout_marginTop="10dp"/>
+
+
+        <EditText
+            android:id="@+id/username_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@drawable/main_rounded_shape"
-            >
+            android:hint="Username"
+            android:textColorHint="@color/colorHint"
+            android:maxLength="15"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="5dp"/>
+
+        <!-- inputType ???? -->
+        <EditText
+            android:id="@+id/email_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email"
+            android:textColorHint="@color/colorHint"
+            android:inputType="textEmailAddress"
+            android:maxLength="15"
+            android:layout_marginBottom="5dp"/>
+
+        <EditText
+            android:id="@+id/address_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Address"
+            android:textColorHint="@color/colorHint"
+            android:maxLength="15"
+            android:layout_marginBottom="5dp"/>
+
+        <EditText
+            android:id="@+id/password_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password"
+            android:textColorHint="@color/colorHint"
+            android:maxLength="15"
+            android:layout_marginBottom="5dp"/>
+
+        <EditText
+            android:id="@+id/password2_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Confirm password"
+            android:textColorHint="@color/colorHint"
+            android:maxLength="15" />
+
+        <Button
+            android:id="@+id/registration_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/rounded_button"
+            android:text="Register"
+            android:textStyle="bold"
+            android:textAllCaps="false"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="25dp"/>
 
 
-            <TextView
-                android:layout_gravity="center_horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:textSize="35sp"
-                android:textColor="#000000"
-                android:text="Register"/>
-
-
-
-            <EditText
-                android:id="@+id/username_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Username:"
-                android:maxLength="15" />
-
-            <!-- inputType ???? -->
-            <EditText
-                android:id="@+id/email_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:maxLength="15"
-                android:inputType="textEmailAddress"
-                android:hint="Email"
-                />
-
-            <EditText
-                android:id="@+id/address_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:maxLength="15"
-                android:hint="Address"
-                />
-
-            <EditText
-                android:id="@+id/password_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:maxLength="15"
-                android:inputType="textPassword"
-                android:hint="Password"
-                />
-
-            <EditText
-                android:id="@+id/password2_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Confirm password"
-                android:inputType="textPassword"
-                android:maxLength="15" />
-
-            <Button
-                android:id="@+id/registration_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:textAllCaps="false"
-                android:text="Register"
-                android:background="@drawable/rounded_button"
-                />
-
-
-        </LinearLayout>
-
+    </LinearLayout>
 
 
 </LinearLayout>
