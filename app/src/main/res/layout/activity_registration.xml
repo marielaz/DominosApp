@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/centered"
     android:paddingLeft="20dp"
-    android:paddingRight="20dp">
+    android:paddingRight="20dp"
+    tools:context="karikuncheva.dominosapp.RegistrationActivity">
 
     <ImageView
         android:id="@+id/imageView"
@@ -34,7 +37,7 @@
 
 
         <EditText
-            android:id="@+id/username_text"
+            android:id="@+id/username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Username"
@@ -45,7 +48,7 @@
 
         <!-- inputType ???? -->
         <EditText
-            android:id="@+id/email_text"
+            android:id="@+id/email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Email"
@@ -55,7 +58,7 @@
             android:layout_marginBottom="5dp"/>
 
         <EditText
-            android:id="@+id/address_text"
+            android:id="@+id/address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Address"
@@ -64,19 +67,21 @@
             android:layout_marginBottom="5dp"/>
 
         <EditText
-            android:id="@+id/password_text"
+            android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Password"
+            android:inputType="textPassword"
             android:textColorHint="@color/colorHint"
             android:maxLength="15"
             android:layout_marginBottom="5dp"/>
 
         <EditText
-            android:id="@+id/password2_text"
+            android:id="@+id/confirm_pass"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Confirm password"
+            android:inputType="textPassword"
             android:textColorHint="@color/colorHint"
             android:maxLength="15" />
 
@@ -94,6 +99,4 @@
 
 
     </LinearLayout>
-
-
 </LinearLayout>

@@ -28,31 +28,18 @@ public class Client {
 	private Pattern regexPattern;
 	private Matcher regMatcher;
 
-	public Client(String username, String name, String address, String password, String phoneNumber, String email) {
-		if (username != null && !username.isEmpty()) {
-			this.username = username;
-		}
-		if (name != null && !name.isEmpty()) {
-			this.name = name;
-		}
-		if (address != null && !address.isEmpty()) {
-			this.address = address;
-		}
-		validatePassword(password);
-		validateMobileNumber(phoneNumber);
-		validateEmailAddress(email);
+	public Client(String username, String address, String password, String email) {
 		this.cart = new Cart();
 		this.shop = Shop.getInstance();
-		this.shop.addClient(this);
-		this.money = 100;
+
 
 	}
 
-	public void validatePassword(String pass) {
+	public boolean validatePassword(String pass) {
 		if (!pass.matches(PASS_REGEX)) {
-			System.out.println("Invalid password. Please try again!");
+			return false;
 		} else {
-			this.password = pass;
+			return true;
 		}
 	}
 
@@ -68,14 +55,14 @@ public class Client {
 		return money;
 	}
 
-	public void validateEmailAddress(String emailAddress) {
+	public boolean validateEmailAddress(String emailAddress) {
 
 		regexPattern = Pattern.compile("^[(a-zA-Z-0-9-\\_\\+\\.)]+@[(a-z-A-z)]+\\.[(a-zA-z)]{2,3}$");
 		regMatcher = regexPattern.matcher(emailAddress);
 		if (regMatcher.matches()) {
-			this.email = emailAddress;
+			return true;
 		} else {
-			System.out.println("Invalid Email Address");
+			return false;
 		}
 	}
 
