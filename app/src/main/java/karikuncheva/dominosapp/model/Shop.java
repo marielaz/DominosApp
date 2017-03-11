@@ -102,7 +102,7 @@ public class Shop {
 	}
 
 	// only admin can remove products from the shop
-	public void removeProduct(Cart.Product p) {
+	public void removeProduct(Product p) {
 		if (this.catalog.containsKey(p.pType)) {
 		
 		}
