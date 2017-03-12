@@ -1,5 +1,6 @@
 package karikuncheva.dominosapp;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,10 +9,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import karikuncheva.dominosapp.model.Shop;
 import karikuncheva.dominosapp.model.Client;
 
 public class RegistrationActivity extends AppCompatActivity {
     private Client client;
+    private  Shop shop = Shop.getInstance();
     private EditText username_text, email_text, address_text, pass_text, confirm_pass_text;
     private String username, email, address, pass, confirmPass;
     Button regButton ;
@@ -37,18 +40,25 @@ public class RegistrationActivity extends AppCompatActivity {
     }
     public void register(){
         initialize();
-        if (!validate()){
-            Toast.makeText(this, "Registration has failed", Toast.LENGTH_SHORT).show();
+        if (validate()){
+            shop.addClient(client);
+            Toast.makeText(this, "Registration complete", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(RegistrationActivity.this, CatalogActivity.class);
+            RegistrationActivity.this.startActivity(intent);
+            // Intent to go to menu page!
+
         }
         else{
-            return;
+            Toast.makeText(this, "Registration has failed", Toast.LENGTH_SHORT).show();
         }
     }
+
+
     public boolean validate(){
         boolean valid = true;
         this.client = new Client(username, address, pass, email);
         if (username.isEmpty()){
-            username_text.setError("Please, enter a valid username!");
+            username_text.setError("Username must not be empty!");
         }
         if (!client.validateEmailAddress(email)){
             email_text.setError("Please, enter a valid email!");
@@ -64,7 +74,6 @@ public class RegistrationActivity extends AppCompatActivity {
         }
         return valid;
     }
-
 
     public void initialize(){
             username = username_text.getText().toString();

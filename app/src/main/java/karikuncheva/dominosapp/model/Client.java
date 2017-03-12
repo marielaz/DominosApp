@@ -42,7 +42,7 @@ public class Client {
 			return true;
 		}
 	}
-
+	public  Shop getShop() { return  shop;}
 	public Cart getCart() {
 		return cart;
 	}

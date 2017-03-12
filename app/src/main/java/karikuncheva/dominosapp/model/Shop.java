@@ -67,6 +67,7 @@ public class Shop {
 		return Collections.unmodifiableMap(catalog);
 		
 	}
+
 	private void addToCatalog(ArrayList<Product> products) {
 
 		for (int i = 0; i < products.size(); i++) {
