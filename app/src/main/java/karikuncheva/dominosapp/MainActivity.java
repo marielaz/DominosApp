@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import java.util.ArrayList;
 import android.widget.EditText;
 import android.widget.Button;
 import android.view.View;
@@ -26,8 +25,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        username_login = (EditText) this.findViewById(R.id.username_text);
-        password_login = (EditText) this.findViewById(R.id.password_text);
+        username_login = (EditText) this.findViewById(R.id.username_login);
+        password_login = (EditText) this.findViewById(R.id.password_login);
         loginButton = (Button) this.findViewById(R.id.login_button);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
