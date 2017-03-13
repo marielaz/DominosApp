@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText username_login;
     private EditText password_login;
     private Button loginButton;
+    private Button registerButton;
     private String username, password;
 
     @Override
@@ -28,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         username_login = (EditText) this.findViewById(R.id.username_login);
         password_login = (EditText) this.findViewById(R.id.password_login);
         loginButton = (Button) this.findViewById(R.id.login_button);
-
+        registerButton = (Button) this.findViewById(R.id.registration_button);
         loginButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (validate()) {
@@ -41,7 +42,15 @@ public class MainActivity extends AppCompatActivity {
               
             }
         });
+
+        registerButton.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+                Intent intent_reg = new Intent(MainActivity.this, RegistrationActivity.class);
+                MainActivity.this.startActivity(intent_reg);
+            }
+        });
         }
+
     public boolean validate(){
         initialize();
         boolean valid = true;
