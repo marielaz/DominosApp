@@ -3,14 +3,12 @@ package karikuncheva.dominosapp.model;
 import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-
-import karikuncheva.dominosapp.model.products.Dessert;
-import karikuncheva.dominosapp.model.products.Drink;
-import karikuncheva.dominosapp.model.products.Pizza;
 import karikuncheva.dominosapp.model.products.Product;
+import karikuncheva.dominosapp.model.products.Pizza;
 import karikuncheva.dominosapp.model.products.Pizza.Size;
 import karikuncheva.dominosapp.model.products.Pizza.Type;
+import karikuncheva.dominosapp.model.products.Dessert;
+import karikuncheva.dominosapp.model.products.Drink;
 import karikuncheva.dominosapp.model.products.Product.ProductType;
 
 public class Client {
@@ -28,6 +26,13 @@ public class Client {
 	private Pattern regexPattern;
 	private Matcher regMatcher;
 
+
+    public Client(String username, String password){
+        this.username = username;
+        this.password = password;
+    }
+
+
 	public Client(String username, String address, String password, String email) {
 		this.username = username;
 		this.address = address;
@@ -41,9 +46,8 @@ public class Client {
 	public boolean validatePassword(String pass) {
 		if (!pass.matches(PASS_REGEX)) {
 			return false;
-		} else {
+		} 
 			return true;
-		}
 	}
 	public  Shop getShop() { return  shop;}
 	public Cart getCart() {
@@ -64,9 +68,8 @@ public class Client {
 		regMatcher = regexPattern.matcher(emailAddress);
 		if (regMatcher.matches()) {
 			return true;
-		} else {
-			return false;
-		}
+    }
+		return false;
 	}
 
 	public void validateMobileNumber(String mobileNumber) {
@@ -74,9 +77,8 @@ public class Client {
 		regMatcher = regexPattern.matcher(mobileNumber);
 		if (regMatcher.matches()) {
 			this.phoneNumber = mobileNumber;
-		} else {
-			System.out.println("Invalid Mobile Number");
 		}
+			System.out.println("Invalid Mobile Number");
 	}
 
 	public void changePassword(String password) {

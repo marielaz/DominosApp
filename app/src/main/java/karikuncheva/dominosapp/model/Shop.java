@@ -49,6 +49,7 @@ public class Shop {
 		products.add(new Drink("Finta", 2.80));
 		products.add(new Drink("Sprite", 2.80));
 		products.add(new Drink("Nestea", 2.00));
+    
 		addToCatalog(products);
 	}
 
