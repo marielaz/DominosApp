@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/grey_backgr"
+    android:weightSum="3">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+      />
+
+    <TextView
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="57dp"
+        android:textSize="35sp"
+        android:textColor="#000000"
+        android:text="Gift Card"
+        android:gravity="center_horizontal"
+        android:layout_weight="1"/>
+
+    <EditText
+        android:id="@+id/giftcard_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLength="5"
+        android:hint="Enter code"
+        android:gravity="center_horizontal"
+        />
+
+    <Button
+        android:id="@+id/giftcard_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:textAllCaps="false"
+        android:text="Enter"
+        android:background="@drawable/rounded_button"
+        />
+
+</LinearLayout>

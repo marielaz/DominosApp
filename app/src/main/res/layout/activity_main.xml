@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/main_theme"
+    android:background="@drawable/main"
     tools:context="karikuncheva.dominosapp.MainActivity"
     android:weightSum="1">
 
@@ -61,6 +61,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:text="Login"
+        android:clickable="true"
         android:textAllCaps="false"
         android:background="@drawable/rounded_button_login"
         />
@@ -77,6 +78,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:textAllCaps="false"
+        android:clickable="true"
         android:text="Registration"
         android:background="@drawable/rounded_button"
         />
