@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map.Entry;
 
-import karikuncheva.dominosapp.model.products.Pizza;
 import karikuncheva.dominosapp.model.products.Product;
 import karikuncheva.dominosapp.model.products.Product.ProductType;
 
@@ -92,24 +91,5 @@ public class Cart {
 			System.out.println("-------------------");
 		}
 }
+ }
 
-	public static class Drink extends Product {
-
-
-        public Drink(String name, double price) {
-            super(ProductType.DRINK, name, price);
-
-        }
-
-        @Override
-        public String toString() {
-            return "name = " + getName() + ", price = " + getPrice() +  ", quantity = " + getQuantity() + ", sum = " + getPrice()*getQuantity();
-        }
-
-
-
-
-
-
-    }
-}

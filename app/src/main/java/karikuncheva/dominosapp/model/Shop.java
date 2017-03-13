@@ -45,10 +45,11 @@ public class Shop {
 		products.add(new Dessert("Nirvana", 2.90));
 		products.add(new Dessert("Mini Pancakes", 3.50));
 
-		products.add(new Cart.Drink("Coca-Cola", 2.80));
-		products.add(new Cart.Drink("Finta", 2.80));
-		products.add(new Cart.Drink("Sprite", 2.80));
-		products.add(new Cart.Drink("Nestea", 2.00));
+		products.add(new Drink("Coca-Cola", 2.80));
+		products.add(new Drink("Finta", 2.80));
+		products.add(new Drink("Sprite", 2.80));
+		products.add(new Drink("Nestea", 2.00));
+    
 		addToCatalog(products);
 	}
 
@@ -59,14 +60,17 @@ public class Shop {
 		return instance;
 	}
 
-	public Set getClients() {
+	public Set getClients()
+    {
 		return Collections.unmodifiableSet(clients);
+
 	}
 
 	public Map getCatalog() {
 		return Collections.unmodifiableMap(catalog);
 		
 	}
+
 	private void addToCatalog(ArrayList<Product> products) {
 
 		for (int i = 0; i < products.size(); i++) {

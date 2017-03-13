@@ -1,6 +1,5 @@
 package karikuncheva.dominosapp.model;
 
-
 import karikuncheva.dominosapp.model.products.Product;
 import karikuncheva.dominosapp.model.products.Product.ProductType;
 

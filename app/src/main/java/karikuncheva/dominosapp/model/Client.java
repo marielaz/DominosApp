@@ -26,10 +26,12 @@ public class Client {
 	private Pattern regexPattern;
 	private Matcher regMatcher;
 
+
     public Client(String username, String password){
         this.username = username;
         this.password = password;
     }
+
 
 	public Client(String username, String address, String password, String email) {
 		this.username = username;
@@ -38,15 +40,16 @@ public class Client {
 		this.email = email;
 		this.cart = new Cart();
 		this.shop = Shop.getInstance();
+
 	}
 
 	public boolean validatePassword(String pass) {
 		if (!pass.matches(PASS_REGEX)) {
 			return false;
-		}
+		} 
 			return true;
 	}
-
+	public  Shop getShop() { return  shop;}
 	public Cart getCart() {
 		return cart;
 	}
@@ -65,7 +68,7 @@ public class Client {
 		regMatcher = regexPattern.matcher(emailAddress);
 		if (regMatcher.matches()) {
 			return true;
-		}
+    }
 		return false;
 	}
 
@@ -227,6 +230,5 @@ public class Client {
 		return "Client [username = " + username + ", name= " + name + ", address = " + address + ", password = "
 				+ password + ", phoneNumber = " + phoneNumber + ", email = " + email;
 	}
-
 
 }
