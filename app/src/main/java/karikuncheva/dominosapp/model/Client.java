@@ -29,9 +29,12 @@ public class Client {
 	private Matcher regMatcher;
 
 	public Client(String username, String address, String password, String email) {
+		this.username = username;
+		this.address = address;
+		this.password = password;
+		this.email = email;
 		this.cart = new Cart();
 		this.shop = Shop.getInstance();
-
 
 	}
 

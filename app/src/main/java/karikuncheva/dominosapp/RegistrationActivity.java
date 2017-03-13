@@ -15,7 +15,7 @@ import karikuncheva.dominosapp.model.Client;
 public class RegistrationActivity extends AppCompatActivity {
     private Client client;
     private  Shop shop = Shop.getInstance();
-    private EditText username_text, email_text, address_text, pass_text, confirm_pass_text;
+    private EditText username_reg, email_reg, address_reg, pass_reg, confirm_pass_reg;
     private String username, email, address, pass, confirmPass;
     Button regButton ;
 
@@ -24,11 +24,11 @@ public class RegistrationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
 
-        username_text = (EditText) findViewById(R.id.username);
-        email_text = (EditText) findViewById(R.id.email);
-        address_text = (EditText) findViewById(R.id.address);
-        pass_text = (EditText) findViewById(R.id.password);
-        confirm_pass_text = (EditText) findViewById(R.id.confirm_pass);
+        username_reg = (EditText) findViewById(R.id.username_reg);
+        email_reg = (EditText) findViewById(R.id.email_reg);
+        address_reg = (EditText) findViewById(R.id.address_reg);
+        pass_reg = (EditText) findViewById(R.id.password_reg);
+        confirm_pass_reg = (EditText) findViewById(R.id.confirm_pass_reg);
         regButton = (Button) findViewById(R.id.registration_button);
 
         regButton.setOnClickListener(new View.OnClickListener() {
@@ -45,8 +45,7 @@ public class RegistrationActivity extends AppCompatActivity {
             Toast.makeText(this, "Registration complete", Toast.LENGTH_LONG).show();
             Intent intent = new Intent(RegistrationActivity.this, CatalogActivity.class);
             RegistrationActivity.this.startActivity(intent);
-            // Intent to go to menu page!
-
+            // Intent to go to menu p
         }
         else{
             Toast.makeText(this, "Registration has failed", Toast.LENGTH_SHORT).show();
@@ -58,28 +57,33 @@ public class RegistrationActivity extends AppCompatActivity {
         boolean valid = true;
         this.client = new Client(username, address, pass, email);
         if (username.isEmpty()){
-            username_text.setError("Username must not be empty!");
+            username_reg.setError("Username must not be empty!");
+            valid = false;
         }
         if (!client.validateEmailAddress(email)){
-            email_text.setError("Please, enter a valid email!");
+            email_reg.setError("Please, enter a valid email!");
+            valid = false;
         }
         if (address.isEmpty()){
-            address_text.setError("Please, enter a valid address!");
+            address_reg.setError("Please, enter a valid address!");
+            valid = false;
         }
         if (!client.validatePassword(pass)){
-            pass_text.setError("Please, enter a valid password");
+            pass_reg.setError("Please, enter a valid password");
+            valid = false;
         }
         if (!pass.equals(confirmPass)){
-            confirm_pass_text.setError("Passwords do not match");
+            confirm_pass_reg.setError("Passwords do not match");
+            valid = false;
         }
         return valid;
     }
 
     public void initialize(){
-            username = username_text.getText().toString();
-            email = email_text.getText().toString();
-            address = address_text.getText().toString();
-            pass = pass_text.getText().toString();
-            confirmPass = confirm_pass_text.getText().toString();
+            username = username_reg.getText().toString();
+            email = email_reg.getText().toString();
+            address = address_reg.getText().toString();
+            pass = pass_reg.getText().toString();
+            confirmPass = confirm_pass_reg.getText().toString();
     }
 }

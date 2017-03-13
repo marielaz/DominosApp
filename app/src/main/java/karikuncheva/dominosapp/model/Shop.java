@@ -59,8 +59,10 @@ public class Shop {
 		return instance;
 	}
 
-	public Set getClients() {
+	public Set getClients()
+    {
 		return Collections.unmodifiableSet(clients);
+
 	}
 
 	public Map getCatalog() {

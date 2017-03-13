@@ -42,7 +42,7 @@
 
 
     <EditText
-        android:id="@+id/username_text"
+        android:id="@+id/username_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:maxLength="25"
@@ -54,7 +54,7 @@
 
     <!-- inputType ???? -->
     <EditText
-        android:id="@+id/password_text"
+        android:id="@+id/password_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:maxLength="30"
