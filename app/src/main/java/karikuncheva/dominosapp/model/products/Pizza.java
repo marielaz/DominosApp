@@ -12,32 +12,37 @@ public class Pizza extends Product {
 
 	public Type type;
 	public Size size;
+	private String description;
 
-	public Pizza(String name, double price) {
+	public Pizza(String name, double price, String description) {
 		super(ProductType.PIZZA, name, price);
 		this.type = Type.TRADITIONAL;
 		this.size = Size.LARGE;
+		this.description = description;
 
 	}
 
+	public String getDescription() {
+		return description;
+	}
 
 	// change the size of the pizza and the crust and modify the price
 	// NE RABOTI!
 	public Pizza changePizza(Pizza pizza, Size size, Type type) {
 	
 		if (size == Size.MEDIUM) {
-			Pizza p = new Pizza(pizza.getName(), pizza.getPrice() - 1.00);
+			Pizza p = new Pizza(pizza.getName(), pizza.getPrice() - 1.00, pizza.getDescription());
 			p.size= Size.MEDIUM;
 			p.type= type;
 			return p;
 		} else if (size == size.SMALL) {
-			Pizza p = new Pizza(pizza.getName(), pizza.getPrice() - 1.50);
+			Pizza p = new Pizza(pizza.getName(), pizza.getPrice() - 1.50, pizza.getDescription());
 			p.size= Size.SMALL;
 			p.type = type;
 			return p;
 		}
 		else if (size == size.LARGE && type != type.TRADITIONAL){
-			Pizza p = new Pizza(pizza.getName(), pizza.getPrice());
+			Pizza p = new Pizza(pizza.getName(), pizza.getPrice(), pizza.getDescription());
 			p.type = type;
 		}
 		
