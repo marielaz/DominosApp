@@ -6,22 +6,24 @@
     android:background="@drawable/grey_backgr"
     android:weightSum="3">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-      />
+        android:layout_height="85dp"
+        android:paddingLeft="0dp"
+        android:paddingRight="5dp"
+        android:paddingBottom="13dp"
+        android:paddingTop="5dp"
+        android:background="@color/colorPrimary"
+        android:src="@drawable/logo_dominos" />
 
     <TextView
         android:layout_gravity="center_horizontal"
         android:layout_width="wrap_content"
-        android:layout_height="57dp"
+        android:layout_height="wrap_content"
         android:textSize="35sp"
         android:textColor="#000000"
         android:text="Gift Card"
+        android:layout_marginTop="45dp"
         android:gravity="center_horizontal"
         android:layout_weight="1"/>
 
@@ -30,16 +32,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:maxLength="5"
+        android:layout_marginLeft="70dp"
+        android:layout_marginRight="70dp"
         android:hint="Enter code"
         android:gravity="center_horizontal"
         />
 
     <Button
         android:id="@+id/giftcard_button"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:textAllCaps="false"
+        android:layout_marginRight="120dp"
+        android:layout_marginLeft="120dp"
+        android:layout_marginTop="40dp"
         android:text="Enter"
         android:background="@drawable/rounded_button"
         />

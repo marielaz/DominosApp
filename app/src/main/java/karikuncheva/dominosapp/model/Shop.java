@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
+import java.util.List;
 
 import karikuncheva.dominosapp.model.products.Product.ProductType;
 import karikuncheva.dominosapp.model.products.Dessert;
@@ -22,6 +23,7 @@ public class Shop {
 
 	private HashSet<Client> clients;
 	private HashMap<ProductType, HashSet<Product>> catalog;
+	private ArrayList<Pizza> pizzas = new ArrayList<>();
 
 	public Shop() {
 
@@ -29,16 +31,16 @@ public class Shop {
 		this.clients = new HashSet<Client>();
 		this.catalog = new HashMap<ProductType, HashSet<Product>>();
 
-		products.add(new Pizza("Margarita", 12.00));
-		products.add(new Pizza("Beast", 16.50));
-		products.add(new Pizza("Mediterraneo", 14.50));
-		products.add(new Pizza("Carbonara", 14.50));
-		products.add(new Pizza("Alfredo", 15.50));
-		products.add(new Pizza("Vita", 14.50));
-		products.add(new Pizza("Chickenita", 18.50));
-		products.add(new Pizza("American Hot", 15.50));
-		products.add(new Pizza("New York", 16.50));
-		products.add(new Pizza("Bulgarian", 15.50));
+		pizzas.add(new Pizza("Margarita", 12.00, "Descr 1"));
+		pizzas.add(new Pizza("Beast", 16.50, "Descr 1"));
+		pizzas.add(new Pizza("Mediterraneo", 14.50, "Descr 1"));
+		pizzas.add(new Pizza("Carbonara", 14.50, "Descr 1"));
+		pizzas.add(new Pizza("Alfredo", 15.50, "Descr 1"));
+		pizzas.add(new Pizza("Vita", 14.50, "Descr 1"));
+		pizzas.add(new Pizza("Chickenita", 18.50, "Descr 1"));
+		pizzas.add(new Pizza("American Hot", 15.50, "Descr 1"));
+		pizzas.add(new Pizza("New York", 16.50, "Descr 1"));
+		pizzas.add(new Pizza("Bulgarian", 15.50, "Descr 1"));
 
 		products.add(new Dessert("Choko Pie", 6.50));
 		products.add(new Dessert("Souflle", 6.50));
@@ -58,6 +60,10 @@ public class Shop {
 			instance = new Shop();
 		}
 		return instance;
+	}
+
+	public List getPizzas() {
+		return Collections.unmodifiableList(pizzas);
 	}
 
 	public Set getClients()
@@ -86,10 +92,10 @@ public class Shop {
 		}
 	}
 	// only admin can add products from the shop
-	public void addNewProduct(ProductType type, String name, double price) {
+	public void addNewProduct(ProductType type, String name, double price, String description) {
 		Product p;
 		if (type == ProductType.PIZZA) {
-			p = new Pizza(name, price);
+			p = new Pizza(name, price, description);
 		} else if (type == ProductType.DESSERT) {
 			p = new Dessert(name, price);
 		} else {
