@@ -20,6 +20,9 @@ public class MainActivity extends AppCompatActivity {
     private Button loginButton;
     private Button registerButton;
     private String username, password;
+    private Shop shop;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

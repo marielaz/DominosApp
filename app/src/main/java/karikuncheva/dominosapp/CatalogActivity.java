@@ -36,7 +36,7 @@ public class CatalogActivity extends AppCompatActivity {
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
 
         //Adding the tabs using addTab() method
-        tabLayout.addTab(tabLayout.newTab().setText("Pizza"));
+        tabLayout.addTab(tabLayout.newTab().setText("Pizzas"));
         tabLayout.addTab(tabLayout.newTab().setText("Desserts"));
         tabLayout.addTab(tabLayout.newTab().setText("Drinks"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);

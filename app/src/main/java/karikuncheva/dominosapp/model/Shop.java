@@ -22,23 +22,23 @@ public class Shop {
 
 	private HashSet<Client> clients;
 	private HashMap<ProductType, HashSet<Product>> catalog;
-
+    private ArrayList<Pizza> pizzas = new ArrayList<Pizza>();
 	public Shop() {
 
 		ArrayList<Product> products = new ArrayList<Product>();
 		this.clients = new HashSet<Client>();
 		this.catalog = new HashMap<ProductType, HashSet<Product>>();
 
-		products.add(new Pizza("Margarita", 12.00));
-		products.add(new Pizza("Beast", 16.50));
-		products.add(new Pizza("Mediterraneo", 14.50));
-		products.add(new Pizza("Carbonara", 14.50));
-		products.add(new Pizza("Alfredo", 15.50));
-		products.add(new Pizza("Vita", 14.50));
-		products.add(new Pizza("Chickenita", 18.50));
-		products.add(new Pizza("American Hot", 15.50));
-		products.add(new Pizza("New York", 16.50));
-		products.add(new Pizza("Bulgarian", 15.50));
+		pizzas.add(new Pizza("Margarita", 12.00));
+        pizzas.add(new Pizza("Beast", 16.50));
+        pizzas.add(new Pizza("Mediterraneo", 14.50));
+        pizzas.add(new Pizza("Carbonara", 14.50));
+        pizzas.add(new Pizza("Alfredo", 15.50));
+        pizzas.add(new Pizza("Vita", 14.50));
+        pizzas.add(new Pizza("Chickenita", 18.50));
+        pizzas.add(new Pizza("American Hot", 15.50));
+        pizzas.add(new Pizza("New York", 16.50));
+        pizzas.add(new Pizza("Bulgarian", 15.50));
 
 		products.add(new Dessert("Choko Pie", 6.50));
 		products.add(new Dessert("Souflle", 6.50));
@@ -60,7 +60,11 @@ public class Shop {
 		return instance;
 	}
 
-	public Set getClients()
+    public ArrayList<Pizza> getPizzas() {
+        return pizzas;
+    }
+
+    public Set getClients()
     {
 		return Collections.unmodifiableSet(clients);
 
