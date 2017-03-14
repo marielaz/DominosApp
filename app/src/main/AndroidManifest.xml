@@ -10,18 +10,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
-
-        </activity>
-        <activity android:name=".CatalogActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".CatalogActivity">
+
+        </activity>
         <activity android:name=".RegistrationActivity">
         </activity>
->>>>>>> ac681b522b05ddab99baecbb7868b2dd4027e97f
-    </application>
+
+  </application>
 
 </manifest>

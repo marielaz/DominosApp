@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -45,9 +47,11 @@ class CustomAdapter extends ArrayAdapter<String> {
 //        if (convertView == null) {
 //            convertView = LayoutInflater.from(getContext()).inflate(R.layout.single_row_pizza, parent, false);
 //        }
+        ImageView pizzaImage = (ImageView) row.findViewById(R.id.image);
         TextView pizzaName = (TextView) row.findViewById(R.id.name);
         TextView pizzaDescr = (TextView) row.findViewById(R.id.description);
         TextView pizzaPrice = (TextView) row.findViewById(R.id.price);
+        pizzaImage.setImageResource(pizzas.get(position).getImageId());
         pizzaName.setText(pizzas.get(position).getName());
         pizzaDescr.setText(pizzas.get(position).getDescription());
         String price = Double.toString(pizzas.get(position).getPrice());

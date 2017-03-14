@@ -9,6 +9,7 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.List;
 
+import karikuncheva.dominosapp.R;
 import karikuncheva.dominosapp.model.products.Product.ProductType;
 import karikuncheva.dominosapp.model.products.Dessert;
 import karikuncheva.dominosapp.model.products.Drink;
@@ -31,16 +32,16 @@ public class Shop {
 		this.clients = new HashSet<Client>();
 		this.catalog = new HashMap<ProductType, HashSet<Product>>();
 
-		pizzas.add(new Pizza("Margarita", 12.00, "Descr 1"));
-		pizzas.add(new Pizza("Beast", 16.50, "Descr 1"));
-		pizzas.add(new Pizza("Mediterraneo", 14.50, "Descr 1"));
-		pizzas.add(new Pizza("Carbonara", 14.50, "Descr 1"));
-		pizzas.add(new Pizza("Alfredo", 15.50, "Descr 1"));
-		pizzas.add(new Pizza("Vita", 14.50, "Descr 1"));
-		pizzas.add(new Pizza("Chickenita", 18.50, "Descr 1"));
-		pizzas.add(new Pizza("American Hot", 15.50, "Descr 1"));
-		pizzas.add(new Pizza("New York", 16.50, "Descr 1"));
-		pizzas.add(new Pizza("Bulgarian", 15.50, "Descr 1"));
+		pizzas.add(new Pizza("Margarita", 12.00, "Descr 1",R.drawable.margarita ));
+		pizzas.add(new Pizza("Beast", 16.50, "Descr 1", R.drawable.beast));
+		pizzas.add(new Pizza("Mediterraneo", 14.50, "Descr 1", R.drawable.mediterraneo));
+		pizzas.add(new Pizza("Carbonara", 14.50, "Descr 1", R.drawable. carbonara));
+		pizzas.add(new Pizza("Alfredo", 15.50, "Descr 1", R.drawable.alfredo));
+		pizzas.add(new Pizza("Vita", 14.50, "Descr 1", R.drawable.vita));
+		pizzas.add(new Pizza("Chickenita", 18.50, "Descr 1", R.drawable.chickenita));
+		pizzas.add(new Pizza("American Hot", 15.50, "Descr 1", R.drawable.americanhot));
+		pizzas.add(new Pizza("New York", 16.50, "Descr 1", R.drawable.newyork));
+		pizzas.add(new Pizza("Bulgarian", 15.50, "Descr 1", R.drawable.bulgaria));
 
 		products.add(new Dessert("Choko Pie", 6.50));
 		products.add(new Dessert("Souflle", 6.50));
@@ -92,24 +93,24 @@ public class Shop {
 		}
 	}
 	// only admin can add products from the shop
-	public void addNewProduct(ProductType type, String name, double price, String description) {
-		Product p;
-		if (type == ProductType.PIZZA) {
-			p = new Pizza(name, price, description);
-		} else if (type == ProductType.DESSERT) {
-			p = new Dessert(name, price);
-		} else {
-			p = new Drink(name, price);
-		}
-
-		if (!this.catalog.containsKey(p.pType)) {
-			this.catalog.put(p.pType, new HashSet<Product>());
-
-		}
-		if (!this.catalog.get(p.pType).contains(p)) {
-			this.catalog.get(p.pType).add(p);
-		}
-	}
+//	public void addNewProduct(ProductType type, String name, double price, String description) {
+//		Product p;
+//		if (type == ProductType.PIZZA) {
+//			p = new Pizza(name, price, description );
+//		} else if (type == ProductType.DESSERT) {
+//			p = new Dessert(name, price);
+//		} else {
+//			p = new Drink(name, price);
+//		}
+//
+//		if (!this.catalog.containsKey(p.pType)) {
+//			this.catalog.put(p.pType, new HashSet<Product>());
+//
+//		}
+//		if (!this.catalog.get(p.pType).contains(p)) {
+//			this.catalog.get(p.pType).add(p);
+//		}
+//	}
 
 	// only admin can remove products from the shop
 	public void removeProduct(Product p) {
