@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import java.util.ArrayList;
 import android.widget.EditText;
 import android.widget.Button;
 import android.view.View;
@@ -21,6 +20,9 @@ public class MainActivity extends AppCompatActivity {
     private Button loginButton;
     private Button registerButton;
     private String username, password;
+    private Shop shop;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

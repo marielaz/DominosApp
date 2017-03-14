@@ -29,14 +29,14 @@ public class CatalogActivity extends AppCompatActivity {
         setContentView(R.layout.activity_catalog);
 
         //Adding toolbar to the activity
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
 
         //Initializing the tablayout
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
 
         //Adding the tabs using addTab() method
-        tabLayout.addTab(tabLayout.newTab().setText("Pizza"));
+        tabLayout.addTab(tabLayout.newTab().setText("Pizzas"));
         tabLayout.addTab(tabLayout.newTab().setText("Desserts"));
         tabLayout.addTab(tabLayout.newTab().setText("Drinks"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);

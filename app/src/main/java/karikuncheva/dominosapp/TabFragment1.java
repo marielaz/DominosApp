@@ -1,3 +1,5 @@
+
+
 package karikuncheva.dominosapp;
 import android.content.Context;
 import android.os.Bundle;
@@ -19,18 +21,18 @@ import karikuncheva.dominosapp.model.products.Pizza;
  * Created by Mariela Zviskova on 10.3.2017 г..
  */
 
-    public class TabFragment1 extends Fragment {
+public class TabFragment1 extends Fragment {
 
     private Shop shop;
-     ListView list;
+    ListView list;
 
-     @Override
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-         View v = inflater.inflate(R.layout.tab_fragment_1, container, false);
-         list = (ListView) v.findViewById(R.id.listView);
-         CustomAdapter adapter = new CustomAdapter(this.getContext(), Shop.getInstance().getPizzas());
-         list.setAdapter(adapter);
+        View v = inflater.inflate(R.layout.tab_fragment_1, container, false);
+        list = (ListView) v.findViewById(R.id.listView);
+        CustomAdapter adapter = new CustomAdapter(this.getContext(), Shop.getInstance().getPizzas());
+        list.setAdapter(adapter);
         return v;
 
     }
