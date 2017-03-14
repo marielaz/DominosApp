@@ -19,8 +19,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RegistrationActivity"></activity>
-
+        <activity android:name=".RegistrationActivity">
+        </activity>
+>>>>>>> ac681b522b05ddab99baecbb7868b2dd4027e97f
     </application>
 
 </manifest>

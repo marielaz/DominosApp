@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
+import java.util.List;
 
 import karikuncheva.dominosapp.model.products.Product.ProductType;
 import karikuncheva.dominosapp.model.products.Dessert;
@@ -22,23 +23,24 @@ public class Shop {
 
 	private HashSet<Client> clients;
 	private HashMap<ProductType, HashSet<Product>> catalog;
-    private ArrayList<Pizza> pizzas = new ArrayList<Pizza>();
+	private ArrayList<Pizza> pizzas = new ArrayList<>();
+
 	public Shop() {
 
 		ArrayList<Product> products = new ArrayList<Product>();
 		this.clients = new HashSet<Client>();
 		this.catalog = new HashMap<ProductType, HashSet<Product>>();
 
-		pizzas.add(new Pizza("Margarita", 12.00));
-        pizzas.add(new Pizza("Beast", 16.50));
-        pizzas.add(new Pizza("Mediterraneo", 14.50));
-        pizzas.add(new Pizza("Carbonara", 14.50));
-        pizzas.add(new Pizza("Alfredo", 15.50));
-        pizzas.add(new Pizza("Vita", 14.50));
-        pizzas.add(new Pizza("Chickenita", 18.50));
-        pizzas.add(new Pizza("American Hot", 15.50));
-        pizzas.add(new Pizza("New York", 16.50));
-        pizzas.add(new Pizza("Bulgarian", 15.50));
+		pizzas.add(new Pizza("Margarita", 12.00, "Descr 1"));
+		pizzas.add(new Pizza("Beast", 16.50, "Descr 1"));
+		pizzas.add(new Pizza("Mediterraneo", 14.50, "Descr 1"));
+		pizzas.add(new Pizza("Carbonara", 14.50, "Descr 1"));
+		pizzas.add(new Pizza("Alfredo", 15.50, "Descr 1"));
+		pizzas.add(new Pizza("Vita", 14.50, "Descr 1"));
+		pizzas.add(new Pizza("Chickenita", 18.50, "Descr 1"));
+		pizzas.add(new Pizza("American Hot", 15.50, "Descr 1"));
+		pizzas.add(new Pizza("New York", 16.50, "Descr 1"));
+		pizzas.add(new Pizza("Bulgarian", 15.50, "Descr 1"));
 
 		products.add(new Dessert("Choko Pie", 6.50));
 		products.add(new Dessert("Souflle", 6.50));
@@ -49,7 +51,7 @@ public class Shop {
 		products.add(new Drink("Finta", 2.80));
 		products.add(new Drink("Sprite", 2.80));
 		products.add(new Drink("Nestea", 2.00));
-    
+
 		addToCatalog(products);
 	}
 
@@ -60,19 +62,19 @@ public class Shop {
 		return instance;
 	}
 
-    public ArrayList<Pizza> getPizzas() {
-        return pizzas;
-    }
+	public List getPizzas() {
+		return Collections.unmodifiableList(pizzas);
+	}
 
-    public Set getClients()
-    {
+	public Set getClients()
+	{
 		return Collections.unmodifiableSet(clients);
 
 	}
 
 	public Map getCatalog() {
 		return Collections.unmodifiableMap(catalog);
-		
+
 	}
 
 	private void addToCatalog(ArrayList<Product> products) {
@@ -90,10 +92,10 @@ public class Shop {
 		}
 	}
 	// only admin can add products from the shop
-	public void addNewProduct(ProductType type, String name, double price) {
+	public void addNewProduct(ProductType type, String name, double price, String description) {
 		Product p;
 		if (type == ProductType.PIZZA) {
-			p = new Pizza(name, price);
+			p = new Pizza(name, price, description);
 		} else if (type == ProductType.DESSERT) {
 			p = new Dessert(name, price);
 		} else {
@@ -102,7 +104,7 @@ public class Shop {
 
 		if (!this.catalog.containsKey(p.pType)) {
 			this.catalog.put(p.pType, new HashSet<Product>());
-			
+
 		}
 		if (!this.catalog.get(p.pType).contains(p)) {
 			this.catalog.get(p.pType).add(p);
@@ -112,7 +114,7 @@ public class Shop {
 	// only admin can remove products from the shop
 	public void removeProduct(Product p) {
 		if (this.catalog.containsKey(p.pType)) {
-		
+
 		}
 		if (this.catalog.get(p.pType).contains(p)) {
 			this.catalog.get(p.pType).remove(p);

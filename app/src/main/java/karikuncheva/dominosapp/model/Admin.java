@@ -20,9 +20,9 @@ public final class Admin {
 		return shop;
 	}
 
-	public void addProduct(ProductType type, String name, double price) {
-		shop.addNewProduct(type, name, price);
-	}
+//	public void addProduct(ProductType type, String name, double price) {
+//		shop.addNewProduct(type, name, price);
+//	}
 
 	// only admin can remove products from the cart!
 	public void removeProduct(Product p) {
