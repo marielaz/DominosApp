@@ -17,8 +17,8 @@ import karikuncheva.dominosapp.model.products.Pizza;
 import karikuncheva.dominosapp.model.products.Product;
 
 
-
 public class Shop {
+
 
 	private static Shop instance;
 
