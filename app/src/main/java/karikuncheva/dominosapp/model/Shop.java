@@ -25,7 +25,7 @@ public class Shop {
 	private HashSet<Client> clients;
 	private HashMap<ProductType, HashSet<Product>> catalog;
 	private ArrayList<Pizza> pizzas = new ArrayList<>();
-
+	private ArrayList<Dessert> desserts = new ArrayList<>();
 	public Shop() {
 
 		ArrayList<Product> products = new ArrayList<Product>();
@@ -43,10 +43,10 @@ public class Shop {
 		pizzas.add(new Pizza("New York", 16.50, "Descr 1", R.drawable.newyork));
 		pizzas.add(new Pizza("Bulgarian", 15.50, "Descr 1", R.drawable.bulgaria));
 
-		products.add(new Dessert("Choko Pie", 6.50));
-		products.add(new Dessert("Souflle", 6.50));
-		products.add(new Dessert("Nirvana", 2.90));
-		products.add(new Dessert("Mini Pancakes", 3.50));
+		desserts.add(new Dessert("Choko Pie", 6.50, "Freshly oven baked puff pastry filled with Nutella spread and sprinkled with icing sugar", R.drawable.chocopie));
+		desserts.add(new Dessert("Souflle", 6.50, "Chocolate lava cake filled with melted warm chocolate", R.drawable.souffle));
+		desserts.add(new Dessert("Nirvana", 2.90, "Nirvana Pralines & Cream", R.drawable.nirvana));
+		desserts.add(new Dessert("Mini Pancakes", 3.50, "12 puffy mini pancakes with banana tast", R.drawable.minipancakes));
 
 		products.add(new Drink("Coca-Cola", 2.80));
 		products.add(new Drink("Finta", 2.80));
@@ -65,6 +65,10 @@ public class Shop {
 
 	public List getPizzas() {
 		return Collections.unmodifiableList(pizzas);
+	}
+
+	public List getDesserts() {
+		return Collections.unmodifiableList(desserts);
 	}
 
 	public Set getClients()
