@@ -175,13 +175,13 @@ public class Client {
 				} else {
 					switch (new Random().nextInt(3)) {
 					case 0:
-						this.cart.addProduct(new Dessert("Choco Pie", 0));
+						this.cart.addProduct(new Dessert("Choco Pie", 0, "", 0));
 						break;
 					case 1:
-						this.cart.addProduct(new Dessert("Nirvana", 0));
+						this.cart.addProduct(new Dessert("Nirvana", 0, "", 0));
 						break;
 					case 2:
-						this.cart.addProduct(new Dessert("Mini pancakes", 0));
+						this.cart.addProduct(new Dessert("Mini pancakes", 0, "", 0));
 						break;
 
 					default:

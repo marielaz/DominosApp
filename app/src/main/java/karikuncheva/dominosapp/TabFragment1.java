@@ -23,7 +23,6 @@ import karikuncheva.dominosapp.model.products.Pizza;
 
 public class TabFragment1 extends Fragment {
 
-    private Shop shop;
     ListView list;
 
     @Override

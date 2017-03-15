@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         password_login = (EditText) this.findViewById(R.id.password_login);
         loginButton = (Button) this.findViewById(R.id.login_button);
         registerButton = (Button) this.findViewById(R.id.registration_button);
-        loginButton.setOnClickListener(new View.OnClickListener() {
+        loginButton.setOnClickListener( new View.OnClickListener() {
             public void onClick(View v) {
                 if (validate()) {
                         Toast.makeText(MainActivity.this, "User data is valid", Toast.LENGTH_SHORT).show();
