@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:paddingTop="20dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingLeft="10dp"
     android:background="@drawable/rounded_modify_button">
 
     <TextView
@@ -25,12 +25,12 @@
         android:layout_height="wrap_content"
         android:id="@+id/description"
         android:text=""
-        android:textSize="20sp"
-        android:layout_alignTop="@id/image"
-        android:layout_toRightOf="@id/image"
-        android:gravity="center|left"
-        android:layout_marginLeft="15dp"
-        />
+        android:paddingLeft="10dp"
+        android:paddingRight="15dp"
+        android:textSize="15sp"
+       android:layout_toRightOf="@+id/image"
+        android:layout_above="@+id/imageButton2"
+        android:layout_centerHorizontal="true"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -38,11 +38,12 @@
         android:id="@+id/price"
         android:text=""
         android:textSize="15sp"
-        android:layout_alignTop="@id/description"
-        android:layout_toRightOf="@id/description"
         android:gravity="right"
-        android:layout_marginLeft="15dp"
-        />
+        android:layout_alignBottom="@+id/imageButton2"
+        android:layout_toLeftOf="@+id/imageButton2"
+        android:layout_toStartOf="@+id/imageButton2"
+        android:layout_marginRight="18dp"
+        android:layout_marginEnd="18dp" />
 
     <TextView
         android:id="@+id/largeTrad"
@@ -50,22 +51,27 @@
         android:layout_height="wrap_content"
         android:text="Large Traditional"
         android:textSize="10sp"
+        android:layout_below="@+id/image"
         android:layout_alignBottom="@id/image"
        />
 
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@id/description"
-        android:background="@mipmap/addcart"
-        />
+        android:layout_below="@id/description"
+        android:layout_alignRight="@id/largeTrad"
+        android:background="@mipmap/modifypizza" />
 
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/description"
-        android:layout_alignRight="@id/largeTrad"
-        android:background="@mipmap/modifypizza"
-        />
+        android:background="@mipmap/addcart"
+        android:layout_alignBottom="@+id/image"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="19dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="12dp"
+        android:id="@+id/imageButton2" />
 
 </RelativeLayout>

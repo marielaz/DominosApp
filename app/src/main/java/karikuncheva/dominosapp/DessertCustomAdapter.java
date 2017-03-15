@@ -38,15 +38,15 @@ public class DessertCustomAdapter extends ArrayAdapter<String> {
         LayoutInflater inflater = (LayoutInflater) fragment2.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View row = inflater.inflate(R.layout.single_row_des_dr, parent, false);
 
-        ImageView pizzaImage = (ImageView) row.findViewById(R.id.image);
-        TextView pizzaName = (TextView) row.findViewById(R.id.name);
-        TextView pizzaDescr = (TextView) row.findViewById(R.id.description);
-        TextView pizzaPrice = (TextView) row.findViewById(R.id.price);
-        pizzaImage.setImageResource(desserts.get(position).getImageId());
-        pizzaName.setText(desserts.get(position).getName());
-        pizzaDescr.setText(desserts.get(position).getDescription());
+        ImageView dessertImage = (ImageView) row.findViewById(R.id.image);
+        TextView dessertName = (TextView) row.findViewById(R.id.name);
+        TextView dessertDescr = (TextView) row.findViewById(R.id.description);
+        TextView dessertPrice = (TextView) row.findViewById(R.id.price);
+        dessertImage.setImageResource(desserts.get(position).getImageId());
+        dessertName.setText(desserts.get(position).getName());
+        dessertDescr.setText(desserts.get(position).getDescription());
         String price = Double.toString(desserts.get(position).getPrice());
-        pizzaPrice.setText(price);
+        dessertPrice.setText(price);
         return row;
     }
 }

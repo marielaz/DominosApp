@@ -3,6 +3,8 @@ package karikuncheva.dominosapp.model;
 import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import karikuncheva.dominosapp.R;
 import karikuncheva.dominosapp.model.products.Product;
 import karikuncheva.dominosapp.model.products.Pizza;
 import karikuncheva.dominosapp.model.products.Pizza.Size;
@@ -160,13 +162,13 @@ public class Client {
 				if (countDigits > code.length() - countDigits) {
 					switch (new Random().nextInt(3)) {
 					case 0:
-						this.cart.addProduct(new Drink("Coca Cola", 0));
+						this.cart.addProduct(new Drink("Coca Cola", 0, "", R.drawable.cola));
 						break;
 					case 1:
-						this.cart.addProduct(new Drink("Fanta", 0));
+						this.cart.addProduct(new Drink("Fanta", 0, "", R.drawable.fanta));
 						break;
 					case 2:
-						this.cart.addProduct(new Drink("Sprite", 0));
+						this.cart.addProduct(new Drink("Sprite", 0, "", R.drawable.sprite));
 						break;
 
 					default:
@@ -175,13 +177,13 @@ public class Client {
 				} else {
 					switch (new Random().nextInt(3)) {
 					case 0:
-						this.cart.addProduct(new Dessert("Choco Pie", 0, "", 0));
+						this.cart.addProduct(new Dessert("Choco Pie", 0, "", R.drawable.chocopie));
 						break;
 					case 1:
-						this.cart.addProduct(new Dessert("Nirvana", 0, "", 0));
+						this.cart.addProduct(new Dessert("Nirvana", 0, "", R.drawable.nirvana));
 						break;
 					case 2:
-						this.cart.addProduct(new Dessert("Mini pancakes", 0, "", 0));
+						this.cart.addProduct(new Dessert("Mini pancakes", 0, "", R.drawable.minipancakes));
 						break;
 
 					default:

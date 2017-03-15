@@ -8,12 +8,16 @@ public abstract class Product {
 	private String name;
 	private double price;
 	private int quantity ;
+	private  String description;
 	private double discPrice;
+	private int imageId;
 	
-	public Product(ProductType pType, String name, double price) {
+	public Product(ProductType pType, String name, double price, String description, int imageId) {
 		this.pType = pType;
 		this.name = name;
 		this.price = price;
+		this.description = description;
+		this.imageId = imageId;
 		this.quantity= 1;
 		this.discPrice = 0;
 	}
@@ -40,8 +44,16 @@ public abstract class Product {
 	public int getQuantity() {
 		return quantity;
 	}
-	
-	public void setQuantity( int quantity) {
+
+	public String getDescription() {
+		return description;
+	}
+
+	public int getImageId() {
+		return imageId;
+	}
+
+	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
 

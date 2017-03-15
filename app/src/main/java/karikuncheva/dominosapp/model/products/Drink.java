@@ -6,8 +6,8 @@ import karikuncheva.dominosapp.model.products.Product;
 public class Drink extends Product {
 
 
-	public Drink(String name, double price) {
-		super(ProductType.DRINK, name, price);
+	public Drink(String name, double price, String description, int imageId) {
+		super(ProductType.DRINK, name, price,description, imageId );
 		
 	}
 
