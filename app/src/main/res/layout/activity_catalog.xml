@@ -18,6 +18,15 @@
         <!--android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"-->
         <!--app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>-->
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="85dp"
+        android:paddingLeft="0dp"
+        android:paddingRight="5dp"
+        android:paddingBottom="13dp"
+        android:paddingTop="5dp"
+        android:background="@color/colorPrimary"
+        android:src="@drawable/logo_dominos" />
     <!-- our tablayout to display tabs  -->
     <android.support.design.widget.TabLayout
         android:id="@+id/tabLayout"
