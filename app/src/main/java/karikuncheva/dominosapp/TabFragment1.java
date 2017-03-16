@@ -30,7 +30,7 @@ public class TabFragment1 extends Fragment {
 
         View v = inflater.inflate(R.layout.tab_fragment_1, container, false);
         list = (ListView) v.findViewById(R.id.listView);
-        CustomAdapter adapter = new CustomAdapter(this.getContext(), Shop.getInstance().getPizzas());
+        CustomAdapter adapter = new CustomAdapter(getActivity(), Shop.getInstance().getPizzas());
         list.setAdapter(adapter);
         return v;
 

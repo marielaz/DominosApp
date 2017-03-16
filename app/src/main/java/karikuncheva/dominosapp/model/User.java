@@ -1,5 +1,6 @@
 package karikuncheva.dominosapp.model;
 
+import java.io.Serializable;
 import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -11,9 +12,8 @@ import karikuncheva.dominosapp.model.products.Pizza.Size;
 import karikuncheva.dominosapp.model.products.Pizza.Type;
 import karikuncheva.dominosapp.model.products.Dessert;
 import karikuncheva.dominosapp.model.products.Drink;
-import karikuncheva.dominosapp.model.products.Product.ProductType;
 
-public class Client {
+public class User implements Serializable {
 
 	private String username;
 	private String name;
@@ -29,13 +29,16 @@ public class Client {
 	private Matcher regMatcher;
 
 
-    public Client(String username, String password){
+	public User(){
+
+	}
+	public User(String username, String password){
         this.username = username;
         this.password = password;
     }
 
 
-	public Client(String username, String address, String password, String email) {
+	public User(String username, String address, String password, String email) {
 		this.username = username;
 		this.address = address;
 		this.password = password;
@@ -51,6 +54,15 @@ public class Client {
 		} 
 			return true;
 	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
 	public  Shop getShop() { return  shop;}
 	public Cart getCart() {
 		return cart;
@@ -132,7 +144,7 @@ public class Client {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Client other = (Client) obj;
+		User other = (User) obj;
 		if (email == null) {
 			if (other.email != null)
 				return false;
@@ -229,7 +241,7 @@ public class Client {
 
 	@Override
 	public String toString() {
-		return "Client [username = " + username + ", name= " + name + ", address = " + address + ", password = "
+		return "User [username = " + username + ", name= " + name + ", address = " + address + ", password = "
 				+ password + ", phoneNumber = " + phoneNumber + ", email = " + email;
 	}
 

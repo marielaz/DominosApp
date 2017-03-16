@@ -1,6 +1,8 @@
 package karikuncheva.dominosapp.model.products;
 
-public abstract class Product {
+import java.io.Serializable;
+
+public abstract class Product implements Serializable {
 
 	public enum ProductType {PIZZA, DESSERT, DRINK};
 	

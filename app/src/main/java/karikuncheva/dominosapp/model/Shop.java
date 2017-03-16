@@ -1,5 +1,6 @@
 package karikuncheva.dominosapp.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -17,12 +18,12 @@ import karikuncheva.dominosapp.model.products.Pizza;
 import karikuncheva.dominosapp.model.products.Product;
 
 
-public class Shop {
+public class Shop implements Serializable{
 
 
 	private static Shop instance;
 
-	private HashSet<Client> clients;
+	private HashSet<User> users;
 	private HashMap<ProductType, HashSet<Product>> catalog;
 	private ArrayList<Pizza> pizzas = new ArrayList<>();
 	private ArrayList<Dessert> desserts = new ArrayList<>();
@@ -30,7 +31,7 @@ public class Shop {
 	public Shop() {
 
 		ArrayList<Product> products = new ArrayList<Product>();
-		this.clients = new HashSet<Client>();
+		this.users = new HashSet<User>();
 		this.catalog = new HashMap<ProductType, HashSet<Product>>();
 
 		pizzas.add(new Pizza("Margarita", 12.00, "Mozzarella, tomato sauce, extra mozzarella",R.drawable.margarita ));
@@ -77,9 +78,9 @@ public class Shop {
 	}
 
 
-	public Set getClients()
+	public Set getUsers()
 	{
-		return Collections.unmodifiableSet(clients);
+		return Collections.unmodifiableSet(users);
 
 	}
 
@@ -135,8 +136,8 @@ public class Shop {
 
 
 	public void printClients() {
-		for (Client client : clients) {
-			System.out.println(client);
+		for (User user : users) {
+			System.out.println(user);
 		}
 	}
 
@@ -151,9 +152,9 @@ public class Shop {
 		}
 	}
 
-	public void addClient(Client client) {
-		if (!this.clients.contains(client) && client != null) {
-			this.clients.add(client);
+	public void addClient(User user) {
+		if (!this.users.contains(user) && user != null) {
+			this.users.add(user);
 		}
 	}
 }

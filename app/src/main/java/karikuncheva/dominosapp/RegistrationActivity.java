@@ -9,10 +9,12 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import karikuncheva.dominosapp.model.Shop;
-import karikuncheva.dominosapp.model.Client;
+import karikuncheva.dominosapp.model.User;
 
 public class RegistrationActivity extends AppCompatActivity {
-    private Client client;
+    public static final int RESULT_CODE_CANCELED = 5;
+    public static final int RESULT_CODE_SUCCESS = 3;
+    private User user;
     private  Shop shop = Shop.getInstance();
     private EditText username_reg, email_reg, address_reg, pass_reg, confirm_pass_reg;
     private String username, email, address, pass, confirmPass;
@@ -40,10 +42,14 @@ public class RegistrationActivity extends AppCompatActivity {
     public void register(){
         initialize();
         if (validate()){
-            shop.addClient(client);
+           user = new User(username, pass);
+            MainActivity.users.add(user);
             Toast.makeText(this, "Registration complete", Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(RegistrationActivity.this, CatalogActivity.class);
-            RegistrationActivity.this.startActivity(intent);
+            Intent intent = new Intent(RegistrationActivity.this, MainActivity.class);
+            intent.putExtra("user", username);
+            intent.putExtra("pass", pass);
+            setResult(RESULT_CODE_SUCCESS, intent);
+            finish();//ok
             // Intent to go to menu p
         }
         else{
@@ -54,12 +60,12 @@ public class RegistrationActivity extends AppCompatActivity {
 
     public boolean validate(){
         boolean valid = true;
-        this.client = new Client(username, address, pass, email);
+        this.user = new User(username, address, pass, email);
         if (username.isEmpty()){
             username_reg.setError("Username must not be empty!");
             valid = false;
         }
-        if (!client.validateEmailAddress(email)){
+        if (!user.validateEmailAddress(email)){
             email_reg.setError("Please, enter a valid email!");
             valid = false;
         }
@@ -67,7 +73,7 @@ public class RegistrationActivity extends AppCompatActivity {
             address_reg.setError("Please, enter a valid address!");
             valid = false;
         }
-        if (!client.validatePassword(pass)){
+        if (!user.validatePassword(pass)){
             pass_reg.setError("Please, enter a valid password");
             valid = false;
         }

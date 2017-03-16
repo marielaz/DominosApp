@@ -8,21 +8,23 @@ import android.widget.EditText;
 import android.widget.Button;
 import android.view.View;
 import android.widget.Toast;
-import android.content.Intent;
-import karikuncheva.dominosapp.model.Client;
+
+import java.util.ArrayList;
+
+import karikuncheva.dominosapp.model.User;
 import karikuncheva.dominosapp.model.Shop;
 
 
 public class MainActivity extends AppCompatActivity {
-    private Client user;
+
+    private User user;
     private EditText username_login;
     private EditText password_login;
     private Button loginButton;
     private Button registerButton;
     private String username, password;
     private Shop shop;
-
-
+    public static ArrayList<User> users = new ArrayList<User>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,41 +35,66 @@ public class MainActivity extends AppCompatActivity {
         password_login = (EditText) this.findViewById(R.id.password_login);
         loginButton = (Button) this.findViewById(R.id.login_button);
         registerButton = (Button) this.findViewById(R.id.registration_button);
-        loginButton.setOnClickListener( new View.OnClickListener() {
+        loginButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (validate()) {
-                        Toast.makeText(MainActivity.this, "User data is valid", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(MainActivity.this, CatalogActivity.class);
-                        MainActivity.this.startActivity(intent);
-                    } else {
+                    Toast.makeText(MainActivity.this, "User data is valid", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(MainActivity.this, CatalogActivity.class);
+                    intent.putExtra("user", user);
+                    MainActivity.this.startActivity(intent);
+                } else {
                     Toast.makeText(MainActivity.this, "User data not valid", Toast.LENGTH_SHORT).show();
                 }
-              
+
             }
         });
 
-        registerButton.setOnClickListener(new View.OnClickListener(){
+        registerButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent_reg = new Intent(MainActivity.this, RegistrationActivity.class);
-                MainActivity.this.startActivity(intent_reg);
+                startActivityForResult(intent_reg, 1);
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == RegistrationActivity.RESULT_CODE_SUCCESS){
+            if (data != null){
+                username_login.setText(data.getStringExtra("user"));
+                password_login.setText(data.getStringExtra("pass"));
+            }
         }
+        else{
+            Toast.makeText(this, "Try again", Toast.LENGTH_SHORT).show();
+        }
+    }
 
     public boolean validate(){
         initialize();
         boolean valid = true;
-        user = new Client(username, password);
         if (username.isEmpty()){
             username_login.setError("Please, enter a valid username!");
-            valid = false;
+            valid= false;
         }
-        if (!user.validatePassword(password)){
+        if (password.isEmpty()){
             password_login.setError("Please, enter a valid password");
             valid = false;
         }
+        if (!valid){
+            return valid;
+        }
+        for(int i =0; i< users.size(); i++){
+           if (users.get(i).getUsername().equals(username) && users.get(i).getPassword().equals(password)){
+               valid= true;
+               break;
+           }
+
+        }
+        user = new User(username, password);
         return valid;
      }
+
 
     public void initialize(){
         username = username_login.getText().toString();

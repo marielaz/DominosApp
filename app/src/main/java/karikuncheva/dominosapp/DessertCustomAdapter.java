@@ -1,4 +1,5 @@
 package karikuncheva.dominosapp;
+import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
@@ -17,13 +18,13 @@ import karikuncheva.dominosapp.model.products.Dessert;
 
 public class DessertCustomAdapter extends ArrayAdapter<String> {
 
-    Context fragment2;
+    Activity activity;
     List<Dessert> desserts;
     Shop shop = Shop.getInstance();
 
-    public DessertCustomAdapter(Context fragment2, List<Dessert> desserts){
-        super(fragment2, R.layout.single_row_des_dr);
-        this.fragment2 = fragment2;
+    public DessertCustomAdapter(Activity activity, List<Dessert> desserts){
+        super(activity, R.layout.single_row_des_dr);
+        this.activity = activity;
         this.desserts = desserts;
     }
 
@@ -35,7 +36,7 @@ public class DessertCustomAdapter extends ArrayAdapter<String> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        LayoutInflater inflater = (LayoutInflater) fragment2.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View row = inflater.inflate(R.layout.single_row_des_dr, parent, false);
 
         ImageView dessertImage = (ImageView) row.findViewById(R.id.image);
@@ -45,8 +46,8 @@ public class DessertCustomAdapter extends ArrayAdapter<String> {
         dessertImage.setImageResource(desserts.get(position).getImageId());
         dessertName.setText(desserts.get(position).getName());
         dessertDescr.setText(desserts.get(position).getDescription());
-        String price = Double.toString(desserts.get(position).getPrice());
-        dessertPrice.setText(price);
+        double p = desserts.get(position).getPrice();
+        dessertPrice.setText(String.format("%.2f", p));
         return row;
     }
 }

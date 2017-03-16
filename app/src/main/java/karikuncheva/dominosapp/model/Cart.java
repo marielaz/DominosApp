@@ -1,5 +1,6 @@
 package karikuncheva.dominosapp.model;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map.Entry;
@@ -8,7 +9,7 @@ import karikuncheva.dominosapp.model.products.Product;
 import karikuncheva.dominosapp.model.products.Product.ProductType;
 
 
-public class Cart {
+public class Cart implements Serializable{
 
 	private double totalSum;
 	private HashMap<ProductType, HashSet<Product>> products;

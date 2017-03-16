@@ -21,7 +21,7 @@ public class TabFragment3 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.tab_fragment_3, container, false);
         list = (ListView) v.findViewById(R.id.listDrink);
-        DrinkCustomAdapter adapter = new DrinkCustomAdapter(this.getContext(), Shop.getInstance().getDrinks());
+        DrinkCustomAdapter adapter = new DrinkCustomAdapter(getActivity(), Shop.getInstance().getDrinks());
         list.setAdapter(adapter);
         return v;
     }
