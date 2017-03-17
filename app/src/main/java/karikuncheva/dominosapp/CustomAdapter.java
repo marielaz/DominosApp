@@ -26,17 +26,17 @@ import karikuncheva.dominosapp.model.products.Pizza;
 class CustomAdapter extends ArrayAdapter<String> {
 
 
-    User user = new User();
     Activity activity;
+//    Bundle bundle = activity.getIntent().getExtras();
+//    User user = (User)bundle.getSerializable("user");
     List<Pizza> pizzas;
     Shop shop = Shop.getInstance();
-
     public CustomAdapter(Activity activity, List<Pizza> pizzas){
         super(activity, R.layout.single_row_pizza);
         this.activity = activity;
         this.pizzas = pizzas;
-    }
 
+    }
 
     @Override
     public int getCount() {
