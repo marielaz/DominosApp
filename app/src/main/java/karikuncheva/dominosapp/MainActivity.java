@@ -43,7 +43,9 @@ public class MainActivity extends AppCompatActivity {
                 if (validate()) {
                     Toast.makeText(MainActivity.this, "User data is valid", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(MainActivity.this, CatalogActivity.class);
-                    intent.putExtra("user", user);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("user", user);
+                    intent.putExtras(bundle);
                     MainActivity.this.startActivity(intent);
                 } else {
                     Toast.makeText(MainActivity.this, "User data not valid", Toast.LENGTH_SHORT).show();
@@ -75,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
 
     public boolean validate(){
         initialize();
-        boolean valid = true;
+        boolean valid =true;
         if (username.isEmpty()){
             username_login.setError("Please, enter a valid username!");
             valid= false;
@@ -90,11 +92,19 @@ public class MainActivity extends AppCompatActivity {
         for(int i =0; i< users.size(); i++){
            if (users.get(i).getUsername().equals(username) && users.get(i).getPassword().equals(password)){
                user = new User(username, password);
+<<<<<<< HEAD
+               valid = true;
+=======
                valid= true;
+>>>>>>> 8a7a0e6ba12911fe32226840afdca0e47a71eb58
                return valid;
            }
 
         }
+<<<<<<< HEAD
+
+=======
+>>>>>>> 8a7a0e6ba12911fe32226840afdca0e47a71eb58
         return false;
      }
 
