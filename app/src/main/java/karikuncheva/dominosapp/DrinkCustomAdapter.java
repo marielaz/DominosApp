@@ -11,26 +11,27 @@ import android.widget.TextView;
 import java.util.List;
 import karikuncheva.dominosapp.model.Shop;
 import karikuncheva.dominosapp.model.products.Dessert;
+import karikuncheva.dominosapp.model.products.Drink;
 
 /**
  * Created by Mariela Zviskova on 14.3.2017 г..
  */
 
-public class DessertCustomAdapter extends ArrayAdapter<String> {
+public class DrinkCustomAdapter extends ArrayAdapter<String> {
 
     Activity activity;
-    List<Dessert> desserts;
+    List<Drink> drinks;
     Shop shop = Shop.getInstance();
 
-    public DessertCustomAdapter(Activity activity, List<Dessert> desserts){
+    public DrinkCustomAdapter(Activity activity, List<Drink> drinks){
         super(activity, R.layout.single_row_des_dr);
         this.activity = activity;
-        this.desserts = desserts;
+        this.drinks = drinks;
     }
 
     @Override
     public int getCount() {
-        return desserts.size();
+        return drinks.size();
     }
 
 
@@ -39,15 +40,15 @@ public class DessertCustomAdapter extends ArrayAdapter<String> {
         LayoutInflater inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View row = inflater.inflate(R.layout.single_row_des_dr, parent, false);
 
-        ImageView dessertImage = (ImageView) row.findViewById(R.id.image);
-        TextView dessertName = (TextView) row.findViewById(R.id.name);
-        TextView dessertDescr = (TextView) row.findViewById(R.id.description);
-        TextView dessertPrice = (TextView) row.findViewById(R.id.price);
-        dessertImage.setImageResource(desserts.get(position).getImageId());
-        dessertName.setText(desserts.get(position).getName());
-        dessertDescr.setText(desserts.get(position).getDescription());
-        double p = desserts.get(position).getPrice();
-        dessertPrice.setText(String.format("%.2f", p));
+        ImageView drinkImage = (ImageView) row.findViewById(R.id.image);
+        TextView drinkName = (TextView) row.findViewById(R.id.name);
+        TextView drinkDescr = (TextView) row.findViewById(R.id.description);
+        TextView drinkPrice = (TextView) row.findViewById(R.id.price);
+        drinkImage.setImageResource(drinks.get(position).getImageId());
+        drinkName.setText(drinks.get(position).getName());
+        drinkDescr.setText(drinks.get(position).getDescription());
+        double p = drinks.get(position).getPrice();
+        drinkPrice.setText(String.format("%.2f", p));
         return row;
     }
 }

@@ -1,5 +1,6 @@
 package karikuncheva.dominosapp.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -17,41 +18,42 @@ import karikuncheva.dominosapp.model.products.Pizza;
 import karikuncheva.dominosapp.model.products.Product;
 
 
-public class Shop {
+public class Shop implements Serializable{
 
 
 	private static Shop instance;
 
-	private HashSet<Client> clients;
+	private HashSet<User> users;
 	private HashMap<ProductType, HashSet<Product>> catalog;
 	private ArrayList<Pizza> pizzas = new ArrayList<>();
 	private ArrayList<Dessert> desserts = new ArrayList<>();
+	private ArrayList<Drink> drinks = new ArrayList<>();
 	public Shop() {
 
 		ArrayList<Product> products = new ArrayList<Product>();
-		this.clients = new HashSet<Client>();
+		this.users = new HashSet<User>();
 		this.catalog = new HashMap<ProductType, HashSet<Product>>();
 
-		pizzas.add(new Pizza("Margarita", 12.00, "Descr 1",R.drawable.margarita ));
-		pizzas.add(new Pizza("Beast", 16.50, "Descr 1", R.drawable.beast));
-		pizzas.add(new Pizza("Mediterraneo", 14.50, "Descr 1", R.drawable.mediterraneo));
-		pizzas.add(new Pizza("Carbonara", 14.50, "Descr 1", R.drawable. carbonara));
-		pizzas.add(new Pizza("Alfredo", 15.50, "Descr 1", R.drawable.alfredo));
-		pizzas.add(new Pizza("Vita", 14.50, "Descr 1", R.drawable.vita));
-		pizzas.add(new Pizza("Chickenita", 18.50, "Descr 1", R.drawable.chickenita));
-		pizzas.add(new Pizza("American Hot", 15.50, "Descr 1", R.drawable.americanhot));
-		pizzas.add(new Pizza("New York", 16.50, "Descr 1", R.drawable.newyork));
-		pizzas.add(new Pizza("Bulgarian", 15.50, "Descr 1", R.drawable.bulgaria));
+		pizzas.add(new Pizza("Margarita", 12.00, "Mozzarella, tomato sauce, extra mozzarella",R.drawable.margarita ));
+		pizzas.add(new Pizza("Beast", 16.50, "Tomato sauce, mozzarella, ham, bacon, spicy beef", R.drawable.beast));
+		pizzas.add(new Pizza("Mediterraneo", 14.50, "Mozzarella, tomato sauce, green peppers, feta cheese, olives", R.drawable.mediterraneo));
+		pizzas.add(new Pizza("Carbonara", 14.50, "Fresh cream, mozzarella, bacon, mushrooms", R.drawable. carbonara));
+		pizzas.add(new Pizza("Alfredo", 15.50, "Cream, mozzarella, baby spinach, chicken fillet", R.drawable.alfredo));
+		pizzas.add(new Pizza("Vita", 14.50, "Tomato sauce, mozzarella, baby spinach, feta cheese, tomatos", R.drawable.vita));
+		pizzas.add(new Pizza("Chickenita", 18.50, "Tomato sauce, mozzarella, chicken, pepperoni, tomatoes, emmental", R.drawable.chickenita));
+		pizzas.add(new Pizza("American Hot", 15.50, "Tomato sauce, mozzarella, pepperoni, spicy peppers, onions", R.drawable.americanhot));
+		pizzas.add(new Pizza("New York", 16.50, "Tomato sauce, mozzarella, bacon, cheddar, fresh mushrooms", R.drawable.newyork));
+		pizzas.add(new Pizza("Bulgarian", 15.50, "Tomato sauce, mozzarella, onions, olives, green peppers, feta cheese", R.drawable.bulgaria));
 
 		desserts.add(new Dessert("Choko Pie", 6.50, "Freshly oven baked puff pastry filled with Nutella spread and sprinkled with icing sugar", R.drawable.chocopie));
 		desserts.add(new Dessert("Souflle", 6.50, "Chocolate lava cake filled with melted warm chocolate", R.drawable.souffle));
 		desserts.add(new Dessert("Nirvana", 2.90, "Nirvana Pralines & Cream", R.drawable.nirvana));
 		desserts.add(new Dessert("Mini Pancakes", 3.50, "12 puffy mini pancakes with banana tast", R.drawable.minipancakes));
 
-		products.add(new Drink("Coca-Cola", 2.80));
-		products.add(new Drink("Finta", 2.80));
-		products.add(new Drink("Sprite", 2.80));
-		products.add(new Drink("Nestea", 2.00));
+		drinks.add(new Drink("Coca-Cola", 2.80,"1,25l", R.drawable.cola));
+		drinks.add(new Drink("Fanta", 2.80, "1,25l", R.drawable.fanta));
+		drinks.add(new Drink("Sprite", 2.80, "1,25l", R.drawable.sprite));
+		drinks.add(new Drink("Nestea", 2.00, "1,25l",R.drawable.nestea));
 
 		addToCatalog(products);
 	}
@@ -71,9 +73,14 @@ public class Shop {
 		return Collections.unmodifiableList(desserts);
 	}
 
-	public Set getClients()
+	public List getDrinks() {
+		return Collections.unmodifiableList(drinks);
+	}
+
+
+	public Set getUsers()
 	{
-		return Collections.unmodifiableSet(clients);
+		return Collections.unmodifiableSet(users);
 
 	}
 
@@ -129,8 +136,8 @@ public class Shop {
 
 
 	public void printClients() {
-		for (Client client : clients) {
-			System.out.println(client);
+		for (User user : users) {
+			System.out.println(user);
 		}
 	}
 
@@ -145,9 +152,9 @@ public class Shop {
 		}
 	}
 
-	public void addClient(Client client) {
-		if (!this.clients.contains(client) && client != null) {
-			this.clients.add(client);
+	public void addClient(User user) {
+		if (!this.users.contains(user) && user != null) {
+			this.users.add(user);
 		}
 	}
 }

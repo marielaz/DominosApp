@@ -24,7 +24,7 @@ public class TabFragment2 extends Fragment {
 
         View v = inflater.inflate(R.layout.tab_fragment_2, container, false);
         list = (ListView) v.findViewById(R.id.listDess);
-        DessertCustomAdapter adapter = new DessertCustomAdapter(this.getContext(), Shop.getInstance().getDesserts());
+        DessertCustomAdapter adapter = new DessertCustomAdapter(getActivity(), Shop.getInstance().getDesserts());
         list.setAdapter(adapter);
         return v;
 

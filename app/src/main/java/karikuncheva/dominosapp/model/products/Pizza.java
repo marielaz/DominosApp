@@ -13,14 +13,13 @@ public class Pizza extends Product {
 	public Type type;
 	public Size size;
 	private String description;
-	private int imageId;
 
 	public Pizza(String name, double price, String description, int imageId) {
-		super(ProductType.PIZZA, name, price);
+		super(ProductType.PIZZA, name, price, description, imageId);
 		this.type = Type.TRADITIONAL;
 		this.size = Size.LARGE;
 		this.description = description;
-		this.imageId = imageId;
+
 
 	}
 
@@ -28,27 +27,24 @@ public class Pizza extends Product {
 		return description;
 	}
 
-    public int getImageId() {
-        return imageId;
-    }
 
     // change the size of the pizza and the crust and modify the price
 	// NE RABOTI!
 	public Pizza changePizza(Pizza pizza, Size size, Type type) {
 	
 		if (size == Size.MEDIUM) {
-			Pizza p = new Pizza(pizza.getName(), pizza.getPrice() - 1.00, pizza.getDescription(), imageId);
+			Pizza p = new Pizza(pizza.getName(), pizza.getPrice() - 1.00, pizza.getDescription(), getImageId());
 			p.size= Size.MEDIUM;
 			p.type= type;
 			return p;
 		} else if (size == size.SMALL) {
-			Pizza p = new Pizza(pizza.getName(), pizza.getPrice() - 1.50, pizza.getDescription(), imageId);
+			Pizza p = new Pizza(pizza.getName(), pizza.getPrice() - 1.50, pizza.getDescription(), getImageId());
 			p.size= Size.SMALL;
 			p.type = type;
 			return p;
 		}
 		else if (size == size.LARGE && type != type.TRADITIONAL){
-			Pizza p = new Pizza(pizza.getName(), pizza.getPrice(), pizza.getDescription(), imageId);
+			Pizza p = new Pizza(pizza.getName(), pizza.getPrice(), pizza.getDescription(), getImageId());
 			p.type = type;
 		}
 		
