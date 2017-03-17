@@ -25,11 +25,18 @@ import karikuncheva.dominosapp.model.products.Pizza;
 
 class CustomAdapter extends ArrayAdapter<String> {
 
+<<<<<<< HEAD
 
 
       Activity activity;
 //    Bundle bundle = activity.getIntent().getExtras();
 //     User user = (User)bundle.getSerializable("user");
+=======
+      Activity activity;
+//    Bundle bundle = activity.getIntent().getExtras();
+//     User user = (User)bundle.getSerializable("user");
+
+>>>>>>> 91344efa2e02b3c86367b7c8c3b44e1614290432
     List<Pizza> pizzas;
     Shop shop = Shop.getInstance();
     public CustomAdapter(Activity activity, List<Pizza> pizzas){
