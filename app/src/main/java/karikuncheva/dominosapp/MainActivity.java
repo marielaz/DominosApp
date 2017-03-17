@@ -31,6 +31,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        User mari = new User("Mariela", "Mari123");
+        MainActivity.users.add(mari);
+
         username_login = (EditText) this.findViewById(R.id.username_login);
         password_login = (EditText) this.findViewById(R.id.password_login);
         loginButton = (Button) this.findViewById(R.id.login_button);
@@ -86,13 +89,13 @@ public class MainActivity extends AppCompatActivity {
         }
         for(int i =0; i< users.size(); i++){
            if (users.get(i).getUsername().equals(username) && users.get(i).getPassword().equals(password)){
+               user = new User(username, password);
                valid= true;
-               break;
+               return valid;
            }
 
         }
-        user = new User(username, password);
-        return valid;
+        return false;
      }
 
 

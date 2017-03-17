@@ -26,8 +26,9 @@ import karikuncheva.dominosapp.model.products.Pizza;
 class CustomAdapter extends ArrayAdapter<String> {
 
 
-    User user = new User();
-    Activity activity;
+      Activity activity;
+//    Bundle bundle = activity.getIntent().getExtras();
+//     User user = (User)bundle.getSerializable("user");
     List<Pizza> pizzas;
     Shop shop = Shop.getInstance();
 
@@ -74,13 +75,14 @@ class CustomAdapter extends ArrayAdapter<String> {
             }
         });
 
-//        cart_pizza_bnt.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                // TODO add to cart
-//
-//            }
-//        });
+        cart_pizza_bnt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO add to cart
+
+
+            }
+        });
 
         return row;
     }
