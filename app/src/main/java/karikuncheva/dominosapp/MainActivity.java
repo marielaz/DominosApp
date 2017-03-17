@@ -92,22 +92,14 @@ public class MainActivity extends AppCompatActivity {
         for(int i =0; i< users.size(); i++){
            if (users.get(i).getUsername().equals(username) && users.get(i).getPassword().equals(password)){
                user = new User(username, password);
-<<<<<<< HEAD
                valid = true;
-=======
-               valid= true;
->>>>>>> 8a7a0e6ba12911fe32226840afdca0e47a71eb58
                return valid;
            }
 
         }
-<<<<<<< HEAD
 
-=======
->>>>>>> 8a7a0e6ba12911fe32226840afdca0e47a71eb58
         return false;
      }
-
 
     public void initialize(){
         username = username_login.getText().toString();
