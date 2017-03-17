@@ -92,20 +92,13 @@ public class MainActivity extends AppCompatActivity {
         for(int i =0; i< users.size(); i++){
            if (users.get(i).getUsername().equals(username) && users.get(i).getPassword().equals(password)){
                user = new User(username, password);
-<<<<<<< HEAD
-               valid = true;
-=======
 
               valid= true;
->>>>>>> 91344efa2e02b3c86367b7c8c3b44e1614290432
+
                return valid;
            }
 
         }
-<<<<<<< HEAD
-
-=======
->>>>>>> 91344efa2e02b3c86367b7c8c3b44e1614290432
         return false;
      }
 
