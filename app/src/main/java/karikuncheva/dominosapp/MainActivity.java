@@ -94,13 +94,13 @@ public class MainActivity extends AppCompatActivity {
                user = new User(username, password);
 
               valid= true;
+
                return valid;
            }
 
         }
         return false;
      }
-
 
     public void initialize(){
         username = username_login.getText().toString();
