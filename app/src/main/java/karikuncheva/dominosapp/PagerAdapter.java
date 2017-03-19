@@ -7,10 +7,12 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
+import karikuncheva.dominosapp.model.User;
+
 public class PagerAdapter extends FragmentStatePagerAdapter {
     int mNumOfTabs;
 
-    public PagerAdapter(FragmentManager fm, int NumOfTabs) {
+    public PagerAdapter(FragmentManager fm, int NumOfTabs, User user) {
         super(fm);
         this.mNumOfTabs = NumOfTabs;
     }
