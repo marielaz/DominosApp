@@ -27,26 +27,29 @@
         android:background="@color/colorBackground"
         android:weightSum="3" >
         <Button
+            android:id="@+id/small"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/rounded_modify_button"
+            android:background="@drawable/custom_bnt"
             android:text="Small"
             android:textAllCaps="false"
             android:layout_marginLeft="3dp"
             android:layout_weight="1"/>
         <Button
+            android:id="@+id/med"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/rounded_modify_button"
+            android:background="@drawable/custom_bnt"
             android:text="Medium"
             android:textAllCaps="false"
             android:layout_marginLeft="7dp"
             android:layout_marginRight="7dp"
             android:layout_weight="1"/>
         <Button
+            android:id="@+id/large"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/rounded_button"
+            android:background="@drawable/custom_bnt"
             android:text="Large"
             android:layout_marginRight="3dp"
             android:textAllCaps="false"
@@ -93,14 +96,14 @@
 
         <RadioButton
             android:id="@+id/radioButton"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/text_trad"
-            android:layout_alignBottom="@+id/text_trad"
-            android:layout_toRightOf="@+id/text_trad"
-            android:layout_toEndOf="@+id/text_trad"
-            android:layout_marginLeft="18dp"
-            android:layout_marginStart="18dp" />
+            android:button="@null"
+            android:background="@drawable/custom_radio_bnt"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
+            android:layout_alignRight="@+id/text_trad"/>
 
 
     </RelativeLayout>
@@ -137,13 +140,14 @@
 
         <RadioButton
             android:id="@+id/radioButton2"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/text_ital"
-            android:layout_toRightOf="@+id/text_ital"
-            android:layout_toEndOf="@+id/text_ital"
-            android:layout_marginLeft="11dp"
-            android:layout_marginStart="11dp" />
+            android:button="@null"
+            android:background="@drawable/custom_radio_bnt"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
+            android:layout_alignRight="@+id/text_ital"/>
 
 
     </RelativeLayout>
@@ -181,14 +185,14 @@
 
         <RadioButton
             android:id="@+id/radioButton3"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/text_thin"
-            android:layout_alignBottom="@+id/text_thin"
-            android:layout_toRightOf="@+id/text_thin"
-            android:layout_toEndOf="@+id/text_thin"
-            android:layout_marginLeft="11dp"
-            android:layout_marginStart="11dp" />
+            android:button="@null"
+            android:background="@drawable/custom_radio_bnt"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
+            android:layout_alignRight="@+id/text_thin" />
 
 
     </RelativeLayout>

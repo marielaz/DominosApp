@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import karikuncheva.dominosapp.R;
 import karikuncheva.dominosapp.model.Shop;
+import karikuncheva.dominosapp.model.User;
 import karikuncheva.dominosapp.model.products.Pizza;
 
 /**
@@ -30,6 +31,7 @@ public class TabFragment1 extends Fragment {
 
         View v = inflater.inflate(R.layout.tab_fragment_1, container, false);
         list = (ListView) v.findViewById(R.id.listView);
+
         CustomAdapter adapter = new CustomAdapter(getActivity(), Shop.getInstance().getPizzas());
         list.setAdapter(adapter);
         return v;

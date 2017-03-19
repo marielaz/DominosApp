@@ -16,6 +16,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+import karikuncheva.dominosapp.model.User;
+
 
 public class CatalogActivity extends AppCompatActivity {
 
@@ -42,8 +44,10 @@ public class CatalogActivity extends AppCompatActivity {
         //Initializing viewPager
         viewPager = (ViewPager) findViewById(R.id.pager);
 
+        User user = (User)getIntent().getExtras().getSerializable("user");
+
         //Creating our pager adapter
-        PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
+        PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount(), user);
 
         //Adding adapter to pager
         viewPager.setAdapter(adapter);
