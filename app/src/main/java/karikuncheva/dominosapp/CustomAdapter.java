@@ -31,7 +31,7 @@ class CustomAdapter extends ArrayAdapter<String> {
 
     List<Pizza> pizzas;
     Shop shop = Shop.getInstance();
-    public CustomAdapter(Activity activity, List<Pizza> pizzas){
+    public CustomAdapter(Activity activity, List<Pizza> pizzas, User user){
         super(activity, R.layout.single_row_pizza);
         this.activity = activity;
         this.pizzas = pizzas;

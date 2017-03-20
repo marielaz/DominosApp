@@ -44,6 +44,7 @@ public class CatalogActivity extends AppCompatActivity {
         //Initializing viewPager
         viewPager = (ViewPager) findViewById(R.id.pager);
 
+        //get the user
         User user = (User)getIntent().getExtras().getSerializable("user");
 
         //Creating our pager adapter

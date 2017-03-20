@@ -15,19 +15,27 @@ public class ModifyPizzaActivity extends AppCompatActivity {
 
     List<RadioButton> radioButtons = new ArrayList<RadioButton>();
     Button b1, b2, b3;
+    RadioButton radioButton1, radioButton2, radioButton3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_modify_pizza);
 
-        radioButtons.add((RadioButton) findViewById(R.id.radioButton));
-        radioButtons.add((RadioButton) findViewById(R.id.radioButton2));
-        radioButtons.add((RadioButton) findViewById(R.id.radioButton3));
+        radioButton1 = (RadioButton) findViewById(R.id.radioButton);
+        radioButton2 = (RadioButton) findViewById(R.id.radioButton2);
+        radioButton3 = (RadioButton) findViewById(R.id.radioButton3);
+
+        radioButtons.add(radioButton1);
+        radioButtons.add(radioButton2);
+        radioButtons.add(radioButton3);
 
         b1 = (Button) findViewById(R.id.small);
         b2 = (Button) findViewById(R.id.med);
         b3 = (Button) findViewById(R.id.large);
+
+        radioButton1.setChecked(true);
+        b3.setPressed(true);
 
         b1.setOnTouchListener(new View.OnTouchListener() {
             @Override
