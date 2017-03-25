@@ -1,8 +1,10 @@
 package karikuncheva.dominosapp.model;
 
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Map.Entry;
 
 import karikuncheva.dominosapp.model.products.Product;
@@ -22,17 +24,19 @@ public class Cart implements Serializable{
 	public double getTotalSum() {
 		return totalSum;
 	}
-	
+
+	public HashMap<ProductType, HashSet<Product>> getProducts() {
+		return products;
+	}
+
 	// add the product into the cart and if the product is Pizza - get discount
 	public void addProduct(Product p) {
 		if (!this.products.containsKey(p.pType)) {
 			products.put(p.pType, new HashSet<Product>());
 		}
-
 		if (!this.products.get(p.pType).contains(p)) {
 			products.get(p.pType).add(p);
 			p.setQuantity(1);
-
 		} else {
 			int currentQuantity = p.getQuantity();
 			p.setQuantity(++currentQuantity);
