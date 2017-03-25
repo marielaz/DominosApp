@@ -22,7 +22,9 @@ import karikuncheva.dominosapp.model.User;
 
 public class CatalogActivity extends AppCompatActivity {
 
+    private User user;
     private ImageButton go_to_cart;
+
     //This is our tablayout
     private TabLayout tabLayout;
 
@@ -48,7 +50,7 @@ public class CatalogActivity extends AppCompatActivity {
         viewPager = (ViewPager) findViewById(R.id.pager);
 
         //get the user
-        User user = (User)getIntent().getExtras().getSerializable("user");
+         user = (User)getIntent().getExtras().getSerializable("user");
 
         //Creating our pager adapter
         PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount(), user);
@@ -80,7 +82,10 @@ public class CatalogActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
+                // TODO
+                // startActivityForResult - bring back the user if he is change the products in the cart !
                 Intent intent = new Intent(CatalogActivity.this, CartActivity.class);
+                intent.putExtra("user", user);
                 CatalogActivity.this.startActivity(intent);
             }
         });
