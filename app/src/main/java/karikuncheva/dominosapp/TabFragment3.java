@@ -13,6 +13,7 @@ import android.widget.ListView;
 
 import karikuncheva.dominosapp.R;
 import karikuncheva.dominosapp.model.Shop;
+import karikuncheva.dominosapp.model.User;
 
 public class TabFragment3 extends Fragment {
 
@@ -21,7 +22,10 @@ public class TabFragment3 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.tab_fragment_3, container, false);
         list = (ListView) v.findViewById(R.id.listDrink);
-        DrinkCustomAdapter adapter = new DrinkCustomAdapter(getActivity(), Shop.getInstance().getDrinks());
+
+        User user = (User) getArguments().getSerializable("user");
+        DrinkCustomAdapter adapter = new DrinkCustomAdapter(getActivity(), Shop.getInstance().getDrinks(), user);
+
         list.setAdapter(adapter);
         return v;
     }

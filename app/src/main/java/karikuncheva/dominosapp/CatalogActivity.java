@@ -6,6 +6,7 @@ package karikuncheva.dominosapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.IntRange;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -21,6 +22,7 @@ import karikuncheva.dominosapp.model.User;
 
 public class CatalogActivity extends AppCompatActivity {
 
+    private ImageButton go_to_cart;
     //This is our tablayout
     private TabLayout tabLayout;
 
@@ -32,6 +34,7 @@ public class CatalogActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_catalog);
 
+        go_to_cart = (ImageButton) findViewById(R.id.go_to_cart_bnt);
         //Initializing the tablayout
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
 
@@ -69,6 +72,16 @@ public class CatalogActivity extends AppCompatActivity {
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
 
+            }
+        });
+
+
+        go_to_cart.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CatalogActivity.this, CartActivity.class);
+                CatalogActivity.this.startActivity(intent);
             }
         });
     }

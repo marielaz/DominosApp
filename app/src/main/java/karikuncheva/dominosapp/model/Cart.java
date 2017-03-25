@@ -28,11 +28,9 @@ public class Cart implements Serializable{
 		if (!this.products.containsKey(p.pType)) {
 			products.put(p.pType, new HashSet<Product>());
 		}
-
 		if (!this.products.get(p.pType).contains(p)) {
 			products.get(p.pType).add(p);
 			p.setQuantity(1);
-
 		} else {
 			int currentQuantity = p.getQuantity();
 			p.setQuantity(++currentQuantity);

@@ -25,6 +25,7 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
 
         Bundle b = new Bundle();
         b.putSerializable("user", user);
+
         switch (position) {
             case 0:
                 TabFragment1 tab1 = new TabFragment1();
