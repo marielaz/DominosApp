@@ -65,11 +65,7 @@ public class CartAdapter extends ArrayAdapter<String>{
 //        if (convertView == null) {
 //            convertView = LayoutInflater.from(getContext()).inflate(R.layout.single_row_pizza, parent, false);
 //        }
-        for (Map.Entry<Product.ProductType, HashSet<Product>> products : user.getCart().getProducts().entrySet()){
-            for(Product p1 : products.getValue()){
-                productsInCart.add(p1);
-            }
-        }
+
         ImageView image_in_cart = (ImageView) row.findViewById(R.id.image_in_cart);
         TextView p_name_in_cart = (TextView) row.findViewById(R.id.p_name_in_cart);
         image_in_cart.setImageResource(productsInCart.get(position).getImageId());
