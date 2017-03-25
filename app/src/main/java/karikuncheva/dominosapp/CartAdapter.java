@@ -40,6 +40,7 @@ public class CartAdapter extends ArrayAdapter<String>{
         this.activity = activity;
         this.user = user;
         this.productsInCart =new ArrayList<Product>();
+
         for (Map.Entry<Product.ProductType, HashSet<Product>> products : user.getCart().getProducts().entrySet()){
             for(Product p1 : products.getValue()){
                this.productsInCart.add(p1);
