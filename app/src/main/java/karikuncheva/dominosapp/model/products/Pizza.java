@@ -28,7 +28,7 @@ public class Pizza extends Product {
 	}
 
 
-    // change the size of the pizza and the crust and modify the price
+	// change the size of the pizza and the crust and modify the price
 	// NE RABOTI!
 	public Pizza changePizza(Pizza pizza, Size size, Type type) {
 	
