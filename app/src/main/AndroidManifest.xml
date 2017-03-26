@@ -19,7 +19,8 @@
         <activity android:name=".CatalogActivity" />
         <activity android:name=".RegistrationActivity" />
         <activity android:name=".ModifyPizzaActivity" />
-        <activity android:name=".CartActivity"></activity>
+        <activity android:name=".CartActivity" />
+        <activity android:name=".TrackerActivity"></activity>
     </application>
 
 </manifest>

@@ -60,7 +60,7 @@ public class CartAdapter extends ArrayAdapter<String>{
     public View getView(final int position, View convertView, ViewGroup parent) {
         //convert xml to java with inflater
         LayoutInflater inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View row = inflater.inflate(R.layout.single_row_cart, parent, false);
+        final View row = inflater.inflate(R.layout.single_row_cart, parent, false);
 
 //        if (convertView == null) {
 //            convertView = LayoutInflater.from(getContext()).inflate(R.layout.single_row_pizza, parent, false);
@@ -70,6 +70,29 @@ public class CartAdapter extends ArrayAdapter<String>{
         TextView p_name_in_cart = (TextView) row.findViewById(R.id.p_name_in_cart);
         image_in_cart.setImageResource(productsInCart.get(position).getImageId());
         p_name_in_cart.setText(productsInCart.get(position).getName());
+        TextView price_in_cart = (TextView) row.findViewById(R.id.price_in_cart);
+        //TextView desc_in_cart = (TextView) row.findViewById(R.id.descr_in_cart);
+        price_in_cart.setText(productsInCart.get(position).getPrice()+"");
+       // desc_in_cart.setText(productsInCart.get(position).getDescription());
+         final ImageButton plus_product = (ImageButton) row.findViewById(R.id.cart_plus_img);
+        final TextView quantity = (TextView) row.findViewById(R.id.cart_product_quantity_tv);
+       final TextView total = (TextView) row.findViewById(R.id.total_cart);
+
+             View.OnClickListener plusListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int temp = 1;
+                    temp++;
+                    String quan = Integer.toString(temp);
+                    quantity.setText(quan);
+                   // String totalSum = Double.toString(user.getCart().getTotalSum());
+//                total.setText(totalSum);
+                    //  }
+                }
+        };
+
+        plus_product.setOnClickListener(plusListener);
+
 
         return row;
     }
