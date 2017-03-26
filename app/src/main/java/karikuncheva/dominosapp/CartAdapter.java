@@ -25,7 +25,7 @@ import karikuncheva.dominosapp.model.products.Pizza;
 import karikuncheva.dominosapp.model.products.Product;
 
 /**
- * Created by Patarinski on 3/25/2017.
+ * Created by Karina Kuncheva on 3/25/2017.
  */
 
 public class CartAdapter extends ArrayAdapter<String>{
@@ -70,10 +70,10 @@ public class CartAdapter extends ArrayAdapter<String>{
 
         ImageView image_in_cart = (ImageView) row.findViewById(R.id.image_in_cart);
         TextView p_name_in_cart = (TextView) row.findViewById(R.id.p_name_in_cart);
-        TextView cart_product_quantity = (TextView) row.findViewById(R.id.cart_product_quantity);
-        TextView cart_price = (TextView) row.findViewById(R.id.cart_price);
-        TextView cart_type_pizza = (TextView) row.findViewById(R.id.cart_type_pizza);
-
+//        TextView cart_product_quantity = (TextView) row.findViewById(R.id.cart_product_quantity);
+//        TextView cart_price = (TextView) row.findViewById(R.id.cart_price);
+//        TextView cart_type_pizza = (TextView) row.findViewById(R.id.cart_type_pizza);
+//
         image_in_cart.setImageResource(productsInCart.get(position).getImageId());
         p_name_in_cart.setText(productsInCart.get(position).getName());
 
@@ -103,6 +103,7 @@ public class CartAdapter extends ArrayAdapter<String>{
                     temp++;
                     String quan = Integer.toString(temp);
                     quantity.setText(quan);
+
                    // String totalSum = Double.toString(user.getCart().getTotalSum());
 //                total.setText(totalSum);
                     //  }
