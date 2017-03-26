@@ -1,54 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/grey_backgr"
-    android:weightSum="3">
+    android:orientation="vertical"
+    android:paddingTop="2.5dp"
+    android:paddingBottom="2.5dp"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="85dp"
-        android:paddingLeft="0dp"
-        android:paddingRight="5dp"
-        android:paddingBottom="13dp"
-        android:paddingTop="5dp"
-        android:background="@color/colorPrimary"
-        android:src="@drawable/logo_dominos" />
-
-    <TextView
-        android:layout_gravity="center_horizontal"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:textSize="35sp"
-        android:textColor="#000000"
-        android:text="Gift Card"
-        android:layout_marginTop="45dp"
-        android:gravity="center_horizontal"
-        android:layout_weight="1"/>
+        android:background="#fff"
+        android:orientation="horizontal"
+        android:padding="10dp" >
 
-    <EditText
-        android:id="@+id/giftcard_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:maxLength="5"
-        android:layout_marginLeft="70dp"
-        android:layout_marginRight="70dp"
-        android:hint="Enter code"
-        android:gravity="center_horizontal"
-        />
+        <!-- ListRow Left sied Thumbnail image -->
 
-    <Button
-        android:id="@+id/giftcard_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:textAllCaps="false"
-        android:layout_marginRight="120dp"
-        android:layout_marginLeft="120dp"
-        android:layout_marginTop="40dp"
-        android:text="Enter"
-        android:background="@drawable/rounded_button"
-        />
+        <LinearLayout
+            android:id="@+id/thumbnail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginRight="7dip"
+            android:padding="2dip" >
+
+            <ImageView
+                android:id="@+id/image_in_cart"
+                android:layout_width="50dip"
+                android:layout_height="50dip" />
+        </LinearLayout>
+
+        <!-- Title Of Song -->
+
+
+
+        <TextView
+            android:id="@+id/p_name_in_cart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/thumbnail"
+            android:text=""
+            android:textColor="#040404"
+            android:textSize="15dip"
+            android:typeface="sans" />
+
+        <LinearLayout
+            android:id="@+id/cart_plus_minus_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/p_name_in_cart"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/plist_price_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_marginLeft="60dip"
+                android:layout_weight="0.23"
+                android:paddingRight="5dip"
+                android:text="Rs. 200"
+                android:textColor="#1d1d1d"
+                android:textSize="12dip"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/plist_weight_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:paddingRight="25dip"
+                android:text="100 gm"
+                android:textColor="#343434"
+                android:textSize="12dip" />
+
+            <ImageButton
+                android:id="@+id/cart_minus_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                android:src="@mipmap/ic_minus" />
+
+            <TextView
+                android:id="@+id/cart_product_quantity_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:paddingLeft="15dip"
+                android:paddingRight="15dip"
+                android:text="1"
+                android:textSize="12dip"
+                android:textStyle="bold" />
+
+            <ImageButton
+                android:id="@+id/cart_plus_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                android:src="@mipmap/ic_plus" />
+        </LinearLayout>
+    </RelativeLayout>
 
 </LinearLayout>
