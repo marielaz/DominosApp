@@ -3,6 +3,22 @@
     android:layout_height="match_parent"
     android:background="@color/colorBackground">
 
+    <ImageView
+        android:id="@+id/logo_image"
+        android:layout_width="match_parent"
+        android:layout_height="85dp"
+        android:layout_weight="1"
+        android:background="@color/colorPrimary"
+        android:paddingBottom="13dp"
+        android:paddingLeft="0dp"
+        android:paddingRight="5dp"
+        android:paddingTop="5dp"
+        android:src="@drawable/logo_dominos" />
+
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/logo_image">
 
     <ListView
         android:id="@+id/products_listview"
@@ -16,5 +32,27 @@
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"/>
+</LinearLayout>
+
+
+
+    <TextView
+        android:id="@+id/total_cart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total:"
+        android:layout_alignParentRight="true"
+        android:layout_alignBottom="@+id/products_listview"
+        android:textSize="20sp"
+        android:layout_marginRight="80dp"/>
+
+    <Button
+        android:id="@+id/check_out_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="70dp"
+        android:text="Checkout"
+        android:layout_alignBottom="@id/products_listview"
+        android:textAllCaps="false" />
 
 </RelativeLayout>

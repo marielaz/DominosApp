@@ -43,7 +43,7 @@ public class CartAdapter extends ArrayAdapter<String>{
 
         for (Map.Entry<Product.ProductType, HashSet<Product>> products : user.getCart().getProducts().entrySet()){
             for(Product p1 : products.getValue()){
-               this.productsInCart.add(p1);
+                this.productsInCart.add(p1);
             }
         }
     }
@@ -61,20 +61,60 @@ public class CartAdapter extends ArrayAdapter<String>{
         //convert xml to java with inflater
         LayoutInflater inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View row = inflater.inflate(R.layout.single_row_cart, parent, false);
+        double price =0;
+
 
 //        if (convertView == null) {
 //            convertView = LayoutInflater.from(getContext()).inflate(R.layout.single_row_pizza, parent, false);
 //        }
-        for (Map.Entry<Product.ProductType, HashSet<Product>> products : user.getCart().getProducts().entrySet()){
-            for(Product p1 : products.getValue()){
-                productsInCart.add(p1);
-            }
-        }
+
         ImageView image_in_cart = (ImageView) row.findViewById(R.id.image_in_cart);
         TextView p_name_in_cart = (TextView) row.findViewById(R.id.p_name_in_cart);
+        TextView cart_product_quantity = (TextView) row.findViewById(R.id.cart_product_quantity);
+        TextView cart_price = (TextView) row.findViewById(R.id.cart_price);
+        TextView cart_type_pizza = (TextView) row.findViewById(R.id.cart_type_pizza);
+
         image_in_cart.setImageResource(productsInCart.get(position).getImageId());
         p_name_in_cart.setText(productsInCart.get(position).getName());
+
+//        cart_product_quantity.setText(String.valueOf(productsInCart.get(position).getQuantity()));
+//        if (productsInCart.get(position).pType == Product.ProductType.PIZZA){
+//            price = productsInCart.get(position).getQuantity() * productsInCart.get(position).getDiscPrice();
+//            cart_price.setText(String.format("%.2f",price));
+//          //  cart_type_pizza.setText("tuk trqbva da e size i type");
+//        }
+//        else {
+//            price = productsInCart.get(position).getQuantity() * productsInCart.get(position).getPrice();
+//            cart_price.setText(String.format("%.2f",price));
+//        }
+
+        TextView price_in_cart = (TextView) row.findViewById(R.id.price_in_cart);
+        //TextView desc_in_cart = (TextView) row.findViewById(R.id.descr_in_cart);
+        price_in_cart.setText(productsInCart.get(position).getPrice()+"");
+       // desc_in_cart.setText(productsInCart.get(position).getDescription());
+         final ImageButton plus_product = (ImageButton) row.findViewById(R.id.cart_plus_img);
+        final TextView quantity = (TextView) row.findViewById(R.id.cart_product_quantity_tv);
+       final TextView total = (TextView) row.findViewById(R.id.total_cart);
+
+             View.OnClickListener plusListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int temp = 1;
+                    temp++;
+                    String quan = Integer.toString(temp);
+                    quantity.setText(quan);
+                   // String totalSum = Double.toString(user.getCart().getTotalSum());
+//                total.setText(totalSum);
+                    //  }
+                }
+        };
+
+        plus_product.setOnClickListener(plusListener);
 
         return row;
     }
 }
+
+
+
+
