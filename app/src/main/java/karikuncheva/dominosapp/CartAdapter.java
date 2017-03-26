@@ -28,22 +28,22 @@ import karikuncheva.dominosapp.model.products.Product;
  * Created by Patarinski on 3/25/2017.
  */
 
-public class CartAdapter extends ArrayAdapter<String>{
+public class CartAdapter extends ArrayAdapter<String> {
 
     private Activity activity;
     private User user;
-    private ArrayList<Product> productsInCart ;
+    private ArrayList<Product> productsInCart;
 
 
-    public CartAdapter(Activity activity, User user){
+    public CartAdapter(Activity activity, User user) {
         super(activity, R.layout.single_row_cart);
         this.activity = activity;
         this.user = user;
-        this.productsInCart =new ArrayList<Product>();
+        this.productsInCart = new ArrayList<Product>();
 
-        for (Map.Entry<Product.ProductType, HashSet<Product>> products : user.getCart().getProducts().entrySet()){
-            for(Product p1 : products.getValue()){
-               this.productsInCart.add(p1);
+        for (Map.Entry<Product.ProductType, HashSet<Product>> products : user.getCart().getProducts().entrySet()) {
+            for (Product p1 : products.getValue()) {
+                this.productsInCart.add(p1);
             }
         }
     }
@@ -72,28 +72,40 @@ public class CartAdapter extends ArrayAdapter<String>{
         p_name_in_cart.setText(productsInCart.get(position).getName());
         TextView price_in_cart = (TextView) row.findViewById(R.id.price_in_cart);
         //TextView desc_in_cart = (TextView) row.findViewById(R.id.descr_in_cart);
-        price_in_cart.setText(productsInCart.get(position).getPrice()+"");
-       // desc_in_cart.setText(productsInCart.get(position).getDescription());
-         final ImageButton plus_product = (ImageButton) row.findViewById(R.id.cart_plus_img);
-        final TextView quantity = (TextView) row.findViewById(R.id.cart_product_quantity_tv);
-       final TextView total = (TextView) row.findViewById(R.id.total_cart);
+        price_in_cart.setText(productsInCart.get(position).getPrice() + "");
+        // desc_in_cart.setText(productsInCart.get(position).getDescription());
+         ImageButton plus_product = (ImageButton) row.findViewById(R.id.cart_plus_img);
+         final TextView quantity = (TextView) row.findViewById(R.id.cart_product_quantity_tv);
+         TextView total = (TextView) row.findViewById(R.id.total_cart);
 
-             View.OnClickListener plusListener = new View.OnClickListener() {
+        // String totalSum = Double.toString(user.getCart().getTotalSum());
+//                total.setText(totalSum);
+        //  }
+
+        View.OnClickListener plusListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int temp = 1;
-                    temp++;
-                    String quan = Integer.toString(temp);
-                    quantity.setText(quan);
-                   // String totalSum = Double.toString(user.getCart().getTotalSum());
-//                total.setText(totalSum);
-                    //  }
-                }
+                user.getCart().addProduct(productsInCart.get(position));
+                check(productsInCart, productsInCart.get(position));
+                int temp = productsInCart.get(position).getQuantity();
+                String quan = String.valueOf(temp);
+                quantity.setText(quan);
+            }
         };
 
         plus_product.setOnClickListener(plusListener);
 
 
         return row;
+    }
+
+    public void check(ArrayList<Product> products, Product p) {
+
+        for (int i = 0; i < products.size(); i++) {
+            if (products.get(i).equals(p)) {
+                products.get(i).setQuantity(products.get(i).getQuantity() + 1);
+                break;
+            }
+        }
     }
 }
