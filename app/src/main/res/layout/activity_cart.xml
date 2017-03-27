@@ -16,8 +16,9 @@
         android:src="@drawable/logo_dominos" />
 
 <LinearLayout
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:orientation="vertical"
     android:layout_below="@id/logo_image">
 
     <ListView
@@ -32,9 +33,8 @@
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"/>
+
 </LinearLayout>
-
-
 
     <TextView
         android:id="@+id/total_cart"
@@ -42,7 +42,7 @@
         android:layout_height="wrap_content"
         android:text="Total:"
         android:layout_alignParentRight="true"
-        android:layout_alignBottom="@+id/products_listview"
+        android:layout_alignBottom="@id/products_listview"
         android:textSize="20sp"
         android:layout_marginRight="80dp"/>
 

@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 import karikuncheva.dominosapp.model.User;
+import karikuncheva.dominosapp.model.products.Pizza;
 
 
 public class CatalogActivity extends AppCompatActivity {
@@ -83,7 +84,7 @@ public class CatalogActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // TODO
-                // startActivityForResult - bring back the user if he is change the products in the cart !
+                // startActivityForResult - bring back the user if he is changing the products in the cart !
                 Intent intent = new Intent(CatalogActivity.this, CartActivity.class);
                 intent.putExtra("user", user);
                 CatalogActivity.this.startActivity(intent);
@@ -91,5 +92,16 @@ public class CatalogActivity extends AppCompatActivity {
         });
     }
 
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == 5) {
+            if (data != null) {
+                Pizza p = (Pizza) data.getSerializableExtra("pizza");
+                user.getCart().addProduct(p);
+
+            }
+        }
+    }
 
 }

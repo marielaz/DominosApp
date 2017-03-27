@@ -1,6 +1,7 @@
 package karikuncheva.dominosapp;
 
 import android.app.Activity;
+import android.app.Instrumentation;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -29,7 +30,7 @@ class CustomAdapter extends ArrayAdapter<String> {
     private List<Pizza> pizzas;
     private User user;
 
-    public CustomAdapter(Activity activity, List<Pizza> pizzas, User user){
+    public CustomAdapter(Activity activity, List<Pizza> pizzas, User user) {
         super(activity, R.layout.single_row_pizza);
         this.activity = activity;
         this.pizzas = pizzas;
@@ -68,7 +69,8 @@ class CustomAdapter extends ArrayAdapter<String> {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(activity, ModifyPizzaActivity.class);
-                activity.startActivity(intent);
+                intent.putExtra("pizza", pizzas.get(position));
+                activity.startActivityForResult(intent, 1);
             }
         });
 
@@ -77,11 +79,14 @@ class CustomAdapter extends ArrayAdapter<String> {
             public void onClick(View v) {
                 // TODO add to cart
                 user.getCart().addProduct(pizzas.get(position));
-                String chosenPizza = pizzaName.getText().toString() + " is added to your cart!" ;
-                Toast.makeText(v.getContext(),  chosenPizza, Toast.LENGTH_SHORT).show();
+                String chosenPizza = pizzaName.getText().toString() + " is added to your cart!";
+                Toast.makeText(v.getContext(), chosenPizza, Toast.LENGTH_SHORT).show();
             }
         });
 
         return row;
     }
+
+
+
 }

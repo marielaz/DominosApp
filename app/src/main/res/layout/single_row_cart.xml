@@ -74,7 +74,7 @@ android:paddingRight="5dp">
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal|center_vertical"
             android:paddingRight="25dip"
-            android:text=""
+            android:text="1"
             android:textColor="#343434"
             android:textSize="12dip" />
 
@@ -90,10 +90,10 @@ android:paddingRight="5dp">
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical|center_horizontal"
-            android:paddingLeft="15dip"
-            android:paddingRight="15dip"
-            android:text="1"
-            android:textSize="12dip"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:text=""
+            android:textSize="12sp"
             android:textStyle="bold" />
 
         <ImageButton
