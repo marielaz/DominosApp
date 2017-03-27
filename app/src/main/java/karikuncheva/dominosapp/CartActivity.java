@@ -28,6 +28,7 @@ public class CartActivity extends AppCompatActivity {
         CartAdapter adapter = new CartAdapter(this, user);
         list.setAdapter(adapter);
 
+
         checkOut = (Button) findViewById(R.id.check_out_button);
         checkOut.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -37,5 +38,6 @@ public class CartActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
     }
 }

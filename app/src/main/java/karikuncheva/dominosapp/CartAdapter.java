@@ -70,7 +70,7 @@ public class CartAdapter extends ArrayAdapter<String> {
         TextView p_name_in_cart = (TextView) row.findViewById(R.id.p_name_in_cart);
         ImageButton plus_product = (ImageButton) row.findViewById(R.id.cart_plus_img);
         ImageButton minus_product = (ImageButton) row.findViewById(R.id.cart_minus_img);
-        TextView total = (TextView) row.findViewById(R.id.total_cart);
+//        TextView total = (TextView) row.findViewById(R.id.total_cart);
         final TextView price_in_cart = (TextView) row.findViewById(R.id.price_in_cart);
         final TextView quantity = (TextView) row.findViewById(R.id.cart_product_quantity_tv);
 

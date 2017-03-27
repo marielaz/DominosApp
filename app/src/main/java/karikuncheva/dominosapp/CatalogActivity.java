@@ -84,7 +84,7 @@ public class CatalogActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // TODO
-                // startActivityForResult - bring back the user if he is change the products in the cart !
+                // startActivityForResult - bring back the user if he is changing the products in the cart !
                 Intent intent = new Intent(CatalogActivity.this, CartActivity.class);
                 intent.putExtra("user", user);
                 CatalogActivity.this.startActivity(intent);
