@@ -7,8 +7,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
-
-import karikuncheva.dominosapp.model.Shop;
 import karikuncheva.dominosapp.model.User;
 
 public class CartActivity extends AppCompatActivity {

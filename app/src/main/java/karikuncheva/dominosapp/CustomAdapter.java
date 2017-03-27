@@ -37,6 +37,12 @@ class CustomAdapter extends ArrayAdapter<String> {
         this.user = user;
     }
 
+
+    class PizzaViewHolder {
+
+
+
+    }
     @Override
     public int getCount() {
         return pizzas.size();
