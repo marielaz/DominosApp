@@ -25,7 +25,7 @@ import karikuncheva.dominosapp.model.products.Pizza;
 import karikuncheva.dominosapp.model.products.Product;
 
 /**
- * Created by Patarinski on 3/25/2017.
+ * Created by Karina Kuncheva on 3/25/2017.
  */
 
 public class CartAdapter extends ArrayAdapter<String> {
@@ -49,7 +49,6 @@ public class CartAdapter extends ArrayAdapter<String> {
         }
     }
 
-
     @Override
     public int getCount() {
         return productsInCart.size();
@@ -62,8 +61,6 @@ public class CartAdapter extends ArrayAdapter<String> {
         //convert xml to java with inflater
         LayoutInflater inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View row = inflater.inflate(R.layout.single_row_cart, parent, false);
-        double price =0;
-
 
 //        if (convertView == null) {
 //            convertView = LayoutInflater.from(getContext()).inflate(R.layout.single_row_pizza, parent, false);
@@ -71,63 +68,75 @@ public class CartAdapter extends ArrayAdapter<String> {
 
         ImageView image_in_cart = (ImageView) row.findViewById(R.id.image_in_cart);
         TextView p_name_in_cart = (TextView) row.findViewById(R.id.p_name_in_cart);
-//        TextView cart_product_quantity = (TextView) row.findViewById(R.id.cart_product_quantity_tv);
-//        TextView cart_price = (TextView) row.findViewById(R.id.cart_price);
-//        TextView cart_type_pizza = (TextView) row.findViewById(R.id.cart_type_pizza);
+        ImageButton plus_product = (ImageButton) row.findViewById(R.id.cart_plus_img);
+        ImageButton minus_product = (ImageButton) row.findViewById(R.id.cart_minus_img);
+        TextView total = (TextView) row.findViewById(R.id.total_cart);
+        final TextView price_in_cart = (TextView) row.findViewById(R.id.price_in_cart);
+        final TextView quantity = (TextView) row.findViewById(R.id.cart_product_quantity_tv);
 
+        quantity.setText(String.valueOf(productsInCart.get(position).getQuantity()));
         image_in_cart.setImageResource(productsInCart.get(position).getImageId());
         p_name_in_cart.setText(productsInCart.get(position).getName());
 
-//        cart_product_quantity.setText(String.valueOf(productsInCart.get(position).getQuantity()));
-//        if (productsInCart.get(position).pType == Product.ProductType.PIZZA){
-//            price = productsInCart.get(position).getQuantity() * productsInCart.get(position).getDiscPrice();
-//            cart_price.setText(String.format("%.2f",price));
-//          //  cart_type_pizza.setText("tuk trqbva da e size i type");
-//        }
-//        else {
-//            price = productsInCart.get(position).getQuantity() * productsInCart.get(position).getPrice();
-//            cart_price.setText(String.format("%.2f",price));
-//        }
-
-        TextView price_in_cart = (TextView) row.findViewById(R.id.price_in_cart);
-        //TextView desc_in_cart = (TextView) row.findViewById(R.id.descr_in_cart);
-        price_in_cart.setText(productsInCart.get(position).getPrice() + "");
-        // desc_in_cart.setText(productsInCart.get(position).getDescription());
-         ImageButton plus_product = (ImageButton) row.findViewById(R.id.cart_plus_img);
-         final TextView quantity = (TextView) row.findViewById(R.id.cart_product_quantity_tv);
-         TextView total = (TextView) row.findViewById(R.id.total_cart);
-
-        // String totalSum = Double.toString(user.getCart().getTotalSum());
-//                total.setText(totalSum);
-        //  }
+        if (productsInCart.get(position).pType == Product.ProductType.PIZZA){
+            price_in_cart.setText(String.format("%.2f",productsInCart.get(position).getQuantity() * productsInCart.get(position).getDiscPrice()));
+            //  cart_type_pizza.setText("tuk trqbva da e size i type");
+        }
+        else {
+            price_in_cart.setText(String.format("%.2f",productsInCart.get(position).getQuantity() * productsInCart.get(position).getPrice()));
+        }
 
         View.OnClickListener plusListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 user.getCart().addProduct(productsInCart.get(position));
-                check(productsInCart, productsInCart.get(position));
-                int temp = productsInCart.get(position).getQuantity();
-                String quan = String.valueOf(temp);
-                quantity.setText(quan);
+                quantity.setText(String.valueOf(productsInCart.get(position).getQuantity()));
+
+                if (productsInCart.get(position).pType == Product.ProductType.PIZZA){
+                    price_in_cart.setText(String.format("%.2f",productsInCart.get(position).getQuantity() * productsInCart.get(position).getDiscPrice()));
+                }
+                else {
+                    price_in_cart.setText(String.format("%.2f",productsInCart.get(position).getQuantity() * productsInCart.get(position).getPrice()));
+                }
             }
         };
 
         plus_product.setOnClickListener(plusListener);
 
+        minus_product.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                if (productsInCart.get(position).getQuantity() == 1){
+                    user.getCart().removeProduct(productsInCart.get(position));
+                    productsInCart.remove(productsInCart.get(position));
+                    // notify the adapter to remove the product from the listview
+                    notifyDataSetChanged();
+                }
+                else {
+                    user.getCart().removeProduct(productsInCart.get(position));
+                    quantity.setText(String.valueOf(productsInCart.get(position).getQuantity()));
+                    if (productsInCart.get(position).pType == Product.ProductType.PIZZA){
+                        double tempSum = Double.parseDouble(price_in_cart.getText().toString())- productsInCart.get(position).getDiscPrice();
+                        price_in_cart.setText(String.format("%.2f", tempSum));
+                    }
+                    else{
+                        double tempSum = Double.parseDouble(price_in_cart.getText().toString())- productsInCart.get(position).getPrice();
+                        price_in_cart.setText(String.format("%.2f", tempSum));
+                    }
+                }
+            }
+        });
+
+//        String sum = "";
+//        for(int i = 0; i < productsInCart.size(); i++) {
+//            double temp = 0;
+//            temp += productsInCart.get(i).getPrice();
+//            sum = String.valueOf(temp);
+//        }
+//        total.setText(sum);
+
         return row;
     }
 
-    public void check(ArrayList<Product> products, Product p) {
-
-        for (int i = 0; i < products.size(); i++) {
-            if (products.get(i).equals(p)) {
-                products.get(i).setQuantity(products.get(i).getQuantity() + 1);
-                break;
-            }
-        }
-    }
 }
-
-
-
-

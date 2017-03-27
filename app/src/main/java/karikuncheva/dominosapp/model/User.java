@@ -211,9 +211,9 @@ public class User implements Serializable {
 	}
 
 	// the client modify the pizza;
-	public Pizza modifyPizza(Pizza pizza, Size size, Type type) {
-		return pizza.changePizza(pizza, size, type);
-	}
+//	public Pizza modifyPizza(Pizza pizza, Size size, Type type) {
+//		return pizza.changePizza(pizza, size, type);
+//	}
 
 	// print the bill
 	public void printBill() {

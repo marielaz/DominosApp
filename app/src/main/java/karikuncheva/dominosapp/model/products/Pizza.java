@@ -51,6 +51,11 @@ public class Pizza extends Product {
 		return pizza;
 	}
 
+	public Pizza modifyPizza(Pizza pizza, Size size, Type type) {
+		return pizza.changePizza(pizza, size, type);
+	}
+
+
 	@Override
 	public String toString() {
 		return "name = " + getName() + ", type = " + type + ", size = " + size + ", price = " + getPrice()
@@ -86,5 +91,19 @@ public class Pizza extends Product {
 		return true;
 	}
 
-	
+	public Type getType() {
+		return type;
+	}
+
+	public Size getSize() {
+		return size;
+	}
+
+	public void setType(Type type) {
+		this.type = type;
+	}
+
+	public void setSize(Size size) {
+		this.size = size;
+	}
 }
