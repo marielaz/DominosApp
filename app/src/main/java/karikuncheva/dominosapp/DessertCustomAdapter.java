@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 import karikuncheva.dominosapp.model.Shop;
 import karikuncheva.dominosapp.model.User;
@@ -25,8 +26,29 @@ import static karikuncheva.dominosapp.R.id.cart_bnt;
 public class DessertCustomAdapter extends ArrayAdapter<String> {
 
     private Activity activity;
-    private List<Dessert> desserts;
+    private List<Dessert> desserts = new ArrayList<>();
     private User user;
+
+
+    class DessertViewHolder {
+        View row;
+        ImageButton cart_bnt;
+        ImageView dessertImage;
+        TextView dessertName;
+        TextView dessertDescr;
+        TextView dessertPrice;
+
+        DessertViewHolder(View row){
+
+            cart_bnt = (ImageButton) row.findViewById(R.id.cart_bnt);
+            dessertImage = (ImageView) row.findViewById(R.id.image);
+            dessertName = (TextView) row.findViewById(R.id.name);
+            dessertDescr = (TextView) row.findViewById(R.id.description);
+            dessertPrice = (TextView) row.findViewById(R.id.price);
+        }
+
+    }
+
 
     public DessertCustomAdapter(Activity activity, List<Dessert> desserts, User user){
         super(activity, R.layout.single_row_des_dr);
@@ -44,13 +66,23 @@ public class DessertCustomAdapter extends ArrayAdapter<String> {
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View row = inflater.inflate(R.layout.single_row_des_dr, parent, false);
+        View row;
+        DessertViewHolder vh;
 
-        ImageButton cart_bnt = (ImageButton) row.findViewById(R.id.cart_bnt);
-        ImageView dessertImage = (ImageView) row.findViewById(R.id.image);
-        final TextView dessertName = (TextView) row.findViewById(R.id.name);
-        final TextView dessertDescr = (TextView) row.findViewById(R.id.description);
-        TextView dessertPrice = (TextView) row.findViewById(R.id.price);
+        if (convertView == null) {
+            row = inflater.inflate(R.layout.single_row_des_dr, parent, false);
+            vh = new DessertViewHolder(row);
+            row.setTag(vh);
+        }else{
+            row = convertView;
+            vh = (DessertViewHolder) row.getTag();
+        }
+
+        ImageButton cart_bnt = vh.cart_bnt;
+        ImageView dessertImage = vh.dessertImage;
+        final TextView dessertName = vh.dessertName;
+        final TextView dessertDescr = vh.dessertDescr;
+        TextView dessertPrice = vh.dessertPrice;
         dessertImage.setImageResource(desserts.get(position).getImageId());
         dessertName.setText(desserts.get(position).getName());
         dessertDescr.setText(desserts.get(position).getDescription());

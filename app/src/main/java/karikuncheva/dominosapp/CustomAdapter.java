@@ -30,6 +30,29 @@ class CustomAdapter extends ArrayAdapter<String> {
     private List<Pizza> pizzas;
     private User user;
 
+
+    class PizzaViewHolder {
+        View row;
+        ImageButton modify_pizza_bnt;
+        ImageButton cart_pizza_bnt;
+        ImageView pizzaImage;
+        TextView pizzaName;
+        TextView pizzaDescr;
+        TextView pizzaPrice;
+
+        PizzaViewHolder(View row){
+
+             modify_pizza_bnt = (ImageButton) row.findViewById(R.id.modify_pizza_bnt);
+             cart_pizza_bnt = (ImageButton) row.findViewById(R.id.cart_pizza_bnt);
+             pizzaImage = (ImageView) row.findViewById(R.id.image_pizza);
+             pizzaName = (TextView) row.findViewById(R.id.name_pizza);
+             pizzaDescr = (TextView) row.findViewById(R.id.descr_pizza);
+             pizzaPrice = (TextView) row.findViewById(R.id.price_pizza);
+        }
+
+    }
+
+
     public CustomAdapter(Activity activity, List<Pizza> pizzas, User user) {
         super(activity, R.layout.single_row_pizza);
         this.activity = activity;
@@ -47,18 +70,24 @@ class CustomAdapter extends ArrayAdapter<String> {
     public View getView(final int position, View convertView, ViewGroup parent) {
         //convert xml to java with inflater
         LayoutInflater inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View row = inflater.inflate(R.layout.single_row_pizza, parent, false);
+        View row;
+        PizzaViewHolder vh;
 
-//        if (convertView == null) {
-//            convertView = LayoutInflater.from(getContext()).inflate(R.layout.single_row_pizza, parent, false);
-//        }
+        if (convertView == null) {
+            row = inflater.inflate(R.layout.single_row_pizza, parent, false);
+            vh = new  PizzaViewHolder(row);
+            row.setTag(vh);
+        }else{
+            row = convertView;
+            vh = (PizzaViewHolder) row.getTag();
+        }
 
-        ImageButton modify_pizza_bnt = (ImageButton) row.findViewById(R.id.modify_pizza_bnt);
-        ImageButton cart_pizza_bnt = (ImageButton) row.findViewById(R.id.cart_pizza_bnt);
-        ImageView pizzaImage = (ImageView) row.findViewById(R.id.image_pizza);
-        final TextView pizzaName = (TextView) row.findViewById(R.id.name_pizza);
-        TextView pizzaDescr = (TextView) row.findViewById(R.id.descr_pizza);
-        TextView pizzaPrice = (TextView) row.findViewById(R.id.price_pizza);
+        ImageButton modify_pizza_bnt = vh.modify_pizza_bnt;
+        ImageButton cart_pizza_bnt = vh.cart_pizza_bnt;
+        ImageView pizzaImage = vh.pizzaImage;
+        final TextView pizzaName = vh.pizzaName;
+        TextView pizzaDescr = vh.pizzaDescr;
+        TextView pizzaPrice = vh.pizzaPrice;
         pizzaImage.setImageResource(pizzas.get(position).getImageId());
         pizzaName.setText(pizzas.get(position).getName());
         pizzaDescr.setText(pizzas.get(position).getDescription());
