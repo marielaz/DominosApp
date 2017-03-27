@@ -20,7 +20,10 @@ public class ModifyPizzaActivity extends AppCompatActivity {
     List<RadioButton> radioButtons = new ArrayList<RadioButton>();
     Button b1, b2, b3;
     RadioButton radioButton1, radioButton2, radioButton3;
-    Pizza p;
+    private Pizza p;
+    private Pizza.Size size;
+    private Pizza.Type type;
+
     Button addToCart;
 
     @Override
@@ -52,11 +55,13 @@ public class ModifyPizzaActivity extends AppCompatActivity {
 
         radioButton1.setChecked(true);
         b3.setPressed(true);
+        size = Pizza.Size.LARGE;
 
         b1.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 b1.setPressed(true);
+                size = Pizza.Size.SMALL;
                 b2.setPressed(false);
                 b3.setPressed(false);
                 return true;
@@ -66,6 +71,7 @@ public class ModifyPizzaActivity extends AppCompatActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 b2.setPressed(true);
+                size = Pizza.Size.MEDIUM;
                 b1.setPressed(false);
                 b3.setPressed(false);
                 return true;
@@ -75,37 +81,10 @@ public class ModifyPizzaActivity extends AppCompatActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 b3.setPressed(true);
+                size = Pizza.Size.LARGE;
                 b1.setPressed(false);
                 b2.setPressed(false);
                 return true;
-            }
-        });
-
-
-        addToCart = (Button) findViewById(R.id.add_to_cart_modify);
-        addToCart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-              //  if (b1.isSelected()) {
-                    p.modifyPizza(p, Pizza.Size.SMALL, p.getType());
-                    p.setPrice(p.getPrice() - 1.5);
-                    Intent intent = new Intent();
-                    intent.putExtra("pizza", p);
-                    setResult(5, intent);
-                    finish();
-            //    }
-              //  if (b2.isSelected()) {
-                    p.modifyPizza(p, Pizza.Size.MEDIUM, p.getType());
-                    p.setPrice(p.getPrice() - 1);
-                    Intent intent2 = new Intent();
-                    intent.putExtra("pizza", p);
-                    setResult(5, intent2);
-                    finish();
-               // }
-//                Intent intent = new Intent();
-//                intent.putExtra("pizza", p);
-//                setResult(5, intent);
-//                finish();
             }
         });
 
@@ -118,8 +97,23 @@ public class ModifyPizzaActivity extends AppCompatActivity {
 
             });
         }
-    }
 
+        addToCart = (Button) findViewById(R.id.add_to_cart_modify);
+        addToCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                p = p.modifyPizza(p, size , Pizza.Type.THIN_AND_CRISPY);
+                p.setDiscPrice(p.getPrice() - p.getPrice()*0.05);
+
+                Intent intent = new Intent();
+                intent.putExtra("pizza", p);
+                setResult(5, intent);
+                finish();
+            }
+        });
+
+    }
     private void processRadioButtonClick(CompoundButton buttonView) {
         for (RadioButton button : radioButtons) {
             if (button != buttonView) button.setChecked(false);

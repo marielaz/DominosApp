@@ -3,7 +3,7 @@ package karikuncheva.dominosapp.model.products;
 public class Pizza extends Product {
 
 	public enum Type {
-		TRADITIONAL, THIN_AND_CRISPY, FLUFFY
+		TRADITIONAL, THIN_AND_CRISPY, ITALIAN_STYLE
 	};
 
 	public enum Size {
@@ -28,32 +28,32 @@ public class Pizza extends Product {
 	}
 
 
-	// change the size of the pizza and the crust and modify the price
-	// NE RABOTI!
-	public Pizza changePizza(Pizza pizza, Size size, Type type) {
-	
+	public Pizza modifyPizza(Pizza pizza, Size size, Type type) {
+
+		Pizza p = pizza;
 		if (size == Size.MEDIUM) {
-			Pizza p = new Pizza(pizza.getName(), pizza.getPrice() - 1.00, pizza.getDescription(), getImageId());
+			p = new Pizza(pizza.getName(), pizza.getPrice() - 1.00, pizza.getDescription(), getImageId());
 			p.size= Size.MEDIUM;
 			p.type= type;
 			return p;
 		} else if (size == size.SMALL) {
-			Pizza p = new Pizza(pizza.getName(), pizza.getPrice() - 1.50, pizza.getDescription(), getImageId());
+			p = new Pizza(pizza.getName(), pizza.getPrice() - 1.50, pizza.getDescription(), getImageId());
 			p.size= Size.SMALL;
 			p.type = type;
 			return p;
 		}
 		else if (size == size.LARGE && type != type.TRADITIONAL){
-			Pizza p = new Pizza(pizza.getName(), pizza.getPrice(), pizza.getDescription(), getImageId());
+			p = new Pizza(pizza.getName(), pizza.getPrice(), pizza.getDescription(), getImageId());
 			p.type = type;
+			return p;
 		}
 		
-		return pizza;
+		return p;
 	}
 
-	public Pizza modifyPizza(Pizza pizza, Size size, Type type) {
-		return pizza.changePizza(pizza, size, type);
-	}
+//	public Pizza modifyPizza(Pizza pizza, Size size, Type type) {
+//		return pizza.changePizza(pizza, size, type);
+//	}
 
 
 	@Override

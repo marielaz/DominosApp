@@ -25,6 +25,7 @@ public class CatalogActivity extends AppCompatActivity {
 
     private User user;
     private ImageButton go_to_cart;
+    private Pizza p;
 
     //This is our tablayout
     private TabLayout tabLayout;
@@ -97,9 +98,8 @@ public class CatalogActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == 5) {
             if (data != null) {
-                Pizza p = (Pizza) data.getSerializableExtra("pizza");
+                p = (Pizza) data.getSerializableExtra("pizza");
                 user.getCart().addProduct(p);
-
             }
         }
     }

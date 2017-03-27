@@ -29,15 +29,15 @@ public class CartActivity extends AppCompatActivity {
         list.setAdapter(adapter);
 
 
-        checkOut = (Button) findViewById(R.id.check_out_button);
-        checkOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(CartActivity.this, TrackerActivity.class);
-                Toast.makeText(CartActivity.this, "You paid successful!", Toast.LENGTH_SHORT).show();
-                startActivity(intent);
-            }
-        });
+//        checkOut = (Button) findViewById(R.id.check_out_button);
+//        checkOut.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(CartActivity.this, TrackerActivity.class);
+//                Toast.makeText(CartActivity.this, "You paid successful!", Toast.LENGTH_SHORT).show();
+//                startActivity(intent);
+//            }
+//        });
 
     }
 }
