@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.DropBoxManager;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,6 +36,30 @@ public class CartAdapter extends ArrayAdapter<String> {
     private ArrayList<Product> productsInCart;
 
 
+    class CartViewHolder {
+        View row;
+        ImageView image_in_cart;
+        TextView p_name_in_cart;
+        ImageButton plus_product;
+        ImageButton minus_product;
+        TextView total;
+        TextView price_in_cart;
+        TextView quantity;
+
+        CartViewHolder(View row){
+
+            image_in_cart = (ImageView) row.findViewById(R.id.image_in_cart);
+            p_name_in_cart = (TextView) row.findViewById(R.id.p_name_in_cart);
+            plus_product = (ImageButton) row.findViewById(R.id.cart_plus_img);
+            minus_product = (ImageButton) row.findViewById(R.id.cart_minus_img);
+            total = (TextView) row.findViewById(R.id.total_cart);
+            price_in_cart = (TextView) row.findViewById(R.id.price_in_cart);
+            quantity = (TextView) row.findViewById(R.id.cart_product_quantity_tv);
+        }
+
+    }
+
+
     public CartAdapter(Activity activity, User user) {
         super(activity, R.layout.single_row_cart);
         this.activity = activity;
@@ -60,23 +85,30 @@ public class CartAdapter extends ArrayAdapter<String> {
     public View getView(final int position, View convertView, ViewGroup parent) {
         //convert xml to java with inflater
         LayoutInflater inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View row = inflater.inflate(R.layout.single_row_cart, parent, false);
+        View row;
+        CartViewHolder vh;
 
-//        if (convertView == null) {
-//            convertView = LayoutInflater.from(getContext()).inflate(R.layout.single_row_pizza, parent, false);
-//        }
+        if (convertView == null) {
+            row = inflater.inflate(R.layout.single_row_cart, parent, false);
+            vh = new CartViewHolder(row);
+            row.setTag(vh);
+        }else{
+            row = convertView;
+            vh = (CartViewHolder) row.getTag();
+        }
 
-        ImageView image_in_cart = (ImageView) row.findViewById(R.id.image_in_cart);
-        TextView p_name_in_cart = (TextView) row.findViewById(R.id.p_name_in_cart);
-        ImageButton plus_product = (ImageButton) row.findViewById(R.id.cart_plus_img);
-        ImageButton minus_product = (ImageButton) row.findViewById(R.id.cart_minus_img);
-//        TextView total = (TextView) row.findViewById(R.id.total_cart);
-        final TextView price_in_cart = (TextView) row.findViewById(R.id.price_in_cart);
-        final TextView quantity = (TextView) row.findViewById(R.id.cart_product_quantity_tv);
+        ImageView image_in_cart = vh.image_in_cart;
+        TextView p_name_in_cart = vh.p_name_in_cart;
+        ImageButton plus_product = vh.plus_product;
+        ImageButton minus_product = vh.minus_product;
+        //TextView total = vh.total;
+        final TextView price_in_cart = vh.price_in_cart;
+        final TextView quantity = vh.quantity;
 
         quantity.setText(String.valueOf(productsInCart.get(position).getQuantity()));
         image_in_cart.setImageResource(productsInCart.get(position).getImageId());
         p_name_in_cart.setText(productsInCart.get(position).getName());
+
 
         if (productsInCart.get(position).pType == Product.ProductType.PIZZA){
             price_in_cart.setText(String.format("%.2f",productsInCart.get(position).getQuantity() * productsInCart.get(position).getDiscPrice()));
@@ -128,13 +160,15 @@ public class CartAdapter extends ArrayAdapter<String> {
             }
         });
 
-//        String sum = "";
+//        double sum = 0;
+//        double subTotal = 0;
 //        for(int i = 0; i < productsInCart.size(); i++) {
-//            double temp = 0;
-//            temp += productsInCart.get(i).getPrice();
-//            sum = String.valueOf(temp);
+//            subTotal += productsInCart.get(position).getPrice() * productsInCart.get(position).getQuantity();
+//            String s = String.valueOf(subTotal);
+//            Log.e("mari", s);
 //        }
-//        total.setText(sum);
+//        total.setText(subTotal + "");
+
 
         return row;
     }
