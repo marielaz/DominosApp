@@ -26,8 +26,6 @@ import karikuncheva.dominosapp.model.User;
 import karikuncheva.dominosapp.model.products.Pizza;
 import karikuncheva.dominosapp.model.products.Product;
 
-import static karikuncheva.dominosapp.model.products.Pizza.Type.TRADITIONAL;
-
 /**
  * Created by Karina Kuncheva on 3/25/2017.
  */
@@ -50,6 +48,7 @@ public class CartAdapter extends ArrayAdapter<String> {
         TextView price_in_cart;
         TextView disc_price_in_cart;
         TextView quantity;
+        TextView descr_type;
 
         CartViewHolder(View row){
 
@@ -61,6 +60,7 @@ public class CartAdapter extends ArrayAdapter<String> {
             price_in_cart = (TextView) row.findViewById(R.id.price_in_cart);
             disc_price_in_cart = (TextView) row.findViewById(R.id.dics_price_in_cart);
             quantity = (TextView) row.findViewById(R.id.cart_product_quantity_tv);
+            descr_type = (TextView) row.findViewById(R.id.descr_type);
         }
 
     }
@@ -120,6 +120,7 @@ public class CartAdapter extends ArrayAdapter<String> {
         final TextView price_in_cart = vh.price_in_cart;
         final TextView disc_price_in_cart = vh.disc_price_in_cart;
         final TextView quantity = vh.quantity;
+        TextView descr_type = vh.descr_type;
 
         dicsount_cart_tv.setText("");
         description_cart_tv.setText(""); //Large Traditional
@@ -132,8 +133,14 @@ public class CartAdapter extends ArrayAdapter<String> {
             price_in_cart.setText(String.format("%.2f",productsInCart.get(position).getQuantity() * productsInCart.get(position).getPrice()));
             price_in_cart.setPaintFlags(price_in_cart.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
             disc_price_in_cart.setText(String.format("%.2f",productsInCart.get(position).getQuantity() * productsInCart.get(position).getDiscPrice()));
-            description_cart_tv.setText("Large Traditional");
-            dicsount_cart_tv.setText("5% Discount");
+
+          //   if(productsInCart.get(position).pType.PIZZA) {
+                 description_cart_tv.setText(productsInCart.get(position).getSize().toString());
+
+                descr_type.setText(productsInCart.get(position).getType().toString());
+                 //  description_cart_tv.setText("Large Traditional");
+                 dicsount_cart_tv.setText("5% Discount");
+           //  }
         }
         else{
             price_in_cart.setText(String.format("%.2f",productsInCart.get(position).getQuantity() * productsInCart.get(position).getPrice()));

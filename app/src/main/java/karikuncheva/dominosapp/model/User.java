@@ -7,9 +7,6 @@ import java.util.regex.Pattern;
 
 import karikuncheva.dominosapp.R;
 import karikuncheva.dominosapp.model.products.Product;
-import karikuncheva.dominosapp.model.products.Pizza;
-import karikuncheva.dominosapp.model.products.Pizza.Size;
-import karikuncheva.dominosapp.model.products.Pizza.Type;
 import karikuncheva.dominosapp.model.products.Dessert;
 import karikuncheva.dominosapp.model.products.Drink;
 

@@ -111,10 +111,12 @@ public class CatalogActivity extends AppCompatActivity {
               if (data != null) {
                   p = (Pizza) data.getSerializableExtra("pizza");
                   user.getCart().addProduct(p);
+                  break;
               }
           case 6:
               if (data != null) {
                  tempUser = (User) data.getSerializableExtra("user");
+                  break;
               }
          }
 
