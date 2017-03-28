@@ -17,6 +17,8 @@ public class CartActivity extends AppCompatActivity {
     private Button checkOut;
     private TextView total;
     private double sumtotal = 0;
+    private Button back;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +28,7 @@ public class CartActivity extends AppCompatActivity {
         total = (TextView) findViewById(R.id.total_cart);
         list = (ListView) findViewById(R.id.products_listview);
         user = (User) getIntent().getSerializableExtra("user");
+        back = (Button) findViewById(R.id.back_button);
 
         CartAdapter adapter = new CartAdapter(this, user);
         list.setAdapter(adapter);
@@ -38,6 +41,16 @@ public class CartActivity extends AppCompatActivity {
                 Intent intent = new Intent(CartActivity.this, TrackerActivity.class);
                 Toast.makeText(CartActivity.this, "You paid successful!", Toast.LENGTH_SHORT).show();
                 startActivity(intent);
+            }
+        });
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent();
+                i.putExtra("user", user);
+                setResult(6, i);
+                finish();
             }
         });
     }
