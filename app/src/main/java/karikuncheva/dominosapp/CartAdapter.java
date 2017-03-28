@@ -26,6 +26,8 @@ import karikuncheva.dominosapp.model.User;
 import karikuncheva.dominosapp.model.products.Pizza;
 import karikuncheva.dominosapp.model.products.Product;
 
+import static karikuncheva.dominosapp.model.products.Pizza.Type.TRADITIONAL;
+
 /**
  * Created by Karina Kuncheva on 3/25/2017.
  */
@@ -35,7 +37,8 @@ public class CartAdapter extends ArrayAdapter<String> {
     private Activity activity;
     private User user;
     private  ArrayList<Product> productsInCart;
-     static double total;
+    static double total;
+    private Pizza.Type type;
 
     class CartViewHolder {
         View row;
@@ -69,6 +72,7 @@ public class CartAdapter extends ArrayAdapter<String> {
         this.user = user;
         this.productsInCart = new ArrayList<Product>();
         total = 0;
+
         for (Map.Entry<Product.ProductType, HashSet<Product>> products : user.getCart().getProducts().entrySet()) {
             for (Product p1 : products.getValue()) {
                 this.productsInCart.add(p1);

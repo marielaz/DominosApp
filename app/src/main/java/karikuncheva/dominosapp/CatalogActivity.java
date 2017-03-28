@@ -17,13 +17,18 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+import java.util.HashMap;
+import java.util.HashSet;
+
 import karikuncheva.dominosapp.model.User;
 import karikuncheva.dominosapp.model.products.Pizza;
+import karikuncheva.dominosapp.model.products.Product;
 
 
 public class CatalogActivity extends AppCompatActivity {
 
     private User user;
+    private User tempUser;
     private ImageButton go_to_cart;
     private Pizza p;
 
@@ -53,6 +58,7 @@ public class CatalogActivity extends AppCompatActivity {
 
         //get the user
          user = (User)getIntent().getExtras().getSerializable("user");
+
 
         //Creating our pager adapter
         PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount(), user);
@@ -87,8 +93,12 @@ public class CatalogActivity extends AppCompatActivity {
                 // TODO
                 // startActivityForResult - bring back the user if he is changing the products in the cart !
                 Intent intent = new Intent(CatalogActivity.this, CartActivity.class);
-                intent.putExtra("user", user);
-                CatalogActivity.this.startActivity(intent);
+                if(tempUser != null) {
+                    intent.putExtra("user", tempUser);
+                }else{
+                    intent.putExtra("user", user);
+                }
+                CatalogActivity.this.startActivityForResult(intent, 2);
             }
         });
     }
@@ -96,12 +106,18 @@ public class CatalogActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode == 5) {
-            if (data != null) {
-                p = (Pizza) data.getSerializableExtra("pizza");
-                user.getCart().addProduct(p);
-            }
-        }
+      switch (resultCode) {
+          case 5:
+              if (data != null) {
+                  p = (Pizza) data.getSerializableExtra("pizza");
+                  user.getCart().addProduct(p);
+              }
+          case 6:
+              if (data != null) {
+                 tempUser = (User) data.getSerializableExtra("user");
+              }
+         }
+
     }
 
 }
