@@ -102,8 +102,16 @@ public class ModifyPizzaActivity extends AppCompatActivity {
         addToCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                p = p.modifyPizza(p, size , Pizza.Type.THIN_AND_CRISPY);
+                if (radioButton1.isChecked()){
+                    type = Pizza.Type.TRADITIONAL;
+                }
+                else if(radioButton2.isChecked()){
+                    type = Pizza.Type.ITALIAN_STYLE;
+                }
+                else{
+                    type = Pizza.Type.THIN_AND_CRISPY;
+                }
+                p = p.modifyPizza(p, size , type);
                 p.setDiscPrice(p.getPrice() - p.getPrice()*0.05);
 
                 Intent intent = new Intent();

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 import karikuncheva.dominosapp.model.User;
 
@@ -14,19 +15,21 @@ public class CartActivity extends AppCompatActivity {
     private User user;
     private ListView list;
     private Button checkOut;
+    private TextView total;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
 
+        total = (TextView) findViewById(R.id.total_cart);
         list = (ListView) findViewById(R.id.products_listview);
         user = (User) getIntent().getSerializableExtra("user");
 
         CartAdapter adapter = new CartAdapter(this, user);
         list.setAdapter(adapter);
-
-
+        String sum = String.format("%.2f", CartAdapter.getTotal());
+        total.setText("Total: " +  sum);
         checkOut = (Button) findViewById(R.id.check_out_button);
         checkOut.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -36,6 +39,5 @@ public class CartActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
     }
 }
