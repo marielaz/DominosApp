@@ -16,6 +16,7 @@ public class CartActivity extends AppCompatActivity {
     private ListView list;
     private Button checkOut;
     private TextView total;
+    private double sumtotal = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
