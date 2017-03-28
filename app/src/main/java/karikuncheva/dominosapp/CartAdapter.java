@@ -36,6 +36,7 @@ public class CartAdapter extends ArrayAdapter<String> {
     private User user;
     private  ArrayList<Product> productsInCart;
      static double total;
+    private Pizza.Type type;
 
     class CartViewHolder {
         View row;
@@ -128,7 +129,7 @@ public class CartAdapter extends ArrayAdapter<String> {
             price_in_cart.setText(String.format("%.2f",productsInCart.get(position).getQuantity() * productsInCart.get(position).getPrice()));
             price_in_cart.setPaintFlags(price_in_cart.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
             disc_price_in_cart.setText(String.format("%.2f",productsInCart.get(position).getQuantity() * productsInCart.get(position).getDiscPrice()));
-            description_cart_tv.setText("Large Traditional");//  size i type
+            description_cart_tv.setText("Large Traditional");
             dicsount_cart_tv.setText("5% Discount");
         }
         else{
