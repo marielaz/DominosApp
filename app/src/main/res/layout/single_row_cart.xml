@@ -29,7 +29,7 @@
                 android:id="@+id/description_cart_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="10sp"
+                android:textSize="9sp"
                 android:layout_below="@id/p_name_in_cart"
                 android:layout_weight="1"/>
 
@@ -37,7 +37,7 @@
                 android:id="@+id/descr_type"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="10sp"
+                android:textSize="9sp"
                 android:layout_below="@id/p_name_in_cart"
                 android:layout_weight="1"/>
         </LinearLayout>
@@ -57,7 +57,7 @@
         android:orientation="horizontal"
         android:layout_toRightOf="@+id/text_in_cart_layout"
         android:layout_toEndOf="@+id/text_in_cart_layout"
-        android:layout_marginLeft="42dp"
+        android:layout_marginLeft="55dp"
         android:paddingTop="15dp">
 
         <ImageButton

@@ -80,10 +80,12 @@ public class MainActivity extends AppCompatActivity {
         boolean valid =true;
         if (username.isEmpty()){
             username_login.setError("Please, enter a valid username!");
+            username_login.requestFocus();
             valid= false;
         }
         if (password.isEmpty()){
             password_login.setError("Please, enter a valid password");
+            password_login.requestFocus();
             valid = false;
         }
         if (!valid){
@@ -103,8 +105,8 @@ public class MainActivity extends AppCompatActivity {
      }
 
     public void initialize(){
-        username = username_login.getText().toString();
-        password = password_login.getText().toString();
+        username = username_login.getText().toString().trim();
+        password = password_login.getText().toString().trim();
     }
 
 }

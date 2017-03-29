@@ -93,11 +93,10 @@ public class CatalogActivity extends AppCompatActivity {
                 // TODO
                 // startActivityForResult - bring back the user if he is changing the products in the cart !
                 Intent intent = new Intent(CatalogActivity.this, CartActivity.class);
-                if(tempUser != null) {
-                    intent.putExtra("user", tempUser);
-                }else{
+
+
                     intent.putExtra("user", user);
-                }
+
                 CatalogActivity.this.startActivityForResult(intent, 2);
             }
         });
@@ -111,14 +110,16 @@ public class CatalogActivity extends AppCompatActivity {
               if (data != null) {
                   p = (Pizza) data.getSerializableExtra("pizza");
                   user.getCart().addProduct(p);
-                  break;
               }
+              break;
+
           case 6:
               if (data != null) {
-                 tempUser = (User) data.getSerializableExtra("user");
-                  break;
+                 user = (User) data.getSerializableExtra("user");
               }
-         }
+              break;
+
+      }
 
     }
 
