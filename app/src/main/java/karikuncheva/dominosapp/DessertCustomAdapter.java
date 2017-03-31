@@ -2,6 +2,7 @@ package karikuncheva.dominosapp;
 import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,14 +24,51 @@ import static karikuncheva.dominosapp.R.id.cart_bnt;
  * Created by Mariela Zviskova on 14.3.2017 г..
  */
 
-public class DessertCustomAdapter extends ArrayAdapter<String> {
+public class DessertCustomAdapter extends RecyclerView.Adapter<DessertCustomAdapter.DessertViewHolder> {
 
     private Activity activity;
     private List<Dessert> desserts = new ArrayList<>();
     private User user;
 
+    public DessertCustomAdapter(Activity activity, List<Dessert> desserts, User user){
+        this.activity = activity;
+        this.desserts = desserts;
+        this.user = user;
+    }
 
-    class DessertViewHolder {
+    @Override
+    public DessertViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        LayoutInflater li = LayoutInflater.from(activity);
+        View row = li.inflate(R.layout.single_row_des_dr, parent, false);
+        DessertViewHolder vh = new DessertViewHolder(row);
+        return vh;    }
+
+    @Override
+    public void onBindViewHolder(final DessertViewHolder vh, final int position) {
+        vh.dessertImage.setImageResource(desserts.get(position).getImageId());
+        vh.dessertName.setText(desserts.get(position).getName());
+        vh.dessertDescr.setText(desserts.get(position).getDescription());
+        double p = desserts.get(position).getPrice();
+        vh.dessertPrice.setText(String.format("%.2f", p));
+
+        vh.cart_bnt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO add to cart
+                user.getCart().addProduct(desserts.get(position));
+                String chosenDessert = vh.dessertName.getText().toString() + " is added to your cart!" ;
+                Toast.makeText(v.getContext(),  chosenDessert, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
+    @Override
+    public int getItemCount() {
+        return desserts.size();
+    }
+
+    class DessertViewHolder extends RecyclerView.ViewHolder {
         View row;
         ImageButton cart_bnt;
         ImageView dessertImage;
@@ -39,7 +77,7 @@ public class DessertCustomAdapter extends ArrayAdapter<String> {
         TextView dessertPrice;
 
         DessertViewHolder(View row){
-
+            super(row);
             cart_bnt = (ImageButton) row.findViewById(R.id.cart_bnt);
             dessertImage = (ImageView) row.findViewById(R.id.image);
             dessertName = (TextView) row.findViewById(R.id.name);
@@ -47,58 +85,5 @@ public class DessertCustomAdapter extends ArrayAdapter<String> {
             dessertPrice = (TextView) row.findViewById(R.id.price);
         }
 
-    }
-
-
-    public DessertCustomAdapter(Activity activity, List<Dessert> desserts, User user){
-        super(activity, R.layout.single_row_des_dr);
-        this.activity = activity;
-        this.desserts = desserts;
-        this.user = user;
-    }
-
-    @Override
-    public int getCount() {
-        return desserts.size();
-    }
-
-
-    @Override
-    public View getView(final int position, View convertView, ViewGroup parent) {
-        LayoutInflater inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View row;
-        DessertViewHolder vh;
-
-        if (convertView == null) {
-            row = inflater.inflate(R.layout.single_row_des_dr, parent, false);
-            vh = new DessertViewHolder(row);
-            row.setTag(vh);
-        }else{
-            row = convertView;
-            vh = (DessertViewHolder) row.getTag();
-        }
-
-        ImageButton cart_bnt = vh.cart_bnt;
-        ImageView dessertImage = vh.dessertImage;
-        final TextView dessertName = vh.dessertName;
-        final TextView dessertDescr = vh.dessertDescr;
-        TextView dessertPrice = vh.dessertPrice;
-        dessertImage.setImageResource(desserts.get(position).getImageId());
-        dessertName.setText(desserts.get(position).getName());
-        dessertDescr.setText(desserts.get(position).getDescription());
-        double p = desserts.get(position).getPrice();
-        dessertPrice.setText(String.format("%.2f", p));
-
-        cart_bnt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // TODO add to cart
-                user.getCart().addProduct(desserts.get(position));
-                String chosenDessert = dessertName.getText().toString() + " is added to your cart!" ;
-                Toast.makeText(v.getContext(),  chosenDessert, Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        return row;
     }
 }
