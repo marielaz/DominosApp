@@ -1,8 +1,11 @@
 package karikuncheva.dominosapp;
 
 import android.content.Intent;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
@@ -10,10 +13,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 import karikuncheva.dominosapp.model.User;
 
-public class CartActivity extends AppCompatActivity {
+public class CartActivity extends AppCompatActivity implements CartListFragment.CartComunicator {
 
     private User user;
-    private ListView list;
+    private RecyclerView recyclerView;
     private Button checkOut;
     private TextView total;
     private double sumtotal = 0;
@@ -25,16 +28,15 @@ public class CartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
 
-        total = (TextView) findViewById(R.id.total_cart);
-        list = (ListView) findViewById(R.id.products_listview);
+        recyclerView = (RecyclerView) findViewById(R.id.products_recycle_view);
         user = (User) getIntent().getSerializableExtra("user");
-
         back = (Button) findViewById(R.id.back_button);
 
         CartAdapter adapter = new CartAdapter(this, user);
-        list.setAdapter(adapter);
-        String sum = String.format("%.2f", CartAdapter.getTotal());
-        total.setText("Total: " + sum);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(adapter);
+
+
         checkOut = (Button) findViewById(R.id.check_out_button);
         checkOut.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,5 +56,11 @@ public class CartActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    @Override
+    public void sumTotalPrice() {
+        sumtotal = CartAdapter.getTotal();
+
     }
 }

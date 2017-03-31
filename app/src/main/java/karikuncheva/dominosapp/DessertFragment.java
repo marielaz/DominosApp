@@ -16,7 +16,7 @@ import karikuncheva.dominosapp.model.Shop;
 import karikuncheva.dominosapp.model.User;
 import karikuncheva.dominosapp.model.products.Dessert;
 
-public class TabFragment2 extends Fragment {
+public class DessertFragment extends Fragment {
 
     ListView list;
 

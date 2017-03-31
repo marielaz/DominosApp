@@ -28,15 +28,15 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
 
         switch (position) {
             case 0:
-                TabFragment1 tab1 = new TabFragment1();
+                PizzaFragment tab1 = new PizzaFragment();
                 tab1.setArguments(b);
                 return tab1;
             case 1:
-                TabFragment2 tab2 = new TabFragment2();
+                DessertFragment tab2 = new DessertFragment();
                 tab2.setArguments(b);
                 return tab2;
             case 2:
-                TabFragment3 tab3 = new TabFragment3();
+                DrinkFragment tab3 = new DrinkFragment();
                 tab3.setArguments(b);
                 return tab3;
             default:
