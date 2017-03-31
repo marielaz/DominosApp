@@ -56,13 +56,13 @@
             android:layout_weight="1"/>
     </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
 
     <RelativeLayout
+        android:id="@+id/trad_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/main_rounded_shape"
@@ -109,12 +109,14 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/italian_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/main_rounded_shape"
         android:layout_marginTop="25dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
+        android:layout_below="@id/trad_layout"
         android:paddingLeft="15dp"
         android:paddingRight="10dp"
         android:weightSum="3"
@@ -153,9 +155,11 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/thin_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/main_rounded_shape"
+        android:layout_below="@id/italian_layout"
         android:layout_marginTop="25dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
@@ -196,7 +200,7 @@
 
 
     </RelativeLayout>
-    </LinearLayout>
+    </RelativeLayout>
 
     <Button
         android:id="@+id/add_to_cart_modify"

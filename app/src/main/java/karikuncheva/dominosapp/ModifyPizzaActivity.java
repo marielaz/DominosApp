@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.RadioButton;
+import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +19,7 @@ import karikuncheva.dominosapp.model.products.Pizza;
 public class ModifyPizzaActivity extends AppCompatActivity {
 
     List<RadioButton> radioButtons = new ArrayList<RadioButton>();
-    Button b1, b2, b3;
+    Button small, med, large;
     RadioButton radioButton1, radioButton2, radioButton3;
     private Pizza p;
     private Pizza.Size size;
@@ -49,41 +50,49 @@ public class ModifyPizzaActivity extends AppCompatActivity {
         radioButtons.add(radioButton2);
         radioButtons.add(radioButton3);
 
-        b1 = (Button) findViewById(R.id.small);
-        b2 = (Button) findViewById(R.id.med);
-        b3 = (Button) findViewById(R.id.large);
+        small = (Button) findViewById(R.id.small);
+        med = (Button) findViewById(R.id.med);
+        large = (Button) findViewById(R.id.large);
+
+//        int width = getResources().getDisplayMetrics().widthPixels/3;
+//        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(width, RelativeLayout.LayoutParams.WRAP_CONTENT);
+//        small.setLayoutParams(params);
+//        params.addRule(RelativeLayout.RIGHT_OF, small.getId());
+//        med.setLayoutParams(params);
+//        params.addRule(RelativeLayout.RIGHT_OF, R.id.med);
+//        large.setLayoutParams(params);
 
         radioButton1.setChecked(true);
-        b3.setPressed(true);
+        large.setPressed(true);
         size = Pizza.Size.LARGE;
 
-        b1.setOnTouchListener(new View.OnTouchListener() {
+        small.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                b1.setPressed(true);
+                small.setPressed(true);
                 size = Pizza.Size.SMALL;
-                b2.setPressed(false);
-                b3.setPressed(false);
+                med.setPressed(false);
+                large.setPressed(false);
                 return true;
             }
         });
-        b2.setOnTouchListener(new View.OnTouchListener() {
+        med.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                b2.setPressed(true);
+                med.setPressed(true);
                 size = Pizza.Size.MEDIUM;
-                b1.setPressed(false);
-                b3.setPressed(false);
+                small.setPressed(false);
+                large.setPressed(false);
                 return true;
             }
         });
-        b3.setOnTouchListener(new View.OnTouchListener() {
+        large.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                b3.setPressed(true);
+                large.setPressed(true);
                 size = Pizza.Size.LARGE;
-                b1.setPressed(false);
-                b2.setPressed(false);
+                small.setPressed(false);
+                med.setPressed(false);
                 return true;
             }
         });
@@ -104,13 +113,13 @@ public class ModifyPizzaActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (radioButton1.isChecked()){
                     type = Pizza.Type.TRADITIONAL;
-                    if(b1.isSelected()){
+                    if(small.isSelected()){
                         size = Pizza.Size.SMALL;
                     }
-                    if(b2.isSelected()){
+                    if(med.isSelected()){
                         size = Pizza.Size.MEDIUM;
                     }
-                    if(b2.isSelected()){
+                    if(large.isSelected()){
                         size = Pizza.Size.LARGE;
                     }
                 }
