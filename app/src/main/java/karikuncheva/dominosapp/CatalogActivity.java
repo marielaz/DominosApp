@@ -57,6 +57,7 @@ public class CatalogActivity extends AppCompatActivity {
         viewPager = (ViewPager) findViewById(R.id.pager);
 
         //get the user
+
          user = (User)getIntent().getExtras().getSerializable("user");
 
 
@@ -93,11 +94,7 @@ public class CatalogActivity extends AppCompatActivity {
                 // TODO
                 // startActivityForResult - bring back the user if he is changing the products in the cart !
                 Intent intent = new Intent(CatalogActivity.this, CartActivity.class);
-                if(tempUser != null) {
-                    intent.putExtra("user", tempUser);
-                }else{
-                    intent.putExtra("user", user);
-                }
+                intent.putExtra("user", user);
                 CatalogActivity.this.startActivityForResult(intent, 2);
             }
         });
@@ -112,10 +109,12 @@ public class CatalogActivity extends AppCompatActivity {
                   p = (Pizza) data.getSerializableExtra("pizza");
                   user.getCart().addProduct(p);
               }
+              break;
           case 6:
               if (data != null) {
-                 tempUser = (User) data.getSerializableExtra("user");
+                 user = (User) data.getSerializableExtra("user");
               }
+              break;
          }
 
     }

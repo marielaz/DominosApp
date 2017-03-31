@@ -28,12 +28,13 @@ public class CartActivity extends AppCompatActivity {
         total = (TextView) findViewById(R.id.total_cart);
         list = (ListView) findViewById(R.id.products_listview);
         user = (User) getIntent().getSerializableExtra("user");
+
         back = (Button) findViewById(R.id.back_button);
 
         CartAdapter adapter = new CartAdapter(this, user);
         list.setAdapter(adapter);
         String sum = String.format("%.2f", CartAdapter.getTotal());
-        total.setText("Total: " +  sum);
+        total.setText("Total: " + sum);
         checkOut = (Button) findViewById(R.id.check_out_button);
         checkOut.setOnClickListener(new View.OnClickListener() {
             @Override
