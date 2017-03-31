@@ -6,10 +6,13 @@ package karikuncheva.dominosapp;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 
 import karikuncheva.dominosapp.R;
 import karikuncheva.dominosapp.model.Shop;
@@ -17,16 +20,18 @@ import karikuncheva.dominosapp.model.User;
 
 public class TabFragment3 extends Fragment {
 
-    ListView list;
+    RecyclerView recyclerView;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.tab_fragment_3, container, false);
-        list = (ListView) v.findViewById(R.id.listDrink);
+        recyclerView = (RecyclerView) v.findViewById(R.id.recycler_view_drink);
 
         User user = (User) getArguments().getSerializable("user");
         DrinkCustomAdapter adapter = new DrinkCustomAdapter(getActivity(), Shop.getInstance().getDrinks(), user);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        list.setAdapter(adapter);
+        recyclerView.setAdapter(adapter);
         return v;
     }
 }

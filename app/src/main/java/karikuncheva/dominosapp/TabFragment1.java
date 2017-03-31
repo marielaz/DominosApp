@@ -5,6 +5,8 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,18 +26,17 @@ import karikuncheva.dominosapp.model.products.Pizza;
 
 public class TabFragment1 extends Fragment {
 
-    ListView list;
+    RecyclerView recyclerView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
         View v = inflater.inflate(R.layout.tab_fragment_1, container, false);
-        list = (ListView) v.findViewById(R.id.listView);
+        recyclerView = (RecyclerView) v.findViewById(R.id.recycler_view_pizza);
 
         User user = (User) getArguments().getSerializable("user");
         CustomAdapter adapter = new CustomAdapter(getActivity(), Shop.getInstance().getPizzas(), user);
-
-        list.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setAdapter(adapter);
         return v;
 
     }
