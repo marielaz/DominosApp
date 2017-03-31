@@ -63,32 +63,41 @@ public class RegistrationActivity extends AppCompatActivity {
         this.user = new User(username, address, pass, email);
         if (username.isEmpty()){
             username_reg.setError("Username must not be empty!");
+            username_reg.requestFocus();
             valid = false;
         }
         if (!user.validateEmailAddress(email)){
             email_reg.setError("Please, enter a valid email!");
+            email_reg.setText("");
+            email_reg.requestFocus();
             valid = false;
         }
         if (address.isEmpty()){
             address_reg.setError("Please, enter a valid address!");
+            address_reg.requestFocus();
             valid = false;
         }
         if (!user.validatePassword(pass)){
-            pass_reg.setError("Please, enter a valid password");
+            pass_reg.setError("Password must contains at least 8 characters, least 1 number and both lower and uppercase letters");
+            pass_reg.setText("");
+            pass_reg.requestFocus();
             valid = false;
         }
         if (!pass.equals(confirmPass)){
             confirm_pass_reg.setError("Passwords do not match");
+            pass_reg.setText("");
+            confirm_pass_reg.setText("");
+            pass_reg.requestFocus();
             valid = false;
         }
         return valid;
     }
 
     public void initialize(){
-            username = username_reg.getText().toString();
-            email = email_reg.getText().toString();
-            address = address_reg.getText().toString();
-            pass = pass_reg.getText().toString();
-            confirmPass = confirm_pass_reg.getText().toString();
+            username = username_reg.getText().toString().trim();
+            email = email_reg.getText().toString().trim();
+            address = address_reg.getText().toString().trim();
+            pass = pass_reg.getText().toString().trim();
+            confirmPass = confirm_pass_reg.getText().toString().trim();
     }
 }

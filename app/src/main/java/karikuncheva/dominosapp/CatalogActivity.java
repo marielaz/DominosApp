@@ -112,11 +112,11 @@ public class CatalogActivity extends AppCompatActivity {
               break;
           case 6:
               if (data != null) {
-                 user = (User) data.getSerializableExtra("user");
+                  user = (User) data.getSerializableExtra("user");
               }
               break;
-         }
 
+      }
     }
 
 }

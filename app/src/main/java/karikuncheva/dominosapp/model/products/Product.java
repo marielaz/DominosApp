@@ -5,7 +5,13 @@ import java.io.Serializable;
 public abstract class Product implements Serializable {
 
 	public enum ProductType {PIZZA, DESSERT, DRINK};
-	
+	public enum Size {
+		SMALL, MEDIUM, LARGE
+	};
+	public enum Type {
+		TRADITIONAL, THIN_AND_CRISPY, ITALIAN_STYLE
+	};
+
 	public ProductType pType;
 	private String name;
 	private double price;
@@ -13,6 +19,8 @@ public abstract class Product implements Serializable {
 	private  String description;
 	private double discPrice;
 	private int imageId;
+	private Size size;
+	private Type type;
 	
 	public Product(ProductType pType, String name, double price, String description, int imageId) {
 		this.pType = pType;
@@ -59,6 +67,10 @@ public abstract class Product implements Serializable {
 		this.quantity = quantity;
 	}
 
+	public Size getSize() {
+		return size;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -84,7 +96,8 @@ public abstract class Product implements Serializable {
 		return true;
 	}
 
-	
-	
-	
+
+	public Type getType() {
+		return type;
+	}
 }

@@ -41,7 +41,7 @@ public class CartActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(CartActivity.this, TrackerActivity.class);
                 Toast.makeText(CartActivity.this, "You paid successful!", Toast.LENGTH_SHORT).show();
-                startActivity(intent);
+                CartActivity.this.startActivity(intent);
             }
         });
 

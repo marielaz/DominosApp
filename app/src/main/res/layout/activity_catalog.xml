@@ -39,8 +39,9 @@
             android:id="@+id/go_to_cart_bnt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/go_to_cart"
-            android:background="@color/colorPrimary"/>
+            android:background="@drawable/go_to_cart"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="30dp"/>
 
     </LinearLayout>
 

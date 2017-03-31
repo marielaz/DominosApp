@@ -20,7 +20,7 @@
         <activity android:name=".RegistrationActivity" />
         <activity android:name=".ModifyPizzaActivity" />
         <activity android:name=".CartActivity" />
-        <activity android:name=".TrackerActivity"></activity>
+        <activity android:name=".TrackerActivity" />
     </application>
 
 </manifest>

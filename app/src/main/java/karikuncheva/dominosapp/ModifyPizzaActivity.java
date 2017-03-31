@@ -104,6 +104,15 @@ public class ModifyPizzaActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (radioButton1.isChecked()){
                     type = Pizza.Type.TRADITIONAL;
+                    if(b1.isSelected()){
+                        size = Pizza.Size.SMALL;
+                    }
+                    if(b2.isSelected()){
+                        size = Pizza.Size.MEDIUM;
+                    }
+                    if(b2.isSelected()){
+                        size = Pizza.Size.LARGE;
+                    }
                 }
                 else if(radioButton2.isChecked()){
                     type = Pizza.Type.ITALIAN_STYLE;

@@ -2,14 +2,6 @@ package karikuncheva.dominosapp.model.products;
 
 public class Pizza extends Product {
 
-	public enum Type {
-		TRADITIONAL, THIN_AND_CRISPY, ITALIAN_STYLE
-	};
-
-	public enum Size {
-		SMALL, MEDIUM, LARGE
-	};
-
 	public Type type;
 	public Size size;
 	private String description;
