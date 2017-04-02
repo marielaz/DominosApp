@@ -30,7 +30,6 @@ public class DrinkFragment extends Fragment {
         User user = (User) getArguments().getSerializable("user");
         DrinkCustomAdapter adapter = new DrinkCustomAdapter(getActivity(), Shop.getInstance().getDrinks(), user);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
         recyclerView.setAdapter(adapter);
         return v;
     }

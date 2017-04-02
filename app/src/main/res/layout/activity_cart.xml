@@ -32,6 +32,7 @@
         android:name="karikuncheva.dominosapp.CartTotalFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
         android:layout_below="@id/cart_list_products"
         tools:layout="@layout/fragment_cart_total" />
 
@@ -39,10 +40,8 @@
         android:id="@+id/check_out_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_margin="10dp"
         android:background="@drawable/rounded_button"
-        android:paddingBottom="20dp"
         android:layout_below="@id/fragment_total"
         android:text="Checkout"
         android:textAllCaps="false" />
