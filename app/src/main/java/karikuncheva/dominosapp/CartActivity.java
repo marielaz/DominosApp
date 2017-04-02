@@ -19,7 +19,6 @@ public class CartActivity extends AppCompatActivity implements CartListFragment.
     private RecyclerView recyclerView;
     private Button checkOut;
     private TextView total;
-    private double sumtotal = 0;
     private Button back;
 
 
@@ -58,9 +57,11 @@ public class CartActivity extends AppCompatActivity implements CartListFragment.
         });
     }
 
-    @Override
-    public void sumTotalPrice() {
-        sumtotal = CartAdapter.getTotal();
 
+    @Override
+    public void sumTotalPrice(double sum) {
+        FragmentManager fm = getSupportFragmentManager();
+        CartTotalFragment fragment = (CartTotalFragment) fm.findFragmentById(R.id.fragment_total);
+        fragment.sumTotalPrice(sum);
     }
 }

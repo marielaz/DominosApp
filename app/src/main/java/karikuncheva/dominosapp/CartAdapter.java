@@ -12,6 +12,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Map;
+
 import karikuncheva.dominosapp.model.User;
 import karikuncheva.dominosapp.model.products.Pizza;
 import karikuncheva.dominosapp.model.products.Product;
@@ -47,7 +48,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
     }
 
 
-
     @Override
     public CartViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater li = LayoutInflater.from(activity);
@@ -61,68 +61,86 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
     }
 
 
-
     @Override
     public void onBindViewHolder(final CartViewHolder vh, final int position) {
-        vh.dicsount_cart_tv.setText("");
-        vh.description_cart_tv.setText(""); //Large Traditional
-        vh.disc_price_in_cart.setText("");
-        vh.quantity.setText(String.valueOf(productsInCart.get(position).getQuantity()));
-        vh.p_name_in_cart.setText(productsInCart.get(position).getName());
+        // problem when single_row_cart is reused
+        final Product product = productsInCart.get(position);
+        if (product.pType != Product.ProductType.PIZZA){
+            vh.price_in_cart.setPaintFlags( vh.price_in_cart.getPaintFlags() & (~ Paint.STRIKE_THRU_TEXT_FLAG));
+            vh.dicsount_cart_tv.setText("");
+            vh.description_cart_tv.setText("");
+            vh.disc_price_in_cart.setText("");
+        }
+        vh.quantity.setText(String.valueOf(product.getQuantity()));
+        vh.p_name_in_cart.setText(product.getName());
 
 
-        if (productsInCart.get(position).pType == Product.ProductType.PIZZA) {
-            vh.price_in_cart.setText(String.format("%.2f", productsInCart.get(position).getQuantity() * productsInCart.get(position).getPrice()));
+        if (product.pType == Product.ProductType.PIZZA) {
+            vh.price_in_cart.setText(String.format("%.2f", product.getQuantity() * product.getPrice()));
             vh.price_in_cart.setPaintFlags(vh.price_in_cart.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-            vh.disc_price_in_cart.setText(String.format("%.2f", productsInCart.get(position).getQuantity() * productsInCart.get(position).getDiscPrice()));
+            vh.disc_price_in_cart.setText(String.format("%.2f", product.getQuantity() * product.getDiscPrice()));
 
-            vh.description_cart_tv.setText(productsInCart.get(position).getSize().toString());
-            vh.descr_type.setText(productsInCart.get(position).getType().toString());
+            vh.description_cart_tv.setText(product.getSize().toString());
+            vh.descr_type.setText(product.getType().toString());
             vh.dicsount_cart_tv.setText("5% Discount");
         } else {
-            vh.price_in_cart.setText(String.format("%.2f", productsInCart.get(position).getQuantity() * productsInCart.get(position).getPrice()));
+            vh.price_in_cart.setText(String.format("%.2f", product.getQuantity() * product.getPrice()));
         }
 
-        View.OnClickListener plusListener = new View.OnClickListener() {
+        vh.plus_product.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                user.getCart().addProduct(productsInCart.get(position));
-                vh.quantity.setText(String.valueOf(productsInCart.get(position).getQuantity()));
+                user.getCart().addProduct(product);
+                vh.quantity.setText(String.valueOf(product.getQuantity()));
 
-                if (productsInCart.get(position).pType == Product.ProductType.PIZZA) {
-                    vh.price_in_cart.setText(String.format("%.2f", productsInCart.get(position).getQuantity() * productsInCart.get(position).getPrice()));
-                    vh.disc_price_in_cart.setText(String.format("%.2f", productsInCart.get(position).getQuantity() * productsInCart.get(position).getDiscPrice()));
+                if (product.pType == Product.ProductType.PIZZA) {
+                    vh.price_in_cart.setText(String.format("%.2f", product.getQuantity() * product.getPrice()));
+                    vh.disc_price_in_cart.setText(String.format("%.2f", product.getQuantity() * product.getDiscPrice()));
+                    total = total + product.getDiscPrice();
+                    ((CartListFragment.CartComunicator) activity).sumTotalPrice(total);
                 } else {
-                    vh.price_in_cart.setText(String.format("%.2f", productsInCart.get(position).getQuantity() * productsInCart.get(position).getPrice()));
-
+                    vh.price_in_cart.setText(String.format("%.2f", product.getQuantity() * product.getPrice()));
+                    total = total + product.getPrice();
+                    ((CartListFragment.CartComunicator) activity).sumTotalPrice(total);
                 }
             }
-        };
-
-        vh.plus_product.setOnClickListener(plusListener);
+        });
 
         vh.minus_product.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                if (productsInCart.get(position).getQuantity() == 1) {
-                    user.getCart().removeProduct(productsInCart.get(position));
-                    productsInCart.remove(productsInCart.get(position));
-                    // notify the adapter to remove the product from the listview
+                if (product.getQuantity() == 1) {
+                    if (product.pType == Product.ProductType.PIZZA) {
+                        total = total - product.getDiscPrice();
+                        ((CartListFragment.CartComunicator) activity).sumTotalPrice(total);
+                    } else {
+                        total = total - product.getPrice();
+                        ((CartListFragment.CartComunicator) activity).sumTotalPrice(total);
+                    }
+                    user.getCart().removeProduct(product);
+                    productsInCart.remove(product);
+                    // notify the adapter to remove the product from the recyclerview
                     notifyDataSetChanged();
                 } else {
-                    user.getCart().removeProduct(productsInCart.get(position));
-                    vh.quantity.setText(String.valueOf(productsInCart.get(position).getQuantity()));
-                    if (productsInCart.get(position).pType == Product.ProductType.PIZZA) {
-                        double tempSum = Double.parseDouble(vh.price_in_cart.getText().toString()) - productsInCart.get(position).getPrice();
-                        double tempDics = Double.parseDouble(vh.disc_price_in_cart.getText().toString()) - productsInCart.get(position).getDiscPrice();
+                    if (product.pType == Product.ProductType.PIZZA) {
+                        total = total - product.getDiscPrice();
+                        ((CartListFragment.CartComunicator) activity).sumTotalPrice(total);
+                    } else {
+                        total = total - product.getPrice();
+                        ((CartListFragment.CartComunicator) activity).sumTotalPrice(total);
+                    }
+                    user.getCart().removeProduct(product);
+                    vh.quantity.setText(String.valueOf(product.getQuantity()));
+                    if (product.pType == Product.ProductType.PIZZA) {
+                        double tempSum = Double.parseDouble(vh.price_in_cart.getText().toString()) - product.getPrice();
+                        double tempDics = Double.parseDouble(vh.disc_price_in_cart.getText().toString()) - product.getDiscPrice();
                         vh.price_in_cart.setText(String.format("%.2f", tempSum));
                         vh.disc_price_in_cart.setText(String.format("%.2f", tempDics));
-                        total += productsInCart.get(position).getQuantity() * productsInCart.get(position).getDiscPrice();
+
                     } else {
-                        double tempSum = Double.parseDouble(vh.price_in_cart.getText().toString()) - productsInCart.get(position).getPrice();
+                        double tempSum = Double.parseDouble(vh.price_in_cart.getText().toString()) - product.getPrice();
                         vh.price_in_cart.setText(String.format("%.2f", tempSum));
-                        total += productsInCart.get(position).getQuantity() * productsInCart.get(position).getPrice();
                     }
                 }
             }

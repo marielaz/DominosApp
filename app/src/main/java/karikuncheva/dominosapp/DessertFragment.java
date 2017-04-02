@@ -6,6 +6,8 @@ package karikuncheva.dominosapp;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,18 +20,18 @@ import karikuncheva.dominosapp.model.products.Dessert;
 
 public class DessertFragment extends Fragment {
 
-    ListView list;
+    RecyclerView recyclerView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View v = inflater.inflate(R.layout.tab_fragment_2, container, false);
-        list = (ListView) v.findViewById(R.id.listDess);
+        recyclerView = (RecyclerView) v.findViewById(R.id.recycler_view_dessert);
 
         User user = (User) getArguments().getSerializable("user");
         DessertCustomAdapter adapter = new DessertCustomAdapter(getActivity(), Shop.getInstance().getDesserts(), user);
-
-        list.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setAdapter(adapter);
         return v;
 
     }

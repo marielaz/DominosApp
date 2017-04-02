@@ -20,7 +20,7 @@ public class CartListFragment extends Fragment {
     private RecyclerView recyclerView;
 
     interface CartComunicator{
-        public void sumTotalPrice();
+        public void sumTotalPrice(double sum);
     }
 
     @Override
