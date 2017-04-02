@@ -15,15 +15,21 @@ import android.widget.TextView;
  */
 public class CartTotalFragment extends Fragment {
 
-    private TextView textView;
+    private TextView total;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_cart_total, container, false);
-        textView = (TextView) root.findViewById(R.id.activity_total_fragment);
+        total = (TextView) root.findViewById(R.id.activity_total_fragment);
+        total.setText("Total: " + String.format("%.2f", CartAdapter.getTotal()));
         return root ;
+    }
+
+    public void sumTotalPrice(double sum){
+
+        total.setText("Total: " + String.format("%.2f",sum));
     }
 
 }
