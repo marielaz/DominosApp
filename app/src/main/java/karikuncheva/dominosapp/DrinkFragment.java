@@ -24,8 +24,8 @@ public class DrinkFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_drink, container, false);
         recyclerView = (RecyclerView) v.findViewById(R.id.recycler_view_drink);
 
-        User user = (User) getArguments().getSerializable("user");
-        DrinkCustomAdapter adapter = new DrinkCustomAdapter(getActivity(), Shop.getInstance().getDrinks(), user);
+
+        DrinkCustomAdapter adapter = new DrinkCustomAdapter(getActivity(), Shop.getInstance().getDrinks());
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
         return v;

@@ -25,8 +25,7 @@ public class DessertFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_dessert, container, false);
         recyclerView = (RecyclerView) v.findViewById(R.id.recycler_view_dessert);
 
-        User user = (User) getArguments().getSerializable("user");
-        DessertCustomAdapter adapter = new DessertCustomAdapter(getActivity(), Shop.getInstance().getDesserts(), user);
+        DessertCustomAdapter adapter = new DessertCustomAdapter(getActivity(), Shop.getInstance().getDesserts());
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
         return v;

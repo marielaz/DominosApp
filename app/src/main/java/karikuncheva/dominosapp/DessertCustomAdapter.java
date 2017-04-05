@@ -28,13 +28,11 @@ public class DessertCustomAdapter extends RecyclerView.Adapter<DessertCustomAdap
 
     private Activity activity;
     private List<Dessert> desserts = new ArrayList<>();
-    private User user;
     SharedPreferenceCart sharedPreferenceCart;
 
-    public DessertCustomAdapter(Activity activity, List<Dessert> desserts, User user){
+    public DessertCustomAdapter(Activity activity, List<Dessert> desserts){
         this.activity = activity;
         this.desserts = desserts;
-        this.user = user;
         sharedPreferenceCart = new SharedPreferenceCart();
     }
 

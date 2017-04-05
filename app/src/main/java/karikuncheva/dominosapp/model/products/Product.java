@@ -29,9 +29,27 @@ public abstract class Product implements Serializable {
 		this.description = description;
 		this.imageId = imageId;
 		this.quantity= 1;
-		this.discPrice = 0;
+		if (pType == ProductType.PIZZA){
+			this.discPrice = price - (price * 0.05);
+		}
+		else {
+			this.discPrice = 0;
+		}
 	}
-	
+	public Product(ProductType pType, String name, double price, String description) {
+		this.pType = pType;
+		this.name = name;
+		this.price = price;
+		this.description = description;
+		this.quantity= 1;
+		if (pType == ProductType.PIZZA){
+			this.discPrice = price - (price * 0.05);
+		}
+		else {
+			this.discPrice = 0;
+		}
+	}
+
 	public double getDiscPrice() {
 		return discPrice;
 	}

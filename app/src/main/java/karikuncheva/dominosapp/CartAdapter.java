@@ -27,25 +27,20 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
     private User user;
     private ArrayList<Product> productsInCart;
     static double total;
-    private Pizza.Type type;
     SharedPreferenceCart sharedPreferenceCart;
 
     public CartAdapter(Activity activity, User user) {
         this.activity = activity;
         this.user = user;
-       // this.productsInCart = new ArrayList<Product>();
         sharedPreferenceCart = new SharedPreferenceCart();
-        this.productsInCart = sharedPreferenceCart.getProducts(activity);
+        this.productsInCart = sharedPreferenceCart.getProducts();
         total = 0;
 
-        for (Map.Entry<Product.ProductType, HashSet<Product>> products : user.getCart().getProducts().entrySet()) {
-            for (Product p1 : products.getValue()) {
-                this.productsInCart.add(p1);
-                if (p1.pType == Product.ProductType.PIZZA) {
-                    total += p1.getQuantity() * p1.getDiscPrice();
-                } else {
-                    total += p1.getQuantity() * p1.getPrice();
-                }
+        for (Product p : productsInCart) {
+            if (p.pType == Product.ProductType.PIZZA) {
+                total += p.getQuantity() * p.getDiscPrice();
+            } else {
+                total += p.getQuantity() * p.getPrice();
             }
         }
     }
@@ -68,8 +63,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
     public void onBindViewHolder(final CartViewHolder vh, final int position) {
         // problem when single_row_cart is reused
         final Product product = productsInCart.get(position);
-        if (product.pType != Product.ProductType.PIZZA){
-            vh.price_in_cart.setPaintFlags( vh.price_in_cart.getPaintFlags() & (~ Paint.STRIKE_THRU_TEXT_FLAG));
+        if (product.pType != Product.ProductType.PIZZA) {
+            vh.price_in_cart.setPaintFlags(vh.price_in_cart.getPaintFlags() & (~Paint.STRIKE_THRU_TEXT_FLAG));
             vh.dicsount_cart_tv.setText("");
             vh.description_cart_tv.setText("");
             vh.disc_price_in_cart.setText("");
@@ -93,9 +88,15 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         vh.plus_product.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                user.getCart().addProduct(product);
-                vh.quantity.setText(String.valueOf(product.getQuantity()));
+                sharedPreferenceCart.addProduct(activity, product);
 
+                for (Product p : productsInCart) {
+                    if (p.equals(product)) {
+                        p.setQuantity(p.getQuantity() + 1);
+                        break;
+                    }
+                }
+                vh.quantity.setText(String.valueOf(product.getQuantity()));
                 if (product.pType == Product.ProductType.PIZZA) {
                     vh.price_in_cart.setText(String.format("%.2f", product.getQuantity() * product.getPrice()));
                     vh.disc_price_in_cart.setText(String.format("%.2f", product.getQuantity() * product.getDiscPrice()));
@@ -121,7 +122,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
                         total = total - product.getPrice();
                         ((CartListFragment.CartComunicator) activity).sumTotalPrice(total);
                     }
-                    user.getCart().removeProduct(product);
+
+                    sharedPreferenceCart.removeProduct(activity, product);
                     productsInCart.remove(product);
                     // notify the adapter to remove the product from the recyclerview
                     notifyDataSetChanged();
@@ -133,7 +135,14 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
                         total = total - product.getPrice();
                         ((CartListFragment.CartComunicator) activity).sumTotalPrice(total);
                     }
-                    user.getCart().removeProduct(product);
+
+                    for (Product p : productsInCart) {
+                        if (p.equals(product)) {
+                            p.setQuantity(p.getQuantity() - 1);
+                            break;
+                        }
+                    }
+                    sharedPreferenceCart.removeProduct(activity, product);
                     vh.quantity.setText(String.valueOf(product.getQuantity()));
                     if (product.pType == Product.ProductType.PIZZA) {
                         double tempSum = Double.parseDouble(vh.price_in_cart.getText().toString()) - product.getPrice();
@@ -158,7 +167,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
     }
 
     class CartViewHolder extends RecyclerView.ViewHolder {
-        View row;
         TextView p_name_in_cart;
         ImageButton plus_product;
         ImageButton minus_product;

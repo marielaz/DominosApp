@@ -25,8 +25,8 @@ public class PizzaFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_pizza, container, false);
         recyclerView = (RecyclerView) v.findViewById(R.id.recycler_view_pizza);
 
-        User user = (User) getArguments().getSerializable("user");
-        CustomAdapter adapter = new CustomAdapter(getActivity(), Shop.getInstance().getPizzas(), user);
+
+        CustomAdapter adapter = new CustomAdapter(getActivity(), Shop.getInstance().getPizzas());
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
         return v;

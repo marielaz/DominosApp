@@ -81,10 +81,10 @@ public class CatalogActivity extends AppCompatActivity
 
         //get the user
 
-         user = (User)getIntent().getExtras().getSerializable("user");
+        user = (User) getIntent().getExtras().getSerializable("user");
 
         //Creating our pager adapter
-        PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount(), user);
+        PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
 
         //Adding adapter to pager
         viewPager.setAdapter(adapter);
@@ -109,38 +109,30 @@ public class CatalogActivity extends AppCompatActivity
         });
 
 
-        go_to_cart.setOnClickListener(new View.OnClickListener(){
+        go_to_cart.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 // TODO
                 // startActivityForResult - bring back the user if he is changing the products in the cart !
                 Intent intent = new Intent(CatalogActivity.this, CartActivity.class);
-                intent.putExtra("user", user);
-                CatalogActivity.this.startActivityForResult(intent, 2);
+                CatalogActivity.this.startActivity(intent);
             }
         });
 
-      //  navigationView.setNavigationItemSelectedListener(this);
+        //  navigationView.setNavigationItemSelectedListener(this);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-      switch (resultCode) {
-          case 5:
-              if (data != null) {
-                  p = (Pizza) data.getSerializableExtra("pizza");
-                  user.getCart().addProduct(p);
-              }
-              break;
-          case 6:
-              if (data != null) {
-                  user = (User) data.getSerializableExtra("user");
-              }
-              break;
-
-      }
-    }
+        switch (resultCode) {
+            case 5:
+                if (data != null) {
+                    p = (Pizza) data.getSerializableExtra("pizza");
+                    user.getCart().addProduct(p);
+                }
+                break;
+        }
 
 //    @Override
 //    public void onBackPressed() {
@@ -211,4 +203,5 @@ public class CatalogActivity extends AppCompatActivity
 //        return true;
 //    }
 
+    }
 }

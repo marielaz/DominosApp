@@ -25,13 +25,11 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.PizzaViewH
 
     private Activity activity;
     private List<Pizza> pizzas;
-    private User user;
     SharedPreferenceCart sharedPreferenceCart;
 
-    public CustomAdapter(Activity activity, List<Pizza> pizzas, User user) {
+    public CustomAdapter(Activity activity, List<Pizza> pizzas) {
         this.activity = activity;
         this.pizzas = pizzas;
-        this.user = user;
         sharedPreferenceCart = new SharedPreferenceCart();
     }
 

@@ -4,17 +4,16 @@ import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
+import karikuncheva.dominosapp.model.products.Dessert;
+import karikuncheva.dominosapp.model.products.Drink;
+import karikuncheva.dominosapp.model.products.Pizza;
 import karikuncheva.dominosapp.model.products.Product;
 
 /**
@@ -25,14 +24,14 @@ public class SharedPreferenceCart {
 
     public static final String PREFS_NAME = "PRODUCT_APP";
     public static final String PRODUCTS = "Product_In_Cart";
-    JSONArray jsonProducts = null;
+    static JSONArray jsonProducts = null;
     JSONObject product = null;
 
     public SharedPreferenceCart() {
         super();
     }
 
-    public String writeJSON(List<Product> products) {
+    public JSONArray writeJSON(List<Product> products) {
         jsonProducts = new JSONArray();
         for (int i = 0; i < products.size(); i++) {
             Product p = products.get(i);
@@ -42,35 +41,38 @@ public class SharedPreferenceCart {
                 product.put("description", p.getDescription());
                 product.put("quantity", p.getQuantity());
                 product.put("price", p.getPrice());
+                product.put("pType", p.pType.toString());
                 if (p.pType == Product.ProductType.PIZZA) {
-                    product.put("price", p.getDiscPrice());
-                    product.put("size", p.getSize());
-                    product.put("type", p.getType());
+                    product.put("size", p.getSize().toString());
+                    product.put("type", p.getType().toString());
                 }
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            jsonProducts.put(p);
+            jsonProducts.put(product);
         }
-        return jsonProducts.toString();
+        return jsonProducts;
+
     }
 
     // This four methods are used for maintaining products.
     public void saveProducts(final Activity activity, final List<Product> products) {
 
+
         new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... params) {
+
                 SharedPreferences settings;
                 SharedPreferences.Editor editor;
                 Activity act = activity;
                 List<Product> pr = products;
-
                 settings = act.getSharedPreferences(PREFS_NAME,
                         Activity.MODE_PRIVATE);
                 editor = settings.edit();
-                String tempJson = writeJSON(products);
+                //call the method
+                String tempJson = writeJSON(products).toString();
                 editor.putString(PRODUCTS, tempJson);
                 editor.commit();
                 return null;
@@ -85,11 +87,16 @@ public class SharedPreferenceCart {
 
             @Override
             protected Void doInBackground(Void... params) {
-                List<Product> products = getProducts(act);
+                List<Product> products = getProducts(); // act
                 if (products == null) {
                     products = new ArrayList<Product>();
                 } else if (products.contains(prdct)) {
-                    prdct.setQuantity(prdct.getQuantity() + 1);
+                    for (Product p : products) {
+                        if (p.equals(prdct)) {
+                            p.setQuantity(p.getQuantity() + 1);
+                            break;
+                        }
+                    }
                 } else {
                     products.add(prdct);
                 }
@@ -102,7 +109,7 @@ public class SharedPreferenceCart {
 
 
     public void removeProduct(Activity activity, Product product) {
-        ArrayList<Product> products = getProducts(activity);
+        ArrayList<Product> products = getProducts();
         if (products != null) {
             if (product.getQuantity() > 1) {
                 product.setQuantity(product.getQuantity() - 1);
@@ -113,39 +120,47 @@ public class SharedPreferenceCart {
         }
     }
 
-    public ArrayList<Product> getProducts(Activity activity) {
-        SharedPreferences settings;
-        ArrayList<Product> products;
+    public ArrayList<Product> getProducts() {
+        ArrayList<Product> products = new ArrayList<Product>();
+        String name, desc, pType, size, type = null;
+        int quantity = 0;
+        double price = 0;
+        JSONObject obj = null;
 
-        settings = activity.getSharedPreferences(PREFS_NAME,
-                Activity.MODE_PRIVATE);
-
-        ArrayList<String> temp = new ArrayList<>();
-        products = new ArrayList<Product>();
-        JSONArray jArray = jsonProducts;
-        if (jArray != null) {
+        if (jsonProducts != null) {
             for (int i = 0; i < jsonProducts.length(); i++) {
                 try {
-                    temp.add(jsonProducts.get(i).toString());
+                    obj = jsonProducts.getJSONObject(i);
+                    name = obj.getString("name");
+                    desc = obj.getString("description");
+                    quantity = obj.getInt("quantity");
+                    price = obj.getDouble("price");
+                    pType = obj.getString("pType");
+                    if (pType.equals("PIZZA")) {
+                        size = obj.getString("size");
+                        type = obj.getString("type");
+                        // make new products constructurs without imageId
+                        Pizza pizza = new Pizza(name, price, desc);
+                        pizza.setQuantity(quantity);
+                        products.add(pizza);
+                        //TODO
+                        // if we modify pizza, we must initialize size and type AGAIN!
+                    } else if (pType.equals("DESSERT")) {
+                        Dessert dessert = new Dessert(name, price, desc);
+                        dessert.setQuantity(quantity);
+                        products.add(dessert);
+                    } else if (pType.equals("DRINK")) {
+                        Drink drink = new Drink(name, price, desc);
+                        drink.setQuantity(quantity);
+                        products.add(drink);
+                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                Product p = null;
-                //   p.setQuantity(jsonProducts.getString("quantity"));
+
             }
         }
-//            if (settings.contains(PRODUCTS)) {
-//            String jsonProducts = settings.getString(PRODUCTS, null);
-//            Gson gson = new Gson();
-//            Product[] cartItems = gson.fromJson(jsonProducts,
-//                    Product[].class);
-//
-//            products = Arrays.asList(cartItems);
-//            products = new ArrayList<Product>(products);
-//        } else
-//            return null;
-
-        return (ArrayList<Product>) products;
+        return products;
     }
 }
 
