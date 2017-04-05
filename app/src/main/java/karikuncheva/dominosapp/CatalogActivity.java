@@ -6,32 +6,36 @@ package karikuncheva.dominosapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.IntRange;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
-
-import java.util.HashMap;
-import java.util.HashSet;
 
 import karikuncheva.dominosapp.model.User;
 import karikuncheva.dominosapp.model.products.Pizza;
-import karikuncheva.dominosapp.model.products.Product;
 
 
-public class CatalogActivity extends AppCompatActivity {
+public class CatalogActivity extends AppCompatActivity
+      //  implements NavigationView.OnNavigationItemSelectedListener
+{
 
     private User user;
     private User tempUser;
     private ImageButton go_to_cart;
     private Pizza p;
-
+    private DrawerLayout drawer;
+    private Toolbar toolbar;
+    private NavigationView navigationView;
     //This is our tablayout
     private TabLayout tabLayout;
 
@@ -42,6 +46,25 @@ public class CatalogActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_catalog);
+
+        //Set the fragment initially
+//        MainFragment fragment = new MainFragment();
+//        android.support.v4.app.FragmentTransaction fragmentTransaction =
+//                getSupportFragmentManager().beginTransaction();
+//        fragmentTransaction.replace(R.id.fragment_container, fragment);
+//        fragmentTransaction.commit();
+//
+//        toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
+//
+//        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+//
+//        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+//                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+//        drawer.setDrawerListener(toggle);
+//        toggle.syncState();
+//
+//        navigationView = (NavigationView) findViewById(R.id.navigation_view);
 
         go_to_cart = (ImageButton) findViewById(R.id.go_to_cart_bnt);
         //Initializing the tablayout
@@ -59,7 +82,6 @@ public class CatalogActivity extends AppCompatActivity {
         //get the user
 
          user = (User)getIntent().getExtras().getSerializable("user");
-
 
         //Creating our pager adapter
         PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount(), user);
@@ -98,8 +120,9 @@ public class CatalogActivity extends AppCompatActivity {
                 CatalogActivity.this.startActivityForResult(intent, 2);
             }
         });
-    }
 
+      //  navigationView.setNavigationItemSelectedListener(this);
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -118,5 +141,74 @@ public class CatalogActivity extends AppCompatActivity {
 
       }
     }
+
+//    @Override
+//    public void onBackPressed() {
+//        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+//        if (drawer.isDrawerOpen(GravityCompat.START)) {
+//            drawer.closeDrawer(GravityCompat.START);
+//        } else {
+//            super.onBackPressed();
+//        }
+//    }
+//
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        // Inflate the menu; this adds items to the action bar if it is present.
+//        getMenuInflater().inflate(R.menu.menu_items, menu);
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        // Handle action bar item clicks here. The action bar will
+//        // automatically handle clicks on the Home/Up button, so long
+//        // as you specify a parent activity in AndroidManifest.xml.
+//        int id = item.getItemId();
+//
+//        //noinspection SimplifiableIfStatement
+//        if (id == R.id.action_log_out) {
+//            return true;
+//        }
+//
+//        return super.onOptionsItemSelected(item);
+//    }
+//
+//    @SuppressWarnings("StatementWithEmptyBody")
+//    @Override
+//    public boolean onNavigationItemSelected(MenuItem item) {
+//        // Handle navigation view item clicks here.
+//        int id = item.getItemId();
+//
+//        if (id == R.id.nav_camara) {
+//            //Set the fragment initially
+//            MainFragment fragment = new MainFragment();
+//            android.support.v4.app.FragmentTransaction fragmentTransaction =
+//                    getSupportFragmentManager().beginTransaction();
+//            fragmentTransaction.replace(R.id.fragment_container, fragment);
+//            fragmentTransaction.commit();
+//            // Handle the camera action
+//        } else if (id == R.id.nav_gallery) {
+//            //Set the fragment initially
+//            GalleryFragment fragment = new GalleryFragment();
+//            android.support.v4.app.FragmentTransaction fragmentTransaction =
+//                    getSupportFragmentManager().beginTransaction();
+//            fragmentTransaction.replace(R.id.fragment_container, fragment);
+//            fragmentTransaction.commit();
+//
+//        } else if (id == R.id.nav_slideshow) {
+//
+//        } else if (id == R.id.nav_manage) {
+//
+//        } else if (id == R.id.nav_share) {
+//
+//        } else if (id == R.id.nav_send) {
+//
+//        }
+//
+//        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+//        drawer.closeDrawer(GravityCompat.START);
+//        return true;
+//    }
 
 }

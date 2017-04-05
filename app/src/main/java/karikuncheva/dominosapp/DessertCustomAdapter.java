@@ -29,11 +29,13 @@ public class DessertCustomAdapter extends RecyclerView.Adapter<DessertCustomAdap
     private Activity activity;
     private List<Dessert> desserts = new ArrayList<>();
     private User user;
+    SharedPreferenceCart sharedPreferenceCart;
 
     public DessertCustomAdapter(Activity activity, List<Dessert> desserts, User user){
         this.activity = activity;
         this.desserts = desserts;
         this.user = user;
+        sharedPreferenceCart = new SharedPreferenceCart();
     }
 
     @Override
@@ -55,7 +57,8 @@ public class DessertCustomAdapter extends RecyclerView.Adapter<DessertCustomAdap
             @Override
             public void onClick(View v) {
                 // TODO add to cart
-                user.getCart().addProduct(desserts.get(position));
+              //  user.getCart().addProduct(desserts.get(position));
+                sharedPreferenceCart.addProduct(activity, desserts.get(position));
                 String chosenDessert = vh.dessertName.getText().toString() + " is added to your cart!" ;
                 Toast.makeText(v.getContext(),  chosenDessert, Toast.LENGTH_SHORT).show();
             }
