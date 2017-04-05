@@ -21,7 +21,7 @@
         <activity android:name=".ModifyPizzaActivity" />
         <activity android:name=".CartActivity" />
         <activity android:name=".TrackerActivity" />
-        <activity android:name=".CartListFragment"></activity>
+        <activity android:name=".CartListFragment" />
     </application>
 
 </manifest>

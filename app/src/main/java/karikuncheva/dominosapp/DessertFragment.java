@@ -11,12 +11,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 
-import karikuncheva.dominosapp.R;
 import karikuncheva.dominosapp.model.Shop;
 import karikuncheva.dominosapp.model.User;
-import karikuncheva.dominosapp.model.products.Dessert;
 
 public class DessertFragment extends Fragment {
 
@@ -25,7 +22,7 @@ public class DessertFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View v = inflater.inflate(R.layout.tab_fragment_2, container, false);
+        View v = inflater.inflate(R.layout.fragment_dessert, container, false);
         recyclerView = (RecyclerView) v.findViewById(R.id.recycler_view_dessert);
 
         User user = (User) getArguments().getSerializable("user");
