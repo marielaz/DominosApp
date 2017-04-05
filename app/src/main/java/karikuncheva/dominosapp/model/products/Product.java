@@ -31,7 +31,12 @@ public abstract class Product implements Serializable {
 		this.quantity= 1;
 		this.discPrice = 0;
 	}
-	
+
+	public Product(String name, String description){
+		this.name = name;
+		this.description = description;
+	}
+
 	public double getDiscPrice() {
 		return discPrice;
 	}

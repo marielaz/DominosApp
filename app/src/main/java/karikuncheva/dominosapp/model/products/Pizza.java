@@ -11,8 +11,10 @@ public class Pizza extends Product {
 		this.type = Type.TRADITIONAL;
 		this.size = Size.LARGE;
 		this.description = description;
+	}
 
-
+	public Pizza(String name, String description){
+		super(name, description);
 	}
 
 	public String getDescription() {
