@@ -11,10 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
-import android.widget.RelativeLayout;
 
-import karikuncheva.dominosapp.R;
 import karikuncheva.dominosapp.model.Shop;
 import karikuncheva.dominosapp.model.User;
 
@@ -24,11 +21,11 @@ public class DrinkFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.tab_fragment_3, container, false);
+        View v = inflater.inflate(R.layout.fragment_drink, container, false);
         recyclerView = (RecyclerView) v.findViewById(R.id.recycler_view_drink);
 
-        User user = (User) getArguments().getSerializable("user");
-        DrinkCustomAdapter adapter = new DrinkCustomAdapter(getActivity(), Shop.getInstance().getDrinks(), user);
+
+        DrinkCustomAdapter adapter = new DrinkCustomAdapter(getActivity(), Shop.getInstance().getDrinks());
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
         return v;

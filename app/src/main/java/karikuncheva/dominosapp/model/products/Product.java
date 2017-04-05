@@ -29,12 +29,12 @@ public abstract class Product implements Serializable {
 		this.description = description;
 		this.imageId = imageId;
 		this.quantity= 1;
-		this.discPrice = 0;
-	}
-
-	public Product(String name, String description){
-		this.name = name;
-		this.description = description;
+		if (pType == ProductType.PIZZA){
+			this.discPrice = price - (price * 0.05);
+		}
+		else {
+			this.discPrice = 0;
+		}
 	}
 
 	public double getDiscPrice() {

@@ -20,13 +20,11 @@ public class DrinkCustomAdapter extends RecyclerView.Adapter<DrinkCustomAdapter.
 
     private Activity activity;
     private List<Drink> drinks;
-    private User user;
     SharedPreferenceCart sharedPreferenceCart;
 
-    public DrinkCustomAdapter(Activity activity, List<Drink> drinks, User user) {
+    public DrinkCustomAdapter(Activity activity, List<Drink> drinks) {
         this.activity = activity;
         this.drinks = drinks;
-        this.user = user;
         sharedPreferenceCart = new SharedPreferenceCart();
     }
 

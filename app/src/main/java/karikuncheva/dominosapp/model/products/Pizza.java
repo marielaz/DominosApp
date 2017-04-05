@@ -13,10 +13,6 @@ public class Pizza extends Product {
 		this.description = description;
 	}
 
-	public Pizza(String name, String description){
-		super(name, description);
-	}
-
 	public String getDescription() {
 		return description;
 	}

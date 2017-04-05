@@ -10,6 +10,10 @@ public class Drink extends Product {
 		super(ProductType.DRINK, name, price,description, imageId );
 		
 	}
+	public Drink(String name, double price, String description) {
+		super(ProductType.DRINK, name, price,description);
+
+	}
 
 	@Override
 	public String toString() {
