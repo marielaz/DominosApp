@@ -28,11 +28,14 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
     private ArrayList<Product> productsInCart;
     static double total;
     private Pizza.Type type;
+    SharedPreferenceCart sharedPreferenceCart;
 
     public CartAdapter(Activity activity, User user) {
         this.activity = activity;
         this.user = user;
-        this.productsInCart = new ArrayList<Product>();
+       // this.productsInCart = new ArrayList<Product>();
+        sharedPreferenceCart = new SharedPreferenceCart();
+        this.productsInCart = sharedPreferenceCart.getProducts(activity);
         total = 0;
 
         for (Map.Entry<Product.ProductType, HashSet<Product>> products : user.getCart().getProducts().entrySet()) {

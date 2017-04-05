@@ -1,6 +1,7 @@
 package karikuncheva.dominosapp;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -25,11 +26,13 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.PizzaViewH
     private Activity activity;
     private List<Pizza> pizzas;
     private User user;
+    SharedPreferenceCart sharedPreferenceCart;
 
     public CustomAdapter(Activity activity, List<Pizza> pizzas, User user) {
         this.activity = activity;
         this.pizzas = pizzas;
         this.user = user;
+        sharedPreferenceCart = new SharedPreferenceCart();
     }
 
     @Override
@@ -62,7 +65,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.PizzaViewH
             @Override
             public void onClick(View v) {
                 // TODO add to cart
-                user.getCart().addProduct(pizzas.get(position));
+                //user.getCart().addProduct(pizzas.get(position));
+                sharedPreferenceCart.addProduct(activity, pizzas.get(position));
                 String chosenPizza = vh.pizzaName.getText().toString() + " is added to your cart!";
                 Toast.makeText(v.getContext(), chosenPizza, Toast.LENGTH_SHORT).show();
             }
