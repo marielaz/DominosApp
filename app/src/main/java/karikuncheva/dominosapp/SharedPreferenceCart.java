@@ -3,11 +3,9 @@ package karikuncheva.dominosapp;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,7 +57,6 @@ public class SharedPreferenceCart {
     // This four methods are used for maintaining products.
     public void saveProducts(final Activity activity, final List<Product> products) {
 
-
         new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... params) {
@@ -108,21 +105,29 @@ public class SharedPreferenceCart {
     }
 
 
-    public void removeProduct(Activity activity, Product product) {
-        ArrayList<Product> products = getProducts();
-        if (products != null) {
-            if (product.getQuantity() > 1) {
-                for (Product p : products){
-                    if (p.equals(product)){
-                        p.setQuantity(p.getQuantity() -1);
-                        break;
+    public void removeProduct(final Activity activity, final Product product) {
+        final Activity act = activity;
+        final Product prdct =product;
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... params) {
+                ArrayList<Product> products = getProducts();
+                if (products != null) {
+                    if (prdct.getQuantity() > 1) {
+                        for (Product p : products) {
+                            if (p.equals(prdct)) {
+                                p.setQuantity(p.getQuantity() - 1);
+                                break;
+                            }
+                        }
+                    } else {
+                        products.remove(prdct);
                     }
+                    saveProducts(act, products);
                 }
-            } else {
-                products.remove(product);
+                return  null;
             }
-            saveProducts(activity, products);
-        }
+        }.execute();
     }
 
     public ArrayList<Product> getProducts() {

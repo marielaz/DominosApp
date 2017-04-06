@@ -142,16 +142,13 @@ public class ModifyPizzaActivity extends AppCompatActivity {
                     type = Pizza.Type.THIN_AND_CRISPY;
                 }
                 p = p.modifyPizza(p, size , type);
-               // p.setDiscPrice(p.getPrice() - p.getPrice()*0.05);
+
                 sharedPreferenceCart.addProduct(ModifyPizzaActivity.this, p);
                 Intent intent = new Intent(ModifyPizzaActivity.this, CartActivity.class);
                 ModifyPizzaActivity.this.startActivity(intent);
-//                intent.putExtra("pizza", p);
-//                setResult(5, intent);
-//                finish();
+
             }
         });
-
     }
     private void processRadioButtonClick(CompoundButton buttonView) {
         for (RadioButton button : radioButtons) {

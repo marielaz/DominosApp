@@ -59,7 +59,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.PizzaViewH
                 Intent intent = new Intent(activity, ModifyPizzaActivity.class);
                 intent.putExtra("pizza", pizzas.get(position));
                 activity.startActivity(intent);
-//                activity.startActivityForResult(intent, 1);
             }
         });
 

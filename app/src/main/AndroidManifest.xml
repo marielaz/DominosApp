@@ -17,16 +17,16 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            </intent-filter> />
+
         </activity>
         <activity android:name=".CatalogActivity" />
         <activity android:name=".RegistrationActivity" />
         <activity android:name=".ModifyPizzaActivity" />
         <activity android:name=".CartActivity" />
         <activity android:name=".TrackerActivity" />
-        <activity android:name=".CartListFragment" />
-        <activity android:name=".MakeOrderActivity" />
-
+        <activity android:name=".MakeOrderActivity">
+        </activity>
     </application>
 
 </manifest>
