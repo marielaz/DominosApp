@@ -26,6 +26,8 @@ public class ModifyPizzaActivity extends AppCompatActivity {
     private Pizza.Type type;
 
     Button addToCart;
+    Button cancelModify;
+    SharedPreferenceCart sharedPreferenceCart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +35,7 @@ public class ModifyPizzaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_modify_pizza);
 
 
+        sharedPreferenceCart = new SharedPreferenceCart();
         if(getIntent().getExtras() != null) {
             Bundle b = getIntent().getExtras();
                 if(b.getSerializable("pizza") != null){
@@ -108,6 +111,15 @@ public class ModifyPizzaActivity extends AppCompatActivity {
         }
 
         addToCart = (Button) findViewById(R.id.add_to_cart_modify);
+        cancelModify = (Button) findViewById(R.id.cancel_modify);
+
+        cancelModify.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ModifyPizzaActivity.this, CatalogActivity.class);
+                ModifyPizzaActivity.this.startActivity(intent);
+            }
+        });
         addToCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -130,12 +142,13 @@ public class ModifyPizzaActivity extends AppCompatActivity {
                     type = Pizza.Type.THIN_AND_CRISPY;
                 }
                 p = p.modifyPizza(p, size , type);
-                p.setDiscPrice(p.getPrice() - p.getPrice()*0.05);
-
-                Intent intent = new Intent();
-                intent.putExtra("pizza", p);
-                setResult(5, intent);
-                finish();
+               // p.setDiscPrice(p.getPrice() - p.getPrice()*0.05);
+                sharedPreferenceCart.addProduct(ModifyPizzaActivity.this, p);
+                Intent intent = new Intent(ModifyPizzaActivity.this, CartActivity.class);
+                ModifyPizzaActivity.this.startActivity(intent);
+//                intent.putExtra("pizza", p);
+//                setResult(5, intent);
+//                finish();
             }
         });
 

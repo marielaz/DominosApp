@@ -112,7 +112,12 @@ public class SharedPreferenceCart {
         ArrayList<Product> products = getProducts();
         if (products != null) {
             if (product.getQuantity() > 1) {
-                product.setQuantity(product.getQuantity() - 1);
+                for (Product p : products){
+                    if (p.equals(product)){
+                        p.setQuantity(p.getQuantity() -1);
+                        break;
+                    }
+                }
             } else {
                 products.remove(product);
             }
@@ -142,9 +147,13 @@ public class SharedPreferenceCart {
                         // make new products constructurs without imageId
                         Pizza pizza = new Pizza(name, price, desc);
                         pizza.setQuantity(quantity);
-                        products.add(pizza);
                         //TODO
                         // if we modify pizza, we must initialize size and type AGAIN!
+
+                        pizza.setSize(Product.Size.valueOf(size.toUpperCase()));
+                        pizza.setType(Product.Type.valueOf(type.toUpperCase()));
+                        products.add(pizza);
+
                     } else if (pType.equals("DESSERT")) {
                         Dessert dessert = new Dessert(name, price, desc);
                         dessert.setQuantity(quantity);

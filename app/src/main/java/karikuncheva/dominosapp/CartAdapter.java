@@ -35,7 +35,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         sharedPreferenceCart = new SharedPreferenceCart();
         this.productsInCart = sharedPreferenceCart.getProducts();
         total = 0;
-
+        // problem with round up !!!
         for (Product p : productsInCart) {
             if (p.pType == Product.ProductType.PIZZA) {
                 total += p.getQuantity() * p.getDiscPrice();
@@ -62,12 +62,13 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
     @Override
     public void onBindViewHolder(final CartViewHolder vh, final int position) {
         // problem when single_row_cart is reused
+
         final Product product = productsInCart.get(position);
         if (product.pType != Product.ProductType.PIZZA) {
-            vh.price_in_cart.setPaintFlags(vh.price_in_cart.getPaintFlags() & (~Paint.STRIKE_THRU_TEXT_FLAG));
             vh.dicsount_cart_tv.setText("");
             vh.description_cart_tv.setText("");
             vh.disc_price_in_cart.setText("");
+            vh.price_in_cart.setPaintFlags(vh.price_in_cart.getPaintFlags() & (~Paint.STRIKE_THRU_TEXT_FLAG));
         }
         vh.quantity.setText(String.valueOf(product.getQuantity()));
         vh.p_name_in_cart.setText(product.getName());
@@ -128,6 +129,15 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
                     // notify the adapter to remove the product from the recyclerview
                     notifyDataSetChanged();
                 } else {
+                    sharedPreferenceCart.removeProduct(activity, product);
+
+                    for (Product p : productsInCart) {
+                        if (p.equals(product)) {
+                            p.setQuantity(p.getQuantity() - 1);
+                            break;
+                        }
+                    }
+
                     if (product.pType == Product.ProductType.PIZZA) {
                         total = total - product.getDiscPrice();
                         ((CartListFragment.CartComunicator) activity).sumTotalPrice(total);
@@ -136,13 +146,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
                         ((CartListFragment.CartComunicator) activity).sumTotalPrice(total);
                     }
 
-                    for (Product p : productsInCart) {
-                        if (p.equals(product)) {
-                            p.setQuantity(p.getQuantity() - 1);
-                            break;
-                        }
-                    }
-                    sharedPreferenceCart.removeProduct(activity, product);
                     vh.quantity.setText(String.valueOf(product.getQuantity()));
                     if (product.pType == Product.ProductType.PIZZA) {
                         double tempSum = Double.parseDouble(vh.price_in_cart.getText().toString()) - product.getPrice();

@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
-    android:weightSum="3"
     tools:context="karikuncheva.dominosapp.ModifyPizzaActivity">
 
 
@@ -24,8 +23,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
-        android:background="@color/colorBackground"
-        android:weightSum="3" >
+        android:background="@color/colorBackground">
+
         <Button
             android:id="@+id/small"
             android:layout_width="match_parent"
@@ -71,8 +70,7 @@
         android:layout_marginRight="5dp"
         android:paddingLeft="15dp"
         android:paddingRight="10dp"
-        android:weightSum="3"
-        >
+        android:weightSum="3">
         <ImageView
             android:id="@+id/image_trad"
             android:layout_width="89dp"
@@ -202,15 +200,36 @@
     </RelativeLayout>
     </RelativeLayout>
 
-    <Button
-        android:id="@+id/add_to_cart_modify"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/rounded_button"
-        android:text="Add to cart"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:textAllCaps="false"
-        android:layout_gravity="center"
-        android:layout_marginTop="25dp"/>
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/add_to_cart_modify"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_button"
+            android:text="Add to cart"
+            android:layout_weight="1"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:textAllCaps="false"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"/>
+        <Button
+            android:id="@+id/cancel_modify"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_button_login"
+            android:text="Cancel"
+            android:layout_weight="1"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:textAllCaps="false"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"/>
+
+
+    </LinearLayout>
+
 </LinearLayout>

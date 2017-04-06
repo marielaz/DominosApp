@@ -49,7 +49,6 @@ public class DrinkCustomAdapter extends RecyclerView.Adapter<DrinkCustomAdapter.
             @Override
             public void onClick(View v) {
                 // TODO add to cart
-                //user.getCart().addProduct(drinks.get(position));
                 sharedPreferenceCart.addProduct(activity, drinks.get(position));
                 String chosenDrink = vh.drinkName.getText().toString() + " is added to your cart!";
                 Toast.makeText(v.getContext(), chosenDrink, Toast.LENGTH_SHORT).show();
@@ -66,7 +65,6 @@ public class DrinkCustomAdapter extends RecyclerView.Adapter<DrinkCustomAdapter.
     }
 
     class DrinkViewHolder extends RecyclerView.ViewHolder {
-        View row;
         ImageButton cart_bnt;
         ImageView drinkImage;
         TextView drinkName;

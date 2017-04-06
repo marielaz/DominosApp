@@ -55,7 +55,6 @@ public class DessertCustomAdapter extends RecyclerView.Adapter<DessertCustomAdap
             @Override
             public void onClick(View v) {
                 // TODO add to cart
-              //  user.getCart().addProduct(desserts.get(position));
                 sharedPreferenceCart.addProduct(activity, desserts.get(position));
                 String chosenDessert = vh.dessertName.getText().toString() + " is added to your cart!" ;
                 Toast.makeText(v.getContext(),  chosenDessert, Toast.LENGTH_SHORT).show();
@@ -70,7 +69,6 @@ public class DessertCustomAdapter extends RecyclerView.Adapter<DessertCustomAdap
     }
 
     class DessertViewHolder extends RecyclerView.ViewHolder {
-        View row;
         ImageButton cart_bnt;
         ImageView dessertImage;
         TextView dessertName;
