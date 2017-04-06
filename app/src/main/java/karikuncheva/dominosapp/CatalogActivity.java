@@ -26,8 +26,8 @@ import karikuncheva.dominosapp.model.products.Pizza;
 
 
 public class CatalogActivity extends AppCompatActivity
-      //  implements NavigationView.OnNavigationItemSelectedListener
-{
+        //implements NavigationView.OnNavigationItemSelectedListener
+        {
 
     private User user;
     private User tempUser;
@@ -61,7 +61,7 @@ public class CatalogActivity extends AppCompatActivity
 //
 //        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
 //                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-//        drawer.setDrawerListener(toggle);
+//        drawer.addDrawerListener(toggle);
 //        toggle.syncState();
 //
 //        navigationView = (NavigationView) findViewById(R.id.navigation_view);
@@ -190,9 +190,9 @@ public class CatalogActivity extends AppCompatActivity
 //
 //        } else if (id == R.id.nav_manage) {
 //
-//        } else if (id == R.id.nav_share) {
+//        } else if (id == R.id.nav_gallery) {
 //
-//        } else if (id == R.id.nav_send) {
+//        } else if (id == R.id.nav_camara) {
 //
 //        }
 //

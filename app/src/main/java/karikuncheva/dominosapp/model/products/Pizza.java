@@ -11,14 +11,13 @@ public class Pizza extends Product {
 		this.type = Type.TRADITIONAL;
 		this.size = Size.LARGE;
 		this.description = description;
-
 	}
+
 	public Pizza(String name, double price, String description) {
 		super(ProductType.PIZZA, name, price, description);
 		this.type = Type.TRADITIONAL;
 		this.size = Size.LARGE;
 		this.description = description;
-
 	}
 
 	public String getDescription() {
