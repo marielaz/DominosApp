@@ -36,7 +36,6 @@ public class RegistrationActivity extends AppCompatActivity {
 
         username_reg = (EditText) findViewById(R.id.username_reg);
         email_reg = (EditText) findViewById(R.id.email_reg);
-        address_reg = (EditText) findViewById(R.id.address_reg);
         pass_reg = (EditText) findViewById(R.id.password_reg);
         confirm_pass_reg = (EditText) findViewById(R.id.confirm_pass_reg);
         regButton = (Button) findViewById(R.id.registration_button);
