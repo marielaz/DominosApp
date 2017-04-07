@@ -13,22 +13,101 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <Button
-        android:id="@+id/delivery"
+    <TextView
+        android:layout_below="@+id/tool"
+        android:id="@+id/text_1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:textSize="25sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="delivery"
-        android:layout_marginTop="250dp"
-        android:layout_marginLeft="60dp"
-        android:background="@drawable/rounded_button" />
+        android:text="Choose your "/>
+
+    <TextView
+        android:layout_below="@+id/text_1"
+        android:id="@+id/text_2"
+        android:layout_centerHorizontal="true"
+        android:textSize="25sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="order method "/>
 
     <Button
+        android:id="@+id/delivery_bnt"
+        android:layout_below="@id/text_2"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:background="@drawable/delivery_bike"
+        android:layout_marginRight="75dp"
+        android:layout_marginEnd="75dp"
+        android:layout_marginTop="100dp"
+        android:layout_toLeftOf="@+id/carry_out_bnt"
+        android:layout_toStartOf="@+id/carry_out_bnt" />
+
+    <TextView
+        android:id="@+id/delivery_tv"
+        android:text="Delivery"
+        android:textSize="25dp"
+        android:textColor="#14689f"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="pick from"
-        android:layout_alignBaseline="@id/delivery"
-        android:layout_toRightOf="@id/delivery"
-        android:layout_marginLeft="40dp"
-        android:background="@drawable/rounded_button"/>
+        android:layout_below="@+id/text_2"
+        android:layout_alignLeft="@+id/delivery_bnt"
+        android:layout_alignStart="@+id/delivery_bnt"
+        android:layout_marginLeft="13dp"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="70dp" />
+
+    <Button
+        android:id="@+id/delivery_checked"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:clickable="false"
+        android:visibility="visible"
+        android:background="@drawable/check"
+        android:layout_marginTop="-15dp"
+        android:layout_below="@+id/delivery_bnt"
+        android:layout_toLeftOf="@+id/text_2"
+        android:layout_toStartOf="@+id/text_2" />
+
+
+    <TextView
+        android:id="@+id/carry_out_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25dp"
+        android:textColor="#14689f"
+        android:text="Carry out"
+        android:layout_marginRight="52dp"
+        android:layout_marginEnd="52dp"
+        android:layout_alignBaseline="@+id/delivery_tv"
+        android:layout_alignBottom="@+id/delivery_tv"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:id="@+id/carry_out_bnt"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:background="@drawable/carry_out_store"
+        android:layout_alignTop="@+id/delivery_bnt"
+        android:layout_alignLeft="@+id/carry_out_tv"
+        android:layout_alignStart="@+id/carry_out_tv" />
+
+    <Button
+        android:id="@+id/carry_out_checked"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@drawable/check"
+        android:clickable="false"
+        android:visibility="visible"
+        android:layout_marginTop="-15dp"
+        android:layout_marginLeft="11dp"
+        android:layout_marginStart="11dp"
+        android:layout_below="@+id/carry_out_bnt"
+        android:layout_toRightOf="@+id/text_2"
+        android:layout_toEndOf="@+id/text_2" />
+
+
 
 </RelativeLayout>

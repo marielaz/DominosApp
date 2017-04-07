@@ -27,7 +27,7 @@
             android:id="@+id/go_to_cart_bnt"
             android:layout_width="36dp"
             android:layout_height="wrap_content"
-            android:layout_marginRight="30dp"
+            android:layout_marginRight="0dp"
             android:layout_marginTop="30dp"
             android:background="@drawable/go_to_cart" />
 

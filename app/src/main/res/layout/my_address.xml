@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/city_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="City"
+        android:textSize="25dp"
+        android:layout_alignBottom="@+id/city_et"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp" />
+
+    <EditText
+        android:id="@+id/city_et"
+        android:layout_toRightOf="@+id/city_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="90dp"/>
+
+    <TextView
+        android:id="@+id/street_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Street"
+        android:textSize="25dp"
+        android:layout_alignBottom="@+id/street_et"
+        android:layout_alignLeft="@+id/city_tv"
+        android:layout_alignStart="@+id/city_tv" />
+
+    <EditText
+        android:id="@+id/street_et"
+        android:layout_below="@id/city_et"
+        android:layout_toRightOf="@+id/city_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="90dp"/>
+
+    <TextView
+        android:id="@+id/number_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Number"
+        android:textSize="25dp"
+        android:layout_alignBottom="@+id/number_et"
+        android:layout_alignLeft="@+id/street_tv"
+        android:layout_alignStart="@+id/street_tv" />
+
+    <EditText
+        android:id="@+id/number_et"
+        android:layout_below="@id/street_et"
+        android:layout_toRightOf="@+id/city_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="90dp"/>
+
+    <TextView
+        android:id="@+id/floor_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Floor"
+        android:textSize="25dp"
+        android:layout_alignBottom="@+id/floor_et"
+        android:layout_alignLeft="@+id/street_tv"
+        android:layout_alignStart="@+id/street_tv" />
+
+    <EditText
+        android:id="@+id/floor_et"
+        android:layout_below="@id/number_et"
+        android:layout_toRightOf="@+id/city_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="90dp"/>
+
+    <TextView
+        android:id="@+id/post_code_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Post code"
+        android:textSize="25dp"
+        android:layout_alignBottom="@+id/post_code_et"
+        android:layout_alignLeft="@+id/street_tv"
+        android:layout_alignStart="@+id/street_tv" />
+
+    <EditText
+        android:id="@+id/post_code_et"
+        android:layout_below="@id/floor_et"
+        android:layout_toRightOf="@+id/city_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="90dp"/>
+    <TextView
+        android:id="@+id/phone_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Phone"
+        android:textSize="25dp"
+        android:layout_alignBottom="@+id/phone_et"
+        android:layout_alignLeft="@+id/street_tv"
+        android:layout_alignStart="@+id/street_tv" />
+
+    <EditText
+        android:id="@+id/phone_et"
+        android:layout_below="@id/post_code_et"
+        android:layout_toRightOf="@+id/city_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="90dp"/>
+
+
+</RelativeLayout>

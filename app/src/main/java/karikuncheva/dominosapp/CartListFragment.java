@@ -30,7 +30,7 @@ public class CartListFragment extends Fragment {
         View root = inflater.inflate(R.layout.activity_cart_fragment, container, false);
         User user = (User) getActivity().getIntent().getSerializableExtra("user");
         recyclerView = (RecyclerView) root.findViewById(R.id.products_recycle_view);
-        recyclerView.setAdapter(new CartAdapter(getActivity(), user));
+        recyclerView.setAdapter(new CartAdapter(getActivity()));
         return root;
 
     }

@@ -3,11 +3,9 @@ package karikuncheva.dominosapp;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +20,7 @@ import karikuncheva.dominosapp.model.products.Product;
 
 public class SharedPreferenceCart {
 
-    public static final String PREFS_NAME = "PRODUCT_APP";
+   // public static final String PREFS_NAME = "PRODUCT_APP";
     public static final String PRODUCTS = "Product_In_Cart";
     static JSONArray jsonProducts = null;
     JSONObject product = null;
@@ -43,8 +41,8 @@ public class SharedPreferenceCart {
                 product.put("price", p.getPrice());
                 product.put("pType", p.pType.toString());
                 if (p.pType == Product.ProductType.PIZZA) {
-                    product.put("size", p.getSize().toString());
-                    product.put("type", p.getType().toString());
+//                    product.put("size", p.getSize().toString());
+//                    product.put("type", p.getType().toString());
                 }
 
             } catch (JSONException e) {
@@ -59,7 +57,6 @@ public class SharedPreferenceCart {
     // This four methods are used for maintaining products.
     public void saveProducts(final Activity activity, final List<Product> products) {
 
-
         new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... params) {
@@ -68,7 +65,7 @@ public class SharedPreferenceCart {
                 SharedPreferences.Editor editor;
                 Activity act = activity;
                 List<Product> pr = products;
-                settings = act.getSharedPreferences(PREFS_NAME,
+                settings = act.getSharedPreferences("PRODUCT_APP",
                         Activity.MODE_PRIVATE);
                 editor = settings.edit();
                 //call the method
@@ -108,16 +105,29 @@ public class SharedPreferenceCart {
     }
 
 
-    public void removeProduct(Activity activity, Product product) {
-        ArrayList<Product> products = getProducts();
-        if (products != null) {
-            if (product.getQuantity() > 1) {
-                product.setQuantity(product.getQuantity() - 1);
-            } else {
-                products.remove(product);
+    public void removeProduct(final Activity activity, final Product product) {
+        final Activity act = activity;
+        final Product prdct =product;
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... params) {
+                ArrayList<Product> products = getProducts();
+                if (products != null) {
+                    if (prdct.getQuantity() > 1) {
+                        for (Product p : products) {
+                            if (p.equals(prdct)) {
+                                p.setQuantity(p.getQuantity() - 1);
+                                break;
+                            }
+                        }
+                    } else {
+                        products.remove(prdct);
+                    }
+                    saveProducts(act, products);
+                }
+                return  null;
             }
-            saveProducts(activity, products);
-        }
+        }.execute();
     }
 
     public ArrayList<Product> getProducts() {
@@ -142,9 +152,13 @@ public class SharedPreferenceCart {
                         // make new products constructurs without imageId
                         Pizza pizza = new Pizza(name, price, desc);
                         pizza.setQuantity(quantity);
-                        products.add(pizza);
                         //TODO
                         // if we modify pizza, we must initialize size and type AGAIN!
+
+                        pizza.setSize(Product.Size.valueOf(size.toUpperCase()));
+                        pizza.setType(Product.Type.valueOf(type.toUpperCase()));
+                        products.add(pizza);
+
                     } else if (pType.equals("DESSERT")) {
                         Dessert dessert = new Dessert(name, price, desc);
                         dessert.setQuantity(quantity);

@@ -7,15 +7,18 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import karikuncheva.dominosapp.model.User;
 import karikuncheva.dominosapp.model.products.Pizza;
+import karikuncheva.dominosapp.model.products.Product;
 
 /**
  * Created by Mariela Zviskova on 14.3.2017 г..
@@ -25,12 +28,11 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.PizzaViewH
 
     private Activity activity;
     private List<Pizza> pizzas;
-    SharedPreferenceCart sharedPreferenceCart;
+
 
     public CustomAdapter(Activity activity, List<Pizza> pizzas) {
         this.activity = activity;
         this.pizzas = pizzas;
-        sharedPreferenceCart = new SharedPreferenceCart();
     }
 
     @Override
@@ -55,7 +57,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.PizzaViewH
             public void onClick(View v) {
                 Intent intent = new Intent(activity, ModifyPizzaActivity.class);
                 intent.putExtra("pizza", pizzas.get(position));
-                activity.startActivityForResult(intent, 1);
+                activity.startActivity(intent);
             }
         });
 
@@ -63,8 +65,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.PizzaViewH
             @Override
             public void onClick(View v) {
                 // TODO add to cart
-                //user.getCart().addProduct(pizzas.get(position));
-                sharedPreferenceCart.addProduct(activity, pizzas.get(position));
+                MainActivity.loggedUser.getCart().addProduct(pizzas.get(position));
                 String chosenPizza = vh.pizzaName.getText().toString() + " is added to your cart!";
                 Toast.makeText(v.getContext(), chosenPizza, Toast.LENGTH_SHORT).show();
             }
@@ -77,7 +78,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.PizzaViewH
     }
 
     class PizzaViewHolder extends RecyclerView.ViewHolder {
-        View row;
         ImageButton modify_pizza_bnt;
         ImageButton cart_pizza_bnt;
         ImageView pizzaImage;
