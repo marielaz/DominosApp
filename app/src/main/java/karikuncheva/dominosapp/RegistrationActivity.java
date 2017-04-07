@@ -1,12 +1,20 @@
 package karikuncheva.dominosapp;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.google.gson.Gson;
+
+import java.util.ArrayList;
 
 import karikuncheva.dominosapp.model.Shop;
 import karikuncheva.dominosapp.model.User;
@@ -14,11 +22,12 @@ import karikuncheva.dominosapp.model.User;
 public class RegistrationActivity extends AppCompatActivity {
     public static final int RESULT_CODE_CANCELED = 5;
     public static final int RESULT_CODE_SUCCESS = 3;
+    public static final String PREFS_NAME = "USERS";
     private User user;
-    private  Shop shop = Shop.getInstance();
     private EditText username_reg, email_reg, address_reg, pass_reg, confirm_pass_reg;
     private String username, email, address, pass, confirmPass;
     Button regButton ;
+    SharedPreferences sharedPreference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +36,6 @@ public class RegistrationActivity extends AppCompatActivity {
 
         username_reg = (EditText) findViewById(R.id.username_reg);
         email_reg = (EditText) findViewById(R.id.email_reg);
-        address_reg = (EditText) findViewById(R.id.address_reg);
         pass_reg = (EditText) findViewById(R.id.password_reg);
         confirm_pass_reg = (EditText) findViewById(R.id.confirm_pass_reg);
         regButton = (Button) findViewById(R.id.registration_button);
@@ -42,15 +50,18 @@ public class RegistrationActivity extends AppCompatActivity {
     public void register(){
         initialize();
         if (validate()){
-           user = new User(username, pass);
-            MainActivity.users.add(user);
+            sharedPreference = this.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreference.edit();
+
+            user = new User(username,pass,email);
+            Gson gson = new Gson();
+            editor.putString("user", gson.toJson(user));
+            editor.apply();
+            MainActivity.loggedUser = user;
             Toast.makeText(this, "Registration complete", Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(RegistrationActivity.this, MainActivity.class);
-            intent.putExtra("user", username);
-            intent.putExtra("pass", pass);
-            setResult(RESULT_CODE_SUCCESS, intent);
-            finish();//ok
-            // Intent to go to menu p
+            Intent intent = new Intent(RegistrationActivity.this, CatalogActivity.class);
+            //TODO da ni preprashta da si vuvedem adress!!!!
+            RegistrationActivity.this.startActivity(intent);
         }
         else{
             Toast.makeText(this, "Registration has failed", Toast.LENGTH_SHORT).show();
@@ -60,35 +71,32 @@ public class RegistrationActivity extends AppCompatActivity {
 
     public boolean validate(){
         boolean valid = true;
-        this.user = new User(username, address, pass, email);
+        this.user = new User(username, pass, email);
         if (username.isEmpty()){
             username_reg.setError("Username must not be empty!");
-            valid = false;
-        }
-        if (!user.validateEmailAddress(email)){
-            email_reg.setError("Please, enter a valid email!");
-            valid = false;
-        }
-        if (address.isEmpty()){
-            address_reg.setError("Please, enter a valid address!");
+            username_reg.requestFocus();
             valid = false;
         }
         if (!user.validatePassword(pass)){
-            pass_reg.setError("Please, enter a valid password");
+            pass_reg.setError("Password must contains at least 8 characters, least 1 number and both lower and uppercase letters");
+            pass_reg.setText("");
+            pass_reg.requestFocus();
             valid = false;
         }
         if (!pass.equals(confirmPass)){
             confirm_pass_reg.setError("Passwords do not match");
+            pass_reg.setText("");
+            confirm_pass_reg.setText("");
+            pass_reg.requestFocus();
             valid = false;
         }
         return valid;
     }
 
     public void initialize(){
-            username = username_reg.getText().toString();
-            email = email_reg.getText().toString();
-            address = address_reg.getText().toString();
-            pass = pass_reg.getText().toString();
-            confirmPass = confirm_pass_reg.getText().toString();
+            username = username_reg.getText().toString().trim();
+            email = email_reg.getText().toString().trim();
+            pass = pass_reg.getText().toString().trim();
+            confirmPass = confirm_pass_reg.getText().toString().trim();
     }
 }

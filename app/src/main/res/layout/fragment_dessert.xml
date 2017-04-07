@@ -4,10 +4,10 @@
     android:layout_height="match_parent"
     android:background="@color/colorBackground">
 
-    <ListView
+    <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/listDrink"
+        android:id="@+id/recycler_view_dessert"
         android:divider="@color/colorBackground"
         android:dividerHeight="15dp"
         android:layout_alignParentTop="true"
@@ -17,6 +17,6 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp">
 
-    </ListView>
+    </android.support.v7.widget.RecyclerView>
 
 </RelativeLayout>

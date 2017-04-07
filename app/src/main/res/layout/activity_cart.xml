@@ -1,7 +1,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackground">
+    android:background="@color/colorBackground"
+    tools:context=".CartActivity">
+
 
     <ImageView
         android:id="@+id/logo_image"
@@ -15,51 +18,44 @@
         android:paddingTop="5dp"
         android:src="@drawable/logo_dominos" />
 
-<LinearLayout
-    android:id="@+id/linear_layout_lv"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:layout_below="@id/logo_image">
-
-    <ListView
-        android:id="@+id/products_listview"
-        android:layout_width="match_parent"
-        android:layout_height="412dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:divider="@color/colorBackground"
-        android:dividerHeight="15dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"/>
-
-</LinearLayout>
-
-    <RelativeLayout
-        android:id="@+id/lv"
+    <fragment
+        android:id="@+id/cart_list_products"
+        android:name="karikuncheva.dominosapp.CartListFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/linear_layout_lv">
+        android:layout_below="@id/logo_image"
+        tools:layout="@layout/activity_cart_fragment" />
+
+
+    <fragment
+        android:id="@+id/fragment_total"
+        android:name="karikuncheva.dominosapp.CartTotalFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/cart_list_products"
+        tools:layout="@layout/fragment_cart_total" />
+
     <Button
         android:id="@+id/check_out_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Checkout"
         android:layout_margin="10dp"
-        android:layout_alignParentBottom="true"
+        android:background="@drawable/rounded_button"
+        android:layout_below="@id/fragment_total"
+        android:text="Checkout"
         android:textAllCaps="false" />
 
-    <TextView
-        android:id="@+id/total_cart"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Total:"
-        android:layout_alignParentRight="true"
-        android:textSize="20sp"
-        android:layout_above="@id/check_out_button"
-        android:layout_marginRight="80dp"/>
 
-    </RelativeLayout>
+    <Button
+        android:id="@+id/back_button"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="9dp"
+        android:layout_marginStart="9dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/back_icon" />
 </RelativeLayout>

@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@drawable/main"
     android:paddingLeft="20dp"
     android:paddingRight="20dp"
@@ -14,29 +13,30 @@
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
-        android:layout_height="85dp"
+        android:layout_height="100dp"
         android:src="@drawable/logo_dominos" />
 
-    <LinearLayout
+    <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
     android:background="@drawable/main_rounded_shape"
-    android:layout_marginTop="95dp"
+        android:paddingBottom="20dp"
+    android:layout_marginTop="160dp"
     android:paddingLeft="30dp"
     android:paddingRight="30dp"
     >
 
-
     <TextView
+        android:id="@+id/login_tv"
         android:layout_gravity="center_horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:textSize="35sp"
         android:textColor="@color/colorTitles"
         android:text="Login"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:gravity="center_horizontal"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -48,6 +48,7 @@
         android:layout_height="wrap_content"
         android:maxLength="25"
         android:hint="Username"
+        android:layout_below="@id/login_tv"
         android:textColorHint="@color/colorHint"
         android:layout_marginTop="30dp"
         android:layout_marginBottom="15dp"
@@ -61,6 +62,7 @@
         android:maxLength="30"
         android:inputType="textPassword"
         android:hint="Password"
+        android:layout_below="@id/username_login"
         android:textColorHint="@color/colorHint"/>
 
 
@@ -74,14 +76,17 @@
         android:text="Login"
         android:textStyle="bold"
         android:textAllCaps="false"
+        android:layout_below="@id/password_login"
         android:background="@drawable/rounded_button_login"
         />
 
 <TextView
+    android:id="@+id/new_member"
     android:layout_width="wrap_content"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:layout_marginBottom="5dp"
     android:text="New member?"
+    android:layout_below="@id/login_button"
     android:textColor="@color/colorHint"/>
 
 
@@ -93,12 +98,13 @@
         android:textAllCaps="false"
         android:textStyle="bold"
         android:text="Registration"
-        android:layout_marginBottom="25dp"
+        android:layout_below="@id/new_member"
+        android:layout_marginBottom="30dp"
         android:background="@drawable/rounded_button"
         />
 
 
-</LinearLayout>
+</RelativeLayout>
 
 
-</LinearLayout>
+</RelativeLayout>

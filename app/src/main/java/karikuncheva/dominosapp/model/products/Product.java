@@ -5,7 +5,13 @@ import java.io.Serializable;
 public abstract class Product implements Serializable {
 
 	public enum ProductType {PIZZA, DESSERT, DRINK};
-	
+	public enum Size {
+		SMALL, MEDIUM, LARGE
+	};
+	public enum Type {
+		TRADITIONAL, THIN_AND_CRISPY, ITALIAN_STYLE
+	};
+
 	public ProductType pType;
 	private String name;
 	private double price;
@@ -13,6 +19,7 @@ public abstract class Product implements Serializable {
 	private  String description;
 	private double discPrice;
 	private int imageId;
+
 	
 	public Product(ProductType pType, String name, double price, String description, int imageId) {
 		this.pType = pType;
@@ -21,9 +28,28 @@ public abstract class Product implements Serializable {
 		this.description = description;
 		this.imageId = imageId;
 		this.quantity= 1;
-		this.discPrice = 0;
+		if (pType == ProductType.PIZZA){
+			this.discPrice = price - (price * 0.05);
+		}
+		else {
+			this.discPrice = 0;
+		}
 	}
-	
+
+	public Product(ProductType pType, String name, double price, String description) {
+		this.pType = pType;
+		this.name = name;
+		this.price = price;
+		this.description = description;
+		this.quantity= 1;
+		if (pType == ProductType.PIZZA){
+			this.discPrice = price - (price * 0.05);
+		}
+		else {
+			this.discPrice = 0;
+		}
+	}
+
 	public double getDiscPrice() {
 		return discPrice;
 	}
@@ -59,6 +85,7 @@ public abstract class Product implements Serializable {
 		this.quantity = quantity;
 	}
 
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -84,7 +111,4 @@ public abstract class Product implements Serializable {
 		return true;
 	}
 
-	
-	
-	
 }

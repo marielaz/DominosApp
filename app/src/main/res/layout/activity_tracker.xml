@@ -6,9 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
-    android:background="@drawable/grey_backgr"
     android:weightSum="5"
-    tools:context="karikuncheva.dominosapp.TrackerActivity">
+    tools:context=".TrackerActivity"
+    >
 
 
     <ImageView
@@ -32,6 +32,7 @@
         android:gravity="center_horizontal" />
 
 
+
     <pl.droidsonroids.gif.GifTextView
         android:layout_width="351dp"
         android:layout_height="295dp"
@@ -40,9 +41,19 @@
         android:paddingBottom="30dp"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
-
         android:paddingTop="30dp" />
 
+    <!--<ImageView-->
+        <!--android:id="@+id/tracker_pic"-->
+        <!--android:layout_width="422dp"-->
+        <!--android:layout_height="295dp"-->
+        <!--android:layout_gravity="center_horizontal"-->
+        <!--android:src="@drawable/tracker2"-->
+        <!--android:paddingBottom="30dp"-->
+        <!--android:paddingLeft="20dp"-->
+        <!--android:paddingRight="20dp"-->
+        <!--android:paddingTop="30dp"-->
+        <!--android:layout_weight="2.48" />-->
     <TextView
         android:layout_gravity="center_horizontal"
         android:layout_width="wrap_content"

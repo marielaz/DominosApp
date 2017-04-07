@@ -1,44 +1,45 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:weightSum="1">
+    tools:context="karikuncheva.dominosapp.ProfileFragment">
 
 
-    <ImageView
+    <include
+        android:id="@+id/tool"
+        layout="@layout/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="85dp"
-        android:paddingLeft="0dp"
-        android:paddingRight="5dp"
-        android:paddingBottom="13dp"
-        android:paddingTop="5dp"
-        android:background="@color/colorPrimary"
-        android:src="@drawable/logo_dominos" />
+        android:layout_height="wrap_content" />
 
-    <LinearLayout
+    <RelativeLayout
+        android:layout_below="@id/tool"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/profile_background"
         android:paddingLeft="40dp"
-        android:paddingRight="40dp"
-        android:orientation="vertical">
+        android:paddingRight="40dp">
 
         <TextView
+            android:id="@+id/welcome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Welcome,  ..."
+            android:text="Welcome, "
             android:textSize="35dp"
             android:layout_marginTop="20dp"
             android:layout_gravity="center"
+            android:layout_alignParentTop="true"
             android:textColor="@color/colorTitles"/>
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/username_edit"
+            android:layout_below="@id/welcome"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="Username:"/>
 
-        <TextView
+        <EditText
+            android:id="@+id/username_edit_et"
+            android:layout_below="@id/username_edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
@@ -46,12 +47,16 @@
             android:background="@drawable/rounded_shape_profile"/>
 
         <TextView
+            android:id="@+id/phone_number_edit"
+            android:layout_below="@id/username_edit_et"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="Phone number:"/>
 
         <EditText
+            android:id="@+id/phone_edit_et"
+            android:layout_below="@id/phone_number_edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
@@ -59,12 +64,16 @@
             android:background="@drawable/rounded_shape_profile"/>
 
         <TextView
+            android:id="@+id/address_edit"
+            android:layout_below="@id/phone_edit_et"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="Address:"/>
 
         <EditText
+            android:id="@+id/address_edit_et"
+            android:layout_below="@id/address_edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
@@ -72,12 +81,16 @@
             android:background="@drawable/rounded_shape_profile"/>
 
         <TextView
+            android:id="@+id/password_edit"
+            android:layout_below="@id/address_edit_et"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="New password:"/>
 
         <EditText
+            android:id="@+id/password_edit_et"
+            android:layout_below="@id/password_edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
@@ -85,25 +98,54 @@
             android:background="@drawable/rounded_shape_profile"/>
 
         <TextView
+            android:id="@+id/password2_edit"
+            android:layout_below="@id/password_edit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="40dp"
             android:text="Confirm password:"/>
 
         <EditText
+            android:id="@+id/password2_edit_et"
+            android:layout_below="@id/password2_edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:text=""
             android:background="@drawable/rounded_shape_profile"/>
 
-        <Button
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="430dp">
+
+        <Button
+            android:id="@+id/save"
+            android:layout_below="@id/password2_edit_et"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:background="@drawable/rounded_button"
             android:text="Save chages"
+            android:layout_weight="1"
             android:layout_marginTop="20dp"
             android:textStyle="bold"
             android:textAllCaps="false" />
-    </LinearLayout>
-</LinearLayout>
+
+        <Button
+            android:id="@+id/cancel"
+            android:layout_below="@id/password2_edit_et"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/rounded_button"
+            android:text="Cancel"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="1"
+            android:layout_marginTop="20dp"
+            android:textStyle="bold"
+            android:textAllCaps="false" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</FrameLayout>

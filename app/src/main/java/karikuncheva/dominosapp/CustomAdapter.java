@@ -1,11 +1,9 @@
 package karikuncheva.dominosapp;
 
 import android.app.Activity;
-import android.app.Instrumentation;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.annotation.NonNull;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,24 +13,71 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import karikuncheva.dominosapp.model.User;
 import karikuncheva.dominosapp.model.products.Pizza;
+import karikuncheva.dominosapp.model.products.Product;
 
 /**
  * Created by Mariela Zviskova on 14.3.2017 г..
  */
 
-class CustomAdapter extends ArrayAdapter<String> {
+public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.PizzaViewHolder> {
 
     private Activity activity;
     private List<Pizza> pizzas;
-    private User user;
 
 
-    class PizzaViewHolder {
-        View row;
+    public CustomAdapter(Activity activity, List<Pizza> pizzas) {
+        this.activity = activity;
+        this.pizzas = pizzas;
+    }
+
+    @Override
+    public PizzaViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        LayoutInflater li = LayoutInflater.from(activity);
+        View row = li.inflate(R.layout.single_row_pizza, parent, false);
+        CustomAdapter.PizzaViewHolder vh = new PizzaViewHolder(row);
+        return vh;
+    }
+
+    @Override
+    public void onBindViewHolder(final PizzaViewHolder vh, final int position) {
+        Pizza pizza = pizzas.get(position);
+        vh.pizzaImage.setImageResource(pizza.getImageId());
+        vh.pizzaName.setText(pizza.getName());
+        vh.pizzaDescr.setText(pizza.getDescription());
+        double p = pizza.getPrice();
+        vh.pizzaPrice.setText(String.format("%.2f", p));
+
+        vh.modify_pizza_bnt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(activity, ModifyPizzaActivity.class);
+                intent.putExtra("pizza", pizzas.get(position));
+                activity.startActivity(intent);
+            }
+        });
+
+        vh.cart_pizza_bnt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO add to cart
+                MainActivity.loggedUser.getCart().addProduct(pizzas.get(position));
+                String chosenPizza = vh.pizzaName.getText().toString() + " is added to your cart!";
+                Toast.makeText(v.getContext(), chosenPizza, Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    @Override
+    public int getItemCount() {
+        return pizzas.size();
+    }
+
+    class PizzaViewHolder extends RecyclerView.ViewHolder {
         ImageButton modify_pizza_bnt;
         ImageButton cart_pizza_bnt;
         ImageView pizzaImage;
@@ -41,7 +86,7 @@ class CustomAdapter extends ArrayAdapter<String> {
         TextView pizzaPrice;
 
         PizzaViewHolder(View row){
-
+            super(row);
              modify_pizza_bnt = (ImageButton) row.findViewById(R.id.modify_pizza_bnt);
              cart_pizza_bnt = (ImageButton) row.findViewById(R.id.cart_pizza_bnt);
              pizzaImage = (ImageView) row.findViewById(R.id.image_pizza);
@@ -49,73 +94,5 @@ class CustomAdapter extends ArrayAdapter<String> {
              pizzaDescr = (TextView) row.findViewById(R.id.descr_pizza);
              pizzaPrice = (TextView) row.findViewById(R.id.price_pizza);
         }
-
     }
-
-
-    public CustomAdapter(Activity activity, List<Pizza> pizzas, User user) {
-        super(activity, R.layout.single_row_pizza);
-        this.activity = activity;
-        this.pizzas = pizzas;
-        this.user = user;
-    }
-
-    @Override
-    public int getCount() {
-        return pizzas.size();
-    }
-
-    @NonNull
-    @Override
-    public View getView(final int position, View convertView, ViewGroup parent) {
-        //convert xml to java with inflater
-        LayoutInflater inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View row;
-        PizzaViewHolder vh;
-
-        if (convertView == null) {
-            row = inflater.inflate(R.layout.single_row_pizza, parent, false);
-            vh = new  PizzaViewHolder(row);
-            row.setTag(vh);
-        }else{
-            row = convertView;
-            vh = (PizzaViewHolder) row.getTag();
-        }
-
-        ImageButton modify_pizza_bnt = vh.modify_pizza_bnt;
-        ImageButton cart_pizza_bnt = vh.cart_pizza_bnt;
-        ImageView pizzaImage = vh.pizzaImage;
-        final TextView pizzaName = vh.pizzaName;
-        TextView pizzaDescr = vh.pizzaDescr;
-        TextView pizzaPrice = vh.pizzaPrice;
-        pizzaImage.setImageResource(pizzas.get(position).getImageId());
-        pizzaName.setText(pizzas.get(position).getName());
-        pizzaDescr.setText(pizzas.get(position).getDescription());
-        double p = pizzas.get(position).getPrice();
-        pizzaPrice.setText(String.format("%.2f", p));
-
-        modify_pizza_bnt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(activity, ModifyPizzaActivity.class);
-                intent.putExtra("pizza", pizzas.get(position));
-                activity.startActivityForResult(intent, 1);
-            }
-        });
-
-        cart_pizza_bnt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // TODO add to cart
-                user.getCart().addProduct(pizzas.get(position));
-                String chosenPizza = pizzaName.getText().toString() + " is added to your cart!";
-                Toast.makeText(v.getContext(), chosenPizza, Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        return row;
-    }
-
-
-
 }

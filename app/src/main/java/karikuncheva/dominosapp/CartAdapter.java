@@ -1,24 +1,17 @@
 package karikuncheva.dominosapp;
 
 import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
+import android.graphics.Paint;
 import android.os.DropBoxManager;
-import android.support.annotation.NonNull;
-import android.util.Log;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 
 import karikuncheva.dominosapp.model.User;
@@ -29,148 +22,162 @@ import karikuncheva.dominosapp.model.products.Product;
  * Created by Karina Kuncheva on 3/25/2017.
  */
 
-public class CartAdapter extends ArrayAdapter<String> {
+public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder> {
 
     private Activity activity;
-    private User user;
     private ArrayList<Product> productsInCart;
+    static double total;
 
 
-    class CartViewHolder {
-        View row;
-        ImageView image_in_cart;
-        TextView p_name_in_cart;
-        ImageButton plus_product;
-        ImageButton minus_product;
-        TextView total;
-        TextView price_in_cart;
-        TextView quantity;
-
-        CartViewHolder(View row){
-
-            image_in_cart = (ImageView) row.findViewById(R.id.image_in_cart);
-            p_name_in_cart = (TextView) row.findViewById(R.id.p_name_in_cart);
-            plus_product = (ImageButton) row.findViewById(R.id.cart_plus_img);
-            minus_product = (ImageButton) row.findViewById(R.id.cart_minus_img);
-            total = (TextView) row.findViewById(R.id.total_cart);
-            price_in_cart = (TextView) row.findViewById(R.id.price_in_cart);
-            quantity = (TextView) row.findViewById(R.id.cart_product_quantity_tv);
-        }
-
-    }
-
-
-    public CartAdapter(Activity activity, User user) {
-        super(activity, R.layout.single_row_cart);
+    public CartAdapter(Activity activity) {
         this.activity = activity;
-        this.user = user;
-        this.productsInCart = new ArrayList<Product>();
-
-        for (Map.Entry<Product.ProductType, HashSet<Product>> products : user.getCart().getProducts().entrySet()) {
-            for (Product p1 : products.getValue()) {
-
-                this.productsInCart.add(p1);
+        productsInCart = new ArrayList<Product>();
+        total = 0;
+        // TODO problem with round up !!!
+        for (Map.Entry<Product.ProductType, HashSet<Product>> products : MainActivity.loggedUser.getCart().getProducts().entrySet()) {
+            for (Product p : products.getValue()) {
+                productsInCart.add(p);
+                if (p.pType == Product.ProductType.PIZZA) {
+                    total += p.getQuantity() * p.getDiscPrice();
+                } else {
+                    total += p.getQuantity() * p.getPrice();
+                }
             }
         }
     }
 
     @Override
-    public int getCount() {
-        return productsInCart.size();
+    public CartViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        LayoutInflater li = LayoutInflater.from(activity);
+        View row = li.inflate(R.layout.single_row_cart, parent, false);
+        CartAdapter.CartViewHolder vh = new CartViewHolder(row);
+        return vh;
+    }
+
+    static double getTotal() {
+        return total;
     }
 
 
-    @NonNull
     @Override
-    public View getView(final int position, View convertView, ViewGroup parent) {
-        //convert xml to java with inflater
-        LayoutInflater inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View row;
-        CartViewHolder vh;
+    public void onBindViewHolder(final CartViewHolder vh, final int position) {
+        // problem when single_row_cart is reused
 
-        if (convertView == null) {
-            row = inflater.inflate(R.layout.single_row_cart, parent, false);
-            vh = new CartViewHolder(row);
-            row.setTag(vh);
-        }else{
-            row = convertView;
-            vh = (CartViewHolder) row.getTag();
+        final Product product = productsInCart.get(position);
+        if (product.pType != Product.ProductType.PIZZA) {
+            vh.dicsount_cart_tv.setText("");
+            vh.description_cart_tv.setText("");
+            vh.disc_price_in_cart.setText("");
+            vh.price_in_cart.setPaintFlags(vh.price_in_cart.getPaintFlags() & (~Paint.STRIKE_THRU_TEXT_FLAG));
+        }
+        vh.quantity.setText(String.valueOf(product.getQuantity()));
+        vh.p_name_in_cart.setText(product.getName());
+
+
+        if (product.pType == Product.ProductType.PIZZA) {
+            vh.price_in_cart.setText(String.format("%.2f", product.getQuantity() * product.getPrice()));
+            vh.price_in_cart.setPaintFlags(vh.price_in_cart.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+            vh.disc_price_in_cart.setText(String.format("%.2f", product.getQuantity() * product.getDiscPrice()));
+            //TODO to find way to get pizza size and type
+//            vh.description_cart_tv.setText(product.getSize().toString());
+//            vh.descr_type.setText(product.getType().toString());
+            vh.dicsount_cart_tv.setText("5% Discount");
+        } else {
+            vh.price_in_cart.setText(String.format("%.2f", product.getQuantity() * product.getPrice()));
         }
 
-        ImageView image_in_cart = vh.image_in_cart;
-        TextView p_name_in_cart = vh.p_name_in_cart;
-        ImageButton plus_product = vh.plus_product;
-        ImageButton minus_product = vh.minus_product;
-        //TextView total = vh.total;
-        final TextView price_in_cart = vh.price_in_cart;
-        final TextView quantity = vh.quantity;
-
-        quantity.setText(String.valueOf(productsInCart.get(position).getQuantity()));
-        image_in_cart.setImageResource(productsInCart.get(position).getImageId());
-        p_name_in_cart.setText(productsInCart.get(position).getName());
-
-
-        if (productsInCart.get(position).pType == Product.ProductType.PIZZA){
-            price_in_cart.setText(String.format("%.2f",productsInCart.get(position).getQuantity() * productsInCart.get(position).getDiscPrice()));
-            //  cart_type_pizza.setText("tuk trqbva da e size i type");
-        }
-        else {
-            price_in_cart.setText(String.format("%.2f",productsInCart.get(position).getQuantity() * productsInCart.get(position).getPrice()));
-        }
-
-        View.OnClickListener plusListener = new View.OnClickListener() {
+        vh.plus_product.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                user.getCart().addProduct(productsInCart.get(position));
-                quantity.setText(String.valueOf(productsInCart.get(position).getQuantity()));
+                MainActivity.loggedUser.getCart().addProduct(product);
 
-                if (productsInCart.get(position).pType == Product.ProductType.PIZZA){
-                    price_in_cart.setText(String.format("%.2f",productsInCart.get(position).getQuantity() * productsInCart.get(position).getDiscPrice()));
-                }
-                else {
-                    price_in_cart.setText(String.format("%.2f",productsInCart.get(position).getQuantity() * productsInCart.get(position).getPrice()));
+                vh.quantity.setText(String.valueOf(product.getQuantity()));
+                if (product.pType == Product.ProductType.PIZZA) {
+                    vh.price_in_cart.setText(String.format("%.2f", product.getQuantity() * product.getPrice()));
+                    vh.disc_price_in_cart.setText(String.format("%.2f", product.getQuantity() * product.getDiscPrice()));
+                    total = total + product.getDiscPrice();
+                    ((CartListFragment.CartComunicator) activity).sumTotalPrice(total);
+                } else {
+                    vh.price_in_cart.setText(String.format("%.2f", product.getQuantity() * product.getPrice()));
+                    total = total + product.getPrice();
+                    ((CartListFragment.CartComunicator) activity).sumTotalPrice(total);
                 }
             }
-        };
+        });
 
-        plus_product.setOnClickListener(plusListener);
-
-        minus_product.setOnClickListener(new View.OnClickListener(){
+        vh.minus_product.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                if (productsInCart.get(position).getQuantity() == 1){
-                    user.getCart().removeProduct(productsInCart.get(position));
-                    productsInCart.remove(productsInCart.get(position));
-                    // notify the adapter to remove the product from the listview
-                    notifyDataSetChanged();
-                }
-                else {
-                    user.getCart().removeProduct(productsInCart.get(position));
-                    quantity.setText(String.valueOf(productsInCart.get(position).getQuantity()));
-                    if (productsInCart.get(position).pType == Product.ProductType.PIZZA){
-                        double tempSum = Double.parseDouble(price_in_cart.getText().toString())- productsInCart.get(position).getDiscPrice();
-                        price_in_cart.setText(String.format("%.2f", tempSum));
+                if (product.getQuantity() == 1) {
+                    if (product.pType == Product.ProductType.PIZZA) {
+                        total = total - product.getDiscPrice();
+                        ((CartListFragment.CartComunicator) activity).sumTotalPrice(total);
+                    } else {
+                        total = total - product.getPrice();
+                        ((CartListFragment.CartComunicator) activity).sumTotalPrice(total);
                     }
-                    else{
-                        double tempSum = Double.parseDouble(price_in_cart.getText().toString())- productsInCart.get(position).getPrice();
-                        price_in_cart.setText(String.format("%.2f", tempSum));
+                    productsInCart.remove(product);
+                    MainActivity.loggedUser.getCart().removeProduct(product);
+                    // notify the adapter to remove the product from the recyclerview
+                    notifyDataSetChanged();
+
+                } else {
+                    MainActivity.loggedUser.getCart().removeProduct(product);
+
+                    if (product.pType == Product.ProductType.PIZZA) {
+                        total = total - product.getDiscPrice();
+                        ((CartListFragment.CartComunicator) activity).sumTotalPrice(total);
+                    } else {
+                        total = total - product.getPrice();
+                        ((CartListFragment.CartComunicator) activity).sumTotalPrice(total);
+                    }
+
+                    vh.quantity.setText(String.valueOf(product.getQuantity()));
+                    if (product.pType == Product.ProductType.PIZZA) {
+                        double tempSum = Double.parseDouble(vh.price_in_cart.getText().toString()) - product.getPrice();
+                        double tempDics = Double.parseDouble(vh.disc_price_in_cart.getText().toString()) - product.getDiscPrice();
+                        vh.price_in_cart.setText(String.format("%.2f", tempSum));
+                        vh.disc_price_in_cart.setText(String.format("%.2f", tempDics));
+
+                    } else {
+                        double tempSum = Double.parseDouble(vh.price_in_cart.getText().toString()) - product.getPrice();
+                        vh.price_in_cart.setText(String.format("%.2f", tempSum));
                     }
                 }
             }
         });
 
-//        double sum = 0;
-//        double subTotal = 0;
-//        for(int i = 0; i < productsInCart.size(); i++) {
-//            subTotal += productsInCart.get(position).getPrice() * productsInCart.get(position).getQuantity();
-//            String s = String.valueOf(subTotal);
-//            Log.e("mari", s);
-//        }
-//        total.setText(subTotal + "");
-
-
-        return row;
     }
 
+    @Override
+    public int getItemCount() {
+
+        return productsInCart.size();
+    }
+
+    class CartViewHolder extends RecyclerView.ViewHolder {
+        TextView p_name_in_cart;
+        ImageButton plus_product;
+        ImageButton minus_product;
+        TextView dicsount_cart_tv;
+        TextView description_cart_tv;
+        TextView price_in_cart;
+        TextView disc_price_in_cart;
+        TextView quantity;
+        TextView descr_type;
+
+        CartViewHolder(View row) {
+            super(row);
+            p_name_in_cart = (TextView) row.findViewById(R.id.p_name_in_cart);
+            plus_product = (ImageButton) row.findViewById(R.id.cart_plus_img);
+            minus_product = (ImageButton) row.findViewById(R.id.cart_minus_img);
+            dicsount_cart_tv = (TextView) row.findViewById(R.id.dicsount_cart_tv);
+            description_cart_tv = (TextView) row.findViewById(R.id.description_cart_tv);
+            price_in_cart = (TextView) row.findViewById(R.id.price_in_cart);
+            disc_price_in_cart = (TextView) row.findViewById(R.id.dics_price_in_cart);
+            quantity = (TextView) row.findViewById(R.id.cart_product_quantity_tv);
+            descr_type = (TextView) row.findViewById(R.id.descr_type);
+        }
+    }
 }

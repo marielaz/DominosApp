@@ -6,39 +6,38 @@ package karikuncheva.dominosapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.IntRange;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageButton;
 
-import karikuncheva.dominosapp.model.User;
-import karikuncheva.dominosapp.model.products.Pizza;
+public class CatalogActivity extends NavigDrawerActivity {
 
-
-public class CatalogActivity extends AppCompatActivity {
-
-    private User user;
-    private ImageButton go_to_cart;
-    private Pizza p;
-
-    //This is our tablayout
     private TabLayout tabLayout;
-
-    //This is our viewPager
     private ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_catalog);
+        setContentView(R.layout.activity_navig_drawer);
 
-        go_to_cart = (ImageButton) findViewById(R.id.go_to_cart_bnt);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
         //Initializing the tablayout
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
 
@@ -51,11 +50,8 @@ public class CatalogActivity extends AppCompatActivity {
         //Initializing viewPager
         viewPager = (ViewPager) findViewById(R.id.pager);
 
-        //get the user
-         user = (User)getIntent().getExtras().getSerializable("user");
-
         //Creating our pager adapter
-        PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount(), user);
+        PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
 
         //Adding adapter to pager
         viewPager.setAdapter(adapter);
@@ -79,29 +75,66 @@ public class CatalogActivity extends AppCompatActivity {
             }
         });
 
-
-        go_to_cart.setOnClickListener(new View.OnClickListener(){
-
-            @Override
-            public void onClick(View v) {
-                // TODO
-                // startActivityForResult - bring back the user if he is changing the products in the cart !
-                Intent intent = new Intent(CatalogActivity.this, CartActivity.class);
-                intent.putExtra("user", user);
-                CatalogActivity.this.startActivity(intent);
-            }
-        });
     }
 
-
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode == 5) {
-            if (data != null) {
-                p = (Pizza) data.getSerializableExtra("pizza");
-                user.getCart().addProduct(p);
-            }
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
         }
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.navig_drawer, menu);
+        return true;
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_log_out) {
+            return true;
+        }
+        if (id == R.id.action_cart) {
+            Intent i = new Intent(this, CartActivity.class);
+            this.startActivity(i);
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
+        int id = item.getItemId();
+
+        if (id == R.id.nav_camara) {
+            // Handle the camera action
+        } else if (id == R.id.nav_gallery) {
+
+        } else if (id == R.id.nav_slideshow) {
+
+        } else if (id == R.id.nav_manage) {
+
+        }
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
 }
+
+
