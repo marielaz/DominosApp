@@ -117,7 +117,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
                         total = total - product.getPrice();
                         ((CartListFragment.CartComunicator) activity).sumTotalPrice(total);
                     }
-
+                    productsInCart.remove(product);
                     MainActivity.loggedUser.getCart().removeProduct(product);
                     // notify the adapter to remove the product from the recyclerview
                     notifyDataSetChanged();
