@@ -5,4 +5,7 @@ package karikuncheva.dominosapp;
  */
 
 public class SharedPreference {
+
+    public static final String  NAME = "USERS";
+
 }

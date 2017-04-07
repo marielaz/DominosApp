@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="karikuncheva.dominosapp">
 
-    <uses-permission android:name="android.permission.CALL_PHONE"></uses-permission>
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -26,7 +26,10 @@
         <activity android:name=".TrackerActivity" />
         <activity android:name=".CartListFragment" />
         <activity android:name=".MakeOrderActivity" />
-
+        <activity
+            android:name=".NavigDrawerActivity"
+            android:label="@string/title_activity_navig_drawer"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>
