@@ -28,12 +28,11 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.PizzaViewH
 
     private Activity activity;
     private List<Pizza> pizzas;
-    SharedPreferenceCart sharedPreferenceCart;
+
 
     public CustomAdapter(Activity activity, List<Pizza> pizzas) {
         this.activity = activity;
         this.pizzas = pizzas;
-        sharedPreferenceCart = new SharedPreferenceCart();
     }
 
     @Override
@@ -66,7 +65,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.PizzaViewH
             @Override
             public void onClick(View v) {
                 // TODO add to cart
-                sharedPreferenceCart.addProduct(activity, pizzas.get(position));
+                MainActivity.loggedUser.getCart().addProduct(pizzas.get(position));
                 String chosenPizza = vh.pizzaName.getText().toString() + " is added to your cart!";
                 Toast.makeText(v.getContext(), chosenPizza, Toast.LENGTH_SHORT).show();
             }

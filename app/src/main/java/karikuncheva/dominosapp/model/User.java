@@ -1,6 +1,7 @@
 package karikuncheva.dominosapp.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -14,7 +15,7 @@ public class User implements Serializable {
 
 	private String username;
 	private String name;
-	private String address;
+	private Address addresses;
 	private String password;
 	private String phoneNumber;
 	private Cart cart;
@@ -37,9 +38,8 @@ public class User implements Serializable {
     }
 
 
-	public User(String username, String address, String password, String email) {
+	public User(String username, String password, String email) {
 		this.username = username;
-		this.address = address;
 		this.password = password;
 		this.email = email;
 		this.cart = new Cart();
@@ -101,12 +101,12 @@ public class User implements Serializable {
 		}
 	}
 
-	public void changeAddress(String newAddress) {
-		if (newAddress != null && !newAddress.isEmpty()) {
-			this.address = newAddress;
-			System.out.println("Address is changed.");
-		}
-	}
+//	public void changeAddress(String newAddress) {
+//		if (newAddress != null && !newAddress.isEmpty()) {
+//			this.address = newAddress;
+//			System.out.println("Address is changed.");
+//		}
+//	}
 
 	public void changeName(String newName) {
 		if (newName != null && !newName.isEmpty()) {
@@ -240,7 +240,7 @@ public class User implements Serializable {
 
 	@Override
 	public String toString() {
-		return "User [username = " + username + ", name= " + name + ", address = " + address + ", password = "
+		return "User [username = " + username + ", name= " + name + " , password = "
 				+ password + ", phoneNumber = " + phoneNumber + ", email = " + email;
 	}
 

@@ -20,12 +20,11 @@ public class DrinkCustomAdapter extends RecyclerView.Adapter<DrinkCustomAdapter.
 
     private Activity activity;
     private List<Drink> drinks;
-    SharedPreferenceCart sharedPreferenceCart;
+
 
     public DrinkCustomAdapter(Activity activity, List<Drink> drinks) {
         this.activity = activity;
         this.drinks = drinks;
-        sharedPreferenceCart = new SharedPreferenceCart();
     }
 
     @Override
@@ -49,7 +48,7 @@ public class DrinkCustomAdapter extends RecyclerView.Adapter<DrinkCustomAdapter.
             @Override
             public void onClick(View v) {
                 // TODO add to cart
-                sharedPreferenceCart.addProduct(activity, drinks.get(position));
+                MainActivity.loggedUser.getCart().addProduct(drinks.get(position));
                 String chosenDrink = vh.drinkName.getText().toString() + " is added to your cart!";
                 Toast.makeText(v.getContext(), chosenDrink, Toast.LENGTH_SHORT).show();
 

@@ -27,15 +27,12 @@ public class ModifyPizzaActivity extends AppCompatActivity {
 
     Button addToCart;
     Button cancelModify;
-    SharedPreferenceCart sharedPreferenceCart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_modify_pizza);
 
-
-        sharedPreferenceCart = new SharedPreferenceCart();
         if(getIntent().getExtras() != null) {
             Bundle b = getIntent().getExtras();
                 if(b.getSerializable("pizza") != null){
@@ -143,10 +140,9 @@ public class ModifyPizzaActivity extends AppCompatActivity {
                 }
                 p = p.modifyPizza(p, size , type);
 
-                sharedPreferenceCart.addProduct(ModifyPizzaActivity.this, p);
+                MainActivity.loggedUser.getCart().addProduct(p);
                 Intent intent = new Intent(ModifyPizzaActivity.this, CartActivity.class);
                 ModifyPizzaActivity.this.startActivity(intent);
-
             }
         });
     }

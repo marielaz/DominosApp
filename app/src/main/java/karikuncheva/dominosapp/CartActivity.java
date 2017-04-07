@@ -15,10 +15,8 @@ import karikuncheva.dominosapp.model.User;
 
 public class CartActivity extends AppCompatActivity implements CartListFragment.CartComunicator {
 
-    private User user;
     private RecyclerView recyclerView;
     private Button checkOut;
-    private TextView total;
     private Button back;
 
 
@@ -28,13 +26,11 @@ public class CartActivity extends AppCompatActivity implements CartListFragment.
         setContentView(R.layout.activity_cart);
 
         recyclerView = (RecyclerView) findViewById(R.id.products_recycle_view);
-        user = (User) getIntent().getSerializableExtra("user");
         back = (Button) findViewById(R.id.back_button);
 
-        CartAdapter adapter = new CartAdapter(this, user);
+        CartAdapter adapter = new CartAdapter(this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
-
 
         checkOut = (Button) findViewById(R.id.check_out_button);
         checkOut.setOnClickListener(new View.OnClickListener() {
@@ -49,15 +45,12 @@ public class CartActivity extends AppCompatActivity implements CartListFragment.
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent();
-                i.putExtra("user", user);
-                setResult(6, i);
-                finish();
+                Intent intent = new Intent(CartActivity.this, CatalogActivity.class);
+                CartActivity.this.startActivity(intent);
+
             }
         });
     }
-
-
     @Override
     public void sumTotalPrice(double sum) {
         FragmentManager fm = getSupportFragmentManager();

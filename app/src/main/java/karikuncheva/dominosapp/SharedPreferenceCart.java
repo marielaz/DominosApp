@@ -20,7 +20,7 @@ import karikuncheva.dominosapp.model.products.Product;
 
 public class SharedPreferenceCart {
 
-    public static final String PREFS_NAME = "PRODUCT_APP";
+   // public static final String PREFS_NAME = "PRODUCT_APP";
     public static final String PRODUCTS = "Product_In_Cart";
     static JSONArray jsonProducts = null;
     JSONObject product = null;
@@ -41,8 +41,8 @@ public class SharedPreferenceCart {
                 product.put("price", p.getPrice());
                 product.put("pType", p.pType.toString());
                 if (p.pType == Product.ProductType.PIZZA) {
-                    product.put("size", p.getSize().toString());
-                    product.put("type", p.getType().toString());
+//                    product.put("size", p.getSize().toString());
+//                    product.put("type", p.getType().toString());
                 }
 
             } catch (JSONException e) {
@@ -65,7 +65,7 @@ public class SharedPreferenceCart {
                 SharedPreferences.Editor editor;
                 Activity act = activity;
                 List<Product> pr = products;
-                settings = act.getSharedPreferences(PREFS_NAME,
+                settings = act.getSharedPreferences("PRODUCT_APP",
                         Activity.MODE_PRIVATE);
                 editor = settings.edit();
                 //call the method
