@@ -173,13 +173,13 @@ public class User implements Serializable {
 				if (countDigits > code.length() - countDigits) {
 					switch (new Random().nextInt(3)) {
 					case 0:
-						this.cart.addProduct(new Drink("Coca Cola", 0, "", R.drawable.cola));
+						this.cart.addProduct(new Drink("Coca Cola", 0, R.drawable.cola, ""));
 						break;
 					case 1:
-						this.cart.addProduct(new Drink("Fanta", 0, "", R.drawable.fanta));
+						this.cart.addProduct(new Drink("Fanta", 0, R.drawable.fanta, ""));
 						break;
 					case 2:
-						this.cart.addProduct(new Drink("Sprite", 0, "", R.drawable.sprite));
+						this.cart.addProduct(new Drink("Sprite", 0, R.drawable.sprite, ""));
 						break;
 
 					default:
@@ -188,13 +188,13 @@ public class User implements Serializable {
 				} else {
 					switch (new Random().nextInt(3)) {
 					case 0:
-						this.cart.addProduct(new Dessert("Choco Pie", 0, "", R.drawable.chocopie));
+						this.cart.addProduct(new Dessert("Choco Pie", 0, R.drawable.chocopie, ""));
 						break;
 					case 1:
-						this.cart.addProduct(new Dessert("Nirvana", 0, "", R.drawable.nirvana));
+						this.cart.addProduct(new Dessert("Nirvana", 0, R.drawable.nirvana, ""));
 						break;
 					case 2:
-						this.cart.addProduct(new Dessert("Mini pancakes", 0, "", R.drawable.minipancakes));
+						this.cart.addProduct(new Dessert("Mini pancakes", 0, R.drawable.minipancakes, ""));
 						break;
 
 					default:
