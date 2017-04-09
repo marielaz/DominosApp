@@ -121,9 +121,12 @@ public class CatalogActivity extends NavigDrawerActivity {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camara) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        if (id == R.id.nav_profile) {
+            Intent i = new Intent(this, ProfileActivity.class);
+            startActivity(i);
+        } else if (id == R.id.nav_contacts) {
+            Intent i = new Intent(this, ContactsFragment.class);
+            startActivity(i);
 
         } else if (id == R.id.nav_slideshow) {
 

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="karikuncheva.dominosapp.ProfileActivity">
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tabLayout_profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <!-- View pager to swipe views -->
+    <android.support.v4.view.ViewPager
+        android:layout_below="@id/tabLayout_profile"
+        android:id="@+id/pager_profile"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent" />
+
+
+</RelativeLayout>

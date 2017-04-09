@@ -2,6 +2,8 @@ package karikuncheva.dominosapp.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -15,7 +17,7 @@ public class User implements Serializable {
 
 	private String username;
 	private String name;
-	private Address addresses;
+	private ArrayList<Address> addresses;
 	private String password;
 	private String phoneNumber;
 	private Cart cart;
@@ -35,6 +37,7 @@ public class User implements Serializable {
         this.password = password;
 		this.cart = new Cart();
 		this.shop = Shop.getInstance();
+		this.addresses = new ArrayList<>();
     }
 
 
@@ -122,8 +125,24 @@ public class User implements Serializable {
 		}
 	}
 
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
 	public void removeProductFromCart(Product p) {
 		this.cart.removeProduct(p);
+	}
+
+	public List<Address> getAddresses() {
+		return Collections.unmodifiableList(addresses);
 	}
 
 	@Override
