@@ -29,12 +29,12 @@ public class AddressFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_address, container, false);
 
-//        recyclerView = (RecyclerView) v.findViewById(R.id.recycler_view_address);
-//
-//
-//        CustomAddressAdapter adapter = new CustomAddressAdapter(getActivity(), MainActivity.loggedUser.getAddresses());
-//        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-//        recyclerView.setAdapter(adapter);
+        recyclerView = (RecyclerView) v.findViewById(R.id.recycler_view_address);
+
+
+        CustomAddressAdapter adapter = new CustomAddressAdapter(getActivity(), MainActivity.loggedUser.getAddresses());
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setAdapter(adapter);
         return v;
 
     }
