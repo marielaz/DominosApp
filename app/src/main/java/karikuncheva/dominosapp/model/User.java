@@ -47,7 +47,7 @@ public class User implements Serializable {
 		this.email = email;
 		this.cart = new Cart();
 		this.shop = Shop.getInstance();
-
+		this.addresses = new ArrayList<>();
 	}
 
 	public boolean validatePassword(String pass) {
@@ -141,8 +141,8 @@ public class User implements Serializable {
 		this.cart.removeProduct(p);
 	}
 
-	public List<Address> getAddresses() {
-		return Collections.unmodifiableList(addresses);
+	public ArrayList<Address> getAddresses() {
+		return addresses;
 	}
 
 	@Override
