@@ -8,10 +8,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
-import karikuncheva.dominosapp.model.User;
+
 
 public class CartActivity extends AppCompatActivity implements CartListFragment.CartComunicator {
 
