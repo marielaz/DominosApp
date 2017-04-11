@@ -60,7 +60,6 @@ public class RegistrationActivity extends AppCompatActivity {
             MainActivity.loggedUser = user;
             Toast.makeText(this, "Registration complete", Toast.LENGTH_LONG).show();
             Intent intent = new Intent(RegistrationActivity.this, EditAddressActivity.class);
-            //TODO da ni preprashta da si vuvedem adress!!!!
             RegistrationActivity.this.startActivity(intent);
         }
         else{

@@ -2,7 +2,7 @@ package karikuncheva.dominosapp.model.products;
 
 import java.util.ArrayList;
 
-public class Pizza extends Product {
+public class Pizza extends Product  {
 
 	public Type type;
 	public Size size;

@@ -25,7 +25,6 @@ public class CustomAddressAdapter extends RecyclerView.Adapter<CustomAddressAdap
     private Activity activity;
     private List<Address> addresses;
 
-
     public CustomAddressAdapter(Activity activity, List<Address> addresses) {
         this.activity = activity;
         this.addresses = addresses;

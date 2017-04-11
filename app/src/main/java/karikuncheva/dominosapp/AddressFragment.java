@@ -37,6 +37,8 @@ public class AddressFragment extends Fragment {
 
        // MainActivity.loggedUser.addAddress(new Address("sf","ssd", "314", "assd"));
 
+    //    MainActivity.loggedUser.getAddresses().add(new Address("sofiq", "feh", "fhje", "hfu"));
+
         CustomAddressAdapter adapter = new CustomAddressAdapter(getActivity(), MainActivity.loggedUser.getAddresses());
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);

@@ -1,10 +1,12 @@
 package karikuncheva.dominosapp.model;
 
+import java.io.Serializable;
+
 /**
- * Created by Patarinski on 4/7/2017.
+ * Created by Karina Kuncheva on 4/7/2017.
  */
 
-public class Address {
+public class Address implements Serializable {
 
     private String town;
     private String neighborhood;
