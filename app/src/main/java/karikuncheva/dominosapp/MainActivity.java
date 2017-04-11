@@ -5,18 +5,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-
 import android.widget.EditText;
 import android.widget.Button;
 import android.view.View;
 import android.widget.Toast;
-
 import com.google.gson.Gson;
-
-import java.util.ArrayList;
-
 import karikuncheva.dominosapp.model.User;
-import karikuncheva.dominosapp.model.Shop;
+
 
 
 public class MainActivity extends AppCompatActivity {
@@ -74,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         sharedPreference = this.getSharedPreferences(RegistrationActivity.PREFS_NAME, Context.MODE_PRIVATE);
-        String currentUser = sharedPreference.getString("user", null);
+        String currentUser = sharedPreference.getString("user", username);
         if(currentUser != null){
             Gson gson = new Gson();
             loggedUser = gson.fromJson(currentUser, User.class);

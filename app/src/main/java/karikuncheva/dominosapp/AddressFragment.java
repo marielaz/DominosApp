@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 
 import com.google.gson.Gson;
 
+import karikuncheva.dominosapp.model.Address;
 import karikuncheva.dominosapp.model.Shop;
 import karikuncheva.dominosapp.model.User;
 
@@ -31,6 +32,8 @@ public class AddressFragment extends Fragment {
 
         recyclerView = (RecyclerView) v.findViewById(R.id.recycler_view_address);
 
+
+    //    MainActivity.loggedUser.getAddresses().add(new Address("sofiq", "feh", "fhje", "hfu"));
 
         CustomAddressAdapter adapter = new CustomAddressAdapter(getActivity(), MainActivity.loggedUser.getAddresses());
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));

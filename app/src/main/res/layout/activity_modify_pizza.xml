@@ -17,187 +17,187 @@
         android:background="@color/colorPrimary"
         android:src="@drawable/logo_dominos" />
 
-    <!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
-        <!--android:orientation="horizontal"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginTop="25dp"-->
-        <!--android:background="@color/colorBackground">-->
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:background="@color/colorBackground">
 
-        <!--<Button-->
-            <!--android:id="@+id/small"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:background="@drawable/custom_bnt"-->
-            <!--android:text="Small"-->
-            <!--android:textAllCaps="false"-->
-            <!--android:layout_marginLeft="3dp"-->
-            <!--android:layout_weight="1"/>-->
-        <!--<Button-->
-            <!--android:id="@+id/med"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:background="@drawable/custom_bnt"-->
-            <!--android:text="Medium"-->
-            <!--android:textAllCaps="false"-->
-            <!--android:layout_marginLeft="7dp"-->
-            <!--android:layout_marginRight="7dp"-->
-            <!--android:layout_weight="1"/>-->
-        <!--<Button-->
-            <!--android:id="@+id/large"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:background="@drawable/custom_bnt"-->
-            <!--android:text="Large"-->
-            <!--android:layout_marginRight="3dp"-->
-            <!--android:textAllCaps="false"-->
-            <!--android:layout_weight="1"/>-->
-    <!--</LinearLayout>-->
+        <Button
+            android:id="@+id/small"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custom_bnt"
+            android:text="Small"
+            android:textAllCaps="false"
+            android:layout_marginLeft="3dp"
+            android:layout_weight="1"/>
+        <Button
+            android:id="@+id/med"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custom_bnt"
+            android:text="Medium"
+            android:textAllCaps="false"
+            android:layout_marginLeft="7dp"
+            android:layout_marginRight="7dp"
+            android:layout_weight="1"/>
+        <Button
+            android:id="@+id/large"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custom_bnt"
+            android:text="Large"
+            android:layout_marginRight="3dp"
+            android:textAllCaps="false"
+            android:layout_weight="1"/>
+    </LinearLayout>
 
-    <!--<RelativeLayout-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content">-->
-
-
-    <!--<RelativeLayout-->
-        <!--android:id="@+id/trad_layout"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:background="@drawable/main_rounded_shape"-->
-        <!--android:layout_marginTop="35dp"-->
-        <!--android:layout_marginLeft="5dp"-->
-        <!--android:layout_marginRight="5dp"-->
-        <!--android:paddingLeft="15dp"-->
-        <!--android:paddingRight="10dp"-->
-        <!--android:weightSum="3">-->
-        <!--<ImageView-->
-            <!--android:id="@+id/image_trad"-->
-            <!--android:layout_width="89dp"-->
-            <!--android:layout_height="59dp"-->
-            <!--android:layout_marginTop="10dp"-->
-            <!--android:layout_marginBottom="10dp"-->
-            <!--android:background="@drawable/traditianal" />-->
-        <!--<TextView-->
-            <!--android:id="@+id/text_trad"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="Traditional"-->
-            <!--android:layout_toRightOf="@id/image_trad"-->
-            <!--android:textSize="20sp"-->
-            <!--android:paddingLeft="15dp"-->
-            <!--android:paddingRight="60dp"-->
-            <!--android:textColor="#000000"-->
-            <!--android:layout_centerInParent="true"-->
-            <!--android:layout_weight="1"/>-->
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
 
-        <!--<RadioButton-->
-            <!--android:id="@+id/trad_bnt"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:button="@null"-->
-            <!--android:background="@drawable/custom_radio_bnt"-->
-            <!--android:layout_alignParentRight="true"-->
-            <!--android:layout_alignParentEnd="true"-->
-            <!--android:layout_centerInParent="true"-->
-            <!--android:layout_alignRight="@+id/text_trad"/>-->
+    <RelativeLayout
+        android:id="@+id/trad_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/main_rounded_shape"
+        android:layout_marginTop="35dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="10dp"
+        >
+        <ImageView
+            android:id="@+id/image_trad"
+            android:layout_width="89dp"
+            android:layout_height="59dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/traditianal" />
+        <TextView
+            android:id="@+id/text_trad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Traditional"
+            android:layout_toRightOf="@id/image_trad"
+            android:textSize="20sp"
+            android:paddingLeft="15dp"
+            android:paddingRight="60dp"
+            android:textColor="#000000"
+            android:layout_centerInParent="true"
+            android:layout_weight="1"/>
 
 
-    <!--</RelativeLayout>-->
-
-    <!--<RelativeLayout-->
-        <!--android:id="@+id/italian_layout"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:background="@drawable/main_rounded_shape"-->
-        <!--android:layout_marginTop="25dp"-->
-        <!--android:layout_marginLeft="5dp"-->
-        <!--android:layout_marginRight="5dp"-->
-        <!--android:layout_below="@id/trad_layout"-->
-        <!--android:paddingLeft="15dp"-->
-        <!--android:paddingRight="10dp"-->
-        <!--android:weightSum="3"-->
-        <!--&gt;-->
-        <!--<ImageView-->
-            <!--android:id="@+id/image_ital"-->
-            <!--android:layout_width="89dp"-->
-            <!--android:layout_height="59dp"-->
-            <!--android:layout_marginTop="10dp"-->
-            <!--android:layout_marginBottom="10dp"-->
-            <!--android:background="@drawable/italian" />-->
-        <!--<TextView-->
-            <!--android:id="@+id/text_ital"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="Italian style"-->
-            <!--android:textSize="20sp"-->
-            <!--android:paddingLeft="15dp"-->
-            <!--android:paddingRight="60dp"-->
-            <!--android:textColor="#000000"-->
-            <!--android:layout_toRightOf="@id/image_ital"-->
-            <!--android:layout_centerInParent="true"/>-->
-
-        <!--<RadioButton-->
-            <!--android:id="@+id/ital_bnt"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:button="@null"-->
-            <!--android:background="@drawable/custom_radio_bnt"-->
-            <!--android:layout_alignParentRight="true"-->
-            <!--android:layout_alignParentEnd="true"-->
-            <!--android:layout_centerInParent="true"-->
-            <!--android:layout_alignRight="@+id/text_ital"/>-->
+        <RadioButton
+            android:id="@+id/trad_bnt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@null"
+            android:background="@drawable/custom_radio_bnt"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
+            android:layout_alignRight="@+id/text_trad"/>
 
 
-    <!--</RelativeLayout>-->
+    </RelativeLayout>
 
-    <!--<RelativeLayout-->
-        <!--android:id="@+id/thin_layout"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:background="@drawable/main_rounded_shape"-->
-        <!--android:layout_below="@id/italian_layout"-->
-        <!--android:layout_marginTop="25dp"-->
-        <!--android:layout_marginLeft="5dp"-->
-        <!--android:layout_marginRight="5dp"-->
-        <!--android:paddingLeft="15dp"-->
-        <!--android:paddingRight="10dp"-->
-        <!--android:weightSum="3"-->
-        <!--&gt;-->
-        <!--<ImageView-->
-            <!--android:id="@+id/image_thin_and_cr"-->
-            <!--android:layout_width="89dp"-->
-            <!--android:layout_height="59dp"-->
-            <!--android:layout_marginTop="10dp"-->
-            <!--android:layout_marginBottom="10dp"-->
-            <!--android:background="@drawable/thin" />-->
-        <!--<TextView-->
-            <!--android:id="@+id/text_thin"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="Thin and crispy"-->
-            <!--android:textSize="20sp"-->
-            <!--android:paddingLeft="17dp"-->
-            <!--android:paddingRight="23dp"-->
-            <!--android:textColor="#000000"-->
-            <!--android:layout_centerInParent="true"-->
-            <!--android:layout_toRightOf="@id/image_thin_and_cr"/>-->
+    <RelativeLayout
+        android:id="@+id/italian_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/main_rounded_shape"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_below="@id/trad_layout"
+        android:paddingLeft="15dp"
+        android:paddingRight="10dp"
+        android:weightSum="3">
+
+        <ImageView
+            android:id="@+id/image_ital"
+            android:layout_width="89dp"
+            android:layout_height="59dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/italian" />
+        <TextView
+            android:id="@+id/text_ital"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Italian style"
+            android:textSize="20sp"
+            android:paddingLeft="15dp"
+            android:paddingRight="60dp"
+            android:textColor="#000000"
+            android:layout_toRightOf="@id/image_ital"
+            android:layout_centerInParent="true"/>
+
+        <RadioButton
+            android:id="@+id/ital_bnt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@null"
+            android:background="@drawable/custom_radio_bnt"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
+            android:layout_alignRight="@+id/text_ital"/>
 
 
-        <!--<RadioButton-->
-            <!--android:id="@+id/thin_bnt"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:button="@null"-->
-            <!--android:background="@drawable/custom_radio_bnt"-->
-            <!--android:layout_alignParentRight="true"-->
-            <!--android:layout_alignParentEnd="true"-->
-            <!--android:layout_centerInParent="true"-->
-            <!--android:layout_alignRight="@+id/text_thin" />-->
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/thin_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/main_rounded_shape"
+        android:layout_below="@id/italian_layout"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="10dp"
+        android:weightSum="3"
+        >
+        <ImageView
+            android:id="@+id/image_thin_and_cr"
+            android:layout_width="89dp"
+            android:layout_height="59dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/thin" />
+        <TextView
+            android:id="@+id/text_thin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Thin and crispy"
+            android:textSize="20sp"
+            android:paddingLeft="17dp"
+            android:paddingRight="23dp"
+            android:textColor="#000000"
+            android:layout_centerInParent="true"
+            android:layout_toRightOf="@id/image_thin_and_cr"/>
 
 
-    <!--</RelativeLayout>-->
-    <!--</RelativeLayout>-->
+        <RadioButton
+            android:id="@+id/thin_bnt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@null"
+            android:background="@drawable/custom_radio_bnt"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
+            android:layout_alignRight="@+id/text_thin" />
+
+
+    </RelativeLayout>
+    </RelativeLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/ingredients_recycler_view"

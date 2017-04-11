@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 
@@ -23,9 +24,9 @@ import karikuncheva.dominosapp.model.User;
  */
 public class ProfileFragment extends Fragment {
 
-    private EditText username;
+    private TextView username;
     private EditText phone;
-    private EditText address;
+    private EditText name;
     private EditText password;
     private EditText confirm;
     private TextView welcome;
@@ -46,29 +47,58 @@ public class ProfileFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_profile, container, false);
 
         welcome = (TextView) v.findViewById(R.id.welcome);
-        username = (EditText) v.findViewById(R.id.username_edit_et);
+        username = (TextView) v.findViewById(R.id.username_edit_et);
         phone = (EditText) v.findViewById(R.id.phone_edit_et);
-        address = (EditText) v.findViewById(R.id.address_edit_et);
+        name = (EditText) v.findViewById(R.id.name_edit_et);
         password = (EditText) v.findViewById(R.id.password_edit_et);
         confirm = (EditText) v.findViewById(R.id.password2_edit_et);
         save = (Button) v.findViewById(R.id.save);
         cancel = (Button) v.findViewById(R.id.cancel);
 
+        // TODO edit user also in shared prefs!!
+        // nqma smisul ot towa kato imame static loggedUser
         sharedPreference = getActivity().getSharedPreferences(RegistrationActivity.PREFS_NAME, Context.MODE_PRIVATE);
-        String currentUser = sharedPreference.getString("user", null);
-        if(currentUser != null){
-            Gson gson = new Gson();
-            loggedUser = gson.fromJson(currentUser, User.class);
-    }
+//        String currentUser = sharedPreference.getString("user", MainActivity.loggedUser.getUsername());
+//        if(currentUser != null){
+//            Gson gson = new Gson();
+//            loggedUser = gson.fromJson(currentUser, User.class);
+//    }
 
-    save.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            loggedUser.setPhoneNumber(phone.getText().toString());
-            loggedUser.setPassword(password.getText().toString());
-            loggedUser.setUsername(username.getText().toString());
+        loggedUser = MainActivity.loggedUser;
+
+        welcome.setText("Welcome, " + loggedUser.getUsername());
+        username.setText(loggedUser.getUsername());
+
+        if (loggedUser.getName() != null) {
+            name.setText(loggedUser.getName());
         }
-    });
+        if (loggedUser.getPhoneNumber() != null){
+            phone.setText(loggedUser.getPhoneNumber());
+        }
+
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!name.getText().toString().isEmpty()){
+                    loggedUser.setName(name.getText().toString());
+                }
+                if (!password.getText().toString().isEmpty() &&
+                        password.getText().toString().equals(confirm.getText().toString())) {
+                    loggedUser.setPassword(password.getText().toString());
+                }
+                if (!phone.getText().toString().isEmpty() && phone.getText().toString() != null){
+                    loggedUser.setPhoneNumber(phone.getText().toString());
+                }
+                User user = loggedUser;
+               // user.setCart(loggedUser.getCart());
+                SharedPreferences.Editor editor = sharedPreference.edit();
+                Gson gson = new Gson();
+                editor.putString("user", gson.toJson(user));
+                editor.apply();
+                MainActivity.loggedUser = user;
+                Toast.makeText(getActivity(), "Saved changes", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,8 +107,7 @@ public class ProfileFragment extends Fragment {
                 startActivity(i);
             }
         });
-    username.setText(loggedUser.getUsername().toString());
-    welcome.setText("Welcome, " + loggedUser.getUsername());
+
         return v;
     }
 

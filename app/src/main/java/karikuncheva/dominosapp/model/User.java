@@ -37,9 +37,8 @@ public class User implements Serializable {
         this.password = password;
 		this.cart = new Cart();
 		this.shop = Shop.getInstance();
-		this.addresses = new ArrayList<>();
+		this.addresses = new ArrayList<Address>();
     }
-
 
 	public User(String username, String password, String email) {
 		this.username = username;
@@ -47,7 +46,7 @@ public class User implements Serializable {
 		this.email = email;
 		this.cart = new Cart();
 		this.shop = Shop.getInstance();
-		this.addresses = new ArrayList<>();
+		this.addresses = new ArrayList<Address>();
 	}
 
 	public boolean validatePassword(String pass) {
@@ -70,6 +69,14 @@ public class User implements Serializable {
 		return cart;
 	}
 
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public String getName() {
+		return name;
+	}
+
 	public void setMoney(double money) {
 		this.money = money;
 	}
@@ -77,6 +84,7 @@ public class User implements Serializable {
 	public double getMoney() {
 		return money;
 	}
+
 
 	public boolean validateEmailAddress(String emailAddress) {
 
@@ -137,11 +145,20 @@ public class User implements Serializable {
 		this.phoneNumber = phoneNumber;
 	}
 
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setCart(Cart cart) {
+		this.cart = cart;
+	}
+
 	public void removeProductFromCart(Product p) {
 		this.cart.removeProduct(p);
 	}
 
-	public ArrayList<Address> getAddresses() {
+
+	public List<Address> getAddresses() {
 		return addresses;
 	}
 

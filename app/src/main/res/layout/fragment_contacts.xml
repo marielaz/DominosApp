@@ -17,6 +17,7 @@
             android:background="@drawable/ic_action_name" />
 
         <TextView
+            android:layout_marginLeft="15dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="070012525"/>
@@ -35,6 +36,7 @@
             android:background="@drawable/twitter" />
 
         <TextView
+            android:layout_marginLeft="15dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="070012525"/>
@@ -53,9 +55,10 @@
             android:background="@drawable/facebook" />
 
         <TextView
+            android:layout_marginLeft="15dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="070012525"/>
+            android:text="Visit our facebook page!"/>
     </LinearLayout>
 
 
