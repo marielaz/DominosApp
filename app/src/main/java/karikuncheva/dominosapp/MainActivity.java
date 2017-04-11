@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         sharedPreference = this.getSharedPreferences(RegistrationActivity.PREFS_NAME, Context.MODE_PRIVATE);
-        String currentUser = sharedPreference.getString("user", null);
+        String currentUser = sharedPreference.getString("user", username);
         if(currentUser != null){
             Gson gson = new Gson();
             loggedUser = gson.fromJson(currentUser, User.class);

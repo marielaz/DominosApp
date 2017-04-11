@@ -16,26 +16,32 @@
         android:paddingTop="5dp"
         android:textColor="#000000" />
 
-    <RadioGroup
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
+    <CheckBox
+        android:id="@+id/check_ingredient"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginRight="20dp"
-        android:paddingBottom="5dp"
-        android:paddingTop="5dp">
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"/>
+    <!--<RadioGroup-->
+        <!--android:layout_alignParentEnd="true"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:layout_marginRight="20dp"-->
+        <!--android:paddingBottom="5dp"-->
+        <!--android:paddingTop="5dp">-->
 
-        <RadioButton
-            android:id="@+id/small_ingred_rb"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+        <!--<RadioButton-->
+            <!--android:id="@+id/small_ingred_rb"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content" />-->
 
-        <RadioButton
-            android:id="@+id/large_ingred_rb"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+        <!--<RadioButton-->
+            <!--android:id="@+id/large_ingred_rb"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content" />-->
 
-    </RadioGroup>
+    <!--</RadioGroup>-->
 
 </RelativeLayout>

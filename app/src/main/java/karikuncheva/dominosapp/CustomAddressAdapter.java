@@ -43,9 +43,9 @@ public class CustomAddressAdapter extends RecyclerView.Adapter<CustomAddressAdap
     public void onBindViewHolder(final CustomAddressAdapter.AddressViewHolder vh, final int position) {
         Address address = addresses.get(position);
         vh.town.setText(address.getTown());
-        vh.neighborhood.setText(address.getNaighborhood());
+       // vh.neighborhood.setText(address.getNaighborhood());
         vh.block.setText(address.getBlock());
-        vh.phone.setText(address.getPhoneNumber());
+       // vh.phone.setText(address.getPhoneNumber());
     }
 
     @Override

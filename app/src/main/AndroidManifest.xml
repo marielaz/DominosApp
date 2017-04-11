@@ -17,7 +17,8 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter> />
+            </intent-filter>
+            />
         </activity>
         <activity android:name=".CatalogActivity" />
         <activity android:name=".RegistrationActivity" />
@@ -28,8 +29,9 @@
             android:name=".NavigDrawerActivity"
             android:label="@string/title_activity_navig_drawer"
             android:theme="@style/AppTheme" />
-        <activity android:name=".MakeOrderActivity"></activity>
-        <activity android:name=".ProfileActivity"></activity>
+        <activity android:name=".MakeOrderActivity" />
+        <activity android:name=".ProfileActivity" />
+        <activity android:name=".EditAddressActivity"></activity>
     </application>
 
 </manifest>

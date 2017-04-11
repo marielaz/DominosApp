@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -127,6 +128,7 @@ public class CatalogActivity extends NavigDrawerActivity {
         } else if (id == R.id.nav_contacts) {
             Intent i = new Intent(this, ContactsFragment.class);
             startActivity(i);
+           // getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new ContactsFragment()).commit();
 
         } else if (id == R.id.nav_slideshow) {
 

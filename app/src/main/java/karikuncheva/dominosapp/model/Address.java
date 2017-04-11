@@ -7,30 +7,54 @@ package karikuncheva.dominosapp.model;
 public class Address {
 
     private String town;
-    private String naighborhood;
+    private String neighborhood;
+    private String street;
+    private String number;
     private String block;
-    private String phoneNumber;
+    private String postCode;
+    private String apartament;
+    private String floor;
 
-    public Address(String town, String naighborhood, String block, String phoneNumber) {
+    public Address(String town, String neighborhood, String street, String number, String block, String postCode, String apartament, String floor) {
         this.town = town;
-        this.naighborhood = naighborhood;
+        this.neighborhood = neighborhood;
+        this.street = street;
+        this.number = number;
         this.block = block;
-        this.phoneNumber = phoneNumber;
+        this.postCode = postCode;
+        this.apartament = apartament;
+        this.floor = floor;
     }
 
     public String getTown() {
         return town;
     }
 
-    public String getNaighborhood() {
-        return naighborhood;
+    public String getNeighborhood() {
+        return neighborhood;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public String getNumber() {
+        return number;
     }
 
     public String getBlock() {
         return block;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public String getPostCode() {
+        return postCode;
+    }
+
+    public String getApartament() {
+        return apartament;
+    }
+
+    public String getFloor() {
+        return floor;
     }
 }

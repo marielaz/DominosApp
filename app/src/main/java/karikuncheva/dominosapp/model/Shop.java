@@ -28,7 +28,8 @@ public class Shop implements Serializable {
     private ArrayList<Pizza> pizzas = new ArrayList<>();
     private ArrayList<Dessert> desserts = new ArrayList<>();
     private ArrayList<Drink> drinks = new ArrayList<>();
-    public static ArrayList<String> ingredients = new ArrayList<>();
+    private ArrayList<String> ingr = new ArrayList<>();
+
 
     public Shop() {
 
@@ -114,8 +115,9 @@ public class Shop implements Serializable {
         drinks.add(new Drink("Sprite", 2.80, R.drawable.sprite, "1,25l"));
         drinks.add(new Drink("Nestea", 2.00, R.drawable.nestea, "1,25l"));
 
-        addToCatalog(products);
-        addIngredients(ingredients);
+        //addToCatalog(products);
+
+        addIngredients(ingr);
     }
 
     public static Shop getInstance() {
@@ -141,6 +143,10 @@ public class Shop implements Serializable {
     public Set getUsers() {
         return Collections.unmodifiableSet(users);
 
+    }
+
+    public ArrayList<String> getIngr() {
+        return ingr;
     }
 
     public Map getCatalog() {
@@ -229,7 +235,7 @@ public class Shop implements Serializable {
         ingredients.add("beef");
         ingredients.add("pepperoni");
         ingredients.add("tomatos");
-        ingredients.add("green peppers");
+        ingredients.add("green pappers");
         ingredients.add("spicy peppers");
         ingredients.add("baby spinach");
         ingredients.add("onion");

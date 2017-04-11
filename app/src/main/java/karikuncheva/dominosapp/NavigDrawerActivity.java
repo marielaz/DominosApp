@@ -78,6 +78,7 @@ public class NavigDrawerActivity extends AppCompatActivity
         } else if (id == R.id.nav_contacts) {
             Intent i = new Intent(this, ContactsFragment.class);
             startActivity(i);
+          //  getSupportFragmentManager().beginTransaction().add(R.id.fragment_container,new ContactsFragment()).commit();
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_manage) {

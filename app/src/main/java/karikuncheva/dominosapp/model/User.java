@@ -30,6 +30,7 @@ public class User implements Serializable {
 
 
 	public User(){
+		this.addresses = new ArrayList<>();
 
 	}
 	public User(String username, String password){
@@ -38,7 +39,7 @@ public class User implements Serializable {
 		this.cart = new Cart();
 		this.shop = Shop.getInstance();
 		this.addresses = new ArrayList<>();
-    }
+	}
 
 
 	public User(String username, String password, String email) {
@@ -48,7 +49,6 @@ public class User implements Serializable {
 		this.cart = new Cart();
 		this.shop = Shop.getInstance();
 		this.addresses = new ArrayList<>();
-		addresses.add(new Address("sf","ssd", "314", "assd"));
 	}
 
 	public boolean validatePassword(String pass) {
@@ -105,6 +105,9 @@ public class User implements Serializable {
 		}
 	}
 
+	public void addAddress(Address a){
+		this.addresses.add(a);
+	}
 //	public void changeAddress(String newAddress) {
 //		if (newAddress != null && !newAddress.isEmpty()) {
 //			this.address = newAddress;

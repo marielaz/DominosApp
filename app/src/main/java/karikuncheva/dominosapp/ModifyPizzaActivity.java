@@ -13,6 +13,7 @@ import android.widget.RadioButton;
 import java.util.ArrayList;
 import java.util.List;
 
+import karikuncheva.dominosapp.model.CustomLinearLayoutManager;
 import karikuncheva.dominosapp.model.products.Pizza;
 
 public class ModifyPizzaActivity extends AppCompatActivity {
@@ -46,63 +47,63 @@ public class ModifyPizzaActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
 
+        recyclerView.setNestedScrollingEnabled(false);
+        trad_bnt = (RadioButton) findViewById(R.id.trad_bnt);
+        ital_bnt = (RadioButton) findViewById(R.id.ital_bnt);
+        thin_bnt = (RadioButton) findViewById(R.id.thin_bnt);
 
-//        trad_bnt = (RadioButton) findViewById(R.id.trad_bnt);
-//        ital_bnt = (RadioButton) findViewById(R.id.ital_bnt);
-//        thin_bnt = (RadioButton) findViewById(R.id.thin_bnt);
-//
-//        radioButtons.add(trad_bnt);
-//        radioButtons.add(ital_bnt);
-//        radioButtons.add(thin_bnt);
-//
-//        small = (Button) findViewById(R.id.small);
-//        med = (Button) findViewById(R.id.med);
-//        large = (Button) findViewById(R.id.large);
-//
-//        trad_bnt.setChecked(true);
-//        large.setPressed(true);
-//        size = Pizza.Size.LARGE;
-//
-//        small.setOnTouchListener(new View.OnTouchListener() {
-//            @Override
-//            public boolean onTouch(View v, MotionEvent event) {
-//                small.setPressed(true);
-//                size = Pizza.Size.SMALL;
-//                med.setPressed(false);
-//                large.setPressed(false);
-//                return true;
-//            }
-//        });
-//        med.setOnTouchListener(new View.OnTouchListener() {
-//            @Override
-//            public boolean onTouch(View v, MotionEvent event) {
-//                med.setPressed(true);
-//                size = Pizza.Size.MEDIUM;
-//                small.setPressed(false);
-//                large.setPressed(false);
-//                return true;
-//            }
-//        });
-//        large.setOnTouchListener(new View.OnTouchListener() {
-//            @Override
-//            public boolean onTouch(View v, MotionEvent event) {
-//                large.setPressed(true);
-//                size = Pizza.Size.LARGE;
-//                small.setPressed(false);
-//                med.setPressed(false);
-//                return true;
-//            }
-//        });
-//
-//        for (RadioButton button : radioButtons) {
-//            button.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//                @Override
-//                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//                    if (isChecked) processRadioButtonClick(buttonView);
-//                }
-//
-//            });
-//        }
+        radioButtons.add(trad_bnt);
+        radioButtons.add(ital_bnt);
+        radioButtons.add(thin_bnt);
+
+        small = (Button) findViewById(R.id.small);
+        med = (Button) findViewById(R.id.med);
+        large = (Button) findViewById(R.id.large);
+
+        trad_bnt.setChecked(true);
+        large.setPressed(true);
+        size = Pizza.Size.LARGE;
+
+        small.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                small.setPressed(true);
+                size = Pizza.Size.SMALL;
+                med.setPressed(false);
+                large.setPressed(false);
+                return true;
+            }
+        });
+        med.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                med.setPressed(true);
+                size = Pizza.Size.MEDIUM;
+                small.setPressed(false);
+                large.setPressed(false);
+                return true;
+            }
+        });
+        large.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                large.setPressed(true);
+                size = Pizza.Size.LARGE;
+                small.setPressed(false);
+                med.setPressed(false);
+                return true;
+            }
+        });
+
+        for (RadioButton button : radioButtons) {
+            button.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if (isChecked) processRadioButtonClick(buttonView);
+                }
+
+            });
+        }
 
         addToCart = (Button) findViewById(R.id.add_to_cart_modify);
         cancelModify = (Button) findViewById(R.id.cancel_modify);
@@ -143,10 +144,10 @@ public class ModifyPizzaActivity extends AppCompatActivity {
             }
         });
     }
-//    private void processRadioButtonClick(CompoundButton buttonView) {
-//        for (RadioButton button : radioButtons) {
-//            if (button != buttonView) button.setChecked(false);
-//        }
-//    }
+    private void processRadioButtonClick(CompoundButton buttonView) {
+        for (RadioButton button : radioButtons) {
+            if (button != buttonView) button.setChecked(false);
+        }
+    }
 
 }
