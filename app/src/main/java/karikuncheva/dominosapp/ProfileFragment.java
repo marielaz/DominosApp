@@ -47,9 +47,9 @@ public class ProfileFragment extends Fragment {
         save = (Button) v.findViewById(R.id.save);
         cancel = (Button) v.findViewById(R.id.cancel);
 
-        loggedUser = MainActivity.loggedUser;
+        //loggedUser = MainActivity.loggedUser;
 
-        welcome.setText("Welcome, " + loggedUser.getUsername());
+//        welcome.setText("Welcome, " + MainActivity.loggedUser.getUsername());
 
 
 //        if (loggedUser.getName() != null) {
@@ -64,16 +64,16 @@ public class ProfileFragment extends Fragment {
             public void onClick(View v) {
 
                 if (!name.getText().toString().isEmpty()){
-                    loggedUser.setName(name.getText().toString());
+                    MainActivity.loggedUser.setName(name.getText().toString());
                 }
                 if (!password.getText().toString().isEmpty() &&
                         password.getText().toString().equals(confirm.getText().toString())) {
-                    loggedUser.setPassword(password.getText().toString());
+                    MainActivity.loggedUser.setPassword(password.getText().toString());
                 }
                 if (!phone.getText().toString().isEmpty() && phone.getText().toString() != null){
-                    loggedUser.setPhoneNumber(phone.getText().toString());
+                    MainActivity.loggedUser.setPhoneNumber(phone.getText().toString());
                 }
-                DBManager.getInstance(getActivity()).updateUser(loggedUser.getUsername());
+                DBManager.getInstance(getActivity()).updateUser(MainActivity.loggedUser.getUsername());
 
                 Toast.makeText(getActivity(), "Saved changes", Toast.LENGTH_SHORT).show();
             }

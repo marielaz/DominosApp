@@ -29,9 +29,9 @@ public class User implements Serializable {
     private Matcher regMatcher;
     private int id;
 
-    public User() {
-        this.addresses = new ArrayList<Address>();
-    }
+   // public User() {
+      //  this.addresses = new ArrayList<Address>();
+   // }
 
     public User(String username, String password) {
         this.username = username;

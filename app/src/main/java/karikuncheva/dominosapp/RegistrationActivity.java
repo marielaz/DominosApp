@@ -65,11 +65,12 @@ public class RegistrationActivity extends AppCompatActivity {
             Toast.makeText(this, "Registration complete", Toast.LENGTH_LONG).show();
             Intent intent = new Intent(RegistrationActivity.this, EditAddressActivity.class);
             RegistrationActivity.this.startActivity(intent);
+
+        } else {
+            Toast.makeText(this, "Registration has failed", Toast.LENGTH_SHORT).show();
         }
-        else{
-                Toast.makeText(this, "Registration has failed", Toast.LENGTH_SHORT).show();
-            }
-       }
+    }
+
 
 
     public boolean validate(){

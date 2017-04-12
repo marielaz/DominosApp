@@ -36,17 +36,19 @@ public class MainActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (validate()) {
+
                     if (DBManager.getInstance(MainActivity.this).existsUser(username_login.getText().toString())) {
                         loggedUser = DBManager.getInstance(MainActivity.this).getUser(username_login.getText().toString());
+
                         Toast.makeText(MainActivity.this, "User data is valid", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(MainActivity.this, CatalogActivity.class);
                         MainActivity.this.startActivity(intent);
-                   }
-                   else{
-                        Toast.makeText(MainActivity.this, "User", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(MainActivity.this, "User data not valid", Toast.LENGTH_SHORT).show();
 
                     }
-                }else {
+
+                } else {
                     Toast.makeText(MainActivity.this, "User data not valid", Toast.LENGTH_SHORT).show();
                 }
             }

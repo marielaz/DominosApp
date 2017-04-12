@@ -6,9 +6,11 @@
     android:background="@color/colorBackground"
     tools:context="karikuncheva.dominosapp.AddressFragment">
 
+
     <!--<include-->
         <!--android:id="@+id/toolbar_address"-->
         <!--layout="@layout/toolbar"></include>-->
+
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
@@ -36,7 +38,6 @@
         <!--android:backgroundTint="@color/colorPrimary"-->
         <!--app:srcCompat="@mipmap/plus_address" />-->
 
-
     <!--<Button-->
         <!--android:id="@+id/back_button_address"-->
         <!--android:layout_width="40dp"-->
@@ -48,5 +49,6 @@
         <!--android:layout_marginStart="9dp"-->
         <!--android:layout_marginTop="12dp"-->
         <!--android:background="@drawable/back_icon" />-->
+
 
 </RelativeLayout>
