@@ -27,9 +27,9 @@ public class DBManager extends SQLiteOpenHelper {
             " id INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
             " username text NOT NULL,\n" +
             " password text NOT NULL,\n" +
-            " email text NOT NULL\n" +
-            " name text NOT NULL,\n" +
-            " phone text NOT NULL,\n" +
+            " email text NOT NULL,\n" +
+            " name text,\n" +
+            " phone text\n" +
             ");";
 
     public static DBManager getInstance(Context context) {
@@ -128,4 +128,7 @@ public class DBManager extends SQLiteOpenHelper {
         return registeredUsers.containsKey(username);
     }
 
+    public User getUser(String username){
+            return  registeredUsers.get(username);
+    }
 }

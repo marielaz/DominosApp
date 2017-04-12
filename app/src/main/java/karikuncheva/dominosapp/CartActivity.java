@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -16,6 +17,7 @@ public class CartActivity extends AppCompatActivity implements CartListFragment.
     private RecyclerView recyclerView;
     private Button checkOut;
     private Button back;
+    private TextView total;
 
 
     @Override
@@ -25,6 +27,7 @@ public class CartActivity extends AppCompatActivity implements CartListFragment.
 
         recyclerView = (RecyclerView) findViewById(R.id.products_recycle_view);
         back = (Button) findViewById(R.id.back_button);
+        total = (TextView) findViewById(R.id.total_price_tv);
 
         CartAdapter adapter = new CartAdapter(this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -49,10 +52,12 @@ public class CartActivity extends AppCompatActivity implements CartListFragment.
             }
         });
     }
+
     @Override
     public void sumTotalPrice(double sum) {
-        FragmentManager fm = getSupportFragmentManager();
-        CartTotalFragment fragment = (CartTotalFragment) fm.findFragmentById(R.id.fragment_total);
-        fragment.sumTotalPrice(sum);
+//        FragmentManager fm = getSupportFragmentManager();
+//        CartTotalFragment fragment = (CartTotalFragment) fm.findFragmentById(R.id.fragment_total);
+//        fragment.sumTotalPrice(sum);
+        total.setText(String.format("%.2f",sum));
     }
 }

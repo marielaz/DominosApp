@@ -6,14 +6,13 @@
     android:background="@color/colorBackground"
     tools:context="karikuncheva.dominosapp.AddressFragment">
 
-    <include
-        android:id="@+id/toolbar_address"
-        layout="@layout/toolbar"></include>
+    <!--<include-->
+        <!--android:id="@+id/toolbar_address"-->
+        <!--layout="@layout/toolbar"></include>-->
 
     <android.support.v7.widget.RecyclerView
-        android:layout_below="@id/toolbar_address"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/recycler_view_address"
         android:layout_alignParentLeft="true"
         android:divider="@color/colorBackground"
@@ -38,16 +37,16 @@
         <!--app:srcCompat="@mipmap/plus_address" />-->
 
 
-    <Button
-        android:id="@+id/back_button_address"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="9dp"
-        android:layout_marginStart="9dp"
-        android:layout_marginTop="12dp"
-        android:background="@drawable/back_icon" />
+    <!--<Button-->
+        <!--android:id="@+id/back_button_address"-->
+        <!--android:layout_width="40dp"-->
+        <!--android:layout_height="40dp"-->
+        <!--android:layout_alignParentLeft="true"-->
+        <!--android:layout_alignParentStart="true"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:layout_marginLeft="9dp"-->
+        <!--android:layout_marginStart="9dp"-->
+        <!--android:layout_marginTop="12dp"-->
+        <!--android:background="@drawable/back_icon" />-->
 
 </RelativeLayout>

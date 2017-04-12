@@ -52,7 +52,7 @@ public class RegistrationActivity extends AppCompatActivity {
         if (validate()) {
                    user = new User(username, pass, email);
                     DBManager.getInstance(this).addUser(user);
-                }
+
 
 //            sharedPreference = this.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
 //            SharedPreferences.Editor editor = sharedPreference.edit();
@@ -62,13 +62,13 @@ public class RegistrationActivity extends AppCompatActivity {
 //            editor.putString("user", gson.toJson(user));
 //            editor.apply();
             MainActivity.loggedUser = user;
-//            Toast.makeText(this, "Registration complete", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Registration complete", Toast.LENGTH_LONG).show();
             Intent intent = new Intent(RegistrationActivity.this, EditAddressActivity.class);
             RegistrationActivity.this.startActivity(intent);
-//        }
-//        else{
-//                Toast.makeText(this, "Registration has failed", Toast.LENGTH_SHORT).show();
-//            }
+        }
+        else{
+                Toast.makeText(this, "Registration has failed", Toast.LENGTH_SHORT).show();
+            }
        }
 
 

@@ -29,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         username_login = (EditText) this.findViewById(R.id.username_login);
         password_login = (EditText) this.findViewById(R.id.password_login);
         loginButton = (Button) this.findViewById(R.id.login_button);
@@ -37,11 +36,16 @@ public class MainActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (validate()) {
-                 //   if (DBManager.getInstance(MainActivity.this).existsUser(loggedUser.getUsername())) {
+                    if (DBManager.getInstance(MainActivity.this).existsUser(username_login.getText().toString())) {
+                        loggedUser = DBManager.getInstance(MainActivity.this).getUser(username_login.getText().toString());
                         Toast.makeText(MainActivity.this, "User data is valid", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(MainActivity.this, CatalogActivity.class);
                         MainActivity.this.startActivity(intent);
-               //    }
+                   }
+                   else{
+                        Toast.makeText(MainActivity.this, "User", Toast.LENGTH_SHORT).show();
+
+                    }
                 }else {
                     Toast.makeText(MainActivity.this, "User data not valid", Toast.LENGTH_SHORT).show();
                 }
