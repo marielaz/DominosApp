@@ -1,15 +1,19 @@
 package karikuncheva.dominosapp;
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.Button;
 
 public class ProfileActivity extends AppCompatActivity {
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
+    private Button back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,5 +58,14 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
+        back = (Button) findViewById(R.id.back_button_contact);
+
+//        back.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(ProfileActivity.this, CatalogActivity.class);
+//                ProfileActivity.this.startActivity(intent);
+//            }
+//        });
     }
 }

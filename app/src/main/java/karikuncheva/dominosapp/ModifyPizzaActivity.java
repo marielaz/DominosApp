@@ -13,7 +13,6 @@ import android.widget.RadioButton;
 import java.util.ArrayList;
 import java.util.List;
 
-import karikuncheva.dominosapp.model.CustomLinearLayoutManager;
 import karikuncheva.dominosapp.model.products.Pizza;
 
 public class ModifyPizzaActivity extends AppCompatActivity {

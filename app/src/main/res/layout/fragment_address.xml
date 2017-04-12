@@ -6,11 +6,15 @@
     android:background="@color/colorBackground"
     tools:context="karikuncheva.dominosapp.AddressFragment">
 
+    <include
+        android:id="@+id/toolbar_address"
+        layout="@layout/toolbar"></include>
+
     <android.support.v7.widget.RecyclerView
+        android:layout_below="@id/toolbar_address"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/recycler_view_address"
-        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:divider="@color/colorBackground"
         android:scrollbars="vertical"
@@ -22,14 +26,28 @@
 
     </android.support.v7.widget.RecyclerView>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_media_play" />
+    <!--<android.support.design.widget.FloatingActionButton-->
+        <!--android:id="@+id/fab"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="bottom|end"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:layout_margin="@dimen/fab_margin"-->
+        <!--android:backgroundTint="@color/colorPrimary"-->
+        <!--app:srcCompat="@mipmap/plus_address" />-->
+
+
+    <Button
+        android:id="@+id/back_button_address"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="9dp"
+        android:layout_marginStart="9dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/back_icon" />
 
 </RelativeLayout>

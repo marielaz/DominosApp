@@ -31,7 +31,8 @@
             android:theme="@style/AppTheme" />
         <activity android:name=".MakeOrderActivity" />
         <activity android:name=".ProfileActivity" />
-        <activity android:name=".EditAddressActivity"></activity>
+        <activity android:name=".EditAddressActivity" />
+        <activity android:name=".ContactsActivity"></activity>
     </application>
 
 </manifest>

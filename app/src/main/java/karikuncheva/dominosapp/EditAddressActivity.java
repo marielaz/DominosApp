@@ -11,16 +11,16 @@ import karikuncheva.dominosapp.model.Address;
 
 public class EditAddressActivity extends AppCompatActivity {
 
-    Button addAddress;
-    EditText neighborhood;
-    EditText town;
-    EditText number;
-    EditText street;
-    EditText apartament;
-    EditText floor;
-    EditText postCode;
-    EditText block;
-
+    private Button addAddress;
+    private EditText neighborhood;
+    private EditText town;
+    private EditText number;
+    private EditText street;
+    private EditText apartament;
+    private EditText floor;
+    private EditText postCode;
+    private EditText block;
+    private Button back;
     private String townTxt;
     private String neighborhoodTxt;
     private String streetTxt;
@@ -55,12 +55,21 @@ public class EditAddressActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+        back = (Button) findViewById(R.id.back_button_add_address);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(EditAddressActivity.this, ProfileActivity.class));
+            }
+        });
     }
-    public void inicialize(){
+
+    public void inicialize() {
 
         townTxt = town.getText().toString();
         neighborhoodTxt = neighborhood.getText().toString();
-        streetTxt =street.getText().toString();
+        streetTxt = street.getText().toString();
         numberTxt = number.getText().toString();
         blockTxt = block.getText().toString();
         postCodeTxt = postCode.getText().toString();

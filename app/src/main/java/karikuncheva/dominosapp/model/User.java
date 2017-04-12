@@ -27,10 +27,10 @@ public class User implements Serializable {
 	private static final String PASS_REGEX = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{6,16}$";
 	private Pattern regexPattern;
 	private Matcher regMatcher;
-
+	private int id;
 
 	public User(){
-
+        this.addresses = new ArrayList<Address>();
 	}
 	public User(String username, String password){
         this.username = username;
@@ -79,6 +79,22 @@ public class User implements Serializable {
 
 	public void setMoney(double money) {
 		this.money = money;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public double getMoney() {
