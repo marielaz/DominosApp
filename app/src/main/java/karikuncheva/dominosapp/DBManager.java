@@ -29,7 +29,7 @@ public class DBManager extends SQLiteOpenHelper {
             " password text NOT NULL,\n" +
             " email text NOT NULL,\n" +
             " name text,\n" +
-            " phone text,\n" +
+            " phone text\n" +
             ");";
 
     public static DBManager getInstance(Context context) {
