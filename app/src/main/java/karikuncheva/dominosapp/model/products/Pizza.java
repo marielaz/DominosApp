@@ -1,18 +1,23 @@
 package karikuncheva.dominosapp.model.products;
 
-public class Pizza extends Product {
+import java.util.ArrayList;
+
+public class Pizza extends Product  {
 
 	public Type type;
 	public Size size;
+	private ArrayList<String> ingredients = new ArrayList<>();
 
-	public Pizza(String name, double price, String description, int imageId) {
-		super(ProductType.PIZZA, name, price, description, imageId);
+	public Pizza(String name, double price, int imageId ) {
+		super(ProductType.PIZZA, name, price, imageId);
 		this.type = Type.TRADITIONAL;
 		this.size = Size.LARGE;
+		//this.ingredients = new ArrayList<>();
 	}
 
-	public Pizza(String name, double price, String description) {
-		super(ProductType.PIZZA, name, price, description);
+	public Pizza(String name, double price, ArrayList<String> ingredients) {
+		super(ProductType.PIZZA, name, price);
+		//this.ingredients = new ArrayList<>();
 		this.type = Type.TRADITIONAL;
 		this.size = Size.LARGE;
 	}
@@ -22,18 +27,18 @@ public class Pizza extends Product {
 
 		Pizza p = pizza;
 		if (size == Size.MEDIUM) {
-			p = new Pizza(pizza.getName(), pizza.getPrice() - 1.00, pizza.getDescription(), getImageId());
+			p = new Pizza(pizza.getName(), pizza.getPrice() - 1.00, getImageId());
 			p.size= Size.MEDIUM;
 			p.type= type;
 			return p;
 		} else if (size == size.SMALL) {
-			p = new Pizza(pizza.getName(), pizza.getPrice() - 1.50, pizza.getDescription(), getImageId());
+			p = new Pizza(pizza.getName(), pizza.getPrice() - 1.50, getImageId());
 			p.size= Size.SMALL;
 			p.type = type;
 			return p;
 		}
 		else if (size == size.LARGE && type != type.TRADITIONAL){
-			p = new Pizza(pizza.getName(), pizza.getPrice(), pizza.getDescription(), getImageId());
+			p = new Pizza(pizza.getName(), pizza.getPrice(), getImageId());
 			p.type = type;
 			return p;
 		}
@@ -87,6 +92,10 @@ public class Pizza extends Product {
 
 	public Size getSize() {
 		return size;
+	}
+
+	public ArrayList<String> getIngredients() {
+		return ingredients;
 	}
 
 	public void setType(Type type) {

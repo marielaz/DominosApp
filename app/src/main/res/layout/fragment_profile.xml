@@ -6,146 +6,158 @@
 
 
     <include
-        android:id="@+id/tool"
-        layout="@layout/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:id="@+id/toolbar_profile"
+        layout="@layout/toolbar" />
 
-    <RelativeLayout
-        android:layout_below="@id/tool"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/profile_background"
-        android:paddingLeft="40dp"
-        android:paddingRight="40dp">
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/welcome"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Welcome, "
-            android:textSize="35dp"
-            android:layout_marginTop="20dp"
-            android:layout_gravity="center"
-            android:layout_alignParentTop="true"
-            android:textColor="@color/colorTitles"/>
-        <TextView
-            android:id="@+id/username_edit"
-            android:layout_below="@id/welcome"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="Username:"/>
-
-        <EditText
-            android:id="@+id/username_edit_et"
-            android:layout_below="@id/username_edit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text=""
-            android:background="@drawable/rounded_shape_profile"/>
-
-        <TextView
-            android:id="@+id/phone_number_edit"
-            android:layout_below="@id/username_edit_et"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="Phone number:"/>
-
-        <EditText
-            android:id="@+id/phone_edit_et"
-            android:layout_below="@id/phone_number_edit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text=""
-            android:background="@drawable/rounded_shape_profile"/>
-
-        <TextView
-            android:id="@+id/address_edit"
-            android:layout_below="@id/phone_edit_et"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="Address:"/>
-
-        <EditText
-            android:id="@+id/address_edit_et"
-            android:layout_below="@id/address_edit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text=""
-            android:background="@drawable/rounded_shape_profile"/>
-
-        <TextView
-            android:id="@+id/password_edit"
-            android:layout_below="@id/address_edit_et"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="New password:"/>
-
-        <EditText
-            android:id="@+id/password_edit_et"
-            android:layout_below="@id/password_edit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text=""
-            android:background="@drawable/rounded_shape_profile"/>
-
-        <TextView
-            android:id="@+id/password2_edit"
-            android:layout_below="@id/password_edit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:text="Confirm password:"/>
-
-        <EditText
-            android:id="@+id/password2_edit_et"
-            android:layout_below="@id/password2_edit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text=""
-            android:background="@drawable/rounded_shape_profile"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="430dp">
-
-        <Button
-            android:id="@+id/save"
-            android:layout_below="@id/password2_edit_et"
-            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:background="@drawable/rounded_button"
-            android:text="Save chages"
-            android:layout_weight="1"
-            android:layout_marginTop="20dp"
-            android:textStyle="bold"
-            android:textAllCaps="false" />
+            android:layout_below="@id/tool"
+            android:background="#FFFFFF"
+            android:paddingLeft="40dp"
+            android:paddingRight="40dp">
 
-        <Button
-            android:id="@+id/cancel"
-            android:layout_below="@id/password2_edit_et"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:background="@drawable/rounded_button"
-            android:text="Cancel"
-            android:layout_marginLeft="20dp"
-            android:layout_weight="1"
-            android:layout_marginTop="20dp"
-            android:textStyle="bold"
-            android:textAllCaps="false" />
-        </LinearLayout>
+            <TextView
+                android:id="@+id/welcome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:text=""
+                android:textColor="@color/colorTitles"
+                android:textSize="30dp" />
 
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/name_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/welcome"
+                android:layout_marginTop="20dp"
+                android:text="Name:" />
+
+            <EditText
+                android:id="@+id/name_edit_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/name_edit"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/rounded_shape_profile"
+                android:paddingBottom="10dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/phone_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/name_edit_et"
+                android:layout_marginTop="20dp"
+                android:text="Address:" />
+
+            <EditText
+                android:id="@+id/phone_edit_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/phone_edit"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/rounded_shape_profile"
+                android:paddingBottom="10dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/password_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/phone_edit_et"
+                android:layout_marginTop="20dp"
+                android:text="New password:" />
+
+            <EditText
+                android:id="@+id/password_edit_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/password_edit"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/rounded_shape_profile"
+                android:paddingBottom="10dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/password2_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/password_edit_et"
+                android:layout_marginTop="20dp"
+                android:text="Confirm password:" />
+
+            <EditText
+                android:id="@+id/password2_edit_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/password2_edit"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/rounded_shape_profile"
+                android:paddingBottom="10dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:text="" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="480dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/save"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/password2_edit_et"
+                    android:layout_marginTop="20dp"
+                    android:layout_weight="1"
+                    android:background="#7acf41"
+                    android:text="Save chages"
+                    android:textAllCaps="false"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/cancel"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/password2_edit_et"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_button"
+                    android:text="Cancel"
+                    android:textAllCaps="false"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+    <Button
+        android:id="@+id/back_button_profile"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="9dp"
+        android:layout_marginStart="9dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/back_icon" />
 
 </FrameLayout>

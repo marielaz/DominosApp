@@ -28,6 +28,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.PizzaViewH
 
     private Activity activity;
     private List<Pizza> pizzas;
+    int i = 0;
+    StringBuilder sb = new StringBuilder();
 
 
     public CustomAdapter(Activity activity, List<Pizza> pizzas) {
@@ -48,7 +50,17 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.PizzaViewH
         Pizza pizza = pizzas.get(position);
         vh.pizzaImage.setImageResource(pizza.getImageId());
         vh.pizzaName.setText(pizza.getName());
-        vh.pizzaDescr.setText(pizza.getDescription());
+
+        for (i = 0; i< pizza.getIngredients().size(); i++){
+            if (i == pizza.getIngredients().size()-1){
+                sb.append(pizza.getIngredients().get(i));
+            }
+            else {
+                sb.append(pizza.getIngredients().get(i) + ", ");
+            }
+        }
+        vh.pizzaDescr.setText(sb.toString());
+        sb = new StringBuilder();
         double p = pizza.getPrice();
         vh.pizzaPrice.setText(String.format("%.2f", p));
 

@@ -37,13 +37,11 @@
         android:id="@+id/descr_pizza"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=""
         android:paddingRight="15dp"
         android:textSize="15sp"
         android:layout_below="@+id/name_pizza"
         android:layout_toRightOf="@+id/largeTrad"
-        android:layout_toEndOf="@+id/largeTrad"
-        android:layout_marginTop="13dp" />
+        android:layout_toEndOf="@+id/largeTrad" />
 
     <TextView
         android:id="@+id/price_pizza"

@@ -1,9 +1,7 @@
 package karikuncheva.dominosapp;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -71,14 +69,16 @@ public class NavigDrawerActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camara) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
+        if (id == R.id.nav_profile) {
+            Intent i = new Intent(this, ProfileActivity.class);
+            startActivity(i);
+        } else if (id == R.id.nav_contacts) {
+            Intent i = new Intent(this, ContactsActivity.class);
+            startActivity(i);
+          //  getSupportFragmentManager().beginTransaction().add(R.id.fragment_container,new ContactsFragment()).commit();
+        } else if (id == R.id.nav_cart) {
+            Intent i = new Intent(this, CartActivity.class);
+            startActivity(i);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

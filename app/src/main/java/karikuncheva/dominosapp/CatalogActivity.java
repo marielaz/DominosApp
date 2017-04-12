@@ -15,6 +15,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.inputmethod.InputMethodManager;
 
 public class CatalogActivity extends NavigDrawerActivity {
 
@@ -121,14 +122,17 @@ public class CatalogActivity extends NavigDrawerActivity {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camara) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        if (id == R.id.nav_profile) {
+            Intent i = new Intent(CatalogActivity.this, ProfileActivity.class);
+            startActivity(i);
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_contacts) {
+            Intent i = new Intent(CatalogActivity.this, ContactsActivity.class);
+            startActivity(i);
 
-        } else if (id == R.id.nav_manage) {
-
+        } else if (id == R.id.nav_cart) {
+            Intent i = new Intent(CatalogActivity.this, CartActivity.class);
+            startActivity(i);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -136,5 +140,3 @@ public class CatalogActivity extends NavigDrawerActivity {
         return true;
     }
 }
-
-

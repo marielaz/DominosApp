@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-
 import android.widget.EditText;
 import android.widget.Button;
 import android.view.View;
@@ -13,10 +12,7 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 
-import java.util.ArrayList;
-
 import karikuncheva.dominosapp.model.User;
-import karikuncheva.dominosapp.model.Shop;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -27,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
     private Button registerButton;
     private String username, password;
     public static User loggedUser;
-    SharedPreferences sharedPreference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,13 +37,14 @@ public class MainActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (validate()) {
-                    Toast.makeText(MainActivity.this, "User data is valid", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(MainActivity.this, CatalogActivity.class);
-                    MainActivity.this.startActivity(intent);
-                } else {
+                 //   if (DBManager.getInstance(MainActivity.this).existsUser(loggedUser.getUsername())) {
+                        Toast.makeText(MainActivity.this, "User data is valid", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(MainActivity.this, CatalogActivity.class);
+                        MainActivity.this.startActivity(intent);
+               //    }
+                }else {
                     Toast.makeText(MainActivity.this, "User data not valid", Toast.LENGTH_SHORT).show();
                 }
-
             }
         });
 
@@ -60,32 +56,22 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public boolean validate(){
+    public boolean validate() {
         initialize();
-        if (username.isEmpty()){
+        if (username.isEmpty()) {
             username_login.setError("Please, enter a valid username!");
             username_login.requestFocus();
             return false;
         }
-        if (password.isEmpty()){
+        if (password.isEmpty()) {
             password_login.setError("Please, enter a valid password");
             password_login.requestFocus();
-           return false;
+            return false;
         }
+        return true;
+    }
 
-        sharedPreference = this.getSharedPreferences(RegistrationActivity.PREFS_NAME, Context.MODE_PRIVATE);
-        String currentUser = sharedPreference.getString("user", null);
-        if(currentUser != null){
-            Gson gson = new Gson();
-            loggedUser = gson.fromJson(currentUser, User.class);
-            return true;
-
-        }
-
-        return false;
-     }
-
-    public void initialize(){
+    public void initialize() {
         username = username_login.getText().toString().trim();
         password = password_login.getText().toString().trim();
     }

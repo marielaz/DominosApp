@@ -47,26 +47,29 @@ public class RegistrationActivity extends AppCompatActivity {
             }
         });
     }
-    public void register(){
+    public void register() {
         initialize();
-        if (validate()){
-            sharedPreference = this.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = sharedPreference.edit();
+        if (validate()) {
+                   user = new User(username, pass, email);
+                    DBManager.getInstance(this).addUser(user);
+                }
 
-            user = new User(username,pass,email);
-            Gson gson = new Gson();
-            editor.putString("user", gson.toJson(user));
-            editor.apply();
+//            sharedPreference = this.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+//            SharedPreferences.Editor editor = sharedPreference.edit();
+//
+//            user = new User(username, pass, email);
+//            Gson gson = new Gson();
+//            editor.putString("user", gson.toJson(user));
+//            editor.apply();
             MainActivity.loggedUser = user;
-            Toast.makeText(this, "Registration complete", Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(RegistrationActivity.this, CatalogActivity.class);
-            //TODO da ni preprashta da si vuvedem adress!!!!
+//            Toast.makeText(this, "Registration complete", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(RegistrationActivity.this, EditAddressActivity.class);
             RegistrationActivity.this.startActivity(intent);
-        }
-        else{
-            Toast.makeText(this, "Registration has failed", Toast.LENGTH_SHORT).show();
-        }
-    }
+//        }
+//        else{
+//                Toast.makeText(this, "Registration has failed", Toast.LENGTH_SHORT).show();
+//            }
+       }
 
 
     public boolean validate(){

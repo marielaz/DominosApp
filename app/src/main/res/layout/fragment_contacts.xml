@@ -1,32 +1,62 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="karikuncheva.dominosapp.ContactsFragment">
+    android:background="@color/colorBackground"
+    tools:context="karikuncheva.dominosapp.ContactsActivity">
+
+    <include
+        android:id="@+id/toolbar_contacts"
+        layout="@layout/toolbar"></include>
+
+    <Button
+        android:id="@+id/back_button_contact"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="9dp"
+        android:layout_marginStart="9dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/back_icon" />
 
     <LinearLayout
+        android:id="@+id/call_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar_contacts"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/custom_bnt"
         android:orientation="horizontal"
-        android:layout_marginTop="120dp">
+        android:padding="10dp">
 
         <Button
             android:id="@+id/call"
             android:layout_width="wrap_content"
             android:layout_height="78dp"
-            android:background="@drawable/ic_action_name" />
+            android:background="@drawable/call" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="070012525"/>
+            android:layout_marginLeft="15dp"
+            android:text="070012525" />
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/tweeter_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/call_layout"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/custom_bnt"
         android:orientation="horizontal"
-        android:layout_marginTop="200dp">
+        android:padding="10dp">
 
         <Button
             android:id="@+id/tweeter"
@@ -37,14 +67,21 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="070012525"/>
+            android:layout_marginLeft="15dp"
+            android:text="Tweeter" />
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/facebook_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/tweeter_layout"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/custom_bnt"
         android:orientation="horizontal"
-        android:layout_marginTop="290dp">
+        android:padding="10dp">
 
         <Button
             android:id="@+id/fb"
@@ -55,8 +92,33 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="070012525"/>
+            android:layout_marginLeft="15dp"
+            android:text="Facebook" />
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/instagram_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/facebook_layout"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/custom_bnt"
+        android:orientation="horizontal"
+        android:padding="10dp">
 
-</FrameLayout>
+        <Button
+            android:id="@+id/instagram"
+            android:layout_width="wrap_content"
+            android:layout_height="78dp"
+            android:background="@drawable/instagram" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:text="Tweeter" />
+    </LinearLayout>
+
+</RelativeLayout>

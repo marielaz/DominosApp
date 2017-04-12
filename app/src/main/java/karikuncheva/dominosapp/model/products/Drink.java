@@ -5,14 +5,21 @@ import karikuncheva.dominosapp.model.products.Product;
 
 public class Drink extends Product {
 
+	private  String description;
 
-	public Drink(String name, double price, String description, int imageId) {
-		super(ProductType.DRINK, name, price,description, imageId );
+	public Drink(String name, double price, int imageId, String description) {
+		super(ProductType.DRINK, name, price, imageId );
+		this.description = description;
 		
 	}
 	public Drink(String name, double price, String description) {
-		super(ProductType.DRINK, name, price,description);
+		super(ProductType.DRINK, name, price);
+		this.description = description;
 
+	}
+
+	public String getDescription() {
+		return description;
 	}
 
 	@Override

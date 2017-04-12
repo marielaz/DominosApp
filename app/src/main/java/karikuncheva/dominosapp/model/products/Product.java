@@ -16,16 +16,14 @@ public abstract class Product implements Serializable {
 	private String name;
 	private double price;
 	private int quantity ;
-	private  String description;
 	private double discPrice;
 	private int imageId;
 
 	
-	public Product(ProductType pType, String name, double price, String description, int imageId) {
+	public Product(ProductType pType, String name, double price, int imageId) {
 		this.pType = pType;
 		this.name = name;
 		this.price = price;
-		this.description = description;
 		this.imageId = imageId;
 		this.quantity= 1;
 		if (pType == ProductType.PIZZA){
@@ -36,11 +34,10 @@ public abstract class Product implements Serializable {
 		}
 	}
 
-	public Product(ProductType pType, String name, double price, String description) {
+	public Product(ProductType pType, String name, double price) {
 		this.pType = pType;
 		this.name = name;
 		this.price = price;
-		this.description = description;
 		this.quantity= 1;
 		if (pType == ProductType.PIZZA){
 			this.discPrice = price - (price * 0.05);
@@ -71,10 +68,6 @@ public abstract class Product implements Serializable {
 	
 	public int getQuantity() {
 		return quantity;
-	}
-
-	public String getDescription() {
-		return description;
 	}
 
 	public int getImageId() {

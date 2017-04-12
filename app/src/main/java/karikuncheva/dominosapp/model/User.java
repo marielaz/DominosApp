@@ -2,6 +2,8 @@ package karikuncheva.dominosapp.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -15,7 +17,7 @@ public class User implements Serializable {
 
 	private String username;
 	private String name;
-	private Address addresses;
+	private ArrayList<Address> addresses;
 	private String password;
 	private String phoneNumber;
 	private Cart cart;
@@ -25,18 +27,18 @@ public class User implements Serializable {
 	private static final String PASS_REGEX = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{6,16}$";
 	private Pattern regexPattern;
 	private Matcher regMatcher;
-
+	private int id;
 
 	public User(){
-
+        this.addresses = new ArrayList<Address>();
 	}
 	public User(String username, String password){
         this.username = username;
         this.password = password;
 		this.cart = new Cart();
 		this.shop = Shop.getInstance();
+		this.addresses = new ArrayList<Address>();
     }
-
 
 	public User(String username, String password, String email) {
 		this.username = username;
@@ -44,7 +46,7 @@ public class User implements Serializable {
 		this.email = email;
 		this.cart = new Cart();
 		this.shop = Shop.getInstance();
-
+		this.addresses = new ArrayList<Address>();
 	}
 
 	public boolean validatePassword(String pass) {
@@ -67,13 +69,38 @@ public class User implements Serializable {
 		return cart;
 	}
 
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public String getName() {
+		return name;
+	}
+
 	public void setMoney(double money) {
 		this.money = money;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public double getMoney() {
 		return money;
 	}
+
 
 	public boolean validateEmailAddress(String emailAddress) {
 
@@ -101,6 +128,9 @@ public class User implements Serializable {
 		}
 	}
 
+	public void addAddress(Address a){
+		this.addresses.add(a);
+	}
 //	public void changeAddress(String newAddress) {
 //		if (newAddress != null && !newAddress.isEmpty()) {
 //			this.address = newAddress;
@@ -122,8 +152,33 @@ public class User implements Serializable {
 		}
 	}
 
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setCart(Cart cart) {
+		this.cart = cart;
+	}
+
 	public void removeProductFromCart(Product p) {
 		this.cart.removeProduct(p);
+	}
+
+
+	public List<Address> getAddresses() {
+		return addresses;
 	}
 
 	@Override
@@ -173,13 +228,13 @@ public class User implements Serializable {
 				if (countDigits > code.length() - countDigits) {
 					switch (new Random().nextInt(3)) {
 					case 0:
-						this.cart.addProduct(new Drink("Coca Cola", 0, "", R.drawable.cola));
+						this.cart.addProduct(new Drink("Coca Cola", 0, R.drawable.cola, ""));
 						break;
 					case 1:
-						this.cart.addProduct(new Drink("Fanta", 0, "", R.drawable.fanta));
+						this.cart.addProduct(new Drink("Fanta", 0, R.drawable.fanta, ""));
 						break;
 					case 2:
-						this.cart.addProduct(new Drink("Sprite", 0, "", R.drawable.sprite));
+						this.cart.addProduct(new Drink("Sprite", 0, R.drawable.sprite, ""));
 						break;
 
 					default:
@@ -188,13 +243,13 @@ public class User implements Serializable {
 				} else {
 					switch (new Random().nextInt(3)) {
 					case 0:
-						this.cart.addProduct(new Dessert("Choco Pie", 0, "", R.drawable.chocopie));
+						this.cart.addProduct(new Dessert("Choco Pie", 0, R.drawable.chocopie, ""));
 						break;
 					case 1:
-						this.cart.addProduct(new Dessert("Nirvana", 0, "", R.drawable.nirvana));
+						this.cart.addProduct(new Dessert("Nirvana", 0, R.drawable.nirvana, ""));
 						break;
 					case 2:
-						this.cart.addProduct(new Dessert("Mini pancakes", 0, "", R.drawable.minipancakes));
+						this.cart.addProduct(new Dessert("Mini pancakes", 0, R.drawable.minipancakes, ""));
 						break;
 
 					default:
