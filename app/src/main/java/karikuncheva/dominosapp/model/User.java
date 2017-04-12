@@ -29,9 +29,9 @@ public class User implements Serializable {
     private Matcher regMatcher;
     private int id;
 
-    public User() {
-        this.addresses = new ArrayList<Address>();
-    }
+   // public User() {
+      //  this.addresses = new ArrayList<Address>();
+   // }
 
     public User(String username, String password) {
         this.username = username;
@@ -95,6 +95,14 @@ public class User implements Serializable {
 
     public int getId() {
         return id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public boolean validateEmailAddress(String emailAddress) {

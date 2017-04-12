@@ -50,9 +50,9 @@ public class RegistrationActivity extends AppCompatActivity {
     public void register() {
         initialize();
         if (validate()) {
-                   user = new User(username, pass, email);
-                    DBManager.getInstance(this).addUser(user);
-                }
+            user = new User(username, pass, email);
+            DBManager.getInstance(this).addUser(user);
+
 
 //            sharedPreference = this.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
 //            SharedPreferences.Editor editor = sharedPreference.edit();
@@ -69,7 +69,10 @@ public class RegistrationActivity extends AppCompatActivity {
 //        else{
 //                Toast.makeText(this, "Registration has failed", Toast.LENGTH_SHORT).show();
 //            }
-       }
+        } else {
+            Toast.makeText(this, "Registration has failed", Toast.LENGTH_SHORT).show();
+        }
+    }
 
 
     public boolean validate(){

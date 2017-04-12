@@ -37,11 +37,11 @@ public class MainActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (validate()) {
-                 //   if (DBManager.getInstance(MainActivity.this).existsUser(loggedUser.getUsername())) {
+                   if (DBManager.getInstance(MainActivity.this).existsUser(username_login.getText().toString())) {
                         Toast.makeText(MainActivity.this, "User data is valid", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(MainActivity.this, CatalogActivity.class);
                         MainActivity.this.startActivity(intent);
-               //    }
+                   }
                 }else {
                     Toast.makeText(MainActivity.this, "User data not valid", Toast.LENGTH_SHORT).show();
                 }
