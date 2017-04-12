@@ -24,7 +24,6 @@ import karikuncheva.dominosapp.model.User;
  */
 public class ProfileFragment extends Fragment {
 
-    private TextView username;
     private EditText phone;
     private EditText name;
     private EditText password;
@@ -47,7 +46,6 @@ public class ProfileFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_profile, container, false);
 
         welcome = (TextView) v.findViewById(R.id.welcome);
-        username = (TextView) v.findViewById(R.id.username_edit_et);
         phone = (EditText) v.findViewById(R.id.phone_edit_et);
         name = (EditText) v.findViewById(R.id.name_edit_et);
         password = (EditText) v.findViewById(R.id.password_edit_et);
@@ -67,7 +65,6 @@ public class ProfileFragment extends Fragment {
         loggedUser = MainActivity.loggedUser;
 
         welcome.setText("Welcome, " + loggedUser.getUsername());
-        username.setText(loggedUser.getUsername());
 
         if (loggedUser.getName() != null) {
             name.setText(loggedUser.getName());

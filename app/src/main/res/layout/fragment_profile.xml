@@ -27,29 +27,11 @@
             android:layout_gravity="center"
             android:layout_alignParentTop="true"
             android:textColor="@color/colorTitles"/>
-        <TextView
-            android:id="@+id/username_edit"
-            android:layout_below="@id/welcome"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="Username:"/>
 
-        <TextView
-            android:id="@+id/username_edit_et"
-            android:layout_below="@id/username_edit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:paddingTop="8dp"
-            android:paddingBottom="8dp"
-            android:paddingLeft="10dp"
-            android:text=""
-            android:background="@drawable/rounded_shape_profile"/>
 
         <TextView
             android:id="@+id/name_edit"
-            android:layout_below="@id/username_edit_et"
+            android:layout_below="@id/welcome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -61,8 +43,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
             android:paddingLeft="10dp"
             android:text=""
             android:background="@drawable/rounded_shape_profile"/>
@@ -73,7 +55,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="Address:"/>
+            android:text="Phone number::"/>
 
         <EditText
             android:id="@+id/phone_edit_et"
@@ -81,8 +63,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
             android:paddingLeft="10dp"
             android:text=""
             android:background="@drawable/rounded_shape_profile"/>
@@ -101,8 +83,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
             android:paddingLeft="10dp"
             android:text=""
             android:background="@drawable/rounded_shape_profile"/>
@@ -121,8 +103,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:paddingTop="7dp"
-            android:paddingBottom="7dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
             android:paddingLeft="10dp"
             android:text=""
             android:background="@drawable/rounded_shape_profile"/>
@@ -131,7 +113,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="480dp">
+            android:layout_marginTop="400dp">
 
             <Button
                 android:id="@+id/save"
