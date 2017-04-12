@@ -27,7 +27,7 @@ public class User implements Serializable {
     private static final String PASS_REGEX = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{6,16}$";
     private Pattern regexPattern;
     private Matcher regMatcher;
-
+    private int id;
 
     public User() {
         this.addresses = new ArrayList<Address>();
@@ -89,6 +89,13 @@ public class User implements Serializable {
         return money;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
 
     public boolean validateEmailAddress(String emailAddress) {
 
@@ -119,6 +126,7 @@ public class User implements Serializable {
     public void addAddress(Address a) {
         this.addresses.add(a);
     }
+
 //	public void changeAddress(String newAddress) {
 //		if (newAddress != null && !newAddress.isEmpty()) {
 //			this.address = newAddress;

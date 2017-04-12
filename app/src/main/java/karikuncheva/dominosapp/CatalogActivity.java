@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -16,6 +15,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.inputmethod.InputMethodManager;
 
 public class CatalogActivity extends NavigDrawerActivity {
 
@@ -123,17 +123,16 @@ public class CatalogActivity extends NavigDrawerActivity {
         int id = item.getItemId();
 
         if (id == R.id.nav_profile) {
-            Intent i = new Intent(this, ProfileActivity.class);
+            Intent i = new Intent(CatalogActivity.this, ProfileActivity.class);
             startActivity(i);
+
         } else if (id == R.id.nav_contacts) {
-            Intent i = new Intent(this, ContactsFragment.class);
+            Intent i = new Intent(CatalogActivity.this, ContactsActivity.class);
             startActivity(i);
-           // getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new ContactsFragment()).commit();
 
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
+        } else if (id == R.id.nav_cart) {
+            Intent i = new Intent(CatalogActivity.this, CartActivity.class);
+            startActivity(i);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

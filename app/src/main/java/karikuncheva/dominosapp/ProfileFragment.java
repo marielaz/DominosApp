@@ -32,13 +32,7 @@ public class ProfileFragment extends Fragment {
     private Button save;
     private Button cancel;
 
-    User loggedUser;
-    SharedPreferences sharedPreference;
-
-    public ProfileFragment() {
-        // Required empty public constructor
-    }
-
+    private User loggedUser;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -53,29 +47,22 @@ public class ProfileFragment extends Fragment {
         save = (Button) v.findViewById(R.id.save);
         cancel = (Button) v.findViewById(R.id.cancel);
 
-        // TODO edit user also in shared prefs!!
-        // nqma smisul ot towa kato imame static loggedUser
-        sharedPreference = getActivity().getSharedPreferences(RegistrationActivity.PREFS_NAME, Context.MODE_PRIVATE);
-//        String currentUser = sharedPreference.getString("user", MainActivity.loggedUser.getUsername());
-//        if(currentUser != null){
-//            Gson gson = new Gson();
-//            loggedUser = gson.fromJson(currentUser, User.class);
-//    }
-
         loggedUser = MainActivity.loggedUser;
 
         welcome.setText("Welcome, " + loggedUser.getUsername());
 
-        if (loggedUser.getName() != null) {
-            name.setText(loggedUser.getName());
-        }
-        if (loggedUser.getPhoneNumber() != null){
-            phone.setText(loggedUser.getPhoneNumber());
-        }
+
+//        if (loggedUser.getName() != null) {
+//            name.setText(loggedUser.getName());
+//        }
+//        if (loggedUser.getPhoneNumber() != null){
+//            phone.setText(loggedUser.getPhoneNumber());
+//        }
 
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if (!name.getText().toString().isEmpty()){
                     loggedUser.setName(name.getText().toString());
                 }
@@ -86,13 +73,8 @@ public class ProfileFragment extends Fragment {
                 if (!phone.getText().toString().isEmpty() && phone.getText().toString() != null){
                     loggedUser.setPhoneNumber(phone.getText().toString());
                 }
-                User user = loggedUser;
-               // user.setCart(loggedUser.getCart());
-                SharedPreferences.Editor editor = sharedPreference.edit();
-                Gson gson = new Gson();
-                editor.putString("user", gson.toJson(user));
-                editor.apply();
-                MainActivity.loggedUser = user;
+                DBManager.getInstance(getActivity()).updateUser(loggedUser.getUsername());
+
                 Toast.makeText(getActivity(), "Saved changes", Toast.LENGTH_SHORT).show();
             }
         });
@@ -107,5 +89,4 @@ public class ProfileFragment extends Fragment {
 
         return v;
     }
-
 }
