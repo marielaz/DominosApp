@@ -35,20 +35,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_margin="@dimen/fab_margin"
-        android:backgroundTint="@color/colorPrimary"
         app:srcCompat="@mipmap/plus_address" />
-
-    <!--<Button-->
-        <!--android:id="@+id/back_button_address"-->
-        <!--android:layout_width="40dp"-->
-        <!--android:layout_height="40dp"-->
-        <!--android:layout_alignParentLeft="true"-->
-        <!--android:layout_alignParentStart="true"-->
-        <!--android:layout_alignParentTop="true"-->
-        <!--android:layout_marginLeft="9dp"-->
-        <!--android:layout_marginStart="9dp"-->
-        <!--android:layout_marginTop="12dp"-->
-        <!--android:background="@drawable/back_icon" />-->
 
 
 </RelativeLayout>

@@ -72,7 +72,7 @@ public class DBManager extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE users;");
-        db.execSQL("DROP TABLE addresses;");
+//        db.execSQL("DROP TABLE addresses;");
         onCreate(db);
     }
 
@@ -124,8 +124,7 @@ public class DBManager extends SQLiteOpenHelper {
                 String username = strings[0];
 
                 ContentValues values = new ContentValues();
-                getWritableDatabase().update("users", values, "username = ?", new String[]{username});
-                values.put("username", MainActivity.loggedUser.getName());
+                values.put("username", MainActivity.loggedUser.getUsername());
                 values.put("password", MainActivity.loggedUser.getPassword());
                 values.put("email", MainActivity.loggedUser.getEmail());
                 values.put("name", MainActivity.loggedUser.getName());

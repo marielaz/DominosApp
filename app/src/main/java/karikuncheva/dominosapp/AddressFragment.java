@@ -1,24 +1,15 @@
 package karikuncheva.dominosapp;
 
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import com.google.gson.Gson;
-
-import karikuncheva.dominosapp.model.Address;
-import karikuncheva.dominosapp.model.Shop;
-import karikuncheva.dominosapp.model.User;
 
 
 /**
@@ -35,7 +26,7 @@ public class AddressFragment extends Fragment {
 
         recyclerView = (RecyclerView) v.findViewById(R.id.recycler_view_address);
 
-        CustomAddressAdapter adapter = new CustomAddressAdapter(getActivity(), MainActivity.loggedUser.getAddresses());
+        AddressAdapter adapter = new AddressAdapter(getActivity(), MainActivity.loggedUser.getAddresses());
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
 
