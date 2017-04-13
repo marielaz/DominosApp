@@ -1,5 +1,6 @@
 package karikuncheva.dominosapp;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -37,8 +38,8 @@ public class MakeOrderActivity extends AppCompatActivity {
             public void onClick(View v) {
                 delivery_checked.setVisibility(View.VISIBLE);
                 // intent to the list with the address
-//                Intent intent = new Intent(MakeOrderActivity.this, CatalogActivity.class);
-//                MakeOrderActivity.this.startActivity(intent);
+                Intent intent = new Intent(MakeOrderActivity.this, CatalogActivity.class);
+                MakeOrderActivity.this.startActivity(intent);
             }
         });
     }

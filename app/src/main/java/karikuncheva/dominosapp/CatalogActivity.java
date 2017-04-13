@@ -105,6 +105,7 @@ public class CatalogActivity extends NavigDrawerActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_log_out) {
+            this.st
             return true;
         }
         if (id == R.id.action_cart) {
