@@ -9,22 +9,24 @@ import java.io.Serializable;
 public class Address implements Serializable {
 
     private String town;
-    private String neighborhood;
+    private String neighbourhood;
     private String street;
     private String number;
     private String block;
     private String postCode;
-    private String apartament;
+    private String apartment;
     private String floor;
+    private int id;
+    private int idUser;
 
-    public Address(String town, String neighborhood, String street, String number, String block, String postCode, String apartament, String floor) {
+    public Address(String town, String neighbourhood, String street, String number, String block, String postCode, String apartment, String floor) {
         this.town = town;
-        this.neighborhood = neighborhood;
+        this.neighbourhood = neighbourhood;
         this.street = street;
         this.number = number;
         this.block = block;
         this.postCode = postCode;
-        this.apartament = apartament;
+        this.apartment = apartment;
         this.floor = floor;
     }
 
@@ -32,8 +34,8 @@ public class Address implements Serializable {
         return town;
     }
 
-    public String getNeighborhood() {
-        return neighborhood;
+    public String getNeighbourhood() {
+        return neighbourhood;
     }
 
     public String getStreet() {
@@ -52,11 +54,27 @@ public class Address implements Serializable {
         return postCode;
     }
 
-    public String getApartament() {
-        return apartament;
+    public String getApartment() {
+        return apartment;
     }
 
     public String getFloor() {
         return floor;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
     }
 }

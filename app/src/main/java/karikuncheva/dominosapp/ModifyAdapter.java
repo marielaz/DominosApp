@@ -71,6 +71,10 @@ public class ModifyAdapter extends RecyclerView.Adapter<ModifyAdapter.ModifyView
                         tempArr.set(position, 0);
                     }
                 }
+                if(isChecked == false){
+
+                }
+                //10 checked - stop
             }
         });
 

@@ -35,9 +35,6 @@ public class AddressFragment extends Fragment {
 
         recyclerView = (RecyclerView) v.findViewById(R.id.recycler_view_address);
 
-
-//        MainActivity.loggedUser.getAddresses().add(new Address("sofiq", "feh", "fhje", "hfu","aass", "aaa", "sdfg", "aaa"));
-
         CustomAddressAdapter adapter = new CustomAddressAdapter(getActivity(), MainActivity.loggedUser.getAddresses());
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
