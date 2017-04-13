@@ -11,8 +11,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import karikuncheva.dominosapp.model.products.Product;
 
-public class CartActivity extends AppCompatActivity implements CartListFragment.CartComunicator {
+
+public class CartActivity extends AppCompatActivity implements CartListFragment.CartComunicator, CouponFragment.CouponCommunicator {
 
     private RecyclerView recyclerView;
     private Button checkOut;
@@ -60,5 +62,12 @@ public class CartActivity extends AppCompatActivity implements CartListFragment.
 //        CartTotalFragment fragment = (CartTotalFragment) fm.findFragmentById(R.id.fragment_total);
 //        fragment.sumTotalPrice(sum);
         total.setText(String.format("%.2f",sum));
+    }
+
+    @Override
+    public void addProduct(Product p) {
+        FragmentManager fm = getSupportFragmentManager();
+        CartListFragment fragment = (CartListFragment) fm.findFragmentById(R.id.activity_cart_fragment);
+        fragment.addProduct(p);
     }
 }

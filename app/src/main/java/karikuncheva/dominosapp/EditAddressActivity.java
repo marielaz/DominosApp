@@ -50,7 +50,7 @@ public class EditAddressActivity extends AppCompatActivity {
             public void onClick(View v) {
                 inicialize();
                 Address address = new Address(townTxt, neighborhoodTxt, streetTxt, numberTxt, blockTxt, postCodeTxt, apartamentTxt, floorTxt);
-                MainActivity.loggedUser.getAddresses().add(address);
+                DBManager.getInstance(EditAddressActivity.this).addAddress(address);
                 Intent i = new Intent(EditAddressActivity.this, MakeOrderActivity.class);
                 startActivity(i);
             }

@@ -18,16 +18,8 @@ import android.widget.ImageButton;
  */
 public class CatalogFragment extends Fragment {
 
-    //This is our tablayout
     private TabLayout tabLayout;
-
-    //This is our viewPager
     private ViewPager viewPager;
-
-    public CatalogFragment() {
-        // Required empty public constructor
-    }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

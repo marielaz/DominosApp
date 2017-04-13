@@ -16,6 +16,9 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import karikuncheva.dominosapp.model.User;
 
 
@@ -68,8 +71,10 @@ public class ProfileFragment extends Fragment {
                         password.getText().toString().equals(confirm.getText().toString())) {
                     MainActivity.loggedUser.setPassword(password.getText().toString());
                 }
-                if (!phone.getText().toString().isEmpty() && phone.getText().toString() != null){
-                    MainActivity.loggedUser.setPhoneNumber(phone.getText().toString());
+                if (!phone.getText().toString().isEmpty() && phone.getText().toString() != null) {
+                    if (validateMobileNumber(phone.getText().toString())) {
+                        MainActivity.loggedUser.setPhoneNumber(phone.getText().toString());
+                    }
                 }
                 DBManager.getInstance(getActivity()).updateUser(MainActivity.loggedUser.getUsername());
 
@@ -86,5 +91,14 @@ public class ProfileFragment extends Fragment {
         });
 
         return v;
+    }
+    public boolean validateMobileNumber(String mobileNumber) {
+        Pattern regexPattern = Pattern.compile("^((088)|(089)|(087))[0-9]{7}$");
+        Matcher regMatcher = regexPattern.matcher(mobileNumber);
+        if (regMatcher.matches()) {
+            return true;
+        }
+        Toast.makeText(getActivity(), "Invalid Mobile Number", Toast.LENGTH_SHORT).show();
+        return false;
     }
 }
