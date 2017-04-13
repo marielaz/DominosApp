@@ -2,18 +2,14 @@ package karikuncheva.dominosapp;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.AsyncTask;
 import android.widget.Toast;
+import java.util.ArrayList;
 import java.util.HashMap;
-<<<<<<< HEAD
-
 import karikuncheva.dominosapp.model.Address;
-=======
->>>>>>> a7859fbc2f74339532dbc75e11c5eca094d7fcc6
 import karikuncheva.dominosapp.model.User;
 
 /**
@@ -22,7 +18,6 @@ import karikuncheva.dominosapp.model.User;
 
 public class DBManager extends SQLiteOpenHelper {
     private static DBManager ourInstance;
-
     private static Context context;
     private static HashMap<String, User> registeredUsers;
     private static ArrayList<Address> addresses;
@@ -129,26 +124,15 @@ public class DBManager extends SQLiteOpenHelper {
                 String username = strings[0];
 
                 ContentValues values = new ContentValues();
-<<<<<<< HEAD
-                values.put("username", u.getUsername());
-                values.put("password", u.getPassword());
-                values.put("email", u.getEmail());
-                values.put("name", u.getName());
-                values.put("phone", u.getPhoneNumber());
-                registeredUsers.remove(username);
-                registeredUsers.put(u.getUsername(), u);
                 getWritableDatabase().update("users", values, "username = ?", new String[]{username});
-=======
                 values.put("username", MainActivity.loggedUser.getName());
                 values.put("password", MainActivity.loggedUser.getPassword());
                 values.put("email", MainActivity.loggedUser.getEmail());
                 values.put("name", MainActivity.loggedUser.getName());
                 values.put("phone", MainActivity.loggedUser.getPhoneNumber());
-
                 registeredUsers.remove(username);
                 registeredUsers.put(username, MainActivity.loggedUser);
                 getWritableDatabase().update("users", values ,"username = ?", new String[]{username});
->>>>>>> a7859fbc2f74339532dbc75e11c5eca094d7fcc6
                 return null;
             }
 
@@ -159,15 +143,9 @@ public class DBManager extends SQLiteOpenHelper {
         }.execute(username);
     }
 
-<<<<<<< HEAD
-    private static void loadUsers() {
-        Cursor cursor = ourInstance.getWritableDatabase().rawQuery("SELECT id, username, password, email FROM users;", null);
-        while (cursor.moveToNext()) {
-=======
     private static void loadUsers(){
         Cursor cursor = ourInstance.getWritableDatabase().rawQuery("SELECT id, username, password, email, name, phone FROM users;", null);
         while(cursor.moveToNext()){
->>>>>>> a7859fbc2f74339532dbc75e11c5eca094d7fcc6
             int id = cursor.getInt(cursor.getColumnIndex("id"));
             String username = cursor.getString(cursor.getColumnIndex("username"));
             String password = cursor.getString(cursor.getColumnIndex("password"));

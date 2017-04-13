@@ -49,12 +49,9 @@ public class ProfileFragment extends Fragment {
 
 
         welcome.setText("Welcome, " + MainActivity.loggedUser.getUsername());
-<<<<<<< HEAD
+
         name.setText(MainActivity.loggedUser.getName());
         phone.setText(MainActivity.loggedUser.getPhoneNumber());
-=======
-
->>>>>>> a7859fbc2f74339532dbc75e11c5eca094d7fcc6
 
         if (MainActivity.loggedUser.getName() != null) {
             name.setText(MainActivity.loggedUser.getName());
