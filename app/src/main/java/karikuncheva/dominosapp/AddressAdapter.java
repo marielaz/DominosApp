@@ -22,7 +22,7 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.AddressV
 
     public AddressAdapter(Activity activity, List<Address> addresses) {
         this.activity = activity;
-        this.addresses = addresses;
+        this.addresses = MainActivity.loggedUser.getAddresses();
     }
 
     @Override

@@ -105,6 +105,9 @@ public class User implements Serializable {
         this.email = email;
     }
 
+    public void setAddresses(ArrayList<Address> addresses) {
+        this.addresses = addresses;
+    }
     public boolean validateEmailAddress(String emailAddress) {
 
         regexPattern = Pattern.compile("^[(a-zA-Z-0-9-\\_\\+\\.)]+@[(a-z-A-z)]+\\.[(a-zA-z)]{2,3}$");

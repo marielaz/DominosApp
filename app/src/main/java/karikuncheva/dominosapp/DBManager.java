@@ -53,7 +53,6 @@ public class DBManager extends SQLiteOpenHelper {
             registeredUsers = new HashMap<>();
             addresses = new ArrayList<>();
             loadUsers();
-            loadAddresses();
         }
         return ourInstance;
     }
@@ -72,7 +71,6 @@ public class DBManager extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE users;");
-//        db.execSQL("DROP TABLE addresses;");
         onCreate(db);
     }
 
@@ -143,6 +141,7 @@ public class DBManager extends SQLiteOpenHelper {
     }
 
     private static void loadUsers(){
+
         Cursor cursor = ourInstance.getWritableDatabase().rawQuery("SELECT id, username, password, email, name, phone FROM users;", null);
         while(cursor.moveToNext()){
             int id = cursor.getInt(cursor.getColumnIndex("id"));
@@ -155,12 +154,15 @@ public class DBManager extends SQLiteOpenHelper {
             u.setName(name);
             u.setPhoneNumber(phone);
             u.setId(id);
+            u.setAddresses(loadAddresses(u.getId()));
             registeredUsers.put(username, u);
+
+
         }
     }
 
-    private static void loadAddresses() {
-        Cursor cursor = ourInstance.getWritableDatabase().rawQuery("SELECT id, town, neighbourhood, street, number, block, postCode, apartment, floor, idUser FROM addresses;", null);
+    public static ArrayList<Address> loadAddresses(int userId ) {
+        Cursor cursor = ourInstance.getWritableDatabase().rawQuery("SELECT id, town, neighbourhood, street, number, block, postCode, apartment, floor, idUser FROM addresses WHERE idUser = '"+userId+"';",null);
         while (cursor.moveToNext()) {
             int id = cursor.getInt(cursor.getColumnIndex("id"));
             String town = cursor.getString(cursor.getColumnIndex("town"));
@@ -178,18 +180,9 @@ public class DBManager extends SQLiteOpenHelper {
             a.setIdUser(idUser);
             addresses.add(a);
         }
+        return  addresses;
     }
 
-    public ArrayList<Address> getUserAddresses(){
-        int id = MainActivity.loggedUser.getId();
-        ArrayList<Address> userAddresses = new ArrayList<>();
-        for(Address a : addresses){
-            if(a.getIdUser() == id){
-                userAddresses.add(a);
-            }
-        }
-        return userAddresses;
-    }
 
     public void deleteAddress(Address a){
             getWritableDatabase().delete("addresses", "id = ?", new String[]{Integer.toString(a.getId())});
