@@ -18,7 +18,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            />
         </activity>
         <activity android:name=".CatalogActivity" />
         <activity android:name=".RegistrationActivity" />
@@ -30,7 +29,9 @@
             android:label="@string/title_activity_navig_drawer"
             android:theme="@style/AppTheme" />
         <activity android:name=".MakeOrderActivity" />
-        <activity android:name=".ProfileActivity" />
+        <activity android:name=".ProfileActivity">
+
+        </activity>
         <activity android:name=".EditAddressActivity" />
         <activity android:name=".ContactsActivity"></activity>
     </application>

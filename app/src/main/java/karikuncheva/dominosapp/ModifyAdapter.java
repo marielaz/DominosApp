@@ -7,8 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -27,6 +27,8 @@ public class ModifyAdapter extends RecyclerView.Adapter<ModifyAdapter.ModifyView
     private ArrayList<Integer> tempArr = new ArrayList<Integer>();
     ModifyPizzaFragment.ModifyCommunicator mc;
     private int i = 0;
+    // max count 10, min count 1 for the ingredients
+    private int counter = 0;
 
     public ModifyAdapter(Activity activity, Pizza pizza, ModifyPizzaFragment.ModifyCommunicator mc) {
         this.activity = activity;
@@ -36,6 +38,7 @@ public class ModifyAdapter extends RecyclerView.Adapter<ModifyAdapter.ModifyView
         for (i = 0; i < Shop.getInstance().getIngr().size(); i++) {
             tempArr.add(0);
         }
+        counter = pizza.getIngredients().size() - 1;
     }
 
     @Override
@@ -49,6 +52,7 @@ public class ModifyAdapter extends RecyclerView.Adapter<ModifyAdapter.ModifyView
     @Override
     public void onBindViewHolder(final ModifyViewHolder vh, final int position) {
 
+
         final String ingr = ingredients.get(position);
         vh.ingredient_name.setText(ingr);
         if (pizza.getIngredients().contains(ingr)) {
@@ -58,17 +62,47 @@ public class ModifyAdapter extends RecyclerView.Adapter<ModifyAdapter.ModifyView
         vh.check_ingr.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
                 if (!pizza.getIngredients().contains(ingr) && isChecked == true) {
-                    ModifyPizzaFragment.sum += 0.60;
-                    mc.modifyPrice(ModifyPizzaFragment.sum);
-                    tempArr.set(position, 1);
+                    counter++;
+                    if (counter > 10) {
+                        Toast.makeText(activity, "Ops... too much ingredients!Please, remove one of them!", Toast.LENGTH_SHORT).show();
+                        vh.check_ingr.setChecked(false);
+                        counter--;
+                    } else {
+                        ModifyPizzaFragment.sum += 0.60;
+                        mc.modifyPrice(ModifyPizzaFragment.sum);
+                        tempArr.set(position, 1);
+                    }
                 }
 
                 if (!pizza.getIngredients().contains(ingr) && isChecked == false) {
-                    if (tempArr.get(position) == 1) {
-                        ModifyPizzaFragment.sum -= 0.60;
-                        mc.modifyPrice(ModifyPizzaFragment.sum);
-                        tempArr.set(position, 0);
+
+                    if (counter <= 1) {
+                        Toast.makeText(activity, "Ops... no ingredients left on the pizza!", Toast.LENGTH_SHORT).show();
+                        vh.check_ingr.setChecked(true);
+
+                    } else {
+                        counter--;
+                        if (tempArr.get(position) == 1) {
+                            ModifyPizzaFragment.sum -= 0.60;
+                            mc.modifyPrice(ModifyPizzaFragment.sum);
+                            tempArr.set(position, 0);
+                        }
+                    }
+                }if (pizza.getIngredients().contains(ingr) && isChecked == false) {
+                    if (counter <= 1) {
+                        Toast.makeText(activity, "Ops... no ingredients left on the pizza!", Toast.LENGTH_SHORT).show();
+                        vh.check_ingr.setChecked(true);
+                    } else {
+                        counter--;
+                    }
+                } else if (pizza.getIngredients().contains(ingr) && isChecked == true) {
+                    counter++;
+                    if (counter > 10) {
+                        Toast.makeText(activity, "Ops... too much ingredients!Please, remove one of them!", Toast.LENGTH_SHORT).show();
+                        vh.check_ingr.setChecked(false);
+                        counter--;
                     }
                 }
                 if(isChecked == false){

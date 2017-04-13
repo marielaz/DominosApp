@@ -47,18 +47,21 @@ public class ProfileFragment extends Fragment {
         save = (Button) v.findViewById(R.id.save);
         cancel = (Button) v.findViewById(R.id.cancel);
 
-        //loggedUser = MainActivity.loggedUser;
 
         welcome.setText("Welcome, " + MainActivity.loggedUser.getUsername());
+<<<<<<< HEAD
         name.setText(MainActivity.loggedUser.getName());
         phone.setText(MainActivity.loggedUser.getPhoneNumber());
+=======
 
-//        if (loggedUser.getName() != null) {
-//            name.setText(loggedUser.getName());
-//        }
-//        if (loggedUser.getPhoneNumber() != null){
-//            phone.setText(loggedUser.getPhoneNumber());
-//        }
+>>>>>>> a7859fbc2f74339532dbc75e11c5eca094d7fcc6
+
+        if (MainActivity.loggedUser.getName() != null) {
+            name.setText(MainActivity.loggedUser.getName());
+        }
+        if (MainActivity.loggedUser.getPhoneNumber() != null){
+            phone.setText(MainActivity.loggedUser.getPhoneNumber());
+        }
 
         save.setOnClickListener(new View.OnClickListener() {
             @Override
