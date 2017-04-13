@@ -48,9 +48,10 @@ public class CartActivity extends AppCompatActivity implements CartListFragment.
             public void onClick(View v) {
                 Intent intent = new Intent(CartActivity.this, CatalogActivity.class);
                 CartActivity.this.startActivity(intent);
-
             }
         });
+
+        total.setText(String.format("%.2f",CartAdapter.total));
     }
 
     @Override

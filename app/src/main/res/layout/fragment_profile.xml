@@ -4,9 +4,7 @@
     android:layout_height="match_parent"
     tools:context="karikuncheva.dominosapp.ProfileFragment">
 
-    <ScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -42,9 +40,9 @@
                 android:layout_below="@id/name_edit"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/rounded_shape_profile"
-                android:paddingBottom="10dp"
+                android:paddingBottom="5dp"
                 android:paddingLeft="10dp"
-                android:paddingTop="10dp"
+                android:paddingTop="5dp"
                 android:text="" />
 
             <TextView
@@ -62,9 +60,10 @@
                 android:layout_below="@id/phone_edit"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/rounded_shape_profile"
-                android:paddingBottom="10dp"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
                 android:paddingLeft="10dp"
-                android:paddingTop="10dp"
+
                 android:text="" />
 
             <TextView
@@ -82,9 +81,9 @@
                 android:layout_below="@id/password_edit"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/rounded_shape_profile"
-                android:paddingBottom="10dp"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
                 android:paddingLeft="10dp"
-                android:paddingTop="10dp"
                 android:text="" />
 
             <TextView
@@ -102,22 +101,22 @@
                 android:layout_below="@+id/password2_edit"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/rounded_shape_profile"
-                android:paddingBottom="10dp"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
                 android:paddingLeft="10dp"
-                android:paddingTop="10dp"
+
                 android:text="" />
 
             <LinearLayout
-                android:layout_marginBottom="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="430dp"
+                android:layout_marginTop="400dp"
                 android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/save"
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_below="@id/password2_edit_et"
                     android:layout_marginTop="20dp"
                     android:layout_weight="1"
@@ -129,7 +128,7 @@
                 <Button
                     android:id="@+id/cancel"
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_below="@id/password2_edit_et"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="20dp"
@@ -141,7 +140,5 @@
             </LinearLayout>
 
         </RelativeLayout>
-
-    </ScrollView>
 
 </FrameLayout>

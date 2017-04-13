@@ -79,6 +79,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             vh.price_in_cart.setPaintFlags(vh.price_in_cart.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
             vh.disc_price_in_cart.setText(String.format("%.2f", product.getQuantity() * product.getDiscPrice()));
             //TODO to find way to get pizza size and type
+           // vh.description_cart_tv.setText();
 //            vh.description_cart_tv.setText(product.getSize().toString());
 //            vh.descr_type.setText(product.getType().toString());
             vh.dicsount_cart_tv.setText("5% Discount");

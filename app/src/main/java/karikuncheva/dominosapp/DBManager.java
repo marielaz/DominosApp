@@ -7,10 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.AsyncTask;
 import android.widget.Toast;
-
-import java.util.ArrayList;
 import java.util.HashMap;
-
 import karikuncheva.dominosapp.model.User;
 
 /**
@@ -85,21 +82,16 @@ public class DBManager extends SQLiteOpenHelper {
             @Override
             protected Void doInBackground(String... strings) {
                 String username = strings[0];
-                User u = registeredUsers.get(username);
 
-                u.setUsername("");
-                u.setPassword("");
-                u.setEmail("");
-                u.setName("");
-                u.setPhoneNumber("");
                 ContentValues values = new ContentValues();
-                values.put("username",u.getUsername());
-                values.put("password", u.getPassword());
-                values.put("email", u.getEmail());
-                values.put("name", u.getName());
-                values.put("phone", u.getPhoneNumber());
+                values.put("username", MainActivity.loggedUser.getName());
+                values.put("password", MainActivity.loggedUser.getPassword());
+                values.put("email", MainActivity.loggedUser.getEmail());
+                values.put("name", MainActivity.loggedUser.getName());
+                values.put("phone", MainActivity.loggedUser.getPhoneNumber());
+
                 registeredUsers.remove(username);
-                registeredUsers.put(u.getUsername(), u);
+                registeredUsers.put(username, MainActivity.loggedUser);
                 getWritableDatabase().update("users", values ,"username = ?", new String[]{username});
                 return null;
             }
@@ -112,13 +104,17 @@ public class DBManager extends SQLiteOpenHelper {
     }
 
     private static void loadUsers(){
-        Cursor cursor = ourInstance.getWritableDatabase().rawQuery("SELECT id, username, password, email FROM users;", null);
+        Cursor cursor = ourInstance.getWritableDatabase().rawQuery("SELECT id, username, password, email, name, phone FROM users;", null);
         while(cursor.moveToNext()){
             int id = cursor.getInt(cursor.getColumnIndex("id"));
             String username = cursor.getString(cursor.getColumnIndex("username"));
             String password = cursor.getString(cursor.getColumnIndex("password"));
             String email = cursor.getString(cursor.getColumnIndex("email"));
+            String name = cursor.getString(cursor.getColumnIndex("name"));
+            String phone = cursor.getString(cursor.getColumnIndex("phone"));
             User u = new User(username, password, email);
+            u.setName(name);
+            u.setPhoneNumber(phone);
             u.setId(id);
             registeredUsers.put(username, u);
         }
