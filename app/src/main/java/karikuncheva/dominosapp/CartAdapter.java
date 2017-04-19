@@ -33,7 +33,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         this.activity = activity;
         productsInCart = new ArrayList<Product>();
         total = 0;
-        // TODO problem with round up !!!
         for (Map.Entry<Product.ProductType, HashSet<Product>> products : MainActivity.loggedUser.getCart().getProducts().entrySet()) {
             for (Product p : products.getValue()) {
                 productsInCart.add(p);
@@ -54,14 +53,9 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         return vh;
     }
 
-    static double getTotal() {
-        return total;
-    }
-
 
     @Override
     public void onBindViewHolder(final CartViewHolder vh, final int position) {
-        // problem when single_row_cart is reused
 
         final Product product = productsInCart.get(position);
         if (product.pType != Product.ProductType.PIZZA) {

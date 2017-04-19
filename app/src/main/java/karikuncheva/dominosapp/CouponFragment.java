@@ -28,7 +28,8 @@ public class CouponFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_catalog, container, false);
+       // View v = inflater.inflate(R.layout.fragment_catalog, container, false);
+         View v = inflater.inflate(R.layout.fragment_coupon, container, false);
 
         redeem_coupon = (Button) v.findViewById(R.id.redeem_coupon);
         coupon_code = (EditText) v.findViewById(R.id.coupon_code);

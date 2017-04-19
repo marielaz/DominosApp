@@ -9,9 +9,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.util.ArrayList;
-
 import karikuncheva.dominosapp.model.Shop;
 import karikuncheva.dominosapp.model.products.Pizza;
 

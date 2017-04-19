@@ -35,7 +35,6 @@ public class ProfileFragment extends Fragment {
     private Button save;
     private Button cancel;
 
-    private User loggedUser;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

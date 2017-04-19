@@ -54,19 +54,23 @@ public class ModifyPizzaActivity extends AppCompatActivity implements ModifyPizz
         add_to_cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                ModifyPizzaFragment.pizza.setPrice(Double.parseDouble(price.getText().toString()));
-                MainActivity.loggedUser.getCart().addProduct(ModifyPizzaFragment.pizza);
-                Intent intent = new Intent(ModifyPizzaActivity.this, CartActivity.class);
-                ModifyPizzaActivity.this.startActivity(intent);
-            }
-        });
+                //TODO if phone language is bulgarian !!!
+                if (price.getText().toString().contains(",")) {
+                    ModifyPizzaFragment.pizza.setPrice(Double.parseDouble(price.getText().toString().replace(',', '.')));
+                } else {
+                    ModifyPizzaFragment.pizza.setPrice(Double.parseDouble(price.getText().toString()));
+                }
+                    MainActivity.loggedUser.getCart().addProduct(ModifyPizzaFragment.pizza);
+                    Intent intent = new Intent(ModifyPizzaActivity.this, CartActivity.class);
+                    ModifyPizzaActivity.this.startActivity(intent);
+                }
+            });
 
         price.setText(String.valueOf(p.getPrice()));
-    }
+        }
 
-    @Override
-    public void modifyPrice(double sum) {
-        price.setText(String.format("%.2f", sum));
+        @Override
+        public void modifyPrice ( double sum){
+            price.setText(String.format("%.2f", sum));
+        }
     }
-}

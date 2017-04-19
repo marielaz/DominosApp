@@ -19,7 +19,7 @@ public class CartListFragment extends Fragment {
 
 
     private RecyclerView recyclerView;
-    private Product product;
+    static Product product;
 
     interface CartComunicator{
         public void sumTotalPrice(double sum);
@@ -32,6 +32,9 @@ public class CartListFragment extends Fragment {
         View root = inflater.inflate(R.layout.activity_cart_fragment, container, false);
         recyclerView = (RecyclerView) root.findViewById(R.id.products_recycle_view);
         recyclerView.setAdapter(new CartAdapter(getActivity()));
+        if (product != null){
+            MainActivity.loggedUser.getCart().addProduct(product);
+        }
         return root;
 
     }

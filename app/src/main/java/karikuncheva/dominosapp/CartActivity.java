@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import karikuncheva.dominosapp.model.Cart;
 import karikuncheva.dominosapp.model.products.Product;
 
 
@@ -40,6 +41,7 @@ public class CartActivity extends AppCompatActivity implements CartListFragment.
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(CartActivity.this, TrackerActivity.class);
+                MainActivity.loggedUser.setCart(new Cart());
                 Toast.makeText(CartActivity.this, "You paid successful!", Toast.LENGTH_SHORT).show();
                 CartActivity.this.startActivity(intent);
             }
@@ -58,16 +60,13 @@ public class CartActivity extends AppCompatActivity implements CartListFragment.
 
     @Override
     public void sumTotalPrice(double sum) {
-//        FragmentManager fm = getSupportFragmentManager();
-//        CartTotalFragment fragment = (CartTotalFragment) fm.findFragmentById(R.id.fragment_total);
-//        fragment.sumTotalPrice(sum);
         total.setText(String.format("%.2f",sum));
     }
 
     @Override
     public void addProduct(Product p) {
         FragmentManager fm = getSupportFragmentManager();
-        CartListFragment fragment = (CartListFragment) fm.findFragmentById(R.id.activity_cart_fragment);
+        CartListFragment fragment = (CartListFragment) fm.findFragmentById(R.id.cart_list_products);
         fragment.addProduct(p);
     }
 }

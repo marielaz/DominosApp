@@ -14,11 +14,6 @@
         android:layout_height="fill_parent"
         android:fillViewport="true">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
             <RelativeLayout
                 android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
@@ -31,7 +26,8 @@
                     android:background="@drawable/custom_bnt"
                     android:text="Small"
                     android:textAllCaps="false"
-                    android:layout_marginLeft="3dp" />
+                    android:layout_marginLeft="3dp"
+                    android:focusableInTouchMode="true"/>
                 <Button
                     android:id="@+id/med"
                     android:layout_width="wrap_content"
@@ -41,7 +37,8 @@
                     android:textAllCaps="false"
                     android:layout_marginLeft="7dp"
                     android:layout_marginRight="7dp"
-                    android:layout_toRightOf="@+id/small"/>
+                    android:layout_toRightOf="@+id/small"
+                    android:focusableInTouchMode="true"/>
                 <Button
                     android:id="@+id/large"
                     android:layout_width="wrap_content"
@@ -50,7 +47,8 @@
                     android:layout_toRightOf="@+id/med"
                     android:text="Large"
                     android:layout_marginRight="3dp"
-                    android:textAllCaps="false" />
+                    android:textAllCaps="false"
+                    android:focusableInTouchMode="true"/>
 
                 <RelativeLayout
                     android:layout_below="@+id/small"
@@ -63,6 +61,7 @@
                     android:layout_marginRight="5dp"
                     android:paddingLeft="15dp"
                     android:paddingRight="10dp"
+                    android:focusableInTouchMode="true"
                     >
                     <ImageView
                         android:id="@+id/image_trad"
@@ -70,7 +69,8 @@
                         android:layout_height="59dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
-                        android:background="@drawable/traditianal" />
+
+                        />
                     <TextView
                         android:id="@+id/text_trad"
                         android:layout_width="wrap_content"
@@ -110,7 +110,7 @@
                     android:layout_below="@id/trad_layout"
                     android:paddingLeft="15dp"
                     android:paddingRight="10dp"
-                    android:weightSum="3">
+                    android:focusableInTouchMode="true">
 
                     <ImageView
                         android:id="@+id/image_ital"
@@ -118,7 +118,7 @@
                         android:layout_height="59dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
-                        android:background="@drawable/italian" />
+                        />
                     <TextView
                         android:id="@+id/text_ital"
                         android:layout_width="wrap_content"
@@ -155,7 +155,7 @@
                     android:layout_marginRight="5dp"
                     android:paddingLeft="15dp"
                     android:paddingRight="10dp"
-                    android:weightSum="3"
+                    android:focusableInTouchMode="true"
                     >
                     <ImageView
                         android:id="@+id/image_thin_and_cr"
@@ -163,7 +163,7 @@
                         android:layout_height="59dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
-                        android:background="@drawable/thin" />
+                        />
                     <TextView
                         android:id="@+id/text_thin"
                         android:layout_width="wrap_content"
@@ -193,10 +193,9 @@
 
                 <android.support.v4.widget.NestedScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
-                    android:layout_below="@id/thin_layout"
-                    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+                    android:layout_below="@id/thin_layout">
 
 
                     <android.support.v7.widget.RecyclerView
@@ -210,6 +209,5 @@
             </RelativeLayout>
 
 
-        </LinearLayout>
     </ScrollView>
 </LinearLayout>

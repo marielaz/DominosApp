@@ -20,7 +20,7 @@ public class DBManager extends SQLiteOpenHelper {
     private static DBManager ourInstance;
     private static Context context;
     private static HashMap<String, User> registeredUsers;
-    private static ArrayList<Address> addresses;
+    //private static ArrayList<Address> addresses;
     private static final String SQL_CREATE_USERS = "CREATE TABLE users(\n" +
             "\n" +
             " id INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
@@ -51,7 +51,7 @@ public class DBManager extends SQLiteOpenHelper {
             ourInstance = new DBManager(context);
             DBManager.context = context;
             registeredUsers = new HashMap<>();
-            addresses = new ArrayList<>();
+           // addresses = new ArrayList<>();
             loadUsers();
         }
         return ourInstance;
@@ -110,7 +110,8 @@ public class DBManager extends SQLiteOpenHelper {
         long id = getWritableDatabase().insert("addresses", null, contentValues);
         a.setId((int) id);
         a.setIdUser(MainActivity.loggedUser.getId());
-        addresses.add(a);
+        //addresses.add(a);
+        MainActivity.loggedUser.getAddresses().add(a);
         Toast.makeText(context, "Address added successfully", Toast.LENGTH_SHORT).show();
     }
 
@@ -162,6 +163,7 @@ public class DBManager extends SQLiteOpenHelper {
     }
 
     public static ArrayList<Address> loadAddresses(int userId ) {
+        ArrayList<Address> addresses = new ArrayList<Address>();
         Cursor cursor = ourInstance.getWritableDatabase().rawQuery("SELECT id, town, neighbourhood, street, number, block, postCode, apartment, floor, idUser FROM addresses WHERE idUser = '"+userId+"';",null);
         while (cursor.moveToNext()) {
             int id = cursor.getInt(cursor.getColumnIndex("id"));
@@ -187,7 +189,8 @@ public class DBManager extends SQLiteOpenHelper {
     public void deleteAddress(Address a){
             getWritableDatabase().delete("addresses", "id = ?", new String[]{Integer.toString(a.getId())});
             Toast.makeText(context, a.getId() + " deleted successfully", Toast.LENGTH_SHORT).show();
-            addresses.remove(a);
+        // TODO how to remove address from DB
+           // addresses.remove(a);
         }
 
     public boolean existsUser(String username) {
