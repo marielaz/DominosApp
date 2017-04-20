@@ -19,18 +19,25 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
+                <LinearLayout
+                    android:id="@+id/sm_m_l"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
                 <Button
                     android:id="@+id/small"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:background="@drawable/custom_bnt"
                     android:text="Small"
                     android:textAllCaps="false"
                     android:layout_marginLeft="3dp"
+                    android:layout_weight="1"
                     android:focusableInTouchMode="true"/>
                 <Button
                     android:id="@+id/med"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:background="@drawable/custom_bnt"
                     android:text="Medium"
@@ -41,7 +48,8 @@
                     android:focusableInTouchMode="true"/>
                 <Button
                     android:id="@+id/large"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:background="@drawable/custom_bnt"
                     android:layout_toRightOf="@+id/med"
@@ -50,8 +58,10 @@
                     android:textAllCaps="false"
                     android:focusableInTouchMode="true"/>
 
+                </LinearLayout>
+
                 <RelativeLayout
-                    android:layout_below="@+id/small"
+                    android:layout_below="@+id/sm_m_l"
                     android:id="@+id/trad_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

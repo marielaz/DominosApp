@@ -9,7 +9,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import java.util.Random;
+
 import karikuncheva.dominosapp.model.products.Dessert;
+import karikuncheva.dominosapp.model.products.Drink;
 import karikuncheva.dominosapp.model.products.Product;
 
 
@@ -38,8 +41,51 @@ public class CouponFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (validateCouponCode(coupon_code.getText().toString())) {
-                    Product p = new Dessert("chocko", 5.4, 0, "");
-                    ((CouponCommunicator)getActivity()).addProduct(p);
+
+                    int countDigits = 0;
+
+                    for (int i = 0; i < coupon_code.getText().toString().length(); i++) {
+                        if (Character.isDigit(coupon_code.getText().toString().charAt(i))) {
+                            countDigits++;
+                            continue;
+                        }
+                    }
+                    //TODO ne se dobavq v kolichkata
+                    
+                    if (countDigits > coupon_code.getText().toString().length() - countDigits) {
+                        switch (new Random().nextInt(3)) {
+                            case 0:
+                                MainActivity.loggedUser.getCart().addProduct(new Drink("Coca Cola", 0, R.drawable.cola, ""));
+                                break;
+                            case 1:
+                                MainActivity.loggedUser.getCart().addProduct(new Drink("Fanta", 0, R.drawable.fanta, ""));
+                                break;
+                            case 2:
+                                MainActivity.loggedUser.getCart().addProduct(new Drink("Sprite", 0, R.drawable.sprite, ""));
+                                break;
+
+                            default:
+                                break;
+                        }
+                    } else {
+                        switch (new Random().nextInt(3)) {
+                            case 0:
+                                MainActivity.loggedUser.getCart().addProduct(new Dessert("Choco Pie", 0, R.drawable.chocopie, ""));
+                                break;
+                            case 1:
+                                MainActivity.loggedUser.getCart().addProduct(new Dessert("Nirvana", 0, R.drawable.nirvana, ""));
+                                break;
+                            case 2:
+                                MainActivity.loggedUser.getCart().addProduct(new Dessert("Mini pancakes", 0, R.drawable.minipancakes, ""));
+                                break;
+
+                            default:
+                                break;
+                        }
+                    }
+
+                    //                    Product p = new Dessert("chocko", 5.4, 0, "");
+//                    ((CouponCommunicator)getActivity()).addProduct(p);
 
                 } else {
                     coupon_code.setError("Please, enter valid code");
