@@ -51,7 +51,7 @@ public class CouponFragment extends Fragment {
                         }
                     }
                     //TODO ne se dobavq v kolichkata
-                    
+
                     if (countDigits > coupon_code.getText().toString().length() - countDigits) {
                         switch (new Random().nextInt(3)) {
                             case 0:

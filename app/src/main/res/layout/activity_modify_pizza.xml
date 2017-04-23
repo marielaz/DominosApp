@@ -29,14 +29,14 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:text="Total: "
-            android:textSize="25sp"
+            android:textSize="15sp"
             android:background="@color/colorPrimary"/>
 
         <TextView
             android:id="@+id/price_modif_tv"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:textSize="25sp"
+            android:textSize="15sp"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"/>
 
