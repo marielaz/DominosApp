@@ -64,14 +64,20 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.PizzaViewH
         double p = pizza.getPrice();
         vh.pizzaPrice.setText(String.format("%.2f", p));
 
-        vh.modify_pizza_bnt.setOnClickListener(new View.OnClickListener() {
+        View.OnClickListener listener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(activity, ModifyPizzaActivity.class);
                 intent.putExtra("pizza", pizzas.get(position));
                 activity.startActivity(intent);
             }
-        });
+        };
+
+        vh.modify_pizza_bnt.setOnClickListener(listener);
+
+        vh.pizzaImage.setOnClickListener(listener);
+
+        vh.largeTrad.setOnClickListener(listener);
 
         vh.cart_pizza_bnt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,6 +102,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.PizzaViewH
         TextView pizzaName;
         TextView pizzaDescr;
         TextView pizzaPrice;
+        TextView largeTrad;
 
         PizzaViewHolder(View row){
             super(row);
@@ -105,6 +112,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.PizzaViewH
              pizzaName = (TextView) row.findViewById(R.id.name_pizza);
              pizzaDescr = (TextView) row.findViewById(R.id.descr_pizza);
              pizzaPrice = (TextView) row.findViewById(R.id.price_pizza);
+            largeTrad = (TextView) row.findViewById(R.id.largeTrad);
         }
     }
 }

@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import java.util.Random;
 
+import java.util.Random;
+
 import karikuncheva.dominosapp.model.products.Dessert;
 import karikuncheva.dominosapp.model.products.Drink;
 import karikuncheva.dominosapp.model.products.Product;
@@ -44,6 +46,7 @@ public class CouponFragment extends Fragment {
             public void onClick(View v) {
                 if (counter == 1) {
                     Toast.makeText(getActivity(), "You can use only one coupon code!", Toast.LENGTH_SHORT).show();
+
                 } else {
 
                     if (coupon_code.getText().toString().equals("KARIF")) {

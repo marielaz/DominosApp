@@ -23,32 +23,32 @@
                 android:id="@+id/size_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
                 android:layout_marginTop="10dp"
-                android:textSize="18sp"
-                android:text="Choose size" />
+                android:gravity="center_horizontal"
+                android:text="Choose size"
+                android:textSize="18sp" />
 
             <LinearLayout
                 android:id="@+id/size_layout"
-                android:layout_below="@id/size_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/size_tv"
                 android:layout_marginTop="10dp"
                 android:focusableInTouchMode="true">
 
                 <Button
                     android:id="@+id/small"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="3dp"
                     android:layout_weight="1"
                     android:background="@drawable/custom_bnt"
-                    android:text="Small"
-                    android:textAllCaps="false" />
+                    android:focusableInTouchMode="true"
+                    android:text="Small" />
 
                 <Button
                     android:id="@+id/med"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="7dp"
                     android:layout_marginRight="7dp"
@@ -60,7 +60,7 @@
 
                 <Button
                     android:id="@+id/large"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="3dp"
                     android:layout_toRightOf="@+id/med"
@@ -243,9 +243,9 @@
                     android:id="@+id/ingredients_recycler_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
                     android:divider="@color/colorBackground"
-                    android:dividerHeight="15dp"
-                    android:layout_marginBottom="10dp"></android.support.v7.widget.RecyclerView>
+                    android:dividerHeight="15dp"></android.support.v7.widget.RecyclerView>
             </android.support.v4.widget.NestedScrollView>
         </RelativeLayout>
 
