@@ -29,9 +29,9 @@ public class User implements Serializable {
     private Matcher regMatcher;
     private int id;
 
-   // public User() {
-      //  this.addresses = new ArrayList<Address>();
-   // }
+    // public User() {
+    //  this.addresses = new ArrayList<Address>();
+    // }
 
     public User(String username, String password) {
         this.username = username;
@@ -108,6 +108,7 @@ public class User implements Serializable {
     public void setAddresses(ArrayList<Address> addresses) {
         this.addresses = addresses;
     }
+
     public boolean validateEmailAddress(String emailAddress) {
 
         regexPattern = Pattern.compile("^[(a-zA-Z-0-9-\\_\\+\\.)]+@[(a-z-A-z)]+\\.[(a-zA-z)]{2,3}$");
@@ -219,7 +220,7 @@ public class User implements Serializable {
         return true;
     }
 
-    public void setGiftCard(String code) {
+    public boolean validateGiftCard(String code) {
         if (code != null && code.length() == 5 && !code.isEmpty()) {
             String n = ".*[0-9]*.";
             String a = ".*[A-Z]*.";
@@ -235,13 +236,13 @@ public class User implements Serializable {
                 if (countDigits > code.length() - countDigits) {
                     switch (new Random().nextInt(3)) {
                         case 0:
-                            this.cart.addProduct(new Drink("Coca Cola", 0, R.drawable.cola, ""));
+                            this.cart.addProduct(new Drink("Coca-Cola", 0.00, R.drawable.cola, "1,25l"));
                             break;
                         case 1:
-                            this.cart.addProduct(new Drink("Fanta", 0, R.drawable.fanta, ""));
+                            this.cart.addProduct(new Drink("Fanta", 0.00, R.drawable.fanta, "1,25l"));
                             break;
                         case 2:
-                            this.cart.addProduct(new Drink("Sprite", 0, R.drawable.sprite, ""));
+                            this.cart.addProduct(new Drink("Sprite", 0.00, R.drawable.sprite, "1,25l"));
                             break;
 
                         default:
@@ -250,13 +251,13 @@ public class User implements Serializable {
                 } else {
                     switch (new Random().nextInt(3)) {
                         case 0:
-                            this.cart.addProduct(new Dessert("Choco Pie", 0, R.drawable.chocopie, ""));
+                            this.cart.addProduct(new Dessert("Choko Pie", 0.00, R.drawable.chocopie, "Freshly oven baked puff pastry filled with Nutella"));
                             break;
                         case 1:
-                            this.cart.addProduct(new Dessert("Nirvana", 0, R.drawable.nirvana, ""));
+                            this.cart.addProduct(new Dessert("Souflle", 0.00, R.drawable.souffle, "Chocolate lava cake filled with melted warm chocolate"));
                             break;
                         case 2:
-                            this.cart.addProduct(new Dessert("Mini pancakes", 0, R.drawable.minipancakes, ""));
+                            this.cart.addProduct(new Dessert("Nirvana", 0.00, R.drawable.nirvana, "Nirvana Pralines & Cream"));
                             break;
 
                         default:
@@ -264,15 +265,12 @@ public class User implements Serializable {
                     }
                 }
             }
+            return true;
         } else {
-            System.out.println("Wrong code!");
+            return false;
         }
     }
 
-    // the client modify the pizza;
-//	public Pizza modifyPizza(Pizza pizza, Size size, Type type) {
-//		return pizza.changePizza(pizza, size, type);
-//	}
 
     // print the bill
     public void printBill() {

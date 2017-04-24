@@ -8,7 +8,6 @@ public class Dessert extends Product {
 	public Dessert(String name, double price, int imageId, String description) {
 		super(ProductType.DESSERT, name, price, imageId);
 		this.description = description;
-
 	}
 	public Dessert(String name, double price, String description) {
 		super(ProductType.DESSERT, name, price);

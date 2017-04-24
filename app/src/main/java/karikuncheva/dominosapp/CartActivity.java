@@ -23,6 +23,7 @@ public class CartActivity extends AppCompatActivity implements CartListFragment.
     private TextView total;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,12 +56,13 @@ public class CartActivity extends AppCompatActivity implements CartListFragment.
             }
         });
 
-        total.setText(String.format("%.2f",CartAdapter.total));
+        total.setText("Total: " + String.format("%.2f",CartAdapter.total));
+
     }
 
     @Override
     public void sumTotalPrice(double sum) {
-        total.setText(String.format("%.2f",sum));
+        total.setText("Total: " + String.format("%.2f",sum));
     }
 
     @Override
