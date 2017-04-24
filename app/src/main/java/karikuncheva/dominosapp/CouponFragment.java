@@ -8,8 +8,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import java.util.Random;
 
 import karikuncheva.dominosapp.model.products.Dessert;
+import karikuncheva.dominosapp.model.products.Drink;
 import karikuncheva.dominosapp.model.products.Product;
 
 
@@ -18,18 +22,19 @@ import karikuncheva.dominosapp.model.products.Product;
  */
 public class CouponFragment extends Fragment {
 
-    public interface CouponCommunicator{
+    public interface CouponCommunicator {
         public void addProduct(Product p);
     }
+
     private Button redeem_coupon;
     private EditText coupon_code;
+    private static int counter = 0;
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
-       // View v = inflater.inflate(R.layout.fragment_catalog, container, false);
-         View v = inflater.inflate(R.layout.fragment_coupon, container, false);
+        View v = inflater.inflate(R.layout.fragment_coupon, container, false);
 
         redeem_coupon = (Button) v.findViewById(R.id.redeem_coupon);
         coupon_code = (EditText) v.findViewById(R.id.coupon_code);
@@ -37,28 +42,37 @@ public class CouponFragment extends Fragment {
         redeem_coupon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (validateCouponCode(coupon_code.getText().toString())) {
-                    Product p = new Dessert("chocko", 5.4, 0, "");
-                    ((CouponCommunicator)getActivity()).addProduct(p);
-
+                if (counter == 1) {
+                    Toast.makeText(getActivity(), "You can use only one coupon code!", Toast.LENGTH_SHORT).show();
                 } else {
-                    coupon_code.setError("Please, enter valid code");
+
+                    if (coupon_code.getText().toString().equals("KARIF")) {
+                        addBonus(new Drink("Fanta", 0.00, R.drawable.fanta, "1,25l"));
+
+                    } else if (coupon_code.getText().toString().equals("KARIS")) {
+                        addBonus(new Dessert("Souflle", 0.00, R.drawable.souffle, "Chocolate lava cake filled with melted warm chocolate"));
+
+                    } else if (coupon_code.getText().toString().equals("MARIC")) {
+                        addBonus(new Drink("Coca-Cola", 0.00, R.drawable.cola, "1,25l"));
+
+                    } else if (coupon_code.getText().toString().equals("MARIN")) {
+                        addBonus(new Dessert("Nirvana", 0.00, R.drawable.nirvana, "Nirvana Pralines & Cream"));
+
+                    } else {
+                        Toast.makeText(getActivity(), "Invalid coupon code!", Toast.LENGTH_SHORT).show();
+                    }
+
                 }
             }
         });
 
-
         return v;
     }
 
-    public boolean validateCouponCode(String code) {
-        if (code != null && code.length() == 5 && !code.isEmpty()) {
-            String n = ".*[0-9]*.";
-            String a = ".*[A-Z]*.";
-            if (code.matches(n) && code.matches(a)) {
-                return true;
-            }
-        }
-        return false;
+    private void addBonus(Product p) {
+        ((CouponCommunicator) getActivity()).addProduct(p);
+        counter++;
+        coupon_code.setText("");
+        Toast.makeText(getActivity(), "The products is added to your cart!", Toast.LENGTH_SHORT).show();
     }
 }

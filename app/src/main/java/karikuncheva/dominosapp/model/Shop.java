@@ -51,7 +51,7 @@ public class Shop implements Serializable {
         pizzas.add(new Pizza("Mediterraneo", 14.50, R.drawable.mediterraneo));
         pizzas.get(2).getIngredients().add("mozzarella");
         pizzas.get(2).getIngredients().add("tomato sauce");
-        pizzas.get(2).getIngredients().add("green pappers");
+        pizzas.get(2).getIngredients().add("green peppers");
         pizzas.get(2).getIngredients().add("feta cheese");
         pizzas.get(2).getIngredients().add("olives");
 
@@ -87,7 +87,7 @@ public class Shop implements Serializable {
         pizzas.get(7).getIngredients().add("tomato sauce");
         pizzas.get(7).getIngredients().add("mozzarella");
         pizzas.get(7).getIngredients().add("pepperoni");
-        pizzas.get(7).getIngredients().add("spicy pappers");
+        pizzas.get(7).getIngredients().add("spicy peppers");
         pizzas.get(7).getIngredients().add("onion");
 
         pizzas.add(new Pizza("New York", 16.50,  R.drawable.newyork));
@@ -102,7 +102,7 @@ public class Shop implements Serializable {
         pizzas.get(9).getIngredients().add("mozzarella");
         pizzas.get(9).getIngredients().add("onion");
         pizzas.get(9).getIngredients().add("olives");
-        pizzas.get(9).getIngredients().add("green pappers");
+        pizzas.get(9).getIngredients().add("green peppers");
         pizzas.get(9).getIngredients().add("feta cheese");
 
         desserts.add(new Dessert("Choko Pie", 6.50,  R.drawable.chocopie, "Freshly oven baked puff pastry filled with Nutella"));
@@ -114,8 +114,6 @@ public class Shop implements Serializable {
         drinks.add(new Drink("Fanta", 2.80, R.drawable.fanta, "1,25l"));
         drinks.add(new Drink("Sprite", 2.80, R.drawable.sprite, "1,25l"));
         drinks.add(new Drink("Nestea", 2.00, R.drawable.nestea, "1,25l"));
-
-        //addToCatalog(products);
 
         addIngredients(ingr);
     }
@@ -231,11 +229,11 @@ public class Shop implements Serializable {
         ingredients.add("bacon");
         ingredients.add("ham");
         ingredients.add("chickeh");
-        ingredients.add("spice beef");
+        ingredients.add("spicy beef");
         ingredients.add("beef");
         ingredients.add("pepperoni");
         ingredients.add("tomatos");
-        ingredients.add("green pappers");
+        ingredients.add("green peppers");
         ingredients.add("spicy peppers");
         ingredients.add("baby spinach");
         ingredients.add("onion");

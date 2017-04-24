@@ -3,20 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="@drawable/rounded_modify_button"
+    android:background="@drawable/rounded_shape_coupon"
     tools:context="karikuncheva.dominosapp.CouponFragment">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Coupons"
-        android:textSize="20sp"
-        android:gravity="center_horizontal"/>
-    
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Place a product in the basket and then \n add coupon code"
+        android:textSize="25sp"
         android:gravity="center_horizontal"/>
 
     <EditText
@@ -29,6 +23,10 @@
         android:id="@+id/redeem_coupon"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/rounded_button_login"
         android:text="Redeem coupon"
         android:textAllCaps="false"/>
 </LinearLayout>

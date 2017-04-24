@@ -32,13 +32,10 @@ public class CartListFragment extends Fragment {
         View root = inflater.inflate(R.layout.activity_cart_fragment, container, false);
         recyclerView = (RecyclerView) root.findViewById(R.id.products_recycle_view);
         recyclerView.setAdapter(new CartAdapter(getActivity()));
-        if (product != null){
-            MainActivity.loggedUser.getCart().addProduct(product);
-        }
         return root;
 
     }
     public void  addProduct(Product p){
-        product = p;
+        recyclerView.setAdapter(new CartAdapter(getActivity(), p));
     }
 }

@@ -24,15 +24,13 @@ import karikuncheva.dominosapp.model.products.Product;
 public class ModifyPizzaFragment extends Fragment {
 
     interface ModifyCommunicator {
-        public void modifyPrice(double sum);
+         void modifyPrice(double sum);
     }
 
     List<RadioButton> pizza_type_bnts = new ArrayList<RadioButton>();
     Button small_bnt, med_bnt, large_bnt;
     RadioButton trad_bnt, ital_bnt, thin_bnt;
     static Pizza pizza;
-    //    private Pizza.Size size;
-//    private Pizza.Type type;
     RecyclerView recyclerView;
     private double tempSizeChecked;
     static double sum;

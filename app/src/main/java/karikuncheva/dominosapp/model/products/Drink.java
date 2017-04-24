@@ -1,8 +1,6 @@
 package karikuncheva.dominosapp.model.products;
 
 
-import karikuncheva.dominosapp.model.products.Product;
-
 public class Drink extends Product {
 
 	private  String description;
@@ -10,12 +8,10 @@ public class Drink extends Product {
 	public Drink(String name, double price, int imageId, String description) {
 		super(ProductType.DRINK, name, price, imageId );
 		this.description = description;
-		
 	}
-	public Drink(String name, double price, String description) {
+	public Drink(String name, double price, String description ) {
 		super(ProductType.DRINK, name, price);
 		this.description = description;
-
 	}
 
 	public String getDescription() {

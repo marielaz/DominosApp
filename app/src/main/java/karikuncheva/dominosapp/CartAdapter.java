@@ -1,6 +1,7 @@
 package karikuncheva.dominosapp;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.DropBoxManager;
 import android.support.v7.widget.RecyclerView;
@@ -33,6 +34,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         this.activity = activity;
         productsInCart = new ArrayList<Product>();
         total = 0;
+
         for (Map.Entry<Product.ProductType, HashSet<Product>> products : MainActivity.loggedUser.getCart().getProducts().entrySet()) {
             for (Product p : products.getValue()) {
                 productsInCart.add(p);
@@ -44,6 +46,26 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             }
         }
     }
+
+    public CartAdapter(Activity activity, Product p) {
+        this.activity = activity;
+        productsInCart = new ArrayList<Product>();
+        total = 0;
+
+        MainActivity.loggedUser.getCart().addProduct(p);
+        for (Map.Entry<Product.ProductType, HashSet<Product>> products : MainActivity.loggedUser.getCart().getProducts().entrySet()) {
+            for (Product p1 : products.getValue()) {
+                productsInCart.add(p1);
+                if (p1.pType == Product.ProductType.PIZZA) {
+                    total += p1.getQuantity() * p1.getDiscPrice();
+                } else {
+                    total += p1.getQuantity() * p1.getPrice();
+                }
+            }
+        }
+
+    }
+
 
     @Override
     public CartViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -57,25 +79,39 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
     @Override
     public void onBindViewHolder(final CartViewHolder vh, final int position) {
 
+
         final Product product = productsInCart.get(position);
-        if (product.pType != Product.ProductType.PIZZA) {
-            vh.dicsount_cart_tv.setText("");
-            vh.description_cart_tv.setText("");
-            vh.disc_price_in_cart.setText("");
-            vh.price_in_cart.setPaintFlags(vh.price_in_cart.getPaintFlags() & (~Paint.STRIKE_THRU_TEXT_FLAG));
-        }
+        vh.plus_product.setVisibility(View.VISIBLE);
+        vh.minus_product.setVisibility(View.VISIBLE);
+        vh.dicsount_cart_tv.setVisibility(View.VISIBLE);
         vh.quantity.setText(String.valueOf(product.getQuantity()));
         vh.p_name_in_cart.setText(product.getName());
 
+        if (product.pType != Product.ProductType.PIZZA) {
+            vh.dicsount_cart_tv.setText("");
+            vh.description_cart_tv.setText("");
+            vh.descr_type.setText("");
+            vh.disc_price_in_cart.setText("");
+            vh.dicsount_cart_tv.setVisibility(View.GONE);
+            vh.price_in_cart.setPaintFlags(vh.price_in_cart.getPaintFlags() & (~Paint.STRIKE_THRU_TEXT_FLAG));
+        }
+        if (product.getPrice() == 0.00) {
+            vh.plus_product.setVisibility(View.INVISIBLE);
+            vh.minus_product.setVisibility(View.INVISIBLE);
+            vh.description_cart_tv.setText("BONUS");
+            vh.dicsount_cart_tv.setVisibility(View.GONE);
+            vh.quantity.setText("");
+            vh.description_cart_tv.setTextColor(Color.argb(255, 212, 8, 59));
+        }
 
         if (product.pType == Product.ProductType.PIZZA) {
             vh.price_in_cart.setText(String.format("%.2f", product.getQuantity() * product.getPrice()));
             vh.price_in_cart.setPaintFlags(vh.price_in_cart.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
             vh.disc_price_in_cart.setText(String.format("%.2f", product.getQuantity() * product.getDiscPrice()));
             //TODO to find way to get pizza size and type
-           // vh.description_cart_tv.setText();
-//            vh.description_cart_tv.setText(product.getSize().toString());
-//            vh.descr_type.setText(product.getType().toString());
+            Pizza pizza = (Pizza) product;
+            vh.description_cart_tv.setText(pizza.getSize().toString());
+            vh.descr_type.setText(pizza.getType().toString());
             vh.dicsount_cart_tv.setText("5% Discount");
         } else {
             vh.price_in_cart.setText(String.format("%.2f", product.getQuantity() * product.getPrice()));
@@ -144,6 +180,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         });
 
     }
+
 
     @Override
     public int getItemCount() {

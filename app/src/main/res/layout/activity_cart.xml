@@ -19,11 +19,24 @@
         android:layout_below="@id/toolbar_cart"
         tools:layout="@layout/activity_cart_fragment" />
 
+    <fragment
+        android:id="@+id/coupon_in_cart"
+        android:name="karikuncheva.dominosapp.CouponFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@id/cart_list_products"
+        tools:layout="@layout/fragment_coupon"/>
+
+
     <TextView
         android:id="@+id/total_price_tv"
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:textSize="20dp"
         android:layout_above="@+id/check_out_button" />
 
     <Button
@@ -48,15 +61,7 @@
         android:layout_marginTop="12dp"
         android:background="@drawable/back_icon" />
 
-    <fragment
-        android:id="@+id/coupon_in_cart"
-        android:name="karikuncheva.dominosapp.CouponFragment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_above="@id/total_price_tv"
-        tools:layout="@layout/fragment_coupon"/>
+
 
 
 

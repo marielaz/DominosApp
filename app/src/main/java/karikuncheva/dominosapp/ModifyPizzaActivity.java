@@ -20,7 +20,7 @@ import karikuncheva.dominosapp.model.products.Pizza;
 
 public class ModifyPizzaActivity extends AppCompatActivity implements ModifyPizzaFragment.ModifyCommunicator {
 
-    TextView price, total;
+    TextView price, total, pizzaName;
     Button add_to_cart;
     Button cancel_modify;
     private Pizza p;
@@ -38,7 +38,8 @@ public class ModifyPizzaActivity extends AppCompatActivity implements ModifyPizz
                 p.type = p.getType();
             }
         }
-        total = (TextView) findViewById(R.id.total_tv);
+
+        pizzaName = (TextView) findViewById(R.id.name_modify_pizza);
         price = (TextView) findViewById(R.id.price_modif_tv);
         add_to_cart = (Button) findViewById(R.id.add_to_cart_modify);
         cancel_modify = (Button) findViewById(R.id.cancel_modify);
@@ -66,7 +67,8 @@ public class ModifyPizzaActivity extends AppCompatActivity implements ModifyPizz
                 }
             });
 
-        price.setText(String.valueOf(p.getPrice()));
+        price.setText(String.valueOf(String.format("%.2f", p.getPrice())));
+        pizzaName.setText(p.getName());
         }
 
         @Override

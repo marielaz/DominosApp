@@ -7,36 +7,64 @@
     android:layout_height="wrap_content"
     tools:context="karikuncheva.dominosapp.ModifyPizzaActivity">
 
-    <include
-        layout="@layout/toolbar" ></include>
+    <android.support.v7.widget.Toolbar
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
 
-   <fragment
-       android:id="@+id/modify_fragment"
-       android:name="karikuncheva.dominosapp.ModifyPizzaFragment"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:layout_weight="1"
-       tools:layout="@layout/fragment_modify"/>
-
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:background="@color/colorBackground">
-    <TextView
-        android:id="@+id/total_tv"
-        android:layout_width="wrap_content"
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Total: "
-        android:background="@color/colorBackground"/>
+        android:fitsSystemWindows="true"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        app:contentInsetEnd="0dp"
+        app:contentInsetStart="0dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-    <TextView
-        android:id="@+id/price_modif_tv"
-        android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/back_button_cart"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="9dp"
+                android:layout_marginStart="9dp"
+                android:background="@drawable/back_icon" />
+            <TextView
+                android:id="@+id/name_modify_pizza"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:text="Margarita"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:id="@+id/price_modif_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:text="12.00"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.Toolbar>
+
+    <fragment
+        android:id="@+id/modify_fragment"
+        android:name="karikuncheva.dominosapp.ModifyPizzaFragment"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorBackground"/>
-</LinearLayout>
-
+        android:layout_weight="1"
+        tools:layout="@layout/fragment_modify" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -54,7 +82,9 @@
             android:layout_marginRight="5dp"
             android:textAllCaps="false"
             android:layout_gravity="center"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            />
         <Button
             android:id="@+id/cancel_modify"
             android:layout_width="match_parent"
@@ -66,8 +96,8 @@
             android:layout_marginRight="5dp"
             android:textAllCaps="false"
             android:layout_gravity="center"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"/>
 
     </LinearLayout>
-
 </LinearLayout>
