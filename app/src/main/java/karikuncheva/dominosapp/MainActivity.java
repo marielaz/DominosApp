@@ -9,17 +9,17 @@ import android.util.Log;
 import android.widget.EditText;
 import android.widget.Button;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
-
+import com.facebook.AccessToken;
+import com.facebook.AccessTokenTracker;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
+import com.facebook.Profile;
+import com.facebook.ProfileTracker;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
-import java.util.Arrays;
-
 import karikuncheva.dominosapp.model.User;
 
 
@@ -31,8 +31,11 @@ public class MainActivity extends AppCompatActivity {
     private Button registerButton;
     private String username, password;
     public static User loggedUser;
+    public static User loggedFbUser;
     private LoginButton loginFbButton;
     private CallbackManager callbackManager;
+    private AccessTokenTracker accessTokenTracker;
+    private ProfileTracker profileTracker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,33 +71,37 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+        accessTokenTracker = new AccessTokenTracker() {
+            @Override
+            protected void onCurrentAccessTokenChanged(AccessToken oldAccessToken, AccessToken currentAccessToken) {
 
-        loginFbButton.setReadPermissions(Arrays.asList(
-                "public_profile", "email"));
+            }
+        };
 
         loginFbButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-//                info.setText(
-//                        "User ID: "
-//                                + loginResult.getAccessToken().getUserId()
-//                                + "\n" +
-//                                "Auth Token: "
-//                                + loginResult.getAccessToken().getToken()
-//                );
-            Intent intent = new Intent(MainActivity.this, CatalogActivity.class);
-                MainActivity.this.startActivity(intent);
+
+                Profile profile = Profile.getCurrentProfile();
+
+                if(profile != null) {
+                    Intent i = new Intent(MainActivity.this, CatalogActivity.class);
+                    loggedFbUser = new User(profile.getFirstName().toString(), profile.getId().toString());
+                    DBManager.getInstance(MainActivity.this).addUser(loggedFbUser);
+                    if (DBManager.getInstance(MainActivity.this).existsUser(loggedFbUser.getUsername().toString())) {
+                        loggedUser = DBManager.getInstance(MainActivity.this).getUser(loggedFbUser.getUsername().toString());
+                        startActivity(i);
+                    }
+                }
             }
 
             @Override
             public void onCancel() {
-               // info.setText("Login attempt canceled.");
                 Toast.makeText(MainActivity.this, "Login attempt canceled.", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onError(FacebookException e) {
-               // info.setText("Login attempt failed.");
                 Toast.makeText(MainActivity.this, "Login attempt failed.", Toast.LENGTH_SHORT).show();
 
             }
@@ -132,5 +139,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         callbackManager.onActivityResult(requestCode, resultCode, data);
     }
+
 }
 
