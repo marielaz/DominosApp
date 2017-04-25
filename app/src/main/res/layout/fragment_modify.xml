@@ -190,6 +190,7 @@
                 android:focusableInTouchMode="true"
                 android:paddingLeft="15dp"
                 android:paddingRight="10dp"
+                android:layout_marginRight="5dp"
                 android:layout_below="@+id/italian_layout"
                 android:layout_alignLeft="@+id/italian_layout"
                 android:layout_alignStart="@+id/italian_layout">
@@ -230,10 +231,126 @@
             </RelativeLayout>
 
             <TextView
+                android:id="@+id/sauces_tv"
+                android:layout_below="@id/thin_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="Choose sauces dips"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/colorText"
+                android:textSize="18sp"/>
+
+            <RelativeLayout
+                android:id="@+id/tomato_sauce"
+                android:layout_below="@id/sauces_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/rounded_button">
+
+                <TextView
+                    android:id="@+id/tomato_sauce_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="Tomato sauce"
+                    android:layout_marginLeft="10dp"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp"
+                    android:textColor="#000000" />
+
+                <CheckBox
+                    android:id="@+id/check_tomato"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginRight="10dp"
+                    android:button="@null"
+                    android:drawableLeft="@drawable/checkbox_selector"
+                    android:text="" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/bbq_sauce"
+                android:layout_below="@id/tomato_sauce"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/rounded_button">
+
+                <TextView
+                    android:id="@+id/bbq_sauce_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="BBQ sauce"
+                    android:layout_marginLeft="10dp"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp"
+                    android:textColor="#000000" />
+
+                <CheckBox
+                    android:id="@+id/check_bbq"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginRight="10dp"
+                    android:button="@null"
+                    android:drawableLeft="@drawable/checkbox_selector"
+                    android:text="" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/cream_sauce"
+                android:layout_below="@id/bbq_sauce"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/rounded_button">
+
+                <TextView
+                    android:id="@+id/cream_sauce_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="Cream sauce"
+                    android:layout_marginLeft="10dp"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp"
+                    android:textColor="#000000" />
+
+                <CheckBox
+                    android:id="@+id/check_cream"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginRight="10dp"
+                    android:button="@null"
+                    android:drawableLeft="@drawable/checkbox_selector"
+                    android:text="" />
+            </RelativeLayout>
+            <TextView
                 android:id="@+id/ingredian_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/thin_layout"
+                android:layout_below="@+id/cream_sauce"
                 android:layout_marginTop="10dp"
                 android:gravity="center_horizontal"
                 android:text="Choose ingredients"
@@ -243,12 +360,13 @@
             <android.support.v4.widget.NestedScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/ingredian_tv"
-                android:layout_marginTop="5dp">
+                android:layout_below="@id/ingredian_tv">
 
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/ingredients_recycler_view"
+                    android:padding="8dp"
+                    android:clipToPadding="false"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
