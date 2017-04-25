@@ -5,8 +5,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import karikuncheva.dominosapp.model.Address;
@@ -35,11 +38,18 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.AddressV
 
     @Override
     public void onBindViewHolder(final AddressAdapter.AddressViewHolder vh, final int position) {
-        Address address = addresses.get(position);
+        final Address address = addresses.get(position);
         vh.town.setText(address.getTown());
-        vh.neighborhood.setText(address.getNeighbourhood());
-        vh.block.setText(address.getBlock());
+        vh.infoAddress.setText(address.toString());
 
+        vh.delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addresses.remove(address);
+                notifyDataSetChanged();
+                DBManager.getInstance(activity).deleteAddress(address);
+            }
+        });
     }
 
     @Override
@@ -49,16 +59,15 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.AddressV
 
     class AddressViewHolder extends RecyclerView.ViewHolder {
         TextView town;
-        TextView neighborhood;
-        TextView block;
-        TextView phone;
+        TextView infoAddress;
+        ImageButton delete;
 
         AddressViewHolder(View row) {
             super(row);
             town = (TextView) row.findViewById(R.id.town);
-            neighborhood = (TextView) row.findViewById(R.id.neighborhood);
-            block = (TextView) row.findViewById(R.id.block);
-            phone = (TextView) row.findViewById(R.id.phone);
+            infoAddress = (TextView) row.findViewById(R.id.info_address);
+            delete = (ImageButton) row.findViewById(R.id.delete_address);
+
         }
     }
 }

@@ -35,7 +35,8 @@ public class AddressFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                Intent i = new Intent(getActivity(), EditAddressActivity.class);
+                Intent i = new Intent(getActivity(), AddAddressActivity.class);
+                i.putExtra("fromActivity", 2);
                 startActivity(i);
             }
         });

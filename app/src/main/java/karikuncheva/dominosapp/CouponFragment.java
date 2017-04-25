@@ -10,10 +10,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.util.Random;
-
-import java.util.Random;
-
 import karikuncheva.dominosapp.model.products.Dessert;
 import karikuncheva.dominosapp.model.products.Drink;
 import karikuncheva.dominosapp.model.products.Product;

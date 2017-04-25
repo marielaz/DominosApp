@@ -3,11 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".EditAddressActivity">
+    tools:context=".AddAddressActivity">
 
     <include
         layout="@layout/toolbar"
         android:id="@+id/toolbar_add_address" ></include>
+
     <TextView
         android:layout_below="@id/toolbar_add_address"
         android:id="@+id/city_tv"
@@ -25,6 +26,7 @@
     <EditText
         android:layout_below="@id/toolbar_add_address"
         android:id="@+id/city_et"
+        android:inputType="text"
         android:layout_toRightOf="@+id/city_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -43,6 +45,7 @@
     <EditText
         android:id="@+id/neighborhood_et"
         android:layout_below="@id/city_et"
+        android:inputType="text"
         android:layout_toRightOf="@+id/city_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -62,6 +65,7 @@
         android:id="@+id/post_code_et"
         android:layout_below="@id/neighborhood_et"
         android:layout_width="match_parent"
+        android:inputType="number"
         android:layout_toRightOf="@+id/city_tv"
         android:layout_height="wrap_content"
         android:layout_marginLeft="120dp"/>
@@ -98,6 +102,7 @@
         android:id="@+id/number_et"
         android:layout_below="@id/street_et"
         android:layout_toRightOf="@+id/city_tv"
+        android:inputType="number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="120dp"/>
@@ -133,6 +138,7 @@
         android:id="@+id/floor_et"
         android:layout_below="@id/block_et"
         android:layout_toRightOf="@+id/city_tv"
+        android:inputType="number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="120dp"/>
@@ -151,6 +157,7 @@
         android:id="@+id/apartament_et"
         android:layout_below="@id/floor_et"
         android:layout_toRightOf="@+id/city_tv"
+        android:inputType="number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="120dp"/>

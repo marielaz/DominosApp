@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="15dp"
+    android:layout_marginBottom="5dp"
     android:layout_marginLeft="10dp"
     android:layout_marginRight="10dp"
     android:background="@drawable/rounded_button">
@@ -11,23 +11,23 @@
         android:id="@+id/ingredient_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
         android:layout_marginLeft="20dp"
         android:paddingBottom="5dp"
         android:paddingTop="5dp"
-        android:textColor="#000000"
-        android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"/>
+        android:textColor="#000000" />
 
     <CheckBox
         android:id="@+id/check_ingredient"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=""
-      android:drawableLeft="@drawable/checkbox_selector"
-        android:button="@null"
-        android:layout_marginRight="20dp"
-        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="10dp"
+        android:button="@null"
+        android:drawableLeft="@drawable/checkbox_selector"
+        android:text="" />
 
 </RelativeLayout>

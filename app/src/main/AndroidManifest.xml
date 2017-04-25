@@ -30,8 +30,11 @@
             android:theme="@style/AppTheme" />
         <activity android:name=".MakeOrderActivity" />
         <activity android:name=".ProfileActivity"></activity>
-        <activity android:name=".EditAddressActivity" />
+        <activity android:name=".AddAddressActivity" />
         <activity android:name=".ContactsActivity" />
+
+        //API key
+        <!-- AIzaSyCQARllLXUnAZg-x11NdCJ1ClUyQNxWqqc-->
     </application>
 
 </manifest>

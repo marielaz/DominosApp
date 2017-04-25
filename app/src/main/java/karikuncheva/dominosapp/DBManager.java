@@ -188,9 +188,8 @@ public class DBManager extends SQLiteOpenHelper {
 
     public void deleteAddress(Address a){
             getWritableDatabase().delete("addresses", "id = ?", new String[]{Integer.toString(a.getId())});
-            Toast.makeText(context, a.getId() + " deleted successfully", Toast.LENGTH_SHORT).show();
-        // TODO how to remove address from DB
-           // addresses.remove(a);
+            //Toast.makeText(context, a.getId() + " deleted successfully", Toast.LENGTH_SHORT).show();
+           MainActivity.loggedUser.getAddresses().remove(a);
         }
 
     public boolean existsUser(String username) {

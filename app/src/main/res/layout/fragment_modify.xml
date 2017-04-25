@@ -16,16 +16,18 @@
 
         <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/size_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_alignLeft="@+id/trad_layout"
+                android:layout_alignParentTop="true"
+                android:layout_alignStart="@+id/trad_layout"
                 android:gravity="center_horizontal"
                 android:text="Choose size"
+                android:textColor="@color/colorText"
                 android:textSize="18sp" />
 
             <LinearLayout
@@ -44,7 +46,8 @@
                     android:layout_weight="1"
                     android:background="@drawable/custom_bnt"
                     android:focusableInTouchMode="true"
-                    android:text="Small" />
+                    android:text="Small"
+                    android:textAllCaps="false" />
 
                 <Button
                     android:id="@+id/med"
@@ -78,6 +81,7 @@
                 android:layout_marginTop="10dp"
                 android:gravity="center_horizontal"
                 android:text="Choose crust"
+                android:textColor="@color/colorText"
                 android:textSize="18sp" />
 
             <RelativeLayout
@@ -99,8 +103,7 @@
                     android:layout_height="59dp"
                     android:layout_marginBottom="10dp"
                     android:layout_marginTop="10dp"
-
-                    />
+                    android:background="@drawable/traditianal" />
 
                 <TextView
                     android:id="@+id/text_trad"
@@ -112,7 +115,7 @@
                     android:paddingLeft="15dp"
                     android:paddingRight="60dp"
                     android:text="Traditional"
-                    android:textColor="#000000"
+                    android:textColor="@color/colorText"
                     android:textSize="20sp" />
 
 
@@ -134,10 +137,12 @@
                 android:id="@+id/italian_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/trad_layout"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/trad_layout"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="8dp"
                 android:background="@drawable/main_rounded_shape"
                 android:focusableInTouchMode="true"
                 android:paddingLeft="15dp"
@@ -148,7 +153,8 @@
                     android:layout_width="89dp"
                     android:layout_height="59dp"
                     android:layout_marginBottom="10dp"
-                    android:layout_marginTop="10dp" />
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/italian" />
 
                 <TextView
                     android:id="@+id/text_ital"
@@ -179,21 +185,22 @@
                 android:id="@+id/thin_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/italian_layout"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="8dp"
                 android:background="@drawable/main_rounded_shape"
                 android:focusableInTouchMode="true"
                 android:paddingLeft="15dp"
-                android:paddingRight="10dp">
+                android:paddingRight="10dp"
+                android:layout_below="@+id/italian_layout"
+                android:layout_alignLeft="@+id/italian_layout"
+                android:layout_alignStart="@+id/italian_layout">
 
                 <ImageView
                     android:id="@+id/image_thin_and_cr"
                     android:layout_width="89dp"
                     android:layout_height="59dp"
                     android:layout_marginBottom="10dp"
-                    android:layout_marginTop="10dp" />
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/thin"/>
 
                 <TextView
                     android:id="@+id/text_thin"
@@ -230,6 +237,7 @@
                 android:layout_marginTop="10dp"
                 android:gravity="center_horizontal"
                 android:text="Choose ingredients"
+                android:textColor="@color/colorText"
                 android:textSize="18sp" />
 
             <android.support.v4.widget.NestedScrollView
@@ -244,6 +252,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
                     android:divider="@color/colorBackground"
                     android:dividerHeight="15dp"></android.support.v7.widget.RecyclerView>
             </android.support.v4.widget.NestedScrollView>

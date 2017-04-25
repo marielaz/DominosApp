@@ -4,6 +4,7 @@
     <color name="colorIngredients">#9bcaf4</color>
     <color name="colorBonus">#d4083b</color>
     <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorText">#000000</color>
     <color name="colorAccent">#020b25</color>
     <color name="colorLoginButton">#FFD4083B</color>
     <color name="colorTitles">#292828</color>

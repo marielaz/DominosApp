@@ -37,7 +37,6 @@ public class MakeOrderActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 delivery_checked.setVisibility(View.VISIBLE);
-                // intent to the list with the address
                 Intent intent = new Intent(MakeOrderActivity.this, CatalogActivity.class);
                 MakeOrderActivity.this.startActivity(intent);
             }

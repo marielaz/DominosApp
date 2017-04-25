@@ -77,4 +77,14 @@ public class Address implements Serializable {
     public void setIdUser(int idUser) {
         this.idUser = idUser;
     }
+
+    @Override
+    public String toString() {
+        return  neighbourhood  +
+                ", " + street +
+                ", N " + number +
+                ", bl. " + block  +
+                ", ap. " + apartment  +
+                ", floor " + floor  ;
+    }
 }
