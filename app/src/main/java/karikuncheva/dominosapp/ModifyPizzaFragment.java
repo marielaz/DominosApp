@@ -9,12 +9,15 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.RadioButton;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import karikuncheva.dominosapp.model.Shop;
 import karikuncheva.dominosapp.model.products.Pizza;
 import karikuncheva.dominosapp.model.products.Product;
 
@@ -28,6 +31,9 @@ public class ModifyPizzaFragment extends Fragment {
     }
 
     List<RadioButton> pizza_type_bnts = new ArrayList<RadioButton>();
+    List<CheckBox> sauces_dips_checkboxs = new ArrayList<CheckBox>();
+    CheckBox check_cream, check_tomato, check_bbq;
+    TextView tomato_sauce, cream_sauce, bbq_sauce;
     Button small_bnt, med_bnt, large_bnt;
     RadioButton trad_bnt, ital_bnt, thin_bnt;
     static Pizza pizza;
@@ -65,6 +71,11 @@ public class ModifyPizzaFragment extends Fragment {
         recyclerView.setAdapter(adapter);
 
         recyclerView.setNestedScrollingEnabled(false);
+
+        tomato_sauce = (TextView) v.findViewById(R.id.tomato_sauce_tv);
+        cream_sauce = (TextView) v.findViewById(R.id.cream_sauce_tv);
+        bbq_sauce = (TextView) v.findViewById(R.id.bbq_sauce_tv);
+
         trad_bnt = (RadioButton) v.findViewById(R.id.trad_bnt);
         ital_bnt = (RadioButton) v.findViewById(R.id.ital_bnt);
         thin_bnt = (RadioButton) v.findViewById(R.id.thin_bnt);
@@ -73,6 +84,22 @@ public class ModifyPizzaFragment extends Fragment {
         pizza_type_bnts.add(ital_bnt);
         pizza_type_bnts.add(thin_bnt);
 
+        check_tomato = (CheckBox) v.findViewById(R.id.check_tomato);
+        check_cream = (CheckBox) v.findViewById(R.id.check_cream);
+        check_bbq = (CheckBox) v.findViewById(R.id.check_bbq);
+ // TODO act when the box is checked
+        sauces_dips_checkboxs.add(check_tomato);
+        sauces_dips_checkboxs.add(check_cream);
+        sauces_dips_checkboxs.add(check_bbq);
+
+        if (pizza.getIngredients().get(0).equals("Tomato sauce")){
+            check_tomato.setChecked(true);
+        }
+        else if (pizza.getIngredients().get(0).equals("BBQ sauce")){
+            check_bbq.setChecked(true);
+        }else{
+            check_cream.setChecked(true);
+        }
         small_bnt = (Button) v.findViewById(R.id.small);
         med_bnt = (Button) v.findViewById(R.id.med);
         large_bnt = (Button) v.findViewById(R.id.large);

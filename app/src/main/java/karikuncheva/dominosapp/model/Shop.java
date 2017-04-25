@@ -38,38 +38,38 @@ public class Shop implements Serializable {
         this.catalog = new HashMap<ProductType, HashSet<Product>>();
 
         pizzas.add(new Pizza("Margarita", 12.00, R.drawable.margarita));
+        pizzas.get(0).getIngredients().add("Tomato sause");
         pizzas.get(0).getIngredients().add("mozzarella");
-        pizzas.get(0).getIngredients().add("tomato sause");
 
         pizzas.add(new Pizza("Beast", 16.50, R.drawable.beast));
-        pizzas.get(1).getIngredients().add("tomato sauce");
+        pizzas.get(1).getIngredients().add("Tomato sauce");
         pizzas.get(1).getIngredients().add("mozzarella");
         pizzas.get(1).getIngredients().add("ham");
         pizzas.get(1).getIngredients().add("bacon");
         pizzas.get(1).getIngredients().add("spicy beef");
 
         pizzas.add(new Pizza("Mediterraneo", 14.50, R.drawable.mediterraneo));
+        pizzas.get(2).getIngredients().add("Tomato sauce");
         pizzas.get(2).getIngredients().add("mozzarella");
-        pizzas.get(2).getIngredients().add("tomato sauce");
         pizzas.get(2).getIngredients().add("green peppers");
         pizzas.get(2).getIngredients().add("feta cheese");
         pizzas.get(2).getIngredients().add("olives");
 
 
         pizzas.add(new Pizza("Carbonara", 14.50, R.drawable.carbonara));
-        pizzas.get(3).getIngredients().add("cream");
+        pizzas.get(3).getIngredients().add("Cream sauce");
         pizzas.get(3).getIngredients().add("mozzarella");
         pizzas.get(3).getIngredients().add("bacon");
         pizzas.get(3).getIngredients().add("mushrooms");
 
         pizzas.add(new Pizza("Alfredo", 15.50, R.drawable.alfredo));
-        pizzas.get(4).getIngredients().add("cream");
+        pizzas.get(4).getIngredients().add("Cream sauce");
         pizzas.get(4).getIngredients().add("mozzarella");
         pizzas.get(4).getIngredients().add("baby spinach");
         pizzas.get(4).getIngredients().add("chicken");
 
         pizzas.add(new Pizza("Vita", 14.50, R.drawable.vita));
-        pizzas.get(5).getIngredients().add("tomato sauce");
+        pizzas.get(5).getIngredients().add("Tomato sauce");
         pizzas.get(5).getIngredients().add("mozzarella");
         pizzas.get(5).getIngredients().add("baby spinach");
         pizzas.get(5).getIngredients().add("feta cheese");
@@ -84,21 +84,21 @@ public class Shop implements Serializable {
         pizzas.get(6).getIngredients().add("emmental");
 
         pizzas.add(new Pizza("American Hot", 15.50, R.drawable.americanhot));
-        pizzas.get(7).getIngredients().add("tomato sauce");
+        pizzas.get(7).getIngredients().add("Tomato sauce");
         pizzas.get(7).getIngredients().add("mozzarella");
         pizzas.get(7).getIngredients().add("pepperoni");
         pizzas.get(7).getIngredients().add("spicy peppers");
         pizzas.get(7).getIngredients().add("onion");
 
         pizzas.add(new Pizza("New York", 16.50,  R.drawable.newyork));
-        pizzas.get(8).getIngredients().add("tomato sauce");
+        pizzas.get(8).getIngredients().add("Tomato sauce");
         pizzas.get(8).getIngredients().add("mozzarella");
         pizzas.get(8).getIngredients().add("bacon");
         pizzas.get(8).getIngredients().add("cheddar");
         pizzas.get(8).getIngredients().add("mushrooms");
 
         pizzas.add(new Pizza("Bulgarian", 15.50,  R.drawable.bulgaria));
-        pizzas.get(9).getIngredients().add("tomato sauce");
+        pizzas.get(9).getIngredients().add("Tomato sauce");
         pizzas.get(9).getIngredients().add("mozzarella");
         pizzas.get(9).getIngredients().add("onion");
         pizzas.get(9).getIngredients().add("olives");

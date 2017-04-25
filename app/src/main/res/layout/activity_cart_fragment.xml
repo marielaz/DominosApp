@@ -8,6 +8,8 @@
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/products_recycle_view"
+        android:paddingTop="8dp"
+        android:clipToPadding="false"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"

@@ -100,6 +100,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             vh.minus_product.setVisibility(View.INVISIBLE);
             vh.description_cart_tv.setText("BONUS");
             vh.dicsount_cart_tv.setVisibility(View.GONE);
+            vh.price_in_cart.setText("");
             vh.quantity.setText("");
             vh.description_cart_tv.setTextColor(Color.argb(255, 212, 8, 59));
         }
@@ -111,6 +112,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             //TODO to find way to get pizza size and type
             Pizza pizza = (Pizza) product;
             vh.description_cart_tv.setText(pizza.getSize().toString());
+            vh.description_cart_tv.setTextColor(Color.argb(255, 64, 60, 60));
             vh.descr_type.setText(pizza.getType().toString());
             vh.dicsount_cart_tv.setText("5% Discount");
         } else {
