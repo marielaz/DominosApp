@@ -8,14 +8,29 @@
     android:focusableInTouchMode="true"
     tools:context="karikuncheva.dominosapp.ProfileActivity">
 
-    <!--<android.support.design.widget.AppBarLayout-->
-        <!--android:id="@+id/app_bar_adr"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:theme="@style/AppTheme.AppBarOverlay">-->
-    <include
+    <android.support.v7.widget.Toolbar
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/toolbar_profile"
-        layout="@layout/profile_toolbar"></include>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        app:contentInsetEnd="0dp"
+        app:contentInsetStart="0dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="My profile"
+            android:textColor="#ffffff"
+            android:textSize="25sp"
+            android:layout_marginLeft="90dp"
+            />
+
+    </android.support.v7.widget.Toolbar>
 
     <Button
         android:id="@+id/back_button_profile"
@@ -29,22 +44,139 @@
         android:layout_marginTop="12dp"
         android:background="@drawable/back_icon" />
 
-    <android.support.design.widget.TabLayout
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_below="@id/toolbar_profile"
-        android:id="@+id/tabLayout_profile"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+        android:background="#FFFFFF"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp">
 
-    <!--</android.support.design.widget.AppBarLayout>-->
-    <!-- View pager to swipe views -->
-    <android.support.v4.view.ViewPager
-        android:layout_below="@id/tabLayout_profile"
-        android:id="@+id/pager_profile"
-        android:layout_width="match_parent"
-        android:layout_height="fill_parent" />
+        <TextView
+            android:id="@+id/welcome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:text=""
+            android:textColor="@color/colorTitles"
+            android:textSize="30dp" />
 
+        <TextView
+            android:id="@+id/name_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/welcome"
+            android:layout_marginTop="20dp"
+            android:text="Name:" />
+
+        <EditText
+            android:id="@+id/name_edit_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/name_edit"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/rounded_shape_profile"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="5dp"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/phone_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/name_edit_et"
+            android:layout_marginTop="20dp"
+            android:text="Phone number:" />
+
+        <EditText
+            android:id="@+id/phone_edit_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/phone_edit"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/rounded_shape_profile"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
+            android:paddingLeft="10dp"
+
+            android:text="" />
+
+        <TextView
+            android:id="@+id/password_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/phone_edit_et"
+            android:layout_marginTop="20dp"
+            android:text="New password:" />
+
+        <EditText
+            android:id="@+id/password_edit_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/password_edit"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/rounded_shape_profile"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
+            android:paddingLeft="10dp"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/password2_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/password_edit_et"
+            android:layout_marginTop="20dp"
+            android:text="Confirm password:" />
+
+        <EditText
+            android:id="@+id/password2_edit_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/password2_edit"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/rounded_shape_profile"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
+            android:paddingLeft="10dp"
+
+            android:text="" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="400dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/save"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/password2_edit_et"
+                android:layout_marginTop="20dp"
+                android:layout_weight="1"
+                android:background="@drawable/rounded_button"
+                android:text="Save chages"
+                android:textAllCaps="false"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/cancel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/password2_edit_et"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_weight="1"
+                android:background="@drawable/rounded_button_login"
+                android:text="Cancel"
+                android:textAllCaps="false"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+    </RelativeLayout>
 
 </RelativeLayout>

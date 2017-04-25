@@ -15,6 +15,7 @@ public class AddressActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private TextView choose;
     private Button finalize;
+    private Button back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +37,15 @@ public class AddressActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
 
+        back = (Button) findViewById(R.id.back_button_profile);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AddressActivity.this, CatalogActivity.class);
+                AddressActivity.this.startActivity(intent);
+            }
+        });
 
         finalize.setOnClickListener(new View.OnClickListener() {
             @Override
