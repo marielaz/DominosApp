@@ -137,6 +137,11 @@ public class CatalogActivity extends NavigDrawerActivity {
             startActivity(i);
         }
 
+        if (id == R.id.nav_address) {
+            Intent i = new Intent(CatalogActivity.this, AddressActivity.class);
+            startActivity(i);
+
+        }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

@@ -37,13 +37,13 @@ public class ProfileActivity extends AppCompatActivity {
         //Creating our pager adapter
         ProfilePagerAdapter adapter = new ProfilePagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
 
-        Bundle bundle = getIntent().getExtras();
-        if(bundle != null){
-            position = bundle.getInt("viewpager_position");
-            if(bundle.getString("item") != null){
-
-            }
-        }
+//        Bundle bundle = getIntent().getExtras();
+//        if(bundle != null){
+//            position = bundle.getInt("viewpager_position");
+//            if(bundle.getString("item") != null){
+//
+//            }
+//        }
 
 
         //Adding adapter to pager

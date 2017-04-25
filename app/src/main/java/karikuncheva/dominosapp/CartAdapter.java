@@ -102,7 +102,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             vh.dicsount_cart_tv.setVisibility(View.GONE);
             vh.price_in_cart.setText("");
             vh.quantity.setText("");
-            vh.description_cart_tv.setTextColor(Color.argb(255, 212, 8, 59));
+            vh.description_cart_tv.setTextColor(Color.argb(255, 130, 130, 130));
         }
 
         if (product.pType == Product.ProductType.PIZZA) {

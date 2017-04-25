@@ -71,10 +71,14 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
         accessTokenTracker = new AccessTokenTracker() {
             @Override
             protected void onCurrentAccessTokenChanged(AccessToken oldAccessToken, AccessToken currentAccessToken) {
-
+                if (currentAccessToken != null){
+                    Intent i = new Intent(MainActivity.this, CatalogActivity.class);
+                    startActivity(i);
+                }
             }
         };
 

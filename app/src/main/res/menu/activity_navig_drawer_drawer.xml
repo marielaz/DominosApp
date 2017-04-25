@@ -8,6 +8,8 @@
             android:title="Contacts" />
         <item android:id="@+id/nav_cart" android:icon="@drawable/go_to_cart"
             android:title="Cart" />
+        <item android:id="@+id/nav_address" android:icon="@mipmap/icon_address"
+            android:title="Address" />
     </group>
 
 </menu>

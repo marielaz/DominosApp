@@ -1,13 +1,17 @@
 package karikuncheva.dominosapp;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -19,22 +23,23 @@ import karikuncheva.dominosapp.model.Address;
  * Created by Mariela Zviskova on 9.4.2017 г..
  */
 
-public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.AddressViewHolder> implements AdapterView.OnItemClickListener {
+public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.AddressViewHolder> {
 
     private Activity activity;
     private List<Address> addresses;
-    private String click;
+    private int click;
+    Bundle bundle;
 
     public AddressAdapter(Activity activity, List<Address> addresses) {
         this.activity = activity;
         this.addresses = MainActivity.loggedUser.getAddresses();
     }
 
-    public AddressAdapter(Activity activity, List<Address> addresses, String click) {
-        this.activity = activity;
-        this.addresses = MainActivity.loggedUser.getAddresses();
-        this.click = click;
-    }
+//    public AddressAdapter(Activity activity, List<Address> addresses, int click) {
+//        this.activity = activity;
+//        this.addresses = MainActivity.loggedUser.getAddresses();
+//        this.click = click;
+//    }
 
     @Override
     public AddressAdapter.AddressViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -59,6 +64,15 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.AddressV
             }
         });
 
+        bundle = activity.getIntent().getExtras();
+        if(bundle != null){
+            vh.layout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    vh.layout.setBackgroundDrawable(activity.getResources().getDrawable(R.drawable.rounded_button));
+                }
+            });
+        }
     }
 
     @Override
@@ -66,23 +80,21 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.AddressV
         return addresses.size();
     }
 
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-    }
 
 
     class AddressViewHolder extends RecyclerView.ViewHolder {
         TextView town;
         TextView infoAddress;
         ImageButton delete;
+        RelativeLayout layout;
+
 
         AddressViewHolder(View row) {
             super(row);
             town = (TextView) row.findViewById(R.id.town);
             infoAddress = (TextView) row.findViewById(R.id.info_address);
             delete = (ImageButton) row.findViewById(R.id.delete_address);
-
+            layout = (RelativeLayout) row.findViewById(R.id.single_row_address);
         }
     }
 }

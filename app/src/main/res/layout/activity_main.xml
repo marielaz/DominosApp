@@ -80,37 +80,35 @@
         android:background="@drawable/rounded_button_login"
         />
 
+        <TextView
+            android:id="@+id/new_member"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:text="New member?"
+            android:layout_below="@id/login_button"
+            android:textColor="@color/colorHint"/>
+
+        <Button
+            android:id="@+id/registration_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+            android:text="Registration"
+            android:layout_below="@id/new_member"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/rounded_button"
+            />
+
         <com.facebook.login.widget.LoginButton
             android:id="@+id/login_fb_button"
-            android:layout_below="@id/login_button"
+            android:layout_below="@id/registration_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             />
-
-<TextView
-    android:id="@+id/new_member"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="5dp"
-    android:text="New member?"
-    android:layout_below="@id/login_fb_button"
-    android:textColor="@color/colorHint"/>
-
-
-    <Button
-        android:id="@+id/registration_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:textAllCaps="false"
-        android:textStyle="bold"
-        android:text="Registration"
-        android:layout_below="@id/new_member"
-        android:layout_marginBottom="30dp"
-        android:background="@drawable/rounded_button"
-        />
-
 
 </RelativeLayout>
 
