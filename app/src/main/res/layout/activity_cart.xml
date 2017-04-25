@@ -1,5 +1,4 @@
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,33 +10,34 @@
         android:id="@+id/toolbar_cart"
         layout="@layout/toolbar" />
 
-    <fragment
-        android:id="@+id/cart_list_products"
-        android:name="karikuncheva.dominosapp.CartListFragment"
+    <TextView
+        android:id="@+id/total_price_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/toolbar_cart"
-        tools:layout="@layout/activity_cart_fragment" />
+        android:layout_above="@+id/check_out_button"
+        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal"
+        android:textSize="20dp" />
 
     <fragment
         android:id="@+id/coupon_in_cart"
         android:name="karikuncheva.dominosapp.CouponFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginRight="10dp"
+        android:layout_above="@id/total_price_tv"
         android:layout_marginLeft="10dp"
-        android:layout_below="@id/cart_list_products"
-        tools:layout="@layout/fragment_coupon"/>
+        android:layout_marginRight="10dp"
+        tools:layout="@layout/fragment_coupon" />
 
-
-    <TextView
-        android:id="@+id/total_price_tv"
-        android:layout_marginTop="10dp"
+    <fragment
+        android:id="@+id/cart_list_products"
+        android:name="karikuncheva.dominosapp.CartListFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:textSize="20dp"
-        android:layout_above="@+id/check_out_button" />
+        android:layout_above="@id/coupon_in_cart"
+        android:layout_below="@id/toolbar_cart"
+        tools:layout="@layout/activity_cart_fragment" />
+
 
     <Button
         android:id="@+id/check_out_button"
@@ -60,9 +60,6 @@
         android:layout_marginStart="9dp"
         android:layout_marginTop="12dp"
         android:background="@drawable/back_icon" />
-
-
-
 
 
 </RelativeLayout>

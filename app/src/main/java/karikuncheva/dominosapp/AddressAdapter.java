@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -18,14 +19,21 @@ import karikuncheva.dominosapp.model.Address;
  * Created by Mariela Zviskova on 9.4.2017 г..
  */
 
-public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.AddressViewHolder> {
+public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.AddressViewHolder> implements AdapterView.OnItemClickListener {
 
     private Activity activity;
     private List<Address> addresses;
+    private String click;
 
     public AddressAdapter(Activity activity, List<Address> addresses) {
         this.activity = activity;
         this.addresses = MainActivity.loggedUser.getAddresses();
+    }
+
+    public AddressAdapter(Activity activity, List<Address> addresses, String click) {
+        this.activity = activity;
+        this.addresses = MainActivity.loggedUser.getAddresses();
+        this.click = click;
     }
 
     @Override
@@ -50,12 +58,19 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.AddressV
                 DBManager.getInstance(activity).deleteAddress(address);
             }
         });
+
     }
 
     @Override
     public int getItemCount() {
         return addresses.size();
     }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+    }
+
 
     class AddressViewHolder extends RecyclerView.ViewHolder {
         TextView town;

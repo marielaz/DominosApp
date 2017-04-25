@@ -41,9 +41,9 @@ public class CartActivity extends AppCompatActivity implements CartListFragment.
         checkOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CartActivity.this, TrackerActivity.class);
+                Intent intent = new Intent(CartActivity.this, ProfileActivity.class);
+                intent.putExtra("viewpager_position", 1);
                 MainActivity.loggedUser.setCart(new Cart());
-                Toast.makeText(CartActivity.this, "You paid successful!", Toast.LENGTH_SHORT).show();
                 CartActivity.this.startActivity(intent);
             }
         });

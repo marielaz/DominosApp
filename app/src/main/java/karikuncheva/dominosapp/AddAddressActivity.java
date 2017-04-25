@@ -61,6 +61,8 @@ public class AddAddressActivity extends AppCompatActivity {
                         startActivity(i);
                     } else {
                         Intent i = new Intent(AddAddressActivity.this, ProfileActivity.class);
+                        i.putExtra("viewpager_position", 1);
+                        i.putExtra("item", "click");
                         startActivity(i);
                     }
                 }

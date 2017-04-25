@@ -15,7 +15,7 @@
         <!--android:theme="@style/AppTheme.AppBarOverlay">-->
     <include
         android:id="@+id/toolbar_profile"
-        layout="@layout/toolbar"></include>
+        layout="@layout/profile_toolbar"></include>
 
     <Button
         android:id="@+id/back_button_profile"

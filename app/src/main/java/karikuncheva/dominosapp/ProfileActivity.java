@@ -20,7 +20,8 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        int position = 0;
+        Toolbar toolbar = (Toolbar) findViewById(R.id.profile_toolbar);
         setSupportActionBar(toolbar);
 
         tabLayout = (TabLayout) findViewById(R.id.tabLayout_profile);
@@ -35,6 +36,15 @@ public class ProfileActivity extends AppCompatActivity {
 
         //Creating our pager adapter
         ProfilePagerAdapter adapter = new ProfilePagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
+
+        Bundle bundle = getIntent().getExtras();
+        if(bundle != null){
+            position = bundle.getInt("viewpager_position");
+            if(bundle.getString("item") != null){
+
+            }
+        }
+
 
         //Adding adapter to pager
         viewPager.setAdapter(adapter);
@@ -58,14 +68,15 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
-        back = (Button) findViewById(R.id.back_button_contact);
+        back = (Button) findViewById(R.id.back_button_profile);
 
-//        back.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(ProfileActivity.this, CatalogActivity.class);
-//                ProfileActivity.this.startActivity(intent);
-//            }
-//        });
+        viewPager.setCurrentItem(position);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProfileActivity.this, CatalogActivity.class);
+                ProfileActivity.this.startActivity(intent);
+            }
+        });
     }
 }

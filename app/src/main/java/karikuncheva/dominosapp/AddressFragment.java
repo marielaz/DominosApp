@@ -17,7 +17,8 @@ import android.view.ViewGroup;
  */
 public class AddressFragment extends Fragment {
 
-    RecyclerView recyclerView;
+   private RecyclerView recyclerView;
+    private String itemClick;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -26,9 +27,17 @@ public class AddressFragment extends Fragment {
 
         recyclerView = (RecyclerView) v.findViewById(R.id.recycler_view_address);
 
+        Bundle bundle = getActivity().getIntent().getExtras();
+        if(bundle != null) {
+            if (bundle.get("item") != null) {
+                itemClick =(String) bundle.get("item");
+            }
+        }
+
         AddressAdapter adapter = new AddressAdapter(getActivity(), MainActivity.loggedUser.getAddresses());
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
+
 
         FloatingActionButton fab = (FloatingActionButton) v.findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
