@@ -264,7 +264,7 @@
                     android:paddingTop="5dp"
                     android:textColor="#000000" />
 
-                <CheckBox
+                <RadioButton
                     android:id="@+id/check_tomato"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -273,7 +273,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_marginRight="10dp"
                     android:button="@null"
-                    android:drawableLeft="@drawable/checkbox_selector"
+                    android:drawableLeft="@drawable/radio_bnt_image"
                     android:text="" />
             </RelativeLayout>
 
@@ -299,7 +299,7 @@
                     android:paddingTop="5dp"
                     android:textColor="#000000" />
 
-                <CheckBox
+                <RadioButton
                     android:id="@+id/check_bbq"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -308,7 +308,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_marginRight="10dp"
                     android:button="@null"
-                    android:drawableLeft="@drawable/checkbox_selector"
+                    android:drawableLeft="@drawable/radio_bnt_image"
                     android:text="" />
             </RelativeLayout>
 
@@ -334,7 +334,7 @@
                     android:paddingTop="5dp"
                     android:textColor="#000000" />
 
-                <CheckBox
+                <RadioButton
                     android:id="@+id/check_cream"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -343,7 +343,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_marginRight="10dp"
                     android:button="@null"
-                    android:drawableLeft="@drawable/checkbox_selector"
+                    android:drawableLeft="@drawable/radio_bnt_image"
                     android:text="" />
             </RelativeLayout>
             <TextView

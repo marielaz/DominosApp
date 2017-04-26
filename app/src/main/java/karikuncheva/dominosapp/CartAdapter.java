@@ -86,13 +86,14 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         vh.dicsount_cart_tv.setVisibility(View.VISIBLE);
         vh.quantity.setText(String.valueOf(product.getQuantity()));
         vh.p_name_in_cart.setText(product.getName());
+        vh.price_in_cart.setText(String.format("%.2f", product.getQuantity() * product.getPrice()));
 
         if (product.pType != Product.ProductType.PIZZA) {
             vh.dicsount_cart_tv.setText("");
             vh.description_cart_tv.setText("");
             vh.descr_type.setText("");
             vh.disc_price_in_cart.setText("");
-            vh.dicsount_cart_tv.setVisibility(View.GONE);
+//            vh.dicsount_cart_tv.setVisibility(View.GONE);
             vh.price_in_cart.setPaintFlags(vh.price_in_cart.getPaintFlags() & (~Paint.STRIKE_THRU_TEXT_FLAG));
         }
         if (product.getPrice() == 0.00) {
@@ -102,7 +103,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             vh.dicsount_cart_tv.setVisibility(View.GONE);
             vh.price_in_cart.setText("");
             vh.quantity.setText("");
-            vh.description_cart_tv.setTextColor(Color.argb(255, 130, 130, 130));
+            vh.description_cart_tv.setTextColor(Color.argb(255, 212, 8, 59));
         }
 
         if (product.pType == Product.ProductType.PIZZA) {
@@ -112,11 +113,9 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             //TODO to find way to get pizza size and type
             Pizza pizza = (Pizza) product;
             vh.description_cart_tv.setText(pizza.getSize().toString());
-            vh.description_cart_tv.setTextColor(Color.argb(255, 64, 60, 60));
+            vh.description_cart_tv.setTextColor(Color.argb(255, 130, 130, 130));
             vh.descr_type.setText(pizza.getType().toString());
             vh.dicsount_cart_tv.setText("5% Discount");
-        } else {
-            vh.price_in_cart.setText(String.format("%.2f", product.getQuantity() * product.getPrice()));
         }
 
         vh.plus_product.setOnClickListener(new View.OnClickListener() {
@@ -142,6 +141,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
             @Override
             public void onClick(View v) {
+                final int idx = CatalogActivity.count-1;
+                CatalogActivity.count = idx;
                 if (product.getQuantity() == 1) {
                     if (product.pType == Product.ProductType.PIZZA) {
                         total = total - product.getDiscPrice();

@@ -1,15 +1,20 @@
 package karikuncheva.dominosapp;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
@@ -71,18 +76,22 @@ public class ModifyPizzaActivity extends AppCompatActivity implements ModifyPizz
                 } else {
                     ModifyPizzaFragment.pizza.setPrice(Double.parseDouble(price.getText().toString()));
                 }
-                    MainActivity.loggedUser.getCart().addProduct(ModifyPizzaFragment.pizza);
-                    Intent intent = new Intent(ModifyPizzaActivity.this, CartActivity.class);
-                    ModifyPizzaActivity.this.startActivity(intent);
-                }
-            });
+                final int idx = CatalogActivity.count + 1;
+                CatalogActivity.count = idx;
+                MainActivity.loggedUser.getCart().addProduct(ModifyPizzaFragment.pizza);
+                Intent intent = new Intent(ModifyPizzaActivity.this, CartActivity.class);
+                ModifyPizzaActivity.this.startActivity(intent);
+            }
+        });
 
         price.setText(String.valueOf(String.format("%.2f", p.getPrice())));
         pizza_name.setText(p.getName());
-        }
-
-        @Override
-        public void modifyPrice ( double sum){
-            price.setText(String.format("%.2f", sum));
-        }
     }
+
+    @Override
+    public void modifyPrice(double sum) {
+        price.setText(String.format("%.2f", sum));
+    }
+
+
+}

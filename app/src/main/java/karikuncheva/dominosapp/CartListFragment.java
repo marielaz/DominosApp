@@ -19,7 +19,6 @@ public class CartListFragment extends Fragment {
 
 
     private RecyclerView recyclerView;
-    static Product product;
 
     interface CartComunicator{
         public void sumTotalPrice(double sum);

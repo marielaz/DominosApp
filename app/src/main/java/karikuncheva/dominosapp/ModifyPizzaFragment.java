@@ -27,12 +27,12 @@ import karikuncheva.dominosapp.model.products.Product;
 public class ModifyPizzaFragment extends Fragment {
 
     interface ModifyCommunicator {
-         void modifyPrice(double sum);
+        void modifyPrice(double sum);
     }
 
     List<RadioButton> pizza_type_bnts = new ArrayList<RadioButton>();
-    List<CheckBox> sauces_dips_checkboxs = new ArrayList<CheckBox>();
-    CheckBox check_cream, check_tomato, check_bbq;
+    List<RadioButton> sauces_dips_bnts = new ArrayList<RadioButton>();
+    RadioButton check_cream, check_tomato, check_bbq;
     TextView tomato_sauce, cream_sauce, bbq_sauce;
     Button small_bnt, med_bnt, large_bnt;
     RadioButton trad_bnt, ital_bnt, thin_bnt;
@@ -66,7 +66,7 @@ public class ModifyPizzaFragment extends Fragment {
         midd = pizza.getPrice() - 1.00;
 
         recyclerView = (RecyclerView) v.findViewById(R.id.ingredients_recycler_view);
-        ModifyAdapter adapter = new ModifyAdapter(getActivity(), pizza,  mc);
+        ModifyAdapter adapter = new ModifyAdapter(getActivity(), pizza, mc);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
 
@@ -84,20 +84,19 @@ public class ModifyPizzaFragment extends Fragment {
         pizza_type_bnts.add(ital_bnt);
         pizza_type_bnts.add(thin_bnt);
 
-        check_tomato = (CheckBox) v.findViewById(R.id.check_tomato);
-        check_cream = (CheckBox) v.findViewById(R.id.check_cream);
-        check_bbq = (CheckBox) v.findViewById(R.id.check_bbq);
- // TODO act when the box is checked
-        sauces_dips_checkboxs.add(check_tomato);
-        sauces_dips_checkboxs.add(check_cream);
-        sauces_dips_checkboxs.add(check_bbq);
+        check_tomato = (RadioButton) v.findViewById(R.id.check_tomato);
+        check_cream = (RadioButton) v.findViewById(R.id.check_cream);
+        check_bbq = (RadioButton) v.findViewById(R.id.check_bbq);
 
-        if (pizza.getIngredients().get(0).equals("Tomato sauce")){
+        sauces_dips_bnts.add(check_tomato);
+        sauces_dips_bnts.add(check_cream);
+        sauces_dips_bnts.add(check_bbq);
+
+        if (pizza.getIngredients().get(0).equals("Tomato sauce")) {
             check_tomato.setChecked(true);
-        }
-        else if (pizza.getIngredients().get(0).equals("BBQ sauce")){
+        } else if (pizza.getIngredients().get(0).equals("BBQ sauce")) {
             check_bbq.setChecked(true);
-        }else{
+        } else {
             check_cream.setChecked(true);
         }
         small_bnt = (Button) v.findViewById(R.id.small);
@@ -155,12 +154,21 @@ public class ModifyPizzaFragment extends Fragment {
                 return true;
             }
         });
+        for (RadioButton radioButton : sauces_dips_bnts) {
+            radioButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if (isChecked) processRadioButtonClickSauces(buttonView);
+                }
+
+            });
+        }
 
         for (RadioButton button : pizza_type_bnts) {
             button.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    if (isChecked) processRadioButtonClick(buttonView);
+                    if (isChecked) processRadioButtonClickCrust(buttonView);
                 }
 
             });
@@ -177,10 +185,15 @@ public class ModifyPizzaFragment extends Fragment {
         return v;
     }
 
-    private void processRadioButtonClick(CompoundButton buttonView) {
+    private void processRadioButtonClickCrust(CompoundButton buttonView) {
         for (RadioButton button : pizza_type_bnts) {
             if (button != buttonView) button.setChecked(false);
         }
     }
 
+    private void processRadioButtonClickSauces(CompoundButton buttonView) {
+        for (RadioButton button : sauces_dips_bnts) {
+            if (button != buttonView) button.setChecked(false);
+        }
+    }
 }

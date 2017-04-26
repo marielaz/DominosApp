@@ -43,7 +43,7 @@ public class CartActivity extends AppCompatActivity implements CartListFragment.
             public void onClick(View v) {
                 Intent intent = new Intent(CartActivity.this, AddressActivity.class);
                 intent.putExtra("click", 1);
-                MainActivity.loggedUser.setCart(new Cart());
+                intent.putExtra("fromCart", "cart");
                 CartActivity.this.startActivity(intent);
             }
         });

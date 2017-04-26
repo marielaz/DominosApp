@@ -29,6 +29,7 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.AddressV
     private List<Address> addresses;
     private int click;
     Bundle bundle;
+    private int index =1;
 
     public AddressAdapter(Activity activity, List<Address> addresses) {
         this.activity = activity;

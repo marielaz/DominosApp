@@ -12,6 +12,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.internal.Validate;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -58,7 +60,7 @@ public class ProfileActivity extends AppCompatActivity {
         if (MainActivity.loggedUser.getName() != null) {
             name.setText(MainActivity.loggedUser.getName());
         }
-        if (MainActivity.loggedUser.getPhoneNumber() != null){
+        if (MainActivity.loggedUser.getPhoneNumber() != null) {
             phone.setText(MainActivity.loggedUser.getPhoneNumber());
         }
 
@@ -66,21 +68,11 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if (!name.getText().toString().isEmpty()){
-                    MainActivity.loggedUser.setName(name.getText().toString());
+                if (validateData()) {
+                    DBManager.getInstance(ProfileActivity.this).updateUser(MainActivity.loggedUser.getUsername());
+                    Toast.makeText(ProfileActivity.this, "Saved changes", Toast.LENGTH_SHORT).show();
                 }
-                if (!password.getText().toString().isEmpty() &&
-                        password.getText().toString().equals(confirm.getText().toString())) {
-                    MainActivity.loggedUser.setPassword(password.getText().toString());
-                }
-                if (!phone.getText().toString().isEmpty() && phone.getText().toString() != null) {
-                    if (validateMobileNumber(phone.getText().toString())) {
-                        MainActivity.loggedUser.setPhoneNumber(phone.getText().toString());
-                    }
-                }
-                DBManager.getInstance(ProfileActivity.this).updateUser(MainActivity.loggedUser.getUsername());
 
-                Toast.makeText(ProfileActivity.this, "Saved changes", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -91,15 +83,38 @@ public class ProfileActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
     }
+
     public boolean validateMobileNumber(String mobileNumber) {
         Pattern regexPattern = Pattern.compile("^((088)|(089)|(087))[0-9]{7}$");
         Matcher regMatcher = regexPattern.matcher(mobileNumber);
         if (regMatcher.matches()) {
             return true;
         }
-        Toast.makeText(ProfileActivity.this, "Invalid Mobile Number", Toast.LENGTH_SHORT).show();
         return false;
+    }
+
+    private boolean validateData() {
+        if (name.getText().toString().isEmpty()) {
+            MainActivity.loggedUser.setName(name.getText().toString());
+        }
+        if (!phone.getText().toString().isEmpty() && !validateMobileNumber(phone.getText().toString())) {
+            phone.setError("Ivalid phone number!");
+            phone.setText("");
+            return false;
+        } else {
+            MainActivity.loggedUser.setPhoneNumber(phone.getText().toString());
+        }
+        if (password.getText().toString().equals(confirm.getText().toString())) {
+            MainActivity.loggedUser.setPassword(password.getText().toString());
+        } else {
+            if (!password.getText().toString().isEmpty() || !confirm.getText().toString().isEmpty())
+                password.setError("Please, make sure your passwords match!");
+            password.requestFocus();
+            password.setText("");
+            confirm.setText("");
+            return false;
+        }
+        return true;
     }
 }

@@ -38,7 +38,7 @@ public class Shop implements Serializable {
         this.catalog = new HashMap<ProductType, HashSet<Product>>();
 
         pizzas.add(new Pizza("Margarita", 12.00, R.drawable.margarita));
-        pizzas.get(0).getIngredients().add("Tomato sause");
+        pizzas.get(0).getIngredients().add("Tomato sauce");
         pizzas.get(0).getIngredients().add("mozzarella");
 
         pizzas.add(new Pizza("Beast", 16.50, R.drawable.beast));

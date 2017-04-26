@@ -28,10 +28,11 @@ public class AddressActivity extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
         if(bundle != null) {
+            if (bundle.getString("fromCart") != null && bundle.getString("fromCart").equals("cart")) {
                 choose.setVisibility(View.VISIBLE);
                 finalize.setVisibility(View.VISIBLE);
             }
-
+        }
 
         AddressAdapter adapter = new AddressAdapter(this, MainActivity.loggedUser.getAddresses());
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
