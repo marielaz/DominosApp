@@ -193,6 +193,7 @@ public class DBManager extends SQLiteOpenHelper {
         }
 
     public boolean existsUser(String username) {
+
         return registeredUsers.containsKey(username);
     }
 

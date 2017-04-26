@@ -10,9 +10,8 @@
     tools:context="karikuncheva.dominosapp.ModifyPizzaActivity">
 
     <ScrollView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:fillViewport="true">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -375,7 +374,6 @@
                     android:dividerHeight="15dp"></android.support.v7.widget.RecyclerView>
             </android.support.v4.widget.NestedScrollView>
         </RelativeLayout>
-
 
     </ScrollView>
 </LinearLayout>

@@ -8,69 +8,36 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ProfileActivity extends AppCompatActivity {
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private Button back;
+    private EditText phone;
+    private EditText name;
+    private EditText password;
+    private EditText confirm;
+    private TextView welcome;
+    private Button save;
+    private Button cancel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        int position = 0;
         Toolbar toolbar = (Toolbar) findViewById(R.id.profile_toolbar);
         setSupportActionBar(toolbar);
 
-        tabLayout = (TabLayout) findViewById(R.id.tabLayout_profile);
-
-        //Adding the tabs using addTab() method
-        tabLayout.addTab(tabLayout.newTab().setText("Profile"));
-        tabLayout.addTab(tabLayout.newTab().setText("Addresses"));
-        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
-
-        //Initializing viewPager
-        viewPager = (ViewPager) findViewById(R.id.pager_profile);
-
-        //Creating our pager adapter
-        ProfilePagerAdapter adapter = new ProfilePagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
-
-//        Bundle bundle = getIntent().getExtras();
-//        if(bundle != null){
-//            position = bundle.getInt("viewpager_position");
-//            if(bundle.getString("item") != null){
-//
-//            }
-//        }
-
-
-        //Adding adapter to pager
-        viewPager.setAdapter(adapter);
-
-        //Adding onTabSelectedListener to swipe views
-        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                viewPager.setCurrentItem(tab.getPosition());
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
-
         back = (Button) findViewById(R.id.back_button_profile);
 
-        viewPager.setCurrentItem(position);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,5 +45,63 @@ public class ProfileActivity extends AppCompatActivity {
                 ProfileActivity.this.startActivity(intent);
             }
         });
+
+        welcome = (TextView) findViewById(R.id.welcome);
+        phone = (EditText) findViewById(R.id.phone_edit_et);
+        name = (EditText) findViewById(R.id.name_edit_et);
+        password = (EditText) findViewById(R.id.password_edit_et);
+        confirm = (EditText) findViewById(R.id.password2_edit_et);
+        save = (Button) findViewById(R.id.save);
+        cancel = (Button) findViewById(R.id.cancel);
+
+
+        welcome.setText("Welcome, " + MainActivity.loggedUser.getUsername());
+
+        if (MainActivity.loggedUser.getName() != null) {
+            name.setText(MainActivity.loggedUser.getName());
+        }
+        if (MainActivity.loggedUser.getPhoneNumber() != null){
+            phone.setText(MainActivity.loggedUser.getPhoneNumber());
+        }
+
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (!name.getText().toString().isEmpty()){
+                    MainActivity.loggedUser.setName(name.getText().toString());
+                }
+                if (!password.getText().toString().isEmpty() &&
+                        password.getText().toString().equals(confirm.getText().toString())) {
+                    MainActivity.loggedUser.setPassword(password.getText().toString());
+                }
+                if (!phone.getText().toString().isEmpty() && phone.getText().toString() != null) {
+                    if (validateMobileNumber(phone.getText().toString())) {
+                        MainActivity.loggedUser.setPhoneNumber(phone.getText().toString());
+                    }
+                }
+                DBManager.getInstance(ProfileActivity.this).updateUser(MainActivity.loggedUser.getUsername());
+
+                Toast.makeText(ProfileActivity.this, "Saved changes", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(ProfileActivity.this, CatalogActivity.class);
+                startActivity(i);
+            }
+        });
+
+    }
+    public boolean validateMobileNumber(String mobileNumber) {
+        Pattern regexPattern = Pattern.compile("^((088)|(089)|(087))[0-9]{7}$");
+        Matcher regMatcher = regexPattern.matcher(mobileNumber);
+        if (regMatcher.matches()) {
+            return true;
+        }
+        Toast.makeText(ProfileActivity.this, "Invalid Mobile Number", Toast.LENGTH_SHORT).show();
+        return false;
     }
 }

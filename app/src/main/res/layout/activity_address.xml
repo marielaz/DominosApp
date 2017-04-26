@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/colorBackground"
-    tools:context="karikuncheva.dominosapp.AddressFragment">
+    tools:context="karikuncheva.dominosapp.AddAddressActivity">
 
 
     <android.support.v7.widget.Toolbar
@@ -30,6 +30,18 @@
             />
 
     </android.support.v7.widget.Toolbar>
+
+    <Button
+        android:id="@+id/back_button_address"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="9dp"
+        android:layout_marginStart="9dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/back_icon" />
 
 <LinearLayout
     android:layout_below="@id/toolbar_address"

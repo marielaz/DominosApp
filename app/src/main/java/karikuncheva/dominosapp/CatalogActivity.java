@@ -15,12 +15,16 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.TextView;
 
 public class CatalogActivity extends NavigDrawerActivity {
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
+    private TextView name;
+    private TextView email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +42,14 @@ public class CatalogActivity extends NavigDrawerActivity {
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        View header=navigationView.getHeaderView(0);
+        name = (TextView) header.findViewById(R.id.header_name);
+        email = (TextView) header.findViewById(R.id.header_email);
+
+
+        name.setText(MainActivity.loggedUser.getName());
+        email.setText(MainActivity.loggedUser.getEmail());
 
         //Initializing the tablayout
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
