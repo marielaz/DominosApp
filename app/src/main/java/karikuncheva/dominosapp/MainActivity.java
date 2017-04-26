@@ -49,8 +49,6 @@ public class MainActivity extends AppCompatActivity {
 
         FacebookSdk.sdkInitialize(getApplicationContext());
 
-        setContentView(R.layout.activity_main);
-
         session = new karikuncheva.dominosapp.Session(this);
 
         if (session.loggedin()) {
@@ -58,6 +56,8 @@ public class MainActivity extends AppCompatActivity {
             finish();
             startActivity(new Intent(MainActivity.this, CatalogActivity.class));
         }
+
+        setContentView(R.layout.activity_main);
 
         username_login = (EditText) this.findViewById(R.id.username_login);
         password_login = (EditText) this.findViewById(R.id.password_login);
