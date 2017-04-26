@@ -20,6 +20,10 @@ public class PizzaFragment extends Fragment {
 
     RecyclerView recyclerView;
 
+    interface ProductsCommunicator{
+        void changeCount(int count);
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_pizza, container, false);

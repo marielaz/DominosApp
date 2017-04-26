@@ -49,6 +49,9 @@ public class DrinkCustomAdapter extends RecyclerView.Adapter<DrinkCustomAdapter.
             public void onClick(View v) {
                 // TODO add to cart
                 MainActivity.loggedUser.getCart().addProduct(drinks.get(position));
+                final int idx = CatalogActivity.count+1;
+                CatalogActivity.count = idx;
+                ((PizzaFragment.ProductsCommunicator) activity).changeCount(CatalogActivity.count );
                 String chosenDrink = vh.drinkName.getText().toString() + " is added to your cart!";
                 Toast.makeText(v.getContext(), chosenDrink, Toast.LENGTH_SHORT).show();
 

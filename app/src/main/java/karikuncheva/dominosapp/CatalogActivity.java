@@ -17,14 +17,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
-public class CatalogActivity extends NavigDrawerActivity {
+public class CatalogActivity extends NavigDrawerActivity implements PizzaFragment.ProductsCommunicator {
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private TextView name;
     private TextView email;
+    private TextView products;
+    private ImageButton cart_bnt;
+    static int count = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,14 +47,25 @@ public class CatalogActivity extends NavigDrawerActivity {
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        View header=navigationView.getHeaderView(0);
+        View header = navigationView.getHeaderView(0);
         name = (TextView) header.findViewById(R.id.header_name);
         email = (TextView) header.findViewById(R.id.header_email);
-
+        products = (TextView) findViewById(R.id.count_products);
+        cart_bnt = (ImageButton) findViewById(R.id.cart_bnt);
 
         name.setText(MainActivity.loggedUser.getName());
         email.setText(MainActivity.loggedUser.getEmail());
-
+        if (count != 0) {
+            products.setVisibility(View.VISIBLE);
+            products.setText(String.valueOf(count));
+        }
+        cart_bnt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CatalogActivity.this, CartActivity.class);
+                startActivity(intent);
+            }
+        });
         //Initializing the tablayout
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
 
@@ -121,11 +136,11 @@ public class CatalogActivity extends NavigDrawerActivity {
             this.startActivity(i);
             return true;
         }
-        if (id == R.id.action_cart) {
-            Intent i = new Intent(this, CartActivity.class);
-            this.startActivity(i);
-            return true;
-        }
+//        if (id == R.id.action_cart) {
+//            Intent i = new Intent(this, CartActivity.class);
+//            this.startActivity(i);
+//            return true;
+//        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -157,5 +172,11 @@ public class CatalogActivity extends NavigDrawerActivity {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void changeCount(int count) {
+        products.setVisibility(View.VISIBLE);
+        products.setText(String.valueOf(count));
     }
 }
