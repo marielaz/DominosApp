@@ -3,6 +3,7 @@ package karikuncheva.dominosapp;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInstaller;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,8 +19,11 @@ import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.Profile;
 import com.facebook.ProfileTracker;
+import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.google.android.gms.fitness.data.Session;
+
 import karikuncheva.dominosapp.model.User;
 
 
@@ -36,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
     private CallbackManager callbackManager;
     private AccessTokenTracker accessTokenTracker;
     private ProfileTracker profileTracker;
-
+    private karikuncheva.dominosapp.Session session;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +48,14 @@ public class MainActivity extends AppCompatActivity {
         FacebookSdk.sdkInitialize(getApplicationContext());
 
         setContentView(R.layout.activity_main);
+
+        session = new karikuncheva.dominosapp.Session(this);
+
+        if(session.loggedin()){
+            session.setLoggedin(false);
+            finish();
+            startActivity(new Intent(MainActivity.this,CatalogActivity.class));
+        }
 
         username_login = (EditText) this.findViewById(R.id.username_login);
         password_login = (EditText) this.findViewById(R.id.password_login);
@@ -72,20 +84,33 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        accessTokenTracker = new AccessTokenTracker() {
+        profileTracker = new ProfileTracker() {
             @Override
-            protected void onCurrentAccessTokenChanged(AccessToken oldAccessToken, AccessToken currentAccessToken) {
-                if (currentAccessToken != null){
+            protected void onCurrentProfileChanged(Profile oldProfile, Profile currentProfile) {
+                if (Profile.getCurrentProfile() != null) {
                     Intent i = new Intent(MainActivity.this, CatalogActivity.class);
                     startActivity(i);
                 }
             }
         };
 
+        accessTokenTracker = new AccessTokenTracker() {
+            @Override
+            protected void onCurrentAccessTokenChanged(AccessToken oldAccessToken, AccessToken currentAccessToken) {
+                if (AccessToken.getCurrentAccessToken() != null) {
+                        Intent i = new Intent(MainActivity.this, CatalogActivity.class);
+                        startActivity(i);
+                }
+            }
+        };
+
+        accessTokenTracker.startTracking();
+        profileTracker.startTracking();
+
         loginFbButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-
+                AccessToken accessToken = loginResult.getAccessToken();
                 Profile profile = Profile.getCurrentProfile();
 
                 if(profile != null) {
@@ -137,6 +162,13 @@ public class MainActivity extends AppCompatActivity {
     public void initialize() {
         username = username_login.getText().toString().trim();
         password = password_login.getText().toString().trim();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        accessTokenTracker.stopTracking();
+        profileTracker.stopTracking();
     }
 
     @Override
