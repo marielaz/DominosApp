@@ -37,7 +37,7 @@ public class AddressActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
 
-        back = (Button) findViewById(R.id.back_button_profile);
+        back = (Button) findViewById(R.id.back_button_address);
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override

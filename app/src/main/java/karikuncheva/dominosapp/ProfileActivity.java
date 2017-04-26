@@ -17,8 +17,6 @@ import java.util.regex.Pattern;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    private TabLayout tabLayout;
-    private ViewPager viewPager;
     private Button back;
     private EditText phone;
     private EditText name;

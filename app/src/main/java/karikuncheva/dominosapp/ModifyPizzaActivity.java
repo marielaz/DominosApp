@@ -25,6 +25,7 @@ public class ModifyPizzaActivity extends AppCompatActivity implements ModifyPizz
     Button cancel_modify;
     private Pizza p;
     TextView pizza_name;
+    private Button back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,9 +45,15 @@ public class ModifyPizzaActivity extends AppCompatActivity implements ModifyPizz
         price = (TextView) findViewById(R.id.price_modif_tv);
         add_to_cart = (Button) findViewById(R.id.add_to_cart_modify);
         cancel_modify = (Button) findViewById(R.id.cancel_modify);
-
+        back = (Button) findViewById(R.id.back_button_modify);
         pizza_name.setText(p.getName());
 
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ModifyPizzaActivity.this, CatalogActivity.class));
+            }
+        });
         cancel_modify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

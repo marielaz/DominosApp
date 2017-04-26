@@ -52,8 +52,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Select address"
+        android:textSize="15sp"
         android:id="@+id/choose_address"
         android:visibility="gone"
+        android:layout_gravity="center_horizontal"
         android:layout_below="@id/toolbar_address"/>
 
     <android.support.v7.widget.RecyclerView
@@ -80,6 +82,7 @@
         android:layout_marginBottom="20dp"
         android:text="Finalize your order"
         android:visibility="gone"
+        android:padding="10dp"
         android:textAllCaps="false"
         android:background="@drawable/rounded_button"/>
 

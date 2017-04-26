@@ -5,9 +5,29 @@
     android:background="@color/colorBackground"
     tools:context="karikuncheva.dominosapp.ContactsActivity">
 
-    <include
+    <android.support.v7.widget.Toolbar
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/toolbar_contacts"
-        layout="@layout/toolbar"></include>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        app:contentInsetEnd="0dp"
+        app:contentInsetStart="0dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+
+        <ImageView
+            android:layout_width="180dp"
+            android:layout_height="40dp"
+            android:paddingBottom="20dp"
+            android:layout_marginLeft="80dp"
+            android:paddingTop="20dp"
+            android:background="@drawable/logo_dominos"
+            />
+    </android.support.v7.widget.Toolbar>
 
     <Button
         android:id="@+id/back_button_contact"
@@ -118,7 +138,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
-            android:text="Tweeter" />
+            android:text="Instagram" />
     </LinearLayout>
 
 </RelativeLayout>
