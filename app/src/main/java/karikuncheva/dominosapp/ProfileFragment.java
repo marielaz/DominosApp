@@ -55,15 +55,14 @@ public class ProfileFragment extends Fragment {
         if (MainActivity.loggedUser.getName() != null) {
             name.setText(MainActivity.loggedUser.getName());
         }
-        if (MainActivity.loggedUser.getPhoneNumber() != null){
+        if (MainActivity.loggedUser.getPhoneNumber() != null) {
             phone.setText(MainActivity.loggedUser.getPhoneNumber());
         }
 
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                if (!name.getText().toString().isEmpty()){
+                if (!name.getText().toString().isEmpty()) {
                     MainActivity.loggedUser.setName(name.getText().toString());
                 }
                 if (!password.getText().toString().isEmpty() &&
@@ -75,6 +74,7 @@ public class ProfileFragment extends Fragment {
                         MainActivity.loggedUser.setPhoneNumber(phone.getText().toString());
                     }
                 }
+
                 DBManager.getInstance(getActivity()).updateUser(MainActivity.loggedUser.getUsername());
 
                 Toast.makeText(getActivity(), "Saved changes", Toast.LENGTH_SHORT).show();
@@ -91,6 +91,7 @@ public class ProfileFragment extends Fragment {
 
         return v;
     }
+
     public boolean validateMobileNumber(String mobileNumber) {
         Pattern regexPattern = Pattern.compile("^((088)|(089)|(087))[0-9]{7}$");
         Matcher regMatcher = regexPattern.matcher(mobileNumber);
