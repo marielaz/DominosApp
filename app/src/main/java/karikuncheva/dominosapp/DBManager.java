@@ -20,7 +20,6 @@ public class DBManager extends SQLiteOpenHelper {
     private static DBManager ourInstance;
     private static Context context;
     private static HashMap<String, User> registeredUsers;
-    //private static ArrayList<Address> addresses;
     private static final String SQL_CREATE_USERS = "CREATE TABLE users(\n" +
             "\n" +
             " id INTEGER PRIMARY KEY AUTOINCREMENT,\n" +

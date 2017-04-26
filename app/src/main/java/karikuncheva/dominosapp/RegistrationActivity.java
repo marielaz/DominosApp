@@ -12,8 +12,6 @@ import android.widget.Toast;
 import karikuncheva.dominosapp.model.User;
 
 public class RegistrationActivity extends AppCompatActivity {
-    public static final int RESULT_CODE_CANCELED = 5;
-    public static final int RESULT_CODE_SUCCESS = 3;
     public static final String PREFS_NAME = "USERS";
     private User user;
     private EditText username_reg, email_reg, address_reg, pass_reg, confirm_pass_reg;

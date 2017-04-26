@@ -52,7 +52,8 @@ public class AddressActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(AddressActivity.this, TrackerActivity.class);
-                startActivity(i);
+                AddressActivity.this.startActivity(i);
+                finish();
             }
         });
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);

@@ -33,7 +33,7 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.profile_toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_profile);
         setSupportActionBar(toolbar);
 
         back = (Button) findViewById(R.id.back_button_profile);
@@ -95,9 +95,8 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private boolean validateData() {
-        if (name.getText().toString().isEmpty()) {
-            MainActivity.loggedUser.setName(name.getText().toString());
-        }
+        MainActivity.loggedUser.setName(name.getText().toString());
+
         if (!phone.getText().toString().isEmpty() && !validateMobileNumber(phone.getText().toString())) {
             phone.setError("Ivalid phone number!");
             phone.setText("");

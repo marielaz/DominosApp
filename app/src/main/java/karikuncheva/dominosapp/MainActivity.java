@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Button;
 import android.view.View;
 import android.widget.Toast;
+
 import com.facebook.AccessToken;
 import com.facebook.AccessTokenTracker;
 import com.facebook.CallbackManager;
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     private AccessTokenTracker accessTokenTracker;
     private ProfileTracker profileTracker;
     private karikuncheva.dominosapp.Session session;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,10 +53,10 @@ public class MainActivity extends AppCompatActivity {
 
         session = new karikuncheva.dominosapp.Session(this);
 
-        if(session.loggedin()){
+        if (session.loggedin()) {
             session.setLoggedin(false);
             finish();
-            startActivity(new Intent(MainActivity.this,CatalogActivity.class));
+            startActivity(new Intent(MainActivity.this, CatalogActivity.class));
         }
 
         username_login = (EditText) this.findViewById(R.id.username_login);
@@ -69,13 +71,18 @@ public class MainActivity extends AppCompatActivity {
 
                     if (DBManager.getInstance(MainActivity.this).existsUser(username_login.getText().toString())) {
                         loggedUser = DBManager.getInstance(MainActivity.this).getUser(username_login.getText().toString());
-
-                        Toast.makeText(MainActivity.this, "User data is valid", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(MainActivity.this, CatalogActivity.class);
-                        MainActivity.this.startActivity(intent);
+//                        if (loggedUser.getPassword().equals(password_login.getText().toString())) {
+                            Toast.makeText(MainActivity.this, "User data is valid", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(MainActivity.this, CatalogActivity.class);
+                            MainActivity.this.startActivity(intent);
+//                        }
+//                        else{
+//                            password_login.setError("Wrong password! Please, try again!");
+//                            password_login.setText("");
+//                            password_login.requestFocus();
+//                        }
                     } else {
                         Toast.makeText(MainActivity.this, "User data not valid", Toast.LENGTH_SHORT).show();
-
                     }
 
                 } else {
@@ -98,8 +105,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             protected void onCurrentAccessTokenChanged(AccessToken oldAccessToken, AccessToken currentAccessToken) {
                 if (AccessToken.getCurrentAccessToken() != null) {
-                        Intent i = new Intent(MainActivity.this, CatalogActivity.class);
-                        startActivity(i);
+                    Intent i = new Intent(MainActivity.this, CatalogActivity.class);
+                    startActivity(i);
                 }
             }
         };
@@ -113,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
                 AccessToken accessToken = loginResult.getAccessToken();
                 Profile profile = Profile.getCurrentProfile();
 
-                if(profile != null) {
+                if (profile != null) {
                     Intent i = new Intent(MainActivity.this, CatalogActivity.class);
                     loggedFbUser = new User(profile.getFirstName().toString(), profile.getId().toString());
                     DBManager.getInstance(MainActivity.this).addUser(loggedFbUser);

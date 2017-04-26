@@ -5,9 +5,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".AddAddressActivity">
 
-    <include
-        layout="@layout/toolbar"
-        android:id="@+id/toolbar_add_address" ></include>
+    <android.support.v7.widget.Toolbar
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/toolbar_add_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        app:contentInsetEnd="0dp"
+        app:contentInsetStart="0dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add new address"
+            android:textColor="#ffffff"
+            android:textSize="25sp"
+            android:layout_gravity="center"
+            />
+
+    </android.support.v7.widget.Toolbar>
 
     <TextView
         android:layout_below="@id/toolbar_add_address"

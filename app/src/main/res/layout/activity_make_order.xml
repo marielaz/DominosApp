@@ -7,13 +7,11 @@
     tools:context="karikuncheva.dominosapp.MakeOrderActivity">
 
     <include
-        android:id="@+id/tool"
-        layout="@layout/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        layout="@layout/logo_toolbar"
+        android:id="@+id/toolbar_order"></include>
 
     <TextView
-        android:layout_below="@+id/tool"
+        android:layout_below="@+id/toolbar_order"
         android:id="@+id/text_1"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"

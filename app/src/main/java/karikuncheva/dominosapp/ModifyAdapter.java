@@ -154,6 +154,7 @@ public class ModifyAdapter extends RecyclerView.Adapter<ModifyAdapter.ModifyView
             txt.setText("Ops... You can't remove all the ingredients!");
         }
         TextView ok = (TextView) dialog.findViewById(R.id.ok_tv);
+        ok.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         // if button is clicked, close the custom dialog
         ok.setOnClickListener(new View.OnClickListener() {
             @Override

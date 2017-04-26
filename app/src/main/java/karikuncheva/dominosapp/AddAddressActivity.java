@@ -72,7 +72,7 @@ public class AddAddressActivity extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(AddAddressActivity.this, ProfileActivity.class));
+                startActivity(new Intent(AddAddressActivity.this, AddressActivity.class));
             }
         });
     }
