@@ -71,6 +71,7 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.AddressV
                 @Override
                 public void onClick(View v) {
                     vh.layout.setBackgroundDrawable(activity.getResources().getDrawable(R.drawable.rounded_button));
+
                 }
             });
         }
