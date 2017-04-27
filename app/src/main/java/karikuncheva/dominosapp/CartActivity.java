@@ -1,15 +1,23 @@
 package karikuncheva.dominosapp;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Map;
 
 import karikuncheva.dominosapp.model.Cart;
 import karikuncheva.dominosapp.model.products.Product;
@@ -21,7 +29,7 @@ public class CartActivity extends AppCompatActivity implements CartListFragment.
     private Button checkOut;
     private Button back;
     private TextView total;
-
+    public static int temp = 0;
 
 
     @Override
@@ -41,10 +49,43 @@ public class CartActivity extends AppCompatActivity implements CartListFragment.
         checkOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CartActivity.this, AddressActivity.class);
-                intent.putExtra("click", 1);
-                intent.putExtra("fromCart", "cart");
-                CartActivity.this.startActivity(intent);
+
+                ArrayList<Product> productsInCart = new ArrayList<Product>();
+                for (Map.Entry<Product.ProductType, HashSet<Product>> products : MainActivity.loggedUser.getCart().getProducts().entrySet()) {
+                    for (Product p : products.getValue()) {
+                        productsInCart.add(p);
+                    }
+                }
+                if (productsInCart.size() == 0 ||
+                        (productsInCart.size() == 1 &&
+                        productsInCart.get(0).getPrice()==0)) {
+                    checkOut.setClickable(false);
+
+                    final Dialog dialog = new Dialog(CartActivity.this);
+                    dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+                    dialog.setContentView(R.layout.fragment_dialog);
+                    dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                    // set the custom dialog components - text and button
+                    TextView txt = (TextView) dialog.findViewById(R.id.text_dialog);
+                    txt.setText("Your cart is empty. Please, add products!");
+                    TextView ok = (TextView) dialog.findViewById(R.id.ok_tv);
+                    ok.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                    // if button is clicked, close the custom dialog
+                    ok.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.dismiss();
+                        }
+                    });
+                    dialog.show();
+                    checkOut.setClickable(true);
+                }else {
+                    Intent intent = new Intent(CartActivity.this, AddressActivity.class);
+                    intent.putExtra("click", 1);
+                    intent.putExtra("fromCart", "cart");
+                    temp = 1;
+                    CartActivity.this.startActivity(intent);
+                }
             }
         });
 
