@@ -87,8 +87,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.PizzaViewH
                 final int idx = CatalogActivity.count+1;
                CatalogActivity.count = idx;
                 ((PizzaFragment.ProductsCommunicator) activity).changeCount(CatalogActivity.count);
-                String chosenPizza = vh.pizzaName.getText().toString() + " is added to your cart!";
-                Toast.makeText(v.getContext(), chosenPizza, Toast.LENGTH_SHORT).show();
             }
         });
     }

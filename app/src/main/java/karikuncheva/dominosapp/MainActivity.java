@@ -71,16 +71,15 @@ public class MainActivity extends AppCompatActivity {
 
                     if (DBManager.getInstance(MainActivity.this).existsUser(username_login.getText().toString())) {
                         loggedUser = DBManager.getInstance(MainActivity.this).getUser(username_login.getText().toString());
-//                        if (loggedUser.getPassword().equals(password_login.getText().toString())) {
-                            Toast.makeText(MainActivity.this, "User data is valid", Toast.LENGTH_SHORT).show();
+                        if (loggedUser.getPassword().equals(password_login.getText().toString())) {
                             Intent intent = new Intent(MainActivity.this, CatalogActivity.class);
                             MainActivity.this.startActivity(intent);
-//                        }
-//                        else{
-//                            password_login.setError("Wrong password! Please, try again!");
-//                            password_login.setText("");
-//                            password_login.requestFocus();
-//                        }
+                        }
+                        else{
+                            password_login.setError("Wrong password! Please, try again!");
+                            password_login.setText("");
+                            password_login.requestFocus();
+                        }
                     } else {
                         Toast.makeText(MainActivity.this, "User data not valid", Toast.LENGTH_SHORT).show();
                     }

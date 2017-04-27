@@ -29,7 +29,8 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.AddressV
     private List<Address> addresses;
     private int click;
     Bundle bundle;
-    private int index =1;
+    private int index = 1;
+    int i ;
 
     public AddressAdapter(Activity activity, List<Address> addresses) {
         this.activity = activity;
@@ -66,12 +67,11 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.AddressV
         });
 
         bundle = activity.getIntent().getExtras();
-        if(bundle != null){
+        if (bundle != null) {
             vh.layout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     vh.layout.setBackgroundDrawable(activity.getResources().getDrawable(R.drawable.rounded_button));
-
                 }
             });
         }
@@ -81,7 +81,6 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.AddressV
     public int getItemCount() {
         return addresses.size();
     }
-
 
 
     class AddressViewHolder extends RecyclerView.ViewHolder {

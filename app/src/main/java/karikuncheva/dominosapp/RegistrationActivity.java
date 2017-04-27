@@ -16,7 +16,7 @@ public class RegistrationActivity extends AppCompatActivity {
     private User user;
     private EditText username_reg, email_reg, address_reg, pass_reg, confirm_pass_reg;
     private String username, email, address, pass, confirmPass;
-    Button regButton ;
+    Button regButton;
     SharedPreferences sharedPreference;
 
     @Override
@@ -37,12 +37,26 @@ public class RegistrationActivity extends AppCompatActivity {
             }
         });
     }
+
     public void register() {
         initialize();
         if (validate()) {
-                   user = new User(username, pass, email);
-                    DBManager.getInstance(this).addUser(user);
-
+            user = new User(username, pass, email);
+            boolean isValid = DBManager.getInstance(this).addUser(user);
+            if (isValid) {
+                MainActivity.loggedUser = user;
+                Toast.makeText(this, "Registration complete", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(RegistrationActivity.this, AddAddressActivity.class);
+                intent.putExtra("fromActivity", 1);
+                RegistrationActivity.this.startActivity(intent);
+            } else {
+                Toast.makeText(this, "Username already exists", Toast.LENGTH_SHORT).show();
+                username_reg.setText("");
+                username_reg.requestFocus();
+            }
+        } else {
+            Toast.makeText(this, "Registration has failed", Toast.LENGTH_SHORT).show();
+        }
 
 //            sharedPreference = this.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
 //            SharedPreferences.Editor editor = sharedPreference.edit();
@@ -51,34 +65,25 @@ public class RegistrationActivity extends AppCompatActivity {
 //            Gson gson = new Gson();
 //            editor.putString("user", gson.toJson(user));
 //            editor.apply();
-            MainActivity.loggedUser = user;
-            Toast.makeText(this, "Registration complete", Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(RegistrationActivity.this, AddAddressActivity.class);
-            intent.putExtra("fromActivity", 1);
-            RegistrationActivity.this.startActivity(intent);
 
-        } else {
-            Toast.makeText(this, "Registration has failed", Toast.LENGTH_SHORT).show();
-        }
     }
 
 
-
-    public boolean validate(){
+    public boolean validate() {
         boolean valid = true;
         this.user = new User(username, pass, email);
-        if (username.isEmpty()){
+        if (username.isEmpty()) {
             username_reg.setError("Username must not be empty!");
             username_reg.requestFocus();
             valid = false;
         }
-        if (!user.validatePassword(pass)){
+        if (!user.validatePassword(pass)) {
             pass_reg.setError("Password must contains at least 8 characters, least 1 number and both lower and uppercase letters");
             pass_reg.setText("");
             pass_reg.requestFocus();
             valid = false;
         }
-        if (!pass.equals(confirmPass)){
+        if (!pass.equals(confirmPass)) {
             confirm_pass_reg.setError("Passwords do not match");
             pass_reg.setText("");
             confirm_pass_reg.setText("");
@@ -88,10 +93,10 @@ public class RegistrationActivity extends AppCompatActivity {
         return valid;
     }
 
-    public void initialize(){
-            username = username_reg.getText().toString().trim();
-            email = email_reg.getText().toString().trim();
-            pass = pass_reg.getText().toString().trim();
-            confirmPass = confirm_pass_reg.getText().toString().trim();
+    public void initialize() {
+        username = username_reg.getText().toString().trim();
+        email = email_reg.getText().toString().trim();
+        pass = pass_reg.getText().toString().trim();
+        confirmPass = confirm_pass_reg.getText().toString().trim();
     }
 }

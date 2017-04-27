@@ -32,7 +32,8 @@
             android:name=".NavigDrawerActivity"
             android:label="@string/title_activity_navig_drawer"
             android:theme="@style/AppTheme" />
-        <activity android:name=".MakeOrderActivity" />
+        <activity android:name=".MakeOrderActivity" >
+        </activity>
         <activity android:name=".ProfileActivity" />
         <activity android:name=".AddAddressActivity" />
         <activity android:name=".ContactsActivity" />

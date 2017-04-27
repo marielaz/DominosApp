@@ -77,10 +77,9 @@ public class DBManager extends SQLiteOpenHelper {
 //        return getWritableDatabase();
 //    }
 
-    public void addUser(User u) {
+    public boolean addUser(User u) {
         if (existsUser(u.getUsername())) {
-            Toast.makeText(context, "User already exists", Toast.LENGTH_SHORT).show();
-            return;
+            return false;
         }
         ContentValues contentValues = new ContentValues();
         contentValues.put("username", u.getUsername());
@@ -92,6 +91,7 @@ public class DBManager extends SQLiteOpenHelper {
         u.setId((int) id);
         registeredUsers.put(u.getUsername(), u);
         Toast.makeText(context, "User added successfully", Toast.LENGTH_SHORT).show();
+        return true;
     }
 
     public void addAddress(Address a) {

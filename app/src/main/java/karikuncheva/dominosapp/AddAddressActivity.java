@@ -44,7 +44,10 @@ public class AddAddressActivity extends AppCompatActivity {
         floor = (EditText) findViewById(R.id.floor_et);
         block = (EditText) findViewById(R.id.block_et);
         postCode = (EditText) findViewById(R.id.post_code_et);
+        back = (Button) findViewById(R.id.back_button_add_address);
 
+        Bundle bundle = getIntent().getExtras();
+        final int index = bundle.getInt("fromActivity");
 
         addAddress = (Button) findViewById(R.id.add_new_address);
         addAddress.setOnClickListener(new View.OnClickListener() {
@@ -54,8 +57,7 @@ public class AddAddressActivity extends AppCompatActivity {
                 if (validateFields()) {
                     Address address = new Address(townTxt, neighborhoodTxt, streetTxt, numberTxt, blockTxt, postCodeTxt, apartamentTxt, floorTxt);
                     DBManager.getInstance(AddAddressActivity.this).addAddress(address);
-                    Bundle bundle = getIntent().getExtras();
-                    int index = bundle.getInt("fromActivity");
+
                     if (index == 1) {
                         Intent i = new Intent(AddAddressActivity.this, MakeOrderActivity.class);
                         startActivity(i);
@@ -68,13 +70,17 @@ public class AddAddressActivity extends AppCompatActivity {
             }
         });
 
-        back = (Button) findViewById(R.id.back_button_add_address);
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(AddAddressActivity.this, AddressActivity.class));
-            }
-        });
+        if (index == 1) {
+            back.setVisibility(View.GONE);
+        } else {
+
+            back.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(AddAddressActivity.this, AddressActivity.class));
+                }
+            });
+        }
     }
 
     public void initialize() {
