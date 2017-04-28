@@ -37,11 +37,6 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.AddressV
         this.addresses = MainActivity.loggedUser.getAddresses();
     }
 
-//    public AddressAdapter(Activity activity, List<Address> addresses, int click) {
-//        this.activity = activity;
-//        this.addresses = MainActivity.loggedUser.getAddresses();
-//        this.click = click;
-//    }
 
     @Override
     public AddressAdapter.AddressViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -60,6 +55,7 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.AddressV
         vh.delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MainActivity.loggedUser.getAddresses().remove(address);
                 addresses.remove(address);
                 notifyDataSetChanged();
                 DBManager.getInstance(activity).deleteAddress(address);

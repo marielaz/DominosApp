@@ -59,7 +59,7 @@ public class AddAddressActivity extends AppCompatActivity {
                     DBManager.getInstance(AddAddressActivity.this).addAddress(address);
 
                     if (index == 1) {
-                        Intent i = new Intent(AddAddressActivity.this, MakeOrderActivity.class);
+                        Intent i = new Intent(AddAddressActivity.this, CatalogActivity.class);
                         startActivity(i);
                     } else {
                         Intent i = new Intent(AddAddressActivity.this, AddressActivity.class);
