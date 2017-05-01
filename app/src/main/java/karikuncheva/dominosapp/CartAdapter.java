@@ -121,7 +121,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         vh.plus_product.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CatalogActivity.count = CatalogActivity.count+1;
+                CatalogActivity.count++;
                 MainActivity.loggedUser.getCart().addProduct(product);
 
                 vh.quantity.setText(String.valueOf(product.getQuantity()));
@@ -142,7 +142,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
             @Override
             public void onClick(View v) {
-                CatalogActivity.count = CatalogActivity.count-1;
+               CatalogActivity.count--;
                 if (product.getQuantity() == 1) {
                     if (product.pType == Product.ProductType.PIZZA) {
                         total = total - product.getDiscPrice();

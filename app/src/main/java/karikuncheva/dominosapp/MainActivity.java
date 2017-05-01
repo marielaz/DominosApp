@@ -23,7 +23,6 @@ import com.facebook.ProfileTracker;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
-import com.google.android.gms.fitness.data.Session;
 
 import karikuncheva.dominosapp.model.User;
 

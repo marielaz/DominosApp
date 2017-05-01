@@ -4,21 +4,15 @@ import java.io.Serializable;
 
 public abstract class Product implements Serializable {
 
-    public enum ProductType {PIZZA, DESSERT, DRINK}
-
-    ;
+    public enum ProductType {PIZZA, DESSERT, DRINK};
 
     public enum Size {
         SMALL, MEDIUM, LARGE
-    }
-
-    ;
+    };
 
     public enum Type {
         TRADITIONAL, THIN_AND_CRISPY, ITALIAN_STYLE
-    }
-
-    ;
+    };
 
     public ProductType pType;
     private String name;

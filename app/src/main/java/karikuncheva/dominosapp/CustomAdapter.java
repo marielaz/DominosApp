@@ -51,11 +51,10 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.PizzaViewH
         vh.pizzaImage.setImageResource(pizza.getImageId());
         vh.pizzaName.setText(pizza.getName());
 
-        for (i = 0; i< pizza.getIngredients().size(); i++){
-            if (i == pizza.getIngredients().size()-1){
+        for (i = 0; i < pizza.getIngredients().size(); i++) {
+            if (i == pizza.getIngredients().size() - 1) {
                 sb.append(pizza.getIngredients().get(i));
-            }
-            else {
+            } else {
                 sb.append(pizza.getIngredients().get(i) + ", ");
             }
         }
@@ -84,9 +83,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.PizzaViewH
             public void onClick(View v) {
                 // TODO add to cart
                 MainActivity.loggedUser.getCart().addProduct(pizzas.get(position));
-                final int idx = CatalogActivity.count+1;
-               CatalogActivity.count = idx;
-                ((PizzaFragment.ProductsCommunicator) activity).changeCount(CatalogActivity.count);
+                ((PizzaFragment.ProductsCommunicator) activity).increment();
             }
         });
     }
@@ -105,14 +102,14 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.PizzaViewH
         TextView pizzaPrice;
         TextView largeTrad;
 
-        PizzaViewHolder(View row){
+        PizzaViewHolder(View row) {
             super(row);
-             modify_pizza_bnt = (ImageButton) row.findViewById(R.id.modify_pizza_bnt);
-             cart_pizza_bnt = (ImageButton) row.findViewById(R.id.cart_pizza_bnt);
-             pizzaImage = (ImageView) row.findViewById(R.id.image_pizza);
-             pizzaName = (TextView) row.findViewById(R.id.name_pizza);
-             pizzaDescr = (TextView) row.findViewById(R.id.descr_pizza);
-             pizzaPrice = (TextView) row.findViewById(R.id.price_pizza);
+            modify_pizza_bnt = (ImageButton) row.findViewById(R.id.modify_pizza_bnt);
+            cart_pizza_bnt = (ImageButton) row.findViewById(R.id.cart_pizza_bnt);
+            pizzaImage = (ImageView) row.findViewById(R.id.image_pizza);
+            pizzaName = (TextView) row.findViewById(R.id.name_pizza);
+            pizzaDescr = (TextView) row.findViewById(R.id.descr_pizza);
+            pizzaPrice = (TextView) row.findViewById(R.id.price_pizza);
             largeTrad = (TextView) row.findViewById(R.id.largeTrad);
         }
     }
