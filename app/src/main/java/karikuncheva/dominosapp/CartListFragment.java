@@ -7,9 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
-import karikuncheva.dominosapp.model.User;
 import karikuncheva.dominosapp.model.products.Product;
 
 /**
@@ -20,7 +18,7 @@ public class CartListFragment extends Fragment {
 
     private RecyclerView recyclerView;
 
-    interface CartComunicator{
+    interface CartComunicator {
         public void sumTotalPrice(double sum);
     }
 
@@ -34,7 +32,8 @@ public class CartListFragment extends Fragment {
         return root;
 
     }
-    public void  addProduct(Product p){
+
+    public void addProduct(Product p) {
         recyclerView.setAdapter(new CartAdapter(getActivity(), p));
     }
 }

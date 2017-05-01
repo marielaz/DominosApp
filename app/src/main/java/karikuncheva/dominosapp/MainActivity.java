@@ -1,12 +1,8 @@
 package karikuncheva.dominosapp;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.pm.PackageInstaller;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.EditText;
 import android.widget.Button;
 import android.view.View;
@@ -20,10 +16,8 @@ import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.Profile;
 import com.facebook.ProfileTracker;
-import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
-import com.google.android.gms.fitness.data.Session;
 
 import karikuncheva.dominosapp.model.User;
 
@@ -74,8 +68,7 @@ public class MainActivity extends AppCompatActivity {
                         if (loggedUser.getPassword().equals(password_login.getText().toString())) {
                             Intent intent = new Intent(MainActivity.this, CatalogActivity.class);
                             MainActivity.this.startActivity(intent);
-                        }
-                        else{
+                        } else {
                             password_login.setError("Wrong password! Please, try again!");
                             password_login.setText("");
                             password_login.requestFocus();

@@ -4,48 +4,34 @@ import java.io.Serializable;
 
 public abstract class Product implements Serializable {
 
-    public enum ProductType {PIZZA, DESSERT, DRINK}
 
-    ;
-
-    public enum Size {
-        SMALL, MEDIUM, LARGE
-    }
-
-    ;
-
-    public enum Type {
-        TRADITIONAL, THIN_AND_CRISPY, ITALIAN_STYLE
-    }
-
-    ;
-
-    public ProductType pType;
+    public String pType;
     private String name;
     private double price;
     private int quantity;
     private double discPrice;
     private int imageId;
+    private int id;
 
-    public Product(ProductType pType, String name, double price, int imageId) {
+    public Product(String pType, String name, double price, int imageId) {
         this.pType = pType;
         this.name = name;
         this.price = price;
         this.imageId = imageId;
         this.quantity = 1;
-        if (pType == ProductType.PIZZA) {
+        if (pType.equals("Pizza")) {
             this.discPrice = price - (price * 0.05);
         } else {
             this.discPrice = 0;
         }
     }
 
-    public Product(ProductType pType, String name, double price) {
+    public Product(String pType, String name, double price) {
         this.pType = pType;
         this.name = name;
         this.price = price;
         this.quantity = 1;
-        if (pType == ProductType.PIZZA) {
+        if (pType.equals("Pizza")) {
             this.discPrice = price - (price * 0.05);
         } else {
             this.discPrice = 0;
@@ -82,6 +68,26 @@ public abstract class Product implements Serializable {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getpType() {
+        return pType;
+    }
+
+    public void setpType(String pType) {
+        this.pType = pType;
     }
 
     @Override

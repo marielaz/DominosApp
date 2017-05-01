@@ -9,7 +9,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.TextView;
@@ -17,9 +16,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import karikuncheva.dominosapp.model.Shop;
 import karikuncheva.dominosapp.model.products.Pizza;
-import karikuncheva.dominosapp.model.products.Product;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -54,8 +51,8 @@ public class ModifyPizzaFragment extends Fragment {
             Bundle b = getActivity().getIntent().getExtras();
             if (b.getSerializable("pizza") != null) {
                 pizza = (Pizza) b.getSerializable("pizza");
-                pizza.size = pizza.getSize();
-                pizza.type = pizza.getType();
+                pizza.setSize(pizza.getSize());
+                pizza.setType(pizza.getType());
             }
         }
 
@@ -92,9 +89,9 @@ public class ModifyPizzaFragment extends Fragment {
         sauces_dips_bnts.add(check_cream);
         sauces_dips_bnts.add(check_bbq);
 
-        if (pizza.getIngredients().get(0).equals("Tomato sauce")) {
+        if (pizza.getIngredients().contains("Tomato sauce")) {
             check_tomato.setChecked(true);
-        } else if (pizza.getIngredients().get(0).equals("BBQ sauce")) {
+        } else if (pizza.getIngredients().contains("BBQ sauce")) {
             check_bbq.setChecked(true);
         } else {
             check_cream.setChecked(true);
@@ -110,7 +107,7 @@ public class ModifyPizzaFragment extends Fragment {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 small_bnt.setPressed(true);
-                pizza.setSize(Product.Size.SMALL);
+                pizza.setSize("Small");
                 med_bnt.setPressed(false);
                 large_bnt.setPressed(false);
 
@@ -126,7 +123,7 @@ public class ModifyPizzaFragment extends Fragment {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 med_bnt.setPressed(true);
-                pizza.setSize(Product.Size.MEDIUM);
+                pizza.setSize("Medium");
                 small_bnt.setPressed(false);
                 large_bnt.setPressed(false);
 
@@ -141,8 +138,8 @@ public class ModifyPizzaFragment extends Fragment {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 large_bnt.setPressed(true);
-                if (pizza.size != Product.Size.LARGE) {
-                    pizza.setSize(Product.Size.LARGE);
+                if (!pizza.getSize().equals("Large")) {
+                    pizza.setSize("Large");
                 }
                 small_bnt.setPressed(false);
                 med_bnt.setPressed(false);
@@ -173,14 +170,27 @@ public class ModifyPizzaFragment extends Fragment {
 
             });
         }
-        if (trad_bnt.isChecked()) {
-            pizza.setType(Product.Type.TRADITIONAL);
+        ital_bnt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pizza.setType("Italian style");
 
-        } else if (ital_bnt.isChecked()) {
-            pizza.setType(Product.Type.ITALIAN_STYLE);
-        } else {
-            pizza.setType(Product.Type.THIN_AND_CRISPY);
-        }
+            }
+        });
+        trad_bnt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pizza.setType("Traditional");
+
+            }
+        });
+        thin_bnt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pizza.setType("Thin and crispy");
+
+            }
+        });
 
         return v;
     }

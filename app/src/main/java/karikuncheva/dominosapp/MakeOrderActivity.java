@@ -29,7 +29,7 @@ public class MakeOrderActivity extends AppCompatActivity {
             public void onClick(View v) {
                 carry_out_checked.setVisibility(View.VISIBLE);
                 // intent to the google maps
-               // Intent inten = new Integer();
+                // Intent inten = new Integer();
             }
         });
 

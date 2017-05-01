@@ -1,24 +1,18 @@
 package karikuncheva.dominosapp;
+
 import android.app.Activity;
-import android.content.Context;
-import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
-import karikuncheva.dominosapp.model.Shop;
-import karikuncheva.dominosapp.model.User;
-import karikuncheva.dominosapp.model.products.Dessert;
 
-import static karikuncheva.dominosapp.R.id.cart_bnt;
+import karikuncheva.dominosapp.model.products.Dessert;
 
 /**
  * Created by Mariela Zviskova on 14.3.2017 г..
@@ -29,7 +23,7 @@ public class DessertCustomAdapter extends RecyclerView.Adapter<DessertCustomAdap
     private Activity activity;
     private List<Dessert> desserts = new ArrayList<>();
 
-    public DessertCustomAdapter(Activity activity, List<Dessert> desserts){
+    public DessertCustomAdapter(Activity activity, List<Dessert> desserts) {
         this.activity = activity;
         this.desserts = desserts;
     }
@@ -39,7 +33,8 @@ public class DessertCustomAdapter extends RecyclerView.Adapter<DessertCustomAdap
         LayoutInflater li = LayoutInflater.from(activity);
         View row = li.inflate(R.layout.single_row_des_dr, parent, false);
         DessertViewHolder vh = new DessertViewHolder(row);
-        return vh;    }
+        return vh;
+    }
 
     @Override
     public void onBindViewHolder(final DessertViewHolder vh, final int position) {
@@ -52,9 +47,8 @@ public class DessertCustomAdapter extends RecyclerView.Adapter<DessertCustomAdap
         vh.cart_bnt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO add to cart
-              MainActivity.loggedUser.getCart().addProduct(desserts.get(position));
-                final int idx = CatalogActivity.count+1;
+                MainActivity.loggedUser.getCart().addProduct(desserts.get(position));
+                final int idx = CatalogActivity.count + 1;
                 CatalogActivity.count = idx;
                 ((PizzaFragment.ProductsCommunicator) activity).changeCount(CatalogActivity.count);
             }
@@ -74,7 +68,7 @@ public class DessertCustomAdapter extends RecyclerView.Adapter<DessertCustomAdap
         TextView dessertDescr;
         TextView dessertPrice;
 
-        DessertViewHolder(View row){
+        DessertViewHolder(View row) {
             super(row);
             cart_bnt = (ImageButton) row.findViewById(R.id.cart_bnt);
             dessertImage = (ImageView) row.findViewById(R.id.image);

@@ -70,21 +70,17 @@ public class Address implements Serializable {
         this.id = id;
     }
 
-    public int getIdUser() {
-        return idUser;
-    }
-
     public void setIdUser(int idUser) {
         this.idUser = idUser;
     }
 
     @Override
     public String toString() {
-        return  neighbourhood  +
+        return neighbourhood +
                 ", " + street +
                 ", N " + number +
-                ", bl. " + block  +
-                ", ap. " + apartment  +
-                ", floor " + floor  ;
+                ", bl. " + block +
+                ", ap. " + apartment +
+                ", floor " + floor;
     }
 }

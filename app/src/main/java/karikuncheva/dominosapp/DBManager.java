@@ -7,10 +7,16 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.AsyncTask;
 import android.widget.Toast;
+
 import java.util.ArrayList;
 import java.util.HashMap;
+
 import karikuncheva.dominosapp.model.Address;
 import karikuncheva.dominosapp.model.User;
+import karikuncheva.dominosapp.model.products.Dessert;
+import karikuncheva.dominosapp.model.products.Drink;
+import karikuncheva.dominosapp.model.products.Pizza;
+import karikuncheva.dominosapp.model.products.Product;
 
 /**
  * Created by Mariela Zviskova on 11.4.2017 г..
@@ -20,6 +26,10 @@ public class DBManager extends SQLiteOpenHelper {
     private static DBManager ourInstance;
     private static Context context;
     private static HashMap<String, User> registeredUsers;
+    static ArrayList<Pizza> pizzas = new ArrayList<>();
+    static ArrayList<Dessert> desserts = new ArrayList<>();
+    static ArrayList<Drink> drinks = new ArrayList<>();
+
     private static final String SQL_CREATE_USERS = "CREATE TABLE users(\n" +
             "\n" +
             " id INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
@@ -45,24 +55,40 @@ public class DBManager extends SQLiteOpenHelper {
             " FOREIGN KEY(idUser) REFERENCES users(id)\n" +
             ");";
 
+    private static final String SQL_CREATE_PRODUCTS = "CREATE TABLE products(\n" +
+            "\n" +
+            " id INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
+            " productType text NOT NULL,\n" +
+            " name text NOT NULL,\n" +
+            " price double NOT NULL,\n" +
+            " quantity integer NOT NULL,\n" +
+            " imageId integer NOT NULL,\n" +
+            " discPrice double,\n" +
+            " type text,\n" +
+            " size text,\n" +
+            " ingredients text\n" +
+            ");";
+
     public static DBManager getInstance(Context context) {
         if (ourInstance == null) {
             ourInstance = new DBManager(context);
             DBManager.context = context;
             registeredUsers = new HashMap<>();
-           // addresses = new ArrayList<>();
+            // addresses = new ArrayList<>();
             loadUsers();
+            loadProducts();
         }
         return ourInstance;
     }
 
     private DBManager(Context context) {
-        super(context, "mydb", null, 2);
+        super(context, "mydb", null, 3);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(SQL_CREATE_USERS);
+        db.execSQL(SQL_CREATE_PRODUCTS);
         db.execSQL(SQL_CREATE_ADDRESS);
         Toast.makeText(context, "DB created", Toast.LENGTH_SHORT).show();
     }
@@ -129,7 +155,7 @@ public class DBManager extends SQLiteOpenHelper {
                 values.put("phone", MainActivity.loggedUser.getPhoneNumber());
                 registeredUsers.remove(username);
                 registeredUsers.put(username, MainActivity.loggedUser);
-                getWritableDatabase().update("users", values ,"username = ?", new String[]{username});
+                getWritableDatabase().update("users", values, "username = ?", new String[]{username});
                 return null;
             }
 
@@ -140,10 +166,10 @@ public class DBManager extends SQLiteOpenHelper {
         }.execute(username);
     }
 
-    private static void loadUsers(){
+    private static void loadUsers() {
 
         Cursor cursor = ourInstance.getWritableDatabase().rawQuery("SELECT id, username, password, email, name, phone FROM users;", null);
-        while(cursor.moveToNext()){
+        while (cursor.moveToNext()) {
             int id = cursor.getInt(cursor.getColumnIndex("id"));
             String username = cursor.getString(cursor.getColumnIndex("username"));
             String password = cursor.getString(cursor.getColumnIndex("password"));
@@ -161,9 +187,9 @@ public class DBManager extends SQLiteOpenHelper {
         }
     }
 
-    public static ArrayList<Address> loadAddresses(int userId ) {
+    public static ArrayList<Address> loadAddresses(int userId) {
         ArrayList<Address> addresses = new ArrayList<Address>();
-        Cursor cursor = ourInstance.getWritableDatabase().rawQuery("SELECT id, town, neighbourhood, street, number, block, postCode, apartment, floor, idUser FROM addresses WHERE idUser = '"+userId+"';",null);
+        Cursor cursor = ourInstance.getWritableDatabase().rawQuery("SELECT id, town, neighbourhood, street, number, block, postCode, apartment, floor, idUser FROM addresses WHERE idUser = '" + userId + "';", null);
         while (cursor.moveToNext()) {
             int id = cursor.getInt(cursor.getColumnIndex("id"));
             String town = cursor.getString(cursor.getColumnIndex("town"));
@@ -181,15 +207,64 @@ public class DBManager extends SQLiteOpenHelper {
             a.setIdUser(idUser);
             addresses.add(a);
         }
-        return  addresses;
+        return addresses;
     }
 
+    public static void addProducts() {
 
-    public void deleteAddress(Address a){
-            getWritableDatabase().delete("addresses", "id = ?", new String[]{Integer.toString(a.getId())});
-            //Toast.makeText(context, a.getId() + " deleted successfully", Toast.LENGTH_SHORT).show();
-           MainActivity.loggedUser.getAddresses().remove(a);
+        pizzas.add(new Pizza("Margarita", 12.00, R.drawable.margarita, "Traditional", "Large", "Tomato sauce, mozzarella"));
+        pizzas.add(new Pizza("Beast", 16.50, R.drawable.beast, "Traditional", "Large", "Tomato sauce, mozzarella, ham, bacon, spicy beef"));
+        pizzas.add(new Pizza("Mediterraneo", 14.50, R.drawable.mediterraneo, "Traditional", "Large", "Tomato sauce, mozzarella, green peppers, feta cheese, olives"));
+        pizzas.add(new Pizza("Carbonara", 14.50, R.drawable.carbonara, "Traditional", "Large", "Cream sauce, mozzarella, bacon, mushrooms"));
+        pizzas.add(new Pizza("Alfredo", 15.50, R.drawable.alfredo, "Traditional", "Large", "Cream sauce, mozzarella, baby spinach, chicken"));
+        pizzas.add(new Pizza("Vita", 14.50, R.drawable.vita, "Traditional", "Large", "Tomato sauce, mozzarella, baby spinach, feta cheese, tomatos"));
+        pizzas.add(new Pizza("Chickenita", 18.50, R.drawable.chickenita, "Traditional", "Large", "BBQ sauce, mozzarella, chicken, pepperoni, tomatos, emmental"));
+        pizzas.add(new Pizza("American Hot", 15.50, R.drawable.americanhot, "Traditional", "Large", "Tomato sauce, mozzarella, pepperoni, spicy peppers, onion"));
+        pizzas.add(new Pizza("New York", 16.50, R.drawable.newyork, "Traditional", "Large", "Tomato sauce, mozzarella, bacon, cheddar, mushrooms"));
+        pizzas.add(new Pizza("Bulgarian", 15.50, R.drawable.bulgaria, "Traditional", "Large", "Tomato sauce, mozzarella, onion, olives, green peppers, feta cheese"));
+
+        desserts.add(new Dessert("Choko Pie", 6.50, R.drawable.chocopie, "Freshly oven baked puff pastry filled with Nutella"));
+        desserts.add(new Dessert("Souflle", 6.50, R.drawable.souffle, "Chocolate lava cake filled with melted warm chocolate"));
+        desserts.add(new Dessert("Nirvana", 2.90, R.drawable.nirvana, "Nirvana Pralines & Cream"));
+        desserts.add(new Dessert("Mini Pancakes", 3.50, R.drawable.minipancakes, "12 puffy mini pancakes with banana tast"));
+
+        drinks.add(new Drink("Coca-Cola", 2.80, R.drawable.cola, "1,25l"));
+        drinks.add(new Drink("Fanta", 2.80, R.drawable.fanta, "1,25l"));
+        drinks.add(new Drink("Sprite", 2.80, R.drawable.sprite, "1,25l"));
+        drinks.add(new Drink("Nestea", 2.00, R.drawable.nestea, "1,25l"));
+    }
+
+    private static void loadProducts() {
+        DBManager.addProducts();
+        Cursor cursor = ourInstance.getWritableDatabase().rawQuery("SELECT id, productType, name, price, quantity, imageId, discPrice, type, " +
+                "size, ingredients FROM products;", null);
+        while (cursor.moveToNext()) {
+            int id = cursor.getInt(cursor.getColumnIndex("id"));
+            String productType = cursor.getString(cursor.getColumnIndex("productType"));
+            String name = cursor.getString(cursor.getColumnIndex("name"));
+            double price = cursor.getDouble(cursor.getColumnIndex("price"));
+            int quantity = cursor.getInt(cursor.getColumnIndex("quantity"));
+            int imageId = cursor.getInt(cursor.getColumnIndex("imageId"));
+            double discPrice = cursor.getDouble(cursor.getColumnIndex("descPrice"));
+            String type = cursor.getString(cursor.getColumnIndex("type"));
+            String size = cursor.getString(cursor.getColumnIndex("size"));
+            String ingredients = cursor.getString(cursor.getColumnIndex("ingredients"));
+            Product p = new Pizza(name, price, imageId, type, size, ingredients);
+            p.setName(name);
+            p.setPrice(price);
+            p.setpType(productType);
+            p.setQuantity(quantity);
+            p.setDiscPrice(discPrice);
+            p.setId(id);
+
         }
+    }
+
+    public void deleteAddress(Address a) {
+        getWritableDatabase().delete("addresses", "id = ?", new String[]{Integer.toString(a.getId())});
+        //Toast.makeText(context, a.getId() + " deleted successfully", Toast.LENGTH_SHORT).show();
+        MainActivity.loggedUser.getAddresses().remove(a);
+    }
 
     public boolean existsUser(String username) {
 

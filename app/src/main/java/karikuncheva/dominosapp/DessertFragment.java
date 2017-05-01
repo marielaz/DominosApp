@@ -12,9 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import karikuncheva.dominosapp.model.Shop;
-import karikuncheva.dominosapp.model.User;
-
 public class DessertFragment extends Fragment {
 
     RecyclerView recyclerView;
@@ -25,7 +22,7 @@ public class DessertFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_dessert, container, false);
         recyclerView = (RecyclerView) v.findViewById(R.id.recycler_view_dessert);
 
-        DessertCustomAdapter adapter = new DessertCustomAdapter(getActivity(), Shop.getInstance().getDesserts());
+        DessertCustomAdapter adapter = new DessertCustomAdapter(getActivity(), DBManager.getInstance(getActivity()).desserts);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
         return v;

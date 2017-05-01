@@ -35,7 +35,7 @@ public class NavigDrawerActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        View header=navigationView.getHeaderView(0);
+        View header = navigationView.getHeaderView(0);
         name = (TextView) header.findViewById(R.id.header_name);
         email = (TextView) header.findViewById(R.id.header_email);
 
@@ -89,7 +89,7 @@ public class NavigDrawerActivity extends AppCompatActivity
         } else if (id == R.id.nav_contacts) {
             Intent i = new Intent(this, ContactsActivity.class);
             startActivity(i);
-          //  getSupportFragmentManager().beginTransaction().add(R.id.fragment_container,new ContactsFragment()).commit();
+            //  getSupportFragmentManager().beginTransaction().add(R.id.fragment_container,new ContactsFragment()).commit();
         } else if (id == R.id.nav_cart) {
             Intent i = new Intent(this, CartActivity.class);
             startActivity(i);

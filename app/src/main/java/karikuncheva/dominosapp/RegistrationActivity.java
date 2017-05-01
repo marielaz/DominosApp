@@ -1,7 +1,6 @@
 package karikuncheva.dominosapp;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,12 +11,10 @@ import android.widget.Toast;
 import karikuncheva.dominosapp.model.User;
 
 public class RegistrationActivity extends AppCompatActivity {
-    public static final String PREFS_NAME = "USERS";
     private User user;
-    private EditText username_reg, email_reg, address_reg, pass_reg, confirm_pass_reg;
-    private String username, email, address, pass, confirmPass;
+    private EditText username_reg, email_reg, pass_reg, confirm_pass_reg;
+    private String username, email, pass, confirmPass;
     Button regButton;
-    SharedPreferences sharedPreference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,14 +54,6 @@ public class RegistrationActivity extends AppCompatActivity {
         } else {
             Toast.makeText(this, "Registration has failed", Toast.LENGTH_SHORT).show();
         }
-
-//            sharedPreference = this.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
-//            SharedPreferences.Editor editor = sharedPreference.edit();
-//
-//            user = new User(username, pass, email);
-//            Gson gson = new Gson();
-//            editor.putString("user", gson.toJson(user));
-//            editor.apply();
 
     }
 

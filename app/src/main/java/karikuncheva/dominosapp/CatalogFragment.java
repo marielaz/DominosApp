@@ -9,7 +9,6 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 
 
@@ -24,8 +23,8 @@ public class CatalogFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-         View v = inflater.inflate(R.layout.fragment_catalog, container, false);
+
+        View v = inflater.inflate(R.layout.fragment_catalog, container, false);
         tabLayout = (TabLayout) v.findViewById(R.id.tabLayout);
         viewPager = (ViewPager) v.findViewById(R.id.pager);
         PagerAdapter adapter = new PagerAdapter(getChildFragmentManager(), tabLayout.getTabCount());
@@ -35,8 +34,6 @@ public class CatalogFragment extends Fragment {
 
             @Override
             public void onClick(View v) {
-                // TODO
-                // startActivityForResult - bring back the user if he is changing the products in the cart !
                 Intent intent = new Intent(getActivity(), CartActivity.class);
                 CatalogFragment.this.startActivity(intent);
             }

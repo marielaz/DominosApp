@@ -1,25 +1,11 @@
 package karikuncheva.dominosapp;
 
-import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CompoundButton;
-import android.widget.EditText;
-import android.widget.FrameLayout;
-import android.widget.RadioButton;
 import android.widget.TextView;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import karikuncheva.dominosapp.model.products.Pizza;
 
@@ -41,8 +27,8 @@ public class ModifyPizzaActivity extends AppCompatActivity implements ModifyPizz
             Bundle b = getIntent().getExtras();
             if (b.getSerializable("pizza") != null) {
                 p = (Pizza) b.getSerializable("pizza");
-                p.size = p.getSize();
-                p.type = p.getType();
+                p.setSize(p.getSize());
+                p.setType(p.getType());
             }
         }
 
@@ -76,7 +62,7 @@ public class ModifyPizzaActivity extends AppCompatActivity implements ModifyPizz
                 } else {
                     ModifyPizzaFragment.pizza.setPrice(Double.parseDouble(price.getText().toString()));
                 }
-                CatalogActivity.count = CatalogActivity.count+1;
+                CatalogActivity.count = CatalogActivity.count + 1;
                 MainActivity.loggedUser.getCart().addProduct(ModifyPizzaFragment.pizza);
                 Intent intent = new Intent(ModifyPizzaActivity.this, CartActivity.class);
                 ModifyPizzaActivity.this.startActivity(intent);

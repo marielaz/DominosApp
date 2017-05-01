@@ -1,20 +1,15 @@
 package karikuncheva.dominosapp;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import karikuncheva.dominosapp.model.Address;
@@ -27,10 +22,8 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.AddressV
 
     private Activity activity;
     private List<Address> addresses;
-    private int click;
     Bundle bundle;
-    private int index = 1;
-    int i ;
+    int i;
 
     public AddressAdapter(Activity activity, List<Address> addresses) {
         this.activity = activity;

@@ -2,7 +2,6 @@ package karikuncheva.dominosapp.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import java.util.regex.Matcher;
@@ -22,11 +21,7 @@ public class User implements Serializable {
     private String phoneNumber;
     private Cart cart;
     private String email;
-    private double money;
-    private Shop shop;
     private static final String PASS_REGEX = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{6,16}$";
-    private Pattern regexPattern;
-    private Matcher regMatcher;
     private int id;
 
 
@@ -34,7 +29,6 @@ public class User implements Serializable {
         this.username = username;
         this.password = password;
         this.cart = new Cart();
-        this.shop = Shop.getInstance();
         this.addresses = new ArrayList<Address>();
     }
 
@@ -43,7 +37,6 @@ public class User implements Serializable {
         this.password = password;
         this.email = email;
         this.cart = new Cart();
-        this.shop = Shop.getInstance();
         this.addresses = new ArrayList<Address>();
     }
 
@@ -62,10 +55,6 @@ public class User implements Serializable {
         return password;
     }
 
-    public Shop getShop() {
-        return shop;
-    }
-
     public Cart getCart() {
         return cart;
     }
@@ -76,14 +65,6 @@ public class User implements Serializable {
 
     public String getName() {
         return name;
-    }
-
-    public void setMoney(double money) {
-        this.money = money;
-    }
-
-    public double getMoney() {
-        return money;
     }
 
     public void setId(int id) {
@@ -98,67 +79,8 @@ public class User implements Serializable {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public void setAddresses(ArrayList<Address> addresses) {
         this.addresses = addresses;
-    }
-
-    public boolean validateEmailAddress(String emailAddress) {
-
-        regexPattern = Pattern.compile("^[(a-zA-Z-0-9-\\_\\+\\.)]+@[(a-z-A-z)]+\\.[(a-zA-z)]{2,3}$");
-        regMatcher = regexPattern.matcher(emailAddress);
-        if (regMatcher.matches()) {
-            return true;
-        }
-        return false;
-    }
-
-    public void validateMobileNumber(String mobileNumber) {
-        regexPattern = Pattern.compile("^((088)|(089)|(087))[0-9]{7}$");
-        regMatcher = regexPattern.matcher(mobileNumber);
-        if (regMatcher.matches()) {
-            this.phoneNumber = mobileNumber;
-        }
-        System.out.println("Invalid Mobile Number");
-    }
-
-    public void changePassword(String password) {
-        if (password.matches(PASS_REGEX)) {
-            this.password = password;
-            System.out.println("Password is changed.");
-        }
-    }
-
-    public void addAddress(Address a) {
-        this.addresses.add(a);
-    }
-
-//	public void changeAddress(String newAddress) {
-//		if (newAddress != null && !newAddress.isEmpty()) {
-//			this.address = newAddress;
-//			System.out.println("Address is changed.");
-//		}
-//	}
-
-    public void changeName(String newName) {
-        if (newName != null && !newName.isEmpty()) {
-            this.name = newName;
-            System.out.println("The name is changed.");
-        }
-    }
-
-    // the client make order and put the product into the cart
-    public void chooseProduct(Product p) {
-        if (this.cart != null) {
-            this.cart.addProduct(p);
-        }
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public void setPassword(String password) {
@@ -176,11 +98,6 @@ public class User implements Serializable {
     public void setCart(Cart cart) {
         this.cart = cart;
     }
-
-    public void removeProductFromCart(Product p) {
-        this.cart.removeProduct(p);
-    }
-
 
     public List<Address> getAddresses() {
         return addresses;
@@ -217,83 +134,6 @@ public class User implements Serializable {
         return true;
     }
 
-    public boolean validateGiftCard(String code) {
-        if (code != null && code.length() == 5 && !code.isEmpty()) {
-            String n = ".*[0-9]*.";
-            String a = ".*[A-Z]*.";
-            if (code.matches(n) && code.matches(a)) {
-                int countDigits = 0;
-
-                for (int i = 0; i < code.length(); i++) {
-                    if (Character.isDigit(code.charAt(i))) {
-                        countDigits++;
-                        continue;
-                    }
-                }
-                if (countDigits > code.length() - countDigits) {
-                    switch (new Random().nextInt(3)) {
-                        case 0:
-                            this.cart.addProduct(new Drink("Coca-Cola", 0.00, R.drawable.cola, "1,25l"));
-                            break;
-                        case 1:
-                            this.cart.addProduct(new Drink("Fanta", 0.00, R.drawable.fanta, "1,25l"));
-                            break;
-                        case 2:
-                            this.cart.addProduct(new Drink("Sprite", 0.00, R.drawable.sprite, "1,25l"));
-                            break;
-
-                        default:
-                            break;
-                    }
-                } else {
-                    switch (new Random().nextInt(3)) {
-                        case 0:
-                            this.cart.addProduct(new Dessert("Choko Pie", 0.00, R.drawable.chocopie, "Freshly oven baked puff pastry filled with Nutella"));
-                            break;
-                        case 1:
-                            this.cart.addProduct(new Dessert("Souflle", 0.00, R.drawable.souffle, "Chocolate lava cake filled with melted warm chocolate"));
-                            break;
-                        case 2:
-                            this.cart.addProduct(new Dessert("Nirvana", 0.00, R.drawable.nirvana, "Nirvana Pralines & Cream"));
-                            break;
-
-                        default:
-                            break;
-                    }
-                }
-            }
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-
-    // print the bill
-    public void printBill() {
-
-        System.out.print("Total sum: ");
-        System.out.println(String.format("%.2f", this.cart.getTotalSum()) + " lv");
-    }
-
-    public void makeOrder() {
-
-        payCheck();
-        // empty cart
-        this.cart = new Cart();
-    }
-
-    // the client pay the bill
-    private void payCheck() {
-        if (this.cart.getTotalSum() < this.money) {
-            this.setMoney(this.money - this.cart.getTotalSum());
-            System.out.println("Bill paid");
-            System.out.println("Money left: " + String.format("%.2f", this.money));
-        } else {
-            System.out.println("You don't have enough money to pay the bill!");
-            // return;
-        }
-    }
 
     @Override
     public String toString() {

@@ -13,18 +13,18 @@ public class Session {
     SharedPreferences.Editor editor;
     Activity activity;
 
-    public Session(Activity activity){
+    public Session(Activity activity) {
         this.activity = activity;
         prefs = activity.getSharedPreferences("myapp", Context.MODE_PRIVATE);
         editor = prefs.edit();
     }
 
-    public void setLoggedin(boolean logggedin){
-        editor.putBoolean("loggedInmode",logggedin);
+    public void setLoggedin(boolean logggedin) {
+        editor.putBoolean("loggedInmode", logggedin);
         editor.commit();
     }
 
-    public boolean loggedin(){
+    public boolean loggedin() {
         return prefs.getBoolean("loggedInmode", false);
     }
 }

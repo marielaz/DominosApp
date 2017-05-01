@@ -1,4 +1,5 @@
 package karikuncheva.dominosapp;
+
 import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -7,9 +8,9 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+
 import java.util.List;
-import karikuncheva.dominosapp.model.User;
+
 import karikuncheva.dominosapp.model.products.Drink;
 
 /**
@@ -49,9 +50,9 @@ public class DrinkCustomAdapter extends RecyclerView.Adapter<DrinkCustomAdapter.
             public void onClick(View v) {
                 // TODO add to cart
                 MainActivity.loggedUser.getCart().addProduct(drinks.get(position));
-                final int idx = CatalogActivity.count+1;
+                final int idx = CatalogActivity.count + 1;
                 CatalogActivity.count = idx;
-                ((PizzaFragment.ProductsCommunicator) activity).changeCount(CatalogActivity.count );
+                ((PizzaFragment.ProductsCommunicator) activity).changeCount(CatalogActivity.count);
             }
         });
 

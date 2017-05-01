@@ -13,13 +13,11 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Map;
 
-import karikuncheva.dominosapp.model.Cart;
 import karikuncheva.dominosapp.model.products.Product;
 
 
@@ -51,14 +49,14 @@ public class CartActivity extends AppCompatActivity implements CartListFragment.
             public void onClick(View v) {
 
                 ArrayList<Product> productsInCart = new ArrayList<Product>();
-                for (Map.Entry<Product.ProductType, HashSet<Product>> products : MainActivity.loggedUser.getCart().getProducts().entrySet()) {
+                for (Map.Entry<String, HashSet<Product>> products : MainActivity.loggedUser.getCart().getProducts().entrySet()) {
                     for (Product p : products.getValue()) {
                         productsInCart.add(p);
                     }
                 }
                 if (productsInCart.size() == 0 ||
                         (productsInCart.size() == 1 &&
-                        productsInCart.get(0).getPrice()==0)) {
+                                productsInCart.get(0).getPrice() == 0)) {
                     checkOut.setClickable(false);
 
                     final Dialog dialog = new Dialog(CartActivity.this);
@@ -79,7 +77,7 @@ public class CartActivity extends AppCompatActivity implements CartListFragment.
                     });
                     dialog.show();
                     checkOut.setClickable(true);
-                }else {
+                } else {
                     Intent intent = new Intent(CartActivity.this, AddressActivity.class);
                     intent.putExtra("click", 1);
                     intent.putExtra("fromCart", "cart");
@@ -97,13 +95,13 @@ public class CartActivity extends AppCompatActivity implements CartListFragment.
             }
         });
 
-        total.setText("Total: " + String.format("%.2f",CartAdapter.total));
+        total.setText("Total: " + String.format("%.2f", CartAdapter.total));
 
     }
 
     @Override
     public void sumTotalPrice(double sum) {
-        total.setText("Total: " + String.format("%.2f",sum));
+        total.setText("Total: " + String.format("%.2f", sum));
     }
 
     @Override

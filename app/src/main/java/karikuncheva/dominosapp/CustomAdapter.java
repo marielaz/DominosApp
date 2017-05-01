@@ -1,24 +1,18 @@
 package karikuncheva.dominosapp;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import karikuncheva.dominosapp.model.User;
 import karikuncheva.dominosapp.model.products.Pizza;
-import karikuncheva.dominosapp.model.products.Product;
 
 /**
  * Created by Mariela Zviskova on 14.3.2017 г..
@@ -29,7 +23,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.PizzaViewH
     private Activity activity;
     private List<Pizza> pizzas;
     int i = 0;
-    StringBuilder sb = new StringBuilder();
 
 
     public CustomAdapter(Activity activity, List<Pizza> pizzas) {
@@ -50,17 +43,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.PizzaViewH
         Pizza pizza = pizzas.get(position);
         vh.pizzaImage.setImageResource(pizza.getImageId());
         vh.pizzaName.setText(pizza.getName());
-
-        for (i = 0; i< pizza.getIngredients().size(); i++){
-            if (i == pizza.getIngredients().size()-1){
-                sb.append(pizza.getIngredients().get(i));
-            }
-            else {
-                sb.append(pizza.getIngredients().get(i) + ", ");
-            }
-        }
-        vh.pizzaDescr.setText(sb.toString());
-        sb = new StringBuilder();
+        vh.pizzaDescr.setText(pizza.getIngredients());
         double p = pizza.getPrice();
         vh.pizzaPrice.setText(String.format("%.2f", p));
 
@@ -84,8 +67,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.PizzaViewH
             public void onClick(View v) {
                 // TODO add to cart
                 MainActivity.loggedUser.getCart().addProduct(pizzas.get(position));
-                final int idx = CatalogActivity.count+1;
-               CatalogActivity.count = idx;
+                final int idx = CatalogActivity.count + 1;
+                CatalogActivity.count = idx;
                 ((PizzaFragment.ProductsCommunicator) activity).changeCount(CatalogActivity.count);
             }
         });
@@ -105,14 +88,14 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.PizzaViewH
         TextView pizzaPrice;
         TextView largeTrad;
 
-        PizzaViewHolder(View row){
+        PizzaViewHolder(View row) {
             super(row);
-             modify_pizza_bnt = (ImageButton) row.findViewById(R.id.modify_pizza_bnt);
-             cart_pizza_bnt = (ImageButton) row.findViewById(R.id.cart_pizza_bnt);
-             pizzaImage = (ImageView) row.findViewById(R.id.image_pizza);
-             pizzaName = (TextView) row.findViewById(R.id.name_pizza);
-             pizzaDescr = (TextView) row.findViewById(R.id.descr_pizza);
-             pizzaPrice = (TextView) row.findViewById(R.id.price_pizza);
+            modify_pizza_bnt = (ImageButton) row.findViewById(R.id.modify_pizza_bnt);
+            cart_pizza_bnt = (ImageButton) row.findViewById(R.id.cart_pizza_bnt);
+            pizzaImage = (ImageView) row.findViewById(R.id.image_pizza);
+            pizzaName = (TextView) row.findViewById(R.id.name_pizza);
+            pizzaDescr = (TextView) row.findViewById(R.id.descr_pizza);
+            pizzaPrice = (TextView) row.findViewById(R.id.price_pizza);
             largeTrad = (TextView) row.findViewById(R.id.largeTrad);
         }
     }

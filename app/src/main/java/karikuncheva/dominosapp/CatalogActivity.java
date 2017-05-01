@@ -16,7 +16,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -66,25 +65,19 @@ public class CatalogActivity extends NavigDrawerActivity implements PizzaFragmen
                 startActivity(intent);
             }
         });
-        //Initializing the tablayout
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
 
-        //Adding the tabs using addTab() method
         tabLayout.addTab(tabLayout.newTab().setText("Pizzas"));
         tabLayout.addTab(tabLayout.newTab().setText("Desserts"));
         tabLayout.addTab(tabLayout.newTab().setText("Drinks"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
-        //Initializing viewPager
         viewPager = (ViewPager) findViewById(R.id.pager);
 
-        //Creating our pager adapter
         PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
 
-        //Adding adapter to pager
         viewPager.setAdapter(adapter);
 
-        //Adding onTabSelectedListener to swipe views
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -117,7 +110,6 @@ public class CatalogActivity extends NavigDrawerActivity implements PizzaFragmen
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.navig_drawer, menu);
         return true;
 
@@ -125,22 +117,13 @@ public class CatalogActivity extends NavigDrawerActivity implements PizzaFragmen
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_log_out) {
             Intent i = new Intent(this, MainActivity.class);
             this.startActivity(i);
             return true;
         }
-//        if (id == R.id.action_cart) {
-//            Intent i = new Intent(this, CartActivity.class);
-//            this.startActivity(i);
-//            return true;
-//        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -148,7 +131,6 @@ public class CatalogActivity extends NavigDrawerActivity implements PizzaFragmen
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
         int id = item.getItemId();
 
         if (id == R.id.nav_profile) {
