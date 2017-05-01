@@ -74,7 +74,6 @@ public class DBManager extends SQLiteOpenHelper {
             ourInstance = new DBManager(context);
             DBManager.context = context;
             registeredUsers = new HashMap<>();
-            // addresses = new ArrayList<>();
             loadUsers();
             loadProducts();
         }
@@ -99,9 +98,6 @@ public class DBManager extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    // public SQLiteDatabase create() {
-//        return getWritableDatabase();
-//    }
 
     public boolean addUser(User u) {
         if (existsUser(u.getUsername())) {

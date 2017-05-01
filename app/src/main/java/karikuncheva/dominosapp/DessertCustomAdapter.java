@@ -14,6 +14,7 @@ import java.util.List;
 
 import karikuncheva.dominosapp.model.products.Dessert;
 
+
 /**
  * Created by Mariela Zviskova on 14.3.2017 г..
  */
@@ -48,9 +49,7 @@ public class DessertCustomAdapter extends RecyclerView.Adapter<DessertCustomAdap
             @Override
             public void onClick(View v) {
                 MainActivity.loggedUser.getCart().addProduct(desserts.get(position));
-                final int idx = CatalogActivity.count + 1;
-                CatalogActivity.count = idx;
-                ((PizzaFragment.ProductsCommunicator) activity).changeCount(CatalogActivity.count);
+                ((PizzaFragment.ProductsCommunicator) activity).increment();
             }
         });
 

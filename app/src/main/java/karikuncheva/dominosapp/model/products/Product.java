@@ -5,7 +5,7 @@ import java.io.Serializable;
 public abstract class Product implements Serializable {
 
 
-    public String pType;
+    private String pType;
     private String name;
     private double price;
     private int quantity;

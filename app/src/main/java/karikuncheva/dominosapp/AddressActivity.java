@@ -92,6 +92,7 @@ public class AddressActivity extends AppCompatActivity {
                     Intent i = new Intent(AddressActivity.this, TrackerActivity.class);
                     AddressActivity.this.startActivity(i);
                     MainActivity.loggedUser.setCart(new Cart());
+                   CatalogActivity.count =0;
                     finish();
                 }
             }

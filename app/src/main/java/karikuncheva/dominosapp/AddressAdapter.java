@@ -60,7 +60,7 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.AddressV
             vh.layout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    vh.layout.setBackgroundDrawable(activity.getResources().getDrawable(R.drawable.rounded_button));
+                    vh.layout.setBackgroundResource(R.drawable.rounded_button);
                 }
             });
         }

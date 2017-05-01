@@ -157,8 +157,21 @@ public class CatalogActivity extends NavigDrawerActivity implements PizzaFragmen
     }
 
     @Override
-    public void changeCount(int count) {
+    public void increment() {
         products.setVisibility(View.VISIBLE);
+        count++;
         products.setText(String.valueOf(count));
     }
+
+    @Override
+    public void decrement() {
+        count--;
+        products.setText(String.valueOf(count));
+    }
+
+    @Override
+    public void clear() {
+        count = 0;
+    }
+
 }

@@ -44,6 +44,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.PizzaViewH
         vh.pizzaImage.setImageResource(pizza.getImageId());
         vh.pizzaName.setText(pizza.getName());
         vh.pizzaDescr.setText(pizza.getIngredients());
+
         double p = pizza.getPrice();
         vh.pizzaPrice.setText(String.format("%.2f", p));
 
@@ -65,11 +66,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.PizzaViewH
         vh.cart_pizza_bnt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO add to cart
                 MainActivity.loggedUser.getCart().addProduct(pizzas.get(position));
-                final int idx = CatalogActivity.count + 1;
-                CatalogActivity.count = idx;
-                ((PizzaFragment.ProductsCommunicator) activity).changeCount(CatalogActivity.count);
+                ((PizzaFragment.ProductsCommunicator) activity).increment();
             }
         });
     }

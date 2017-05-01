@@ -36,7 +36,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         for (Map.Entry<String, HashSet<Product>> products : MainActivity.loggedUser.getCart().getProducts().entrySet()) {
             for (Product p : products.getValue()) {
                 productsInCart.add(p);
-                if (p.pType.equals("pizza")) {
+                if (p.getpType().equals("pizza")) {
                     total += p.getQuantity() * p.getDiscPrice();
                 } else {
                     total += p.getQuantity() * p.getPrice();
@@ -54,7 +54,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         for (Map.Entry<String, HashSet<Product>> products : MainActivity.loggedUser.getCart().getProducts().entrySet()) {
             for (Product p1 : products.getValue()) {
                 productsInCart.add(p1);
-                if (p1.pType.equals("pizza")) {
+                if (p1.getpType().equals("pizza")) {
                     total += p1.getQuantity() * p1.getDiscPrice();
                 } else {
                     total += p1.getQuantity() * p1.getPrice();
@@ -86,7 +86,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         vh.p_name_in_cart.setText(product.getName());
         vh.price_in_cart.setText(String.format("%.2f", product.getQuantity() * product.getPrice()));
 
-        if (!product.pType.equals("pizza")) {
+        if (!product.getpType().equals("pizza")) {
             vh.dicsount_cart_tv.setText("");
             vh.description_cart_tv.setText("");
             vh.descr_type.setText("");
@@ -120,10 +120,11 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             @Override
             public void onClick(View v) {
                 CatalogActivity.count = CatalogActivity.count + 1;
+                CatalogActivity.count++;
                 MainActivity.loggedUser.getCart().addProduct(product);
 
                 vh.quantity.setText(String.valueOf(product.getQuantity()));
-                if (product.pType.equals("pizza")) {
+                if (product.getpType().equals("pizza")) {
                     vh.price_in_cart.setText(String.format("%.2f", product.getQuantity() * product.getPrice()));
                     vh.disc_price_in_cart.setText(String.format("%.2f", product.getQuantity() * product.getDiscPrice()));
                     total = total + product.getDiscPrice();
@@ -141,8 +142,9 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             @Override
             public void onClick(View v) {
                 CatalogActivity.count = CatalogActivity.count - 1;
+               CatalogActivity.count--;
                 if (product.getQuantity() == 1) {
-                    if (product.pType.equals("pizza")) {
+                    if (product.getpType().equals("pizza")) {
                         total = total - product.getDiscPrice();
                         ((CartListFragment.CartComunicator) activity).sumTotalPrice(total);
                     } else {
@@ -157,7 +159,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
                 } else {
                     MainActivity.loggedUser.getCart().removeProduct(product);
 
-                    if (product.pType.equals("pizza")) {
+                    if (product.getpType().equals("pizza")) {
                         total = total - product.getDiscPrice();
                         ((CartListFragment.CartComunicator) activity).sumTotalPrice(total);
                     } else {
@@ -166,7 +168,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
                     }
 
                     vh.quantity.setText(String.valueOf(product.getQuantity()));
-                    if (product.pType.equals("pizza")) {
+                    if (product.getpType().equals("pizza")) {
                         double tempSum = Double.parseDouble(vh.price_in_cart.getText().toString()) - product.getPrice();
                         double tempDics = Double.parseDouble(vh.disc_price_in_cart.getText().toString()) - product.getDiscPrice();
                         vh.price_in_cart.setText(String.format("%.2f", tempSum));

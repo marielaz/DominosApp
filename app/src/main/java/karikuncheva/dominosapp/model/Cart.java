@@ -28,11 +28,11 @@ public class Cart implements Serializable {
 
     // add the product into the cart and if the product is Pizza - get discount
     public void addProduct(Product p) {
-        if (!this.products.containsKey(p.pType)) {
+        if (!this.products.containsKey(p.getpType())) {
             products.put(p.getpType(), new HashSet<Product>());
         }
-        if (!this.products.get(p.pType).contains(p)) {
-            products.get(p.pType).add(p);
+        if (!this.products.get(p.getpType()).contains(p)) {
+            products.get(p.getpType()).add(p);
             p.setQuantity(1);
         } else {
             int currentQuantity = p.getQuantity();
@@ -40,7 +40,7 @@ public class Cart implements Serializable {
         }
 
         // get Discount
-        if (p.pType.equals("pizza")) {
+        if (p.getpType().equals("pizza")) {
             p.setDiscPrice(p.getPrice() - p.getPrice() * 0.05);
             this.totalSum += p.getDiscPrice();
         } else {
@@ -50,16 +50,16 @@ public class Cart implements Serializable {
 
     public void removeProduct(Product p) {
 
-        if (this.products.containsKey(p.pType)) {
-            if (this.products.get(p.pType).contains(p) && p.getQuantity() == 1) {
+        if (this.products.containsKey(p.getpType())) {
+            if (this.products.get(p.getpType()).contains(p) && p.getQuantity() == 1) {
                 modifyTotalSum(p);
 
-                products.get(p.pType).remove(p);
+                products.get(p.getpType()).remove(p);
 
-                if (this.products.get(p.pType).isEmpty()) {
-                    this.products.remove(p.pType);
+                if (this.products.get(p.getpType()).isEmpty()) {
+                    this.products.remove(p.getpType());
                 }
-            } else if (this.products.get(p.pType).contains(p)) {
+            } else if (this.products.get(p.getpType()).contains(p)) {
 
                 modifyTotalSum(p);
 
@@ -74,7 +74,7 @@ public class Cart implements Serializable {
 
     // modify the total sum if the client remove product from the cart
     private void modifyTotalSum(Product p) {
-        if (p.pType.equals("pizza")) {
+        if (p.getpType().equals("pizza")) {
             this.totalSum -= p.getDiscPrice();
         } else {
             this.totalSum -= p.getPrice();
