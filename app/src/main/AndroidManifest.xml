@@ -20,7 +20,11 @@
             android:value="@string/facebook_app_id" />
 
         <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".CatalogActivity" />
         <activity android:name=".RegistrationActivity" />
@@ -37,11 +41,6 @@
         <activity android:name=".AddAddressActivity" />
         <activity android:name=".ContactsActivity" />
         <activity android:name=".MapsMarkerActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
         </activity>
 
@@ -58,7 +57,7 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyCQARllLXUnAZg-x11NdCJ1ClUyQNxWqqc" />
+            android:value="AIzaSyBT74E_dcehgbNOjz59tBhgAC8GkkDijmk" />
 
 
     </application>
