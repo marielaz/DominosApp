@@ -89,7 +89,6 @@ public class DBManager extends SQLiteOpenHelper {
         db.execSQL(SQL_CREATE_USERS);
         db.execSQL(SQL_CREATE_PRODUCTS);
         db.execSQL(SQL_CREATE_ADDRESS);
-        Toast.makeText(context, "DB created", Toast.LENGTH_SHORT).show();
     }
 
     @Override

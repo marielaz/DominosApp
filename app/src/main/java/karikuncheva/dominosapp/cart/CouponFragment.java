@@ -73,6 +73,5 @@ public class CouponFragment extends Fragment {
         ((CouponCommunicator) getActivity()).addProduct(p);
         counter++;
         coupon_code.setText("");
-        Toast.makeText(getActivity(), "The products is added to your cart!", Toast.LENGTH_SHORT).show();
     }
 }

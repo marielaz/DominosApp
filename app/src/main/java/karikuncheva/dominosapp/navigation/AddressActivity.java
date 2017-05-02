@@ -4,6 +4,8 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
@@ -70,6 +72,7 @@ public class AddressActivity extends AppCompatActivity {
 
 
         finalize.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
             @Override
             public void onClick(View v) {
                 if (LoginActivity.loggedUser.getAddresses().size() == 0) {
@@ -83,7 +86,7 @@ public class AddressActivity extends AppCompatActivity {
                     TextView txt = (TextView) dialog.findViewById(R.id.text_dialog);
                     txt.setText("Please, add address first!");
                     TextView ok = (TextView) dialog.findViewById(R.id.ok_tv);
-                    ok.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                    ok.setBackground(new ColorDrawable(Color.TRANSPARENT));
                     // if button is clicked, close the custom dialog
                     ok.setOnClickListener(new View.OnClickListener() {
                         @Override

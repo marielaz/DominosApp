@@ -34,7 +34,7 @@ public class MakeOrderActivity extends AppCompatActivity {
                 makeOrderMethod = 2;
                 Intent intent = new Intent(MakeOrderActivity.this, MapsMarkerActivity.class);
                 startActivity(intent);
-                carry_out_checked.setVisibility(View.GONE);
+                carry_out_checked.setVisibility(View.VISIBLE);
             }
         });
 
@@ -45,7 +45,7 @@ public class MakeOrderActivity extends AppCompatActivity {
                 makeOrderMethod = 1;
                 Intent intent = new Intent(MakeOrderActivity.this, CatalogActivity.class);
                 MakeOrderActivity.this.startActivity(intent);
-                delivery_checked.setVisibility(View.GONE);
+                delivery_checked.setVisibility(View.VISIBLE);
             }
         });
     }

@@ -67,7 +67,7 @@ public class ProfileActivity extends AppCompatActivity {
 
                 if (validateData()) {
                     DBManager.getInstance(ProfileActivity.this).updateUser(LoginActivity.loggedUser.getUsername());
-                    Toast.makeText(ProfileActivity.this, "Saved changes", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ProfileActivity.this, "Changes saved", Toast.LENGTH_SHORT).show();
                 }
 
             }

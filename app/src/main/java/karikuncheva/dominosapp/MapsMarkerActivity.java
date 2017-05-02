@@ -141,8 +141,8 @@ public class MapsMarkerActivity extends AppCompatActivity
                 .position(place6)
                 .icon(BitmapDescriptorFactory.fromResource(R.mipmap.map_logo)));
 
-//        mMap.moveCamera(CameraUpdateFactory.newLatLng(sofia));
-//        mMap.animateCamera(CameraUpdateFactory.zoomTo(11));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(sofia));
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(11));
         mMap.setOnMarkerClickListener(this);
     }
 

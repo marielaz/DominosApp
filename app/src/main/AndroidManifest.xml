@@ -19,38 +19,70 @@
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
 
-        <activity android:name=".LoginActivity">
-
-
-        </activity>
-        <activity android:name=".catalog.CatalogActivity" />
-        <activity android:name=".RegistrationActivity" />
-        <activity android:name=".catalog.ModifyPizzaActivity" />
-        <activity android:name=".cart.CartActivity" />
-        <activity android:name=".TrackerActivity" />
         <activity
-            android:name=".navigation.NavigDrawerActivity"
-            android:label="@string/title_activity_navig_drawer"
-            android:theme="@style/AppTheme" />
-        <activity android:name=".MakeOrderActivity" >
-        </activity>
-        <activity android:name=".navigation.ProfileActivity" />
-        <activity android:name=".navigation.AddAddressActivity" />
-        <activity android:name=".navigation.ContactsActivity" />
-        <activity android:name=".MapsMarkerActivity">
+            android:name=".LoginActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".catalog.CatalogActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".RegistrationActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".catalog.ModifyPizzaActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".cart.CartActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".TrackerActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".navigation.NavigDrawerActivity"
+            android:label="@string/title_activity_navig_drawer"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".MakeOrderActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".navigation.ProfileActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".navigation.AddAddressActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".navigation.ContactsActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MapsMarkerActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait"></activity>
 
         <activity
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-        <activity android:name=".navigation.AddressActivity"></activity>
+        <activity
+            android:name=".navigation.AddressActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait"></activity>
 
         <meta-data
             android:name="com.google.android.gms.version"
@@ -62,7 +94,7 @@
 
         <receiver android:name=".NetworkReceiver">
             <intent-filter>
-                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
             </intent-filter>
         </receiver>
 

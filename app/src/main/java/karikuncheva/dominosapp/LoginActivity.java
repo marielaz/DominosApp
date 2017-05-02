@@ -109,7 +109,7 @@ public class LoginActivity extends AppCompatActivity {
                 Profile profile = Profile.getCurrentProfile();
 
                 if (profile != null) {
-                    Intent i = new Intent(LoginActivity.this, CatalogActivity.class);
+                    Intent i = new Intent(LoginActivity.this, MakeOrderActivity.class);
                     loggedFbUser = new User(profile.getFirstName().toString(), profile.getId().toString());
                     DBManager.getInstance(LoginActivity.this).addUser(loggedFbUser);
                     if (DBManager.getInstance(LoginActivity.this).existsUser(loggedFbUser.getUsername().toString())) {
