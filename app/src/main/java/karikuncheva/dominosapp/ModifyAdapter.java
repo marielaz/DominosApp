@@ -42,7 +42,7 @@ public class ModifyAdapter extends RecyclerView.Adapter<ModifyAdapter.ModifyView
             tempArr.add(0);
         }
         String i1 = pizza.getIngredients();
-        String[] in = i1.split(", ");
+        String[] in = i1.split(",");
         counter = in.length - 1;
         // counter = pizza.getIngredients().length() - 1;
     }

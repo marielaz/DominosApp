@@ -20,6 +20,7 @@
             android:value="@string/facebook_app_id" />
 
         <activity android:name=".LoginActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -57,7 +58,7 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyCQARllLXUnAZg-x11NdCJ1ClUyQNxWqqc" />
+            android:value="AIzaSyBT74E_dcehgbNOjz59tBhgAC8GkkDijmk" />
 
 
     </application>

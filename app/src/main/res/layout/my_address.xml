@@ -111,6 +111,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:hint="Block"
+            android:inputType="number"
             android:paddingLeft="10dp"
             android:background="@drawable/main_rounded_shape"
             android:paddingBottom="5dp"
