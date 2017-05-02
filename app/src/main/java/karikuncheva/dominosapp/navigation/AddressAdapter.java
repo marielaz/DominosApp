@@ -1,4 +1,4 @@
-package karikuncheva.dominosapp;
+package karikuncheva.dominosapp.navigation;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -10,9 +10,11 @@ import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import karikuncheva.dominosapp.DBManager;
+import karikuncheva.dominosapp.LoginActivity;
+import karikuncheva.dominosapp.R;
 import karikuncheva.dominosapp.model.Address;
 
 /**
@@ -24,12 +26,13 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.AddressV
     private Activity activity;
     private List<Address> addresses;
     private Bundle bundle;
+    private int index;
+    private boolean isChecked;
 
-    public AddressAdapter(Activity activity, List<Address> addresses) {
+    public AddressAdapter(Activity activity) {
         this.activity = activity;
         this.addresses = LoginActivity.loggedUser.getAddresses();
     }
-
 
     @Override
     public AddressAdapter.AddressViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -55,12 +58,22 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.AddressV
             }
         });
 
+        if(position == index && isChecked){
+            vh.layout.setBackgroundResource(R.drawable.rounded_button);
+            isChecked = false;
+        } else {
+            vh.layout.setBackgroundResource(R.drawable.rounded_products_list);
+        }
+
         bundle = activity.getIntent().getExtras();
-        if (bundle != null) {
+        if (bundle != null && (bundle.getInt("click") == 1 ||  bundle.getString("item").equals("click")))  {
             vh.layout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     vh.layout.setBackgroundResource(R.drawable.rounded_button);
+                    index = position;
+                    isChecked = true;
+                    notifyDataSetChanged();
                 }
             });
         }

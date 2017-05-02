@@ -1,4 +1,4 @@
-package karikuncheva.dominosapp;
+package karikuncheva.dominosapp.cart;
 
 
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import karikuncheva.dominosapp.R;
 import karikuncheva.dominosapp.model.products.Dessert;
 import karikuncheva.dominosapp.model.products.Drink;
 import karikuncheva.dominosapp.model.products.Product;

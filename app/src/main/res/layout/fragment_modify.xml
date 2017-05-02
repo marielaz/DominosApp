@@ -7,7 +7,7 @@
     android:background="@color/colorBackground"
     android:nestedScrollingEnabled="true"
     android:orientation="vertical"
-    tools:context="karikuncheva.dominosapp.ModifyPizzaActivity">
+    tools:context="karikuncheva.dominosapp.catalog.ModifyPizzaActivity">
 
     <ScrollView
         android:layout_width="wrap_content"

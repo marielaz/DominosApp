@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import karikuncheva.dominosapp.navigation.AddAddressActivity;
 import karikuncheva.dominosapp.model.User;
 
 public class RegistrationActivity extends AppCompatActivity {

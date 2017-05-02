@@ -3,6 +3,7 @@ package karikuncheva.dominosapp;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import karikuncheva.dominosapp.cart.CartActivity;
 import karikuncheva.dominosapp.model.Cart;
 
 public class TrackerActivity extends AppCompatActivity {
@@ -18,7 +19,7 @@ public class TrackerActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        CartActivity.temp = 0;
+        CartActivity.addressVisibility = 0;
         LoginActivity.loggedUser.setCart(new Cart());
     }
 }

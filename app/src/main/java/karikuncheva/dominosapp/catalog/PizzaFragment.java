@@ -1,15 +1,17 @@
 
 
-package karikuncheva.dominosapp;
+package karikuncheva.dominosapp.catalog;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import karikuncheva.dominosapp.DBManager;
+import karikuncheva.dominosapp.R;
 
 /**
  * Created by Mariela Zviskova on 10.3.2017 г..

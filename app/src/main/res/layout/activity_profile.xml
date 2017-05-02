@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    tools:context="karikuncheva.dominosapp.ProfileActivity">
+    tools:context="karikuncheva.dominosapp.navigation.ProfileActivity">
 
     <android.support.v7.widget.Toolbar
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -75,6 +75,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/name_edit"
+            android:maxLines="1"
             android:layout_marginTop="5dp"
             android:background="@drawable/main_rounded_shape"
             android:paddingBottom="5dp"
@@ -95,6 +96,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/phone_edit"
+            android:maxLines="1"
             android:layout_marginTop="5dp"
             android:background="@drawable/main_rounded_shape"
             android:paddingBottom="5dp"
@@ -115,6 +117,7 @@
             android:id="@+id/password_edit_et"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:maxLines="1"
             android:layout_below="@id/password_edit"
             android:inputType="textPassword"
             android:layout_marginTop="5dp"
@@ -136,6 +139,7 @@
             android:id="@+id/password2_edit_et"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:maxLines="1"
             android:layout_below="@+id/password2_edit"
             android:inputType="textPassword"
             android:layout_marginTop="5dp"

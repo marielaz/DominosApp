@@ -1,4 +1,4 @@
-package karikuncheva.dominosapp;
+package karikuncheva.dominosapp.cart;
 
 import android.app.Activity;
 import android.graphics.Color;
@@ -14,6 +14,9 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Map;
 
+import karikuncheva.dominosapp.catalog.CatalogActivity;
+import karikuncheva.dominosapp.LoginActivity;
+import karikuncheva.dominosapp.R;
 import karikuncheva.dominosapp.model.products.Pizza;
 import karikuncheva.dominosapp.model.products.Product;
 
@@ -91,7 +94,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             vh.description_cart_tv.setText("");
             vh.descr_type.setText("");
             vh.disc_price_in_cart.setText("");
-//            vh.dicsount_cart_tv.setVisibility(View.GONE);
             vh.price_in_cart.setPaintFlags(vh.price_in_cart.getPaintFlags() & (~Paint.STRIKE_THRU_TEXT_FLAG));
         }
         if (product.getPrice() == 0.00) {

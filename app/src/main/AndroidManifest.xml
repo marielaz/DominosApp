@@ -21,28 +21,28 @@
 
         <activity android:name=".LoginActivity">
 
+
+        </activity>
+        <activity android:name=".catalog.CatalogActivity" />
+        <activity android:name=".RegistrationActivity" />
+        <activity android:name=".catalog.ModifyPizzaActivity" />
+        <activity android:name=".cart.CartActivity" />
+        <activity android:name=".TrackerActivity" />
+        <activity
+            android:name=".navigation.NavigDrawerActivity"
+            android:label="@string/title_activity_navig_drawer"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".MakeOrderActivity" >
+        </activity>
+        <activity android:name=".navigation.ProfileActivity" />
+        <activity android:name=".navigation.AddAddressActivity" />
+        <activity android:name=".navigation.ContactsActivity" />
+        <activity android:name=".MapsMarkerActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity android:name=".CatalogActivity" />
-        <activity android:name=".RegistrationActivity" />
-        <activity android:name=".ModifyPizzaActivity" />
-        <activity android:name=".CartActivity" />
-        <activity android:name=".TrackerActivity" />
-        <activity
-            android:name=".NavigDrawerActivity"
-            android:label="@string/title_activity_navig_drawer"
-            android:theme="@style/AppTheme" />
-        <activity android:name=".MakeOrderActivity" >
-        </activity>
-        <activity android:name=".ProfileActivity" />
-        <activity android:name=".AddAddressActivity" />
-        <activity android:name=".ContactsActivity" />
-        <activity android:name=".MapsMarkerActivity">
-
         </activity>
 
         <activity
@@ -50,7 +50,7 @@
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-        <activity android:name=".AddressActivity"></activity>
+        <activity android:name=".navigation.AddressActivity"></activity>
 
         <meta-data
             android:name="com.google.android.gms.version"
@@ -59,6 +59,12 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBT74E_dcehgbNOjz59tBhgAC8GkkDijmk" />
+
+        <receiver android:name=".NetworkReceiver">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
+            </intent-filter>
+        </receiver>
 
 
     </application>

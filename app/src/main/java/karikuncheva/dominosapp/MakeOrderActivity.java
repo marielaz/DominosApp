@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import karikuncheva.dominosapp.catalog.CatalogActivity;
+
 
 public class MakeOrderActivity extends AppCompatActivity {
 

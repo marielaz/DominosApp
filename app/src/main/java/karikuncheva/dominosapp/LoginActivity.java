@@ -19,6 +19,7 @@ import com.facebook.ProfileTracker;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 
+import karikuncheva.dominosapp.catalog.CatalogActivity;
 import karikuncheva.dominosapp.model.User;
 
 
@@ -73,12 +74,7 @@ public class LoginActivity extends AppCompatActivity {
                             password_login.setText("");
                             password_login.requestFocus();
                         }
-                    } else {
-                        Toast.makeText(LoginActivity.this, "User data not valid", Toast.LENGTH_SHORT).show();
                     }
-
-                } else {
-                    Toast.makeText(LoginActivity.this, "User data not valid", Toast.LENGTH_SHORT).show();
                 }
             }
         });

@@ -1,4 +1,4 @@
-package karikuncheva.dominosapp;
+package karikuncheva.dominosapp.catalog;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import karikuncheva.dominosapp.LoginActivity;
+import karikuncheva.dominosapp.R;
 import karikuncheva.dominosapp.model.products.Pizza;
 
 /**

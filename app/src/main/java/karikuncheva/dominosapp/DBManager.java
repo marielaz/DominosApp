@@ -26,9 +26,9 @@ public class DBManager extends SQLiteOpenHelper {
     private static DBManager ourInstance;
     private static Context context;
     private static HashMap<String, User> registeredUsers;
-    static ArrayList<Pizza> pizzas = new ArrayList<>();
-    static ArrayList<Dessert> desserts = new ArrayList<>();
-    static ArrayList<Drink> drinks = new ArrayList<>();
+    public static ArrayList<Pizza> pizzas = new ArrayList<>();
+    public static ArrayList<Dessert> desserts = new ArrayList<>();
+    public static ArrayList<Drink> drinks = new ArrayList<>();
 
     private static final String SQL_CREATE_USERS = "CREATE TABLE users(\n" +
             "\n" +
@@ -114,7 +114,6 @@ public class DBManager extends SQLiteOpenHelper {
         long id = getWritableDatabase().insert("users", null, contentValues);
         u.setId((int) id);
         registeredUsers.put(u.getUsername(), u);
-        Toast.makeText(context, "User added successfully", Toast.LENGTH_SHORT).show();
         return true;
     }
 
@@ -135,7 +134,6 @@ public class DBManager extends SQLiteOpenHelper {
         a.setIdUser(LoginActivity.loggedUser.getId());
         //addresses.add(a);
         LoginActivity.loggedUser.getAddresses().add(a);
-        Toast.makeText(context, "Address added successfully", Toast.LENGTH_SHORT).show();
     }
 
     public void updateUser(String username) {
@@ -159,7 +157,6 @@ public class DBManager extends SQLiteOpenHelper {
 
             @Override
             protected void onPostExecute(Void aVoid) {
-                Toast.makeText(context, " user updated successfully", Toast.LENGTH_SHORT).show();
             }
         }.execute(username);
     }
@@ -259,7 +256,6 @@ public class DBManager extends SQLiteOpenHelper {
 
     public void deleteAddress(Address a) {
         getWritableDatabase().delete("addresses", "id = ?", new String[]{Integer.toString(a.getId())});
-        //Toast.makeText(context, a.getId() + " deleted successfully", Toast.LENGTH_SHORT).show();
         LoginActivity.loggedUser.getAddresses().remove(a);
     }
 

@@ -1,4 +1,4 @@
-package karikuncheva.dominosapp;
+package karikuncheva.dominosapp.navigation;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +7,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import karikuncheva.dominosapp.DBManager;
+import karikuncheva.dominosapp.MakeOrderActivity;
+import karikuncheva.dominosapp.R;
 import karikuncheva.dominosapp.model.Address;
 
 public class AddAddressActivity extends AppCompatActivity {
@@ -60,9 +63,13 @@ public class AddAddressActivity extends AppCompatActivity {
                     if (index == 1) {
                         Intent i = new Intent(AddAddressActivity.this, MakeOrderActivity.class);
                         startActivity(i);
-                    } else {
+                    } else if (index == 2 ){
                         Intent i = new Intent(AddAddressActivity.this, AddressActivity.class);
                         i.putExtra("item", "click");
+                        startActivity(i);
+                    }
+                    else{
+                        Intent i = new Intent(AddAddressActivity.this, AddressActivity.class);
                         startActivity(i);
                     }
                 }

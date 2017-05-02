@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context="karikuncheva.dominosapp.ModifyPizzaActivity">
+    tools:context="karikuncheva.dominosapp.catalog.ModifyPizzaActivity">
 
     <android.support.v7.widget.Toolbar
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -51,7 +51,7 @@
 
     <fragment
         android:id="@+id/modify_fragment"
-        android:name="karikuncheva.dominosapp.ModifyPizzaFragment"
+        android:name="karikuncheva.dominosapp.catalog.ModifyPizzaFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"

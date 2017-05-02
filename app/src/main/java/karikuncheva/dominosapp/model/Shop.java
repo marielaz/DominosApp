@@ -35,7 +35,6 @@ public class Shop implements Serializable {
         ingredients.add("ham");
         ingredients.add("chickeh");
         ingredients.add("spicy beef");
-        ingredients.add("beef");
         ingredients.add("pepperoni");
         ingredients.add("tomatos");
         ingredients.add("green peppers");

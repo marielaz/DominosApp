@@ -1,10 +1,13 @@
-package karikuncheva.dominosapp;
+package karikuncheva.dominosapp.cart;
 
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -18,6 +21,14 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Map;
 
+import karikuncheva.dominosapp.CartBroadcastReceiver;
+import karikuncheva.dominosapp.catalog.CatalogActivity;
+import karikuncheva.dominosapp.LoginActivity;
+import karikuncheva.dominosapp.MakeOrderActivity;
+import karikuncheva.dominosapp.navigation.AddressActivity;
+import karikuncheva.dominosapp.R;
+import karikuncheva.dominosapp.TrackerActivity;
+import karikuncheva.dominosapp.model.Cart;
 import karikuncheva.dominosapp.model.products.Product;
 
 
@@ -27,7 +38,7 @@ public class CartActivity extends AppCompatActivity implements CartListFragment.
     private Button checkOut;
     private Button back;
     private TextView total;
-    public static int temp = 0;
+    public static int addressVisibility = 0;
 
 
     @Override
@@ -45,12 +56,16 @@ public class CartActivity extends AppCompatActivity implements CartListFragment.
 
         checkOut = (Button) findViewById(R.id.check_out_button);
         checkOut.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
             @Override
             public void onClick(View v) {
 
-                if (MakeOrderActivity.makeOrderMethod == 2){
+                if (MakeOrderActivity.makeOrderMethod == 2) {
                     Intent intent = new Intent(CartActivity.this, TrackerActivity.class);
                     startActivity(intent);
+                    LoginActivity.loggedUser.setCart(new Cart());
+                    LocalBroadcastManager.getInstance(CartActivity.this).sendBroadcast(new Intent(CartBroadcastReceiver.ACTION_CLEAR_CART));
+                    CatalogActivity.count = 0;
                 }
 
                 ArrayList<Product> productsInCart = new ArrayList<Product>();
@@ -72,7 +87,7 @@ public class CartActivity extends AppCompatActivity implements CartListFragment.
                     TextView txt = (TextView) dialog.findViewById(R.id.text_dialog);
                     txt.setText("Your cart is empty. Please, add products!");
                     TextView ok = (TextView) dialog.findViewById(R.id.ok_tv);
-                    ok.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                    ok.setBackground(new ColorDrawable(Color.TRANSPARENT));
                     // if button is clicked, close the custom dialog
                     ok.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -86,7 +101,7 @@ public class CartActivity extends AppCompatActivity implements CartListFragment.
                     Intent intent = new Intent(CartActivity.this, AddressActivity.class);
                     intent.putExtra("click", 1);
                     intent.putExtra("fromCart", "cart");
-                    temp = 1;
+                    addressVisibility = 1;
                     CartActivity.this.startActivity(intent);
                 }
             }
@@ -113,6 +128,6 @@ public class CartActivity extends AppCompatActivity implements CartListFragment.
     public void addProduct(Product p) {
         FragmentManager fm = getSupportFragmentManager();
         CartListFragment fragment = (CartListFragment) fm.findFragmentById(R.id.cart_list_products);
-        fragment.addProduct(p);
+        fragment.addBonusProduct(p);
     }
 }

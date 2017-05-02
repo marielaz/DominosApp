@@ -1,4 +1,4 @@
-package karikuncheva.dominosapp;
+package karikuncheva.dominosapp.catalog;
 
 /**
  * Created by Mariela Zviskova on 10.3.2017 г..
@@ -19,6 +19,14 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import karikuncheva.dominosapp.cart.CartActivity;
+import karikuncheva.dominosapp.LoginActivity;
+import karikuncheva.dominosapp.navigation.AddressActivity;
+import karikuncheva.dominosapp.navigation.ContactsActivity;
+import karikuncheva.dominosapp.navigation.NavigDrawerActivity;
+import karikuncheva.dominosapp.navigation.ProfileActivity;
+import karikuncheva.dominosapp.R;
+
 public class CatalogActivity extends NavigDrawerActivity implements PizzaFragment.ProductsCommunicator {
 
     private TabLayout tabLayout;
@@ -27,7 +35,7 @@ public class CatalogActivity extends NavigDrawerActivity implements PizzaFragmen
     private TextView email;
     private TextView products;
     private ImageButton cart_bnt;
-    static int count = 0;
+    public static int count = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,12 +60,12 @@ public class CatalogActivity extends NavigDrawerActivity implements PizzaFragmen
         products = (TextView) findViewById(R.id.count_products);
         cart_bnt = (ImageButton) findViewById(R.id.cart_bnt);
 
-        name.setText(LoginActivity.loggedUser.getName());
-        email.setText(LoginActivity.loggedUser.getEmail());
-        if (count != 0) {
-            products.setVisibility(View.VISIBLE);
-            products.setText(String.valueOf(count));
+        if(LoginActivity.loggedUser.getName() != null  && !LoginActivity.loggedUser.getName().isEmpty()) {
+            name.setText(LoginActivity.loggedUser.getName());
         }
+        email.setText(LoginActivity.loggedUser.getEmail());
+
+        resetCount();
         cart_bnt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -96,6 +104,21 @@ public class CatalogActivity extends NavigDrawerActivity implements PizzaFragmen
             }
         });
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        resetCount();
+    }
+
+    private void resetCount() {
+        if (count != 0) {
+            products.setVisibility(View.VISIBLE);
+            products.setText(String.valueOf(count));
+        } else {
+            products.setVisibility(View.GONE);
+        }
     }
 
     @Override

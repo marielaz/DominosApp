@@ -2,17 +2,26 @@ package karikuncheva.dominosapp;
 
 import android.Manifest;
 import android.app.Dialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.location.Location;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.LocalBroadcastManager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -22,7 +31,6 @@ import android.widget.TextView;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
-import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -32,6 +40,8 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import karikuncheva.dominosapp.catalog.CatalogActivity;
 
 import static com.google.android.gms.location.LocationServices.FusedLocationApi;
 
@@ -48,6 +58,17 @@ public class MapsMarkerActivity extends AppCompatActivity
     private Location mLastLocation;
     private Marker mCurrLocationMarker;
     private LatLng location;
+    private AlertDialog alertDialog;
+    private NetworkReceiver networkReceiver = new NetworkReceiver(new NetworkReceiver.ConnectivityChanged() {
+        @Override
+        public void onConnected() {
+            if (alertDialog != null) {
+                alertDialog.hide();
+                mGoogleApiClient.connect();
+            }
+            LocalBroadcastManager.getInstance(MapsMarkerActivity.this).unregisterReceiver(networkReceiver);
+        }
+    });
 
     /**
      * An activity that displays a Google map with a marker (pin) to indicate a particular location.
@@ -81,17 +102,10 @@ public class MapsMarkerActivity extends AppCompatActivity
         mMap = googleMap;
         mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 
-                permissionCheck();
-                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                    // TODO: Consider calling
-                    //    ActivityCompat#requestPermissions
-                    // here to request the missing permissions, and then overriding
-                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                    //                                          int[] grantResults)
-                    // to handle the case where the user grants the permission. See the documentation
-                    // for ActivityCompat#requestPermissions for more details.
-                    return;
-                }
+        permissionCheck();
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
 
         mMap.setMyLocationEnabled(true);
 
@@ -105,7 +119,7 @@ public class MapsMarkerActivity extends AppCompatActivity
         LatLng place4 = new LatLng(42.6363762, 23.3679974);
         LatLng place5 = new LatLng(42.6615331, 23.2649124);
         LatLng place6 = new LatLng(42.6745826, 23.3092887);
-        LatLng sofia = new LatLng(42.6953468,23.1838616);
+        LatLng sofia = new LatLng(42.6953468, 23.1838616);
 
 
         mMap.addMarker(new MarkerOptions()
@@ -127,12 +141,13 @@ public class MapsMarkerActivity extends AppCompatActivity
                 .position(place6)
                 .icon(BitmapDescriptorFactory.fromResource(R.mipmap.map_logo)));
 
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sofia));
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(11));
+//        mMap.moveCamera(CameraUpdateFactory.newLatLng(sofia));
+//        mMap.animateCamera(CameraUpdateFactory.zoomTo(11));
         mMap.setOnMarkerClickListener(this);
     }
 
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public boolean onMarkerClick(Marker marker) {
 
@@ -143,9 +158,9 @@ public class MapsMarkerActivity extends AppCompatActivity
         TextView txt = (TextView) dialog.findViewById(R.id.text_dialog);
         txt.setText("Are you sure you are select the right store?");
         TextView yes = (TextView) dialog.findViewById(R.id.yes_bnt);
-        yes.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        yes.setBackground(new ColorDrawable(Color.TRANSPARENT));
         TextView no = (TextView) dialog.findViewById(R.id.no_bnt);
-        no.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        no.setBackground(new ColorDrawable(Color.TRANSPARENT));
         no.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -166,24 +181,34 @@ public class MapsMarkerActivity extends AppCompatActivity
     @Override
     protected void onStart() {
         super.onStart();
-        mGoogleApiClient.connect();
+        if (isNetworkAvailable()) {
+            if (mGoogleApiClient != null) {
+                mGoogleApiClient.connect();
+            }
+        } else {
+            showAlertDialog();
+        }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (mGoogleApiClient != null) {
+            mGoogleApiClient.disconnect();
+        }
     }
 
     @Override
     public void onConnected(@Nullable Bundle bundle) {
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
-        }
-        mLastLocation = FusedLocationApi.getLastLocation(mGoogleApiClient);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+            }
 
+        } else { //has permission
+            mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+        }
     }
 
     @Override
@@ -239,6 +264,7 @@ public class MapsMarkerActivity extends AppCompatActivity
             }
         }
     }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode) {
@@ -253,5 +279,33 @@ public class MapsMarkerActivity extends AppCompatActivity
             default:
                 break;
         }
+    }
+
+    public void showAlertDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setTitle("No internet Connection");
+        builder.setMessage("Please turn on internet connection to continue");
+        builder.setCancelable(false);
+        builder.setNegativeButton("Quit", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+            }
+        });
+        builder.setPositiveButton("Connect to WIFI", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
+            }
+        });
+        alertDialog = builder.create();
+        alertDialog.show();
+        LocalBroadcastManager.getInstance(this).registerReceiver(networkReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+    }
+
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 }

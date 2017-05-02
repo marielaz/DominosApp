@@ -1,4 +1,4 @@
-package karikuncheva.dominosapp;
+package karikuncheva.dominosapp.catalog;
 
 /**
  * Created by Mariela Zviskova on 10.3.2017 г..

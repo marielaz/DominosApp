@@ -1,4 +1,4 @@
-package karikuncheva.dominosapp;
+package karikuncheva.dominosapp.navigation;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +11,11 @@ import android.widget.Toast;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import karikuncheva.dominosapp.catalog.CatalogActivity;
+import karikuncheva.dominosapp.DBManager;
+import karikuncheva.dominosapp.LoginActivity;
+import karikuncheva.dominosapp.R;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -96,15 +101,16 @@ public class ProfileActivity extends AppCompatActivity {
         } else {
             LoginActivity.loggedUser.setPhoneNumber(phone.getText().toString());
         }
-        if (password.getText().toString().equals(confirm.getText().toString())) {
+        if (!password.getText().toString().isEmpty()  && password.getText().toString().equals(confirm.getText().toString())) {
             LoginActivity.loggedUser.setPassword(password.getText().toString());
         } else {
-            if (!password.getText().toString().isEmpty() || !confirm.getText().toString().isEmpty())
+            if (!password.getText().toString().isEmpty() || !confirm.getText().toString().isEmpty()) {
                 password.setError("Please, make sure your passwords match!");
-            password.requestFocus();
-            password.setText("");
-            confirm.setText("");
-            return false;
+                password.requestFocus();
+                password.setText("");
+                confirm.setText("");
+                return false;
+            }
         }
         return true;
     }

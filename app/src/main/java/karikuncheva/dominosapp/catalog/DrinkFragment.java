@@ -1,4 +1,4 @@
-package karikuncheva.dominosapp;
+package karikuncheva.dominosapp.catalog;
 
 /**
  * Created by Mariela Zviskova on 10.3.2017 г..
@@ -11,6 +11,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import karikuncheva.dominosapp.DBManager;
+import karikuncheva.dominosapp.R;
 
 public class DrinkFragment extends Fragment {
 

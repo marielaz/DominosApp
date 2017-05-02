@@ -1,4 +1,4 @@
-package karikuncheva.dominosapp;
+package karikuncheva.dominosapp.catalog;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -14,6 +14,7 @@ import android.widget.CompoundButton;
 import android.widget.TextView;
 import java.util.ArrayList;
 
+import karikuncheva.dominosapp.R;
 import karikuncheva.dominosapp.model.Shop;
 import karikuncheva.dominosapp.model.products.Pizza;
 

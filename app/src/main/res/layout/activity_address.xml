@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/colorBackground"
-    tools:context="karikuncheva.dominosapp.AddAddressActivity">
+    tools:context="karikuncheva.dominosapp.navigation.AddAddressActivity">
 
 
     <android.support.v7.widget.Toolbar

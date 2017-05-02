@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:background="@drawable/rounded_shape_coupon"
-    tools:context="karikuncheva.dominosapp.CouponFragment">
+    tools:context="karikuncheva.dominosapp.cart.CouponFragment">
 
     <TextView
         android:layout_width="match_parent"
@@ -18,6 +18,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Enter your code here"
+        android:maxLines="1"
+        android:maxLength="5"
         android:gravity="center_horizontal"/>
     <Button
         android:id="@+id/redeem_coupon"

@@ -1,4 +1,4 @@
-package karikuncheva.dominosapp;
+package karikuncheva.dominosapp.navigation;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +12,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+
+import karikuncheva.dominosapp.cart.CartActivity;
+import karikuncheva.dominosapp.LoginActivity;
+import karikuncheva.dominosapp.R;
 
 public class NavigDrawerActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -39,8 +43,9 @@ public class NavigDrawerActivity extends AppCompatActivity
         name = (TextView) header.findViewById(R.id.header_name);
         email = (TextView) header.findViewById(R.id.header_email);
 
-
-        name.setText(LoginActivity.loggedUser.getName());
+        if(LoginActivity.loggedUser.getName() != null  && !LoginActivity.loggedUser.getName().isEmpty()) {
+            name.setText(LoginActivity.loggedUser.getName());
+        }
         email.setText(LoginActivity.loggedUser.getEmail());
 
     }
