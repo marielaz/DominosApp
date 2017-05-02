@@ -3,11 +3,13 @@
 
     <group android:checkableBehavior="single">
         <item android:id="@+id/nav_profile" android:icon="@mipmap/profile_icon"
-            android:title="Profile" />
+            android:title="My Profile" />
+        <item android:id="@+id/nav_address" android:icon="@mipmap/icon_address"
+            android:title="My Addresses" />
+        <item android:id="@+id/nav_cart" android:icon="@drawable/go_to_cart"
+            android:title="My Cart" />
         <item android:id="@+id/nav_contacts" android:icon="@mipmap/info_icon"
             android:title="Contacts" />
-        <item android:id="@+id/nav_cart" android:icon="@drawable/go_to_cart"
-            android:title="Cart" />
     </group>
 
 </menu>

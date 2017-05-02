@@ -32,7 +32,6 @@
         android:gravity="center_horizontal" />
 
 
-
     <pl.droidsonroids.gif.GifTextView
         android:layout_width="351dp"
         android:layout_height="295dp"

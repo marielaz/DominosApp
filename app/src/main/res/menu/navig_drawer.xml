@@ -5,8 +5,9 @@
     <item android:id="@+id/action_log_out" android:title="log out"
         android:orderInCategory="100" app:showAsAction="never" />
 
-    <item android:id="@+id/action_cart" android:title="cart"
-        android:orderInCategory="1" android:icon="@drawable/go_to_cart"
-        app:showAsAction="always" />
+
+    <!--<item android:id="@+id/action_cart" android:title="cart"-->
+        <!--android:orderInCategory="1" android:icon="@drawable/go_to_cart"-->
+        <!--app:showAsAction="always" />-->
 
 </menu>

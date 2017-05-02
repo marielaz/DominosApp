@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/main"
     android:paddingLeft="20dp"
     android:paddingRight="20dp"
-    tools:context="karikuncheva.dominosapp.MainActivity">
+    android:background="@drawable/main"
+    tools:context="karikuncheva.dominosapp.LoginActivity">
 
 
     <ImageView
@@ -47,6 +47,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:maxLength="25"
+        android:maxLines="1"
         android:hint="Username"
         android:layout_below="@id/login_tv"
         android:textColorHint="@color/colorHint"
@@ -60,6 +61,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:maxLength="30"
+        android:maxLines="1"
         android:inputType="textPassword"
         android:hint="Password"
         android:layout_below="@id/username_login"
@@ -80,13 +82,21 @@
         android:background="@drawable/rounded_button_login"
         />
 
+        <com.facebook.login.widget.LoginButton
+            android:id="@+id/login_fb_button"
+            android:layout_below="@id/login_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            />
+
 <TextView
     android:id="@+id/new_member"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginBottom="5dp"
     android:text="New member?"
-    android:layout_below="@id/login_button"
+    android:layout_below="@id/login_fb_button"
     android:textColor="@color/colorHint"/>
 
 

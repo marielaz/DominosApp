@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    android:nestedScrollingEnabled="true"
+    android:orientation="vertical"
+    tools:context="karikuncheva.dominosapp.catalog.ModifyPizzaActivity">
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fillViewport="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/size_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/trad_layout"
+                android:layout_alignParentTop="true"
+                android:layout_alignStart="@+id/trad_layout"
+                android:gravity="center_horizontal"
+                android:text="Choose size"
+                android:textColor="@color/colorText"
+                android:textSize="18sp" />
+
+            <LinearLayout
+                android:id="@+id/size_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/size_tv"
+                android:layout_marginTop="10dp"
+                android:focusableInTouchMode="true">
+
+                <Button
+                    android:id="@+id/small"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="3dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/custom_bnt"
+                    android:focusableInTouchMode="true"
+                    android:text="Small"
+                    android:textAllCaps="false" />
+
+                <Button
+                    android:id="@+id/med"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginRight="7dp"
+                    android:layout_toRightOf="@+id/small"
+                    android:layout_weight="1"
+                    android:background="@drawable/custom_bnt"
+                    android:text="Medium"
+                    android:textAllCaps="false" />
+
+                <Button
+                    android:id="@+id/large"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="3dp"
+                    android:layout_toRightOf="@+id/med"
+                    android:layout_weight="1"
+                    android:background="@drawable/custom_bnt"
+                    android:text="Large"
+                    android:textAllCaps="false" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/crust_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/size_layout"
+                android:layout_marginTop="10dp"
+                android:gravity="center_horizontal"
+                android:text="Choose crust"
+                android:textColor="@color/colorText"
+                android:textSize="18sp" />
+
+            <RelativeLayout
+                android:id="@+id/trad_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/crust_tv"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/main_rounded_shape"
+                android:focusableInTouchMode="true"
+                android:paddingLeft="15dp"
+                android:paddingRight="10dp">
+
+                <ImageView
+                    android:id="@+id/image_trad"
+                    android:layout_width="89dp"
+                    android:layout_height="59dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/traditianal" />
+
+                <TextView
+                    android:id="@+id/text_trad"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_toRightOf="@id/image_trad"
+                    android:layout_weight="1"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="60dp"
+                    android:text="Traditional"
+                    android:textColor="@color/colorText"
+                    android:textSize="20sp" />
+
+
+                <RadioButton
+                    android:id="@+id/trad_bnt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignRight="@+id/text_trad"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/custom_radio_bnt"
+                    android:button="@null" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/italian_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/trad_layout"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/main_rounded_shape"
+                android:focusableInTouchMode="true"
+                android:paddingLeft="15dp"
+                android:paddingRight="10dp">
+
+                <ImageView
+                    android:id="@+id/image_ital"
+                    android:layout_width="89dp"
+                    android:layout_height="59dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/italian" />
+
+                <TextView
+                    android:id="@+id/text_ital"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_toRightOf="@id/image_ital"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="60dp"
+                    android:text="Italian style"
+                    android:textColor="#000000"
+                    android:textSize="20sp" />
+
+                <RadioButton
+                    android:id="@+id/ital_bnt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignRight="@+id/text_ital"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/custom_radio_bnt"
+                    android:button="@null" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/thin_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/main_rounded_shape"
+                android:focusableInTouchMode="true"
+                android:paddingLeft="15dp"
+                android:paddingRight="10dp"
+                android:layout_marginRight="5dp"
+                android:layout_below="@+id/italian_layout"
+                android:layout_alignLeft="@+id/italian_layout"
+                android:layout_alignStart="@+id/italian_layout">
+
+                <ImageView
+                    android:id="@+id/image_thin_and_cr"
+                    android:layout_width="89dp"
+                    android:layout_height="59dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/thin"/>
+
+                <TextView
+                    android:id="@+id/text_thin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_toRightOf="@id/image_thin_and_cr"
+                    android:paddingLeft="17dp"
+                    android:paddingRight="23dp"
+                    android:text="Thin and crispy"
+                    android:textColor="#000000"
+                    android:textSize="20sp" />
+
+
+                <RadioButton
+                    android:id="@+id/thin_bnt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignRight="@+id/text_thin"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/custom_radio_bnt"
+                    android:button="@null" />
+
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/sauces_tv"
+                android:layout_below="@id/thin_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="Choose sauces dips"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/colorText"
+                android:textSize="18sp"/>
+
+            <RelativeLayout
+                android:id="@+id/tomato_sauce"
+                android:layout_below="@id/sauces_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/rounded_button">
+
+                <TextView
+                    android:id="@+id/tomato_sauce_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="Tomato sauce"
+                    android:layout_marginLeft="10dp"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp"
+                    android:textColor="#000000" />
+
+                <RadioButton
+                    android:id="@+id/check_tomato"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginRight="10dp"
+                    android:button="@null"
+                    android:drawableLeft="@drawable/radio_bnt_image"
+                    android:text="" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/bbq_sauce"
+                android:layout_below="@id/tomato_sauce"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/rounded_button">
+
+                <TextView
+                    android:id="@+id/bbq_sauce_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="BBQ sauce"
+                    android:layout_marginLeft="10dp"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp"
+                    android:textColor="#000000" />
+
+                <RadioButton
+                    android:id="@+id/check_bbq"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginRight="10dp"
+                    android:button="@null"
+                    android:drawableLeft="@drawable/radio_bnt_image"
+                    android:text="" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/cream_sauce"
+                android:layout_below="@id/bbq_sauce"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/rounded_button">
+
+                <TextView
+                    android:id="@+id/cream_sauce_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="Cream sauce"
+                    android:layout_marginLeft="10dp"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp"
+                    android:textColor="#000000" />
+
+                <RadioButton
+                    android:id="@+id/check_cream"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginRight="10dp"
+                    android:button="@null"
+                    android:drawableLeft="@drawable/radio_bnt_image"
+                    android:text="" />
+            </RelativeLayout>
+            <TextView
+                android:id="@+id/ingredian_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/cream_sauce"
+                android:layout_marginTop="10dp"
+                android:gravity="center_horizontal"
+                android:text="Choose ingredients"
+                android:textColor="@color/colorText"
+                android:textSize="18sp" />
+
+            <android.support.v4.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/ingredian_tv">
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/ingredients_recycler_view"
+                    android:padding="8dp"
+                    android:clipToPadding="false"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:divider="@color/colorBackground"
+                    android:dividerHeight="15dp"></android.support.v7.widget.RecyclerView>
+</ScrollView>
+            </android.support.v4.widget.NestedScrollView>
+        </RelativeLayout>
+
+    </ScrollView>
+</LinearLayout>

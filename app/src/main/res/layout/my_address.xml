@@ -1,169 +1,169 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".EditAddressActivity">
+    android:background="@color/colorBackground"
+    tools:context=".navigation.AddAddressActivity">
 
-    <include
-        layout="@layout/toolbar"
-        android:id="@+id/toolbar_add_address" ></include>
-    <TextView
-        android:layout_below="@id/toolbar_add_address"
-        android:id="@+id/city_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="City"
-        android:textSize="25dp"
-        android:layout_marginTop="10dp"
-        android:layout_alignBottom="@+id/city_et"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="10dp"
-        android:layout_marginStart="10dp" />
-
-    <EditText
-        android:layout_below="@id/toolbar_add_address"
-        android:id="@+id/city_et"
-        android:layout_toRightOf="@+id/city_tv"
+    <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/toolbar_add_address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="120dp"/>
+        android:background="?attr/colorPrimary"
+        android:fitsSystemWindows="true"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:contentInsetEnd="0dp"
+        app:contentInsetStart="0dp">
 
-    <TextView
-        android:id="@+id/neighborhood_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Neighborhood"
-        android:textSize="25dp"
-        android:layout_alignBottom="@+id/neighborhood_et"
-        android:layout_alignLeft="@+id/city_tv"
-        android:layout_alignStart="@+id/city_tv" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Add new address"
+            android:textColor="#ffffff"
+            android:textSize="25sp" />
 
-    <EditText
-        android:id="@+id/neighborhood_et"
-        android:layout_below="@id/city_et"
-        android:layout_toRightOf="@+id/city_tv"
+    </android.support.v7.widget.Toolbar>
+
+    <LinearLayout
+        android:id="@+id/layout_prop"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="120dp"/>
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar_add_address"
+        android:orientation="vertical"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp">
 
-    <TextView
-        android:id="@+id/post_code_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Post code"
-        android:textSize="25dp"
-        android:layout_alignBottom="@+id/post_code_et"
-        android:layout_alignLeft="@+id/neighborhood_tv"
-        android:layout_alignStart="@+id/neighborhood_tv" />
+        <EditText
+            android:id="@+id/city_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/main_rounded_shape"
+            android:hint="City"
+            android:inputType="text"
+            android:maxLength="10"
+            android:maxLines="1"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="5dp" />
 
-    <EditText
-        android:id="@+id/post_code_et"
-        android:layout_below="@id/neighborhood_et"
-        android:layout_width="match_parent"
-        android:layout_toRightOf="@+id/city_tv"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="120dp"/>
 
-    <TextView
-        android:id="@+id/street_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Street"
-        android:textSize="25dp"
-        android:layout_alignBottom="@+id/street_et"
-        android:layout_alignLeft="@+id/neighborhood_tv"
-        android:layout_alignStart="@+id/neighborhood_tv" />
+        <EditText
+            android:id="@+id/neighborhood_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/main_rounded_shape"
+            android:hint="Neighbourhood"
+            android:inputType="text"
+            android:maxLength="15"
+            android:maxLines="1"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="5dp" />
 
-    <EditText
-        android:id="@+id/street_et"
-        android:layout_below="@id/post_code_et"
-        android:layout_toRightOf="@+id/city_tv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="120dp"/>
 
-    <TextView
-        android:id="@+id/number_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Number"
-        android:textSize="25dp"
-        android:layout_alignBottom="@+id/number_et"
-        android:layout_alignLeft="@+id/neighborhood_tv"
-        android:layout_alignStart="@+id/neighborhood_tv" />
+        <EditText
+            android:id="@+id/post_code_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/main_rounded_shape"
+            android:hint="Post code"
+            android:inputType="number"
+            android:maxLength="4"
+            android:maxLines="1"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="5dp" />
 
-    <EditText
-        android:id="@+id/number_et"
-        android:layout_below="@id/street_et"
-        android:layout_toRightOf="@+id/city_tv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="120dp"/>
 
-    <TextView
-        android:id="@+id/block_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Block"
-        android:textSize="25dp"
-        android:layout_alignBottom="@+id/block_et"
-        android:layout_alignLeft="@+id/neighborhood_tv"
-        android:layout_alignStart="@+id/neighborhood_tv" />
+        <EditText
+            android:id="@+id/street_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/main_rounded_shape"
+            android:hint="Street"
+            android:maxLines="1"
+            android:maxLength="30"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="5dp" />
 
-    <EditText
-        android:id="@+id/block_et"
-        android:layout_below="@id/number_et"
-        android:layout_toRightOf="@+id/city_tv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="120dp"/>
-    <TextView
-        android:id="@+id/floor_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Floor"
-        android:textSize="25dp"
-        android:layout_alignBottom="@+id/floor_et"
-        android:layout_alignLeft="@+id/neighborhood_tv"
-        android:layout_alignStart="@+id/neighborhood_tv" />
 
-    <EditText
-        android:id="@+id/floor_et"
-        android:layout_below="@id/block_et"
-        android:layout_toRightOf="@+id/city_tv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="120dp"/>
+        <EditText
+            android:id="@+id/number_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:hint="Number"
+            android:paddingLeft="10dp"
+            android:background="@drawable/main_rounded_shape"
+            android:inputType="number"
+            android:maxLength="3"
+            android:maxLines="1"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp" />
 
-    <TextView
-        android:id="@+id/apartament_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Apartament"
-        android:textSize="25dp"
-        android:layout_alignBottom="@+id/apartament_et"
-        android:layout_alignLeft="@+id/neighborhood_tv"
-        android:layout_alignStart="@+id/neighborhood_tv" />
 
-    <EditText
-        android:id="@+id/apartament_et"
-        android:layout_below="@id/floor_et"
-        android:layout_toRightOf="@+id/city_tv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="120dp"/>
+        <EditText
+            android:id="@+id/block_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:hint="Block"
+            android:maxLength="5"
+            android:maxLines="1"
+            android:inputType="number"
+            android:paddingLeft="10dp"
+            android:background="@drawable/main_rounded_shape"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp" />
 
-    <Button
-        android:id="@+id/add_new_address"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/apartament_et"
-        android:text="add"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/rounded_shape_profile"
-        android:layout_marginLeft="120dp"/>
+        <EditText
+            android:id="@+id/floor_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:hint="Floor"
+            android:paddingLeft="10dp"
+            android:background="@drawable/main_rounded_shape"
+            android:inputType="number"
+            android:maxLength="3"
+            android:maxLines="1"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp" />
+
+
+        <EditText
+            android:id="@+id/apartament_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:hint="Apartment"
+            android:paddingLeft="10dp"
+            android:background="@drawable/main_rounded_shape"
+            android:inputType="number"
+            android:maxLength="3"
+            android:maxLines="1"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp" />
+
+        <Button
+            android:id="@+id/add_new_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70dp"
+            android:background="@drawable/rounded_button"
+            android:textAllCaps="false"
+            android:text="Add address" />
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/back_button_add_address"

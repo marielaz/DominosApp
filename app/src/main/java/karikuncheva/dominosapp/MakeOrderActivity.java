@@ -1,9 +1,12 @@
 package karikuncheva.dominosapp;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import karikuncheva.dominosapp.catalog.CatalogActivity;
 
 
 public class MakeOrderActivity extends AppCompatActivity {
@@ -12,6 +15,7 @@ public class MakeOrderActivity extends AppCompatActivity {
     private Button delivery_bnt;
     private Button carry_out_checked;
     private Button delivery_checked;
+    public static int makeOrderMethod;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,8 +31,10 @@ public class MakeOrderActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 carry_out_checked.setVisibility(View.VISIBLE);
-                // intent to the google maps
-               // Intent inten = new Integer();
+                makeOrderMethod = 2;
+                Intent intent = new Intent(MakeOrderActivity.this, MapsMarkerActivity.class);
+                startActivity(intent);
+                carry_out_checked.setVisibility(View.VISIBLE);
             }
         });
 
@@ -36,9 +42,10 @@ public class MakeOrderActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 delivery_checked.setVisibility(View.VISIBLE);
-                // intent to the list with the address
-//                Intent intent = new Intent(MakeOrderActivity.this, CatalogActivity.class);
-//                MakeOrderActivity.this.startActivity(intent);
+                makeOrderMethod = 1;
+                Intent intent = new Intent(MakeOrderActivity.this, CatalogActivity.class);
+                MakeOrderActivity.this.startActivity(intent);
+                delivery_checked.setVisibility(View.VISIBLE);
             }
         });
     }
