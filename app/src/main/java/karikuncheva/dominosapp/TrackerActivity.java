@@ -19,6 +19,6 @@ public class TrackerActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         CartActivity.temp = 0;
-        MainActivity.loggedUser.setCart(new Cart());
+        LoginActivity.loggedUser.setCart(new Cart());
     }
 }

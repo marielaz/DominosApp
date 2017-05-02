@@ -48,8 +48,13 @@ public class CartActivity extends AppCompatActivity implements CartListFragment.
             @Override
             public void onClick(View v) {
 
+                if (MakeOrderActivity.makeOrderMethod == 2){
+                    Intent intent = new Intent(CartActivity.this, TrackerActivity.class);
+                    startActivity(intent);
+                }
+
                 ArrayList<Product> productsInCart = new ArrayList<Product>();
-                for (Map.Entry<String, HashSet<Product>> products : MainActivity.loggedUser.getCart().getProducts().entrySet()) {
+                for (Map.Entry<String, HashSet<Product>> products : LoginActivity.loggedUser.getCart().getProducts().entrySet()) {
                     for (Product p : products.getValue()) {
                         productsInCart.add(p);
                     }

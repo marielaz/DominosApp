@@ -22,7 +22,7 @@ import com.facebook.login.widget.LoginButton;
 import karikuncheva.dominosapp.model.User;
 
 
-public class MainActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
     private EditText username_login;
     private EditText password_login;
@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         if (session.loggedin()) {
             session.setLoggedin(false);
             finish();
-            startActivity(new Intent(MainActivity.this, CatalogActivity.class));
+            startActivity(new Intent(LoginActivity.this, CatalogActivity.class));
         }
 
         setContentView(R.layout.activity_main);
@@ -63,22 +63,22 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (validate()) {
 
-                    if (DBManager.getInstance(MainActivity.this).existsUser(username_login.getText().toString())) {
-                        loggedUser = DBManager.getInstance(MainActivity.this).getUser(username_login.getText().toString());
+                    if (DBManager.getInstance(LoginActivity.this).existsUser(username_login.getText().toString())) {
+                        loggedUser = DBManager.getInstance(LoginActivity.this).getUser(username_login.getText().toString());
                         if (loggedUser.getPassword().equals(password_login.getText().toString())) {
-                            Intent intent = new Intent(MainActivity.this, CatalogActivity.class);
-                            MainActivity.this.startActivity(intent);
+                            Intent intent = new Intent(LoginActivity.this, MakeOrderActivity.class);
+                            LoginActivity.this.startActivity(intent);
                         } else {
                             password_login.setError("Wrong password! Please, try again!");
                             password_login.setText("");
                             password_login.requestFocus();
                         }
                     } else {
-                        Toast.makeText(MainActivity.this, "User data not valid", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, "User data not valid", Toast.LENGTH_SHORT).show();
                     }
 
                 } else {
-                    Toast.makeText(MainActivity.this, "User data not valid", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "User data not valid", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             protected void onCurrentProfileChanged(Profile oldProfile, Profile currentProfile) {
                 if (Profile.getCurrentProfile() != null) {
-                    Intent i = new Intent(MainActivity.this, CatalogActivity.class);
+                    Intent i = new Intent(LoginActivity.this, CatalogActivity.class);
                     startActivity(i);
                 }
             }
@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             protected void onCurrentAccessTokenChanged(AccessToken oldAccessToken, AccessToken currentAccessToken) {
                 if (AccessToken.getCurrentAccessToken() != null) {
-                    Intent i = new Intent(MainActivity.this, CatalogActivity.class);
+                    Intent i = new Intent(LoginActivity.this, CatalogActivity.class);
                     startActivity(i);
                 }
             }
@@ -113,11 +113,11 @@ public class MainActivity extends AppCompatActivity {
                 Profile profile = Profile.getCurrentProfile();
 
                 if (profile != null) {
-                    Intent i = new Intent(MainActivity.this, CatalogActivity.class);
+                    Intent i = new Intent(LoginActivity.this, CatalogActivity.class);
                     loggedFbUser = new User(profile.getFirstName().toString(), profile.getId().toString());
-                    DBManager.getInstance(MainActivity.this).addUser(loggedFbUser);
-                    if (DBManager.getInstance(MainActivity.this).existsUser(loggedFbUser.getUsername().toString())) {
-                        loggedUser = DBManager.getInstance(MainActivity.this).getUser(loggedFbUser.getUsername().toString());
+                    DBManager.getInstance(LoginActivity.this).addUser(loggedFbUser);
+                    if (DBManager.getInstance(LoginActivity.this).existsUser(loggedFbUser.getUsername().toString())) {
+                        loggedUser = DBManager.getInstance(LoginActivity.this).getUser(loggedFbUser.getUsername().toString());
                         startActivity(i);
                     }
                 }
@@ -125,20 +125,20 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onCancel() {
-                Toast.makeText(MainActivity.this, "Login attempt canceled.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, "Login attempt canceled.", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onError(FacebookException e) {
-                Toast.makeText(MainActivity.this, "Login attempt failed.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, "Login attempt failed.", Toast.LENGTH_SHORT).show();
 
             }
         });
 
         registerButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent_reg = new Intent(MainActivity.this, RegistrationActivity.class);
-                MainActivity.this.startActivity(intent_reg);
+                Intent intent_reg = new Intent(LoginActivity.this, RegistrationActivity.class);
+                LoginActivity.this.startActivity(intent_reg);
             }
         });
     }

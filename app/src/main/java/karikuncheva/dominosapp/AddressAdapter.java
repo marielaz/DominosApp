@@ -10,6 +10,7 @@ import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import karikuncheva.dominosapp.model.Address;
@@ -22,12 +23,11 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.AddressV
 
     private Activity activity;
     private List<Address> addresses;
-    Bundle bundle;
-    int i;
+    private Bundle bundle;
 
     public AddressAdapter(Activity activity, List<Address> addresses) {
         this.activity = activity;
-        this.addresses = MainActivity.loggedUser.getAddresses();
+        this.addresses = LoginActivity.loggedUser.getAddresses();
     }
 
 
@@ -48,7 +48,7 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.AddressV
         vh.delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainActivity.loggedUser.getAddresses().remove(address);
+                LoginActivity.loggedUser.getAddresses().remove(address);
                 addresses.remove(address);
                 notifyDataSetChanged();
                 DBManager.getInstance(activity).deleteAddress(address);

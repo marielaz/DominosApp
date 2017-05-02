@@ -95,6 +95,8 @@ public class DBManager extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE users;");
+        db.execSQL("DROP TABLE addresses");
+        db.execSQL("DROP TABLE products");
         onCreate(db);
     }
 
@@ -127,12 +129,12 @@ public class DBManager extends SQLiteOpenHelper {
         contentValues.put("block", a.getBlock());
         contentValues.put("apartment", a.getApartment());
         contentValues.put("floor", a.getFloor());
-        contentValues.put("idUser", MainActivity.loggedUser.getId());
+        contentValues.put("idUser", LoginActivity.loggedUser.getId());
         long id = getWritableDatabase().insert("addresses", null, contentValues);
         a.setId((int) id);
-        a.setIdUser(MainActivity.loggedUser.getId());
+        a.setIdUser(LoginActivity.loggedUser.getId());
         //addresses.add(a);
-        MainActivity.loggedUser.getAddresses().add(a);
+        LoginActivity.loggedUser.getAddresses().add(a);
         Toast.makeText(context, "Address added successfully", Toast.LENGTH_SHORT).show();
     }
 
@@ -144,13 +146,13 @@ public class DBManager extends SQLiteOpenHelper {
                 String username = strings[0];
 
                 ContentValues values = new ContentValues();
-                values.put("username", MainActivity.loggedUser.getUsername());
-                values.put("password", MainActivity.loggedUser.getPassword());
-                values.put("email", MainActivity.loggedUser.getEmail());
-                values.put("name", MainActivity.loggedUser.getName());
-                values.put("phone", MainActivity.loggedUser.getPhoneNumber());
+                values.put("username", LoginActivity.loggedUser.getUsername());
+                values.put("password", LoginActivity.loggedUser.getPassword());
+                values.put("email", LoginActivity.loggedUser.getEmail());
+                values.put("name", LoginActivity.loggedUser.getName());
+                values.put("phone", LoginActivity.loggedUser.getPhoneNumber());
                 registeredUsers.remove(username);
-                registeredUsers.put(username, MainActivity.loggedUser);
+                registeredUsers.put(username, LoginActivity.loggedUser);
                 getWritableDatabase().update("users", values, "username = ?", new String[]{username});
                 return null;
             }
@@ -178,7 +180,6 @@ public class DBManager extends SQLiteOpenHelper {
             u.setId(id);
             u.setAddresses(loadAddresses(u.getId()));
             registeredUsers.put(username, u);
-
 
         }
     }
@@ -259,7 +260,7 @@ public class DBManager extends SQLiteOpenHelper {
     public void deleteAddress(Address a) {
         getWritableDatabase().delete("addresses", "id = ?", new String[]{Integer.toString(a.getId())});
         //Toast.makeText(context, a.getId() + " deleted successfully", Toast.LENGTH_SHORT).show();
-        MainActivity.loggedUser.getAddresses().remove(a);
+        LoginActivity.loggedUser.getAddresses().remove(a);
     }
 
     public boolean existsUser(String username) {

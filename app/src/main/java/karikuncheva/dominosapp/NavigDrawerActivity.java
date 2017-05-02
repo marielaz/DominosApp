@@ -40,8 +40,8 @@ public class NavigDrawerActivity extends AppCompatActivity
         email = (TextView) header.findViewById(R.id.header_email);
 
 
-        name.setText(MainActivity.loggedUser.getName());
-        email.setText(MainActivity.loggedUser.getEmail());
+        name.setText(LoginActivity.loggedUser.getName());
+        email.setText(LoginActivity.loggedUser.getEmail());
 
     }
 

@@ -41,7 +41,7 @@ public class RegistrationActivity extends AppCompatActivity {
             user = new User(username, pass, email);
             boolean isValid = DBManager.getInstance(this).addUser(user);
             if (isValid) {
-                MainActivity.loggedUser = user;
+                LoginActivity.loggedUser = user;
                 Toast.makeText(this, "Registration complete", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(RegistrationActivity.this, AddAddressActivity.class);
                 intent.putExtra("fromActivity", 1);

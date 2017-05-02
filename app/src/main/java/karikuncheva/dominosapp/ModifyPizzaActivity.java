@@ -63,7 +63,7 @@ public class ModifyPizzaActivity extends AppCompatActivity implements ModifyPizz
                     ModifyPizzaFragment.pizza.setPrice(Double.parseDouble(price.getText().toString()));
                 }
                 CatalogActivity.count = CatalogActivity.count + 1;
-                MainActivity.loggedUser.getCart().addProduct(ModifyPizzaFragment.pizza);
+                LoginActivity.loggedUser.getCart().addProduct(ModifyPizzaFragment.pizza);
                 Intent intent = new Intent(ModifyPizzaActivity.this, CartActivity.class);
                 ModifyPizzaActivity.this.startActivity(intent);
             }

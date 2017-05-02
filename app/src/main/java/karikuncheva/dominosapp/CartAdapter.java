@@ -33,7 +33,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         productsInCart = new ArrayList<Product>();
         total = 0;
 
-        for (Map.Entry<String, HashSet<Product>> products : MainActivity.loggedUser.getCart().getProducts().entrySet()) {
+        for (Map.Entry<String, HashSet<Product>> products : LoginActivity.loggedUser.getCart().getProducts().entrySet()) {
             for (Product p : products.getValue()) {
                 productsInCart.add(p);
                 if (p.getpType().equals("pizza")) {
@@ -50,8 +50,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         productsInCart = new ArrayList<Product>();
         total = 0;
 
-        MainActivity.loggedUser.getCart().addProduct(p);
-        for (Map.Entry<String, HashSet<Product>> products : MainActivity.loggedUser.getCart().getProducts().entrySet()) {
+        LoginActivity.loggedUser.getCart().addProduct(p);
+        for (Map.Entry<String, HashSet<Product>> products : LoginActivity.loggedUser.getCart().getProducts().entrySet()) {
             for (Product p1 : products.getValue()) {
                 productsInCart.add(p1);
                 if (p1.getpType().equals("pizza")) {
@@ -119,9 +119,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         vh.plus_product.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CatalogActivity.count = CatalogActivity.count + 1;
                 CatalogActivity.count++;
-                MainActivity.loggedUser.getCart().addProduct(product);
+                LoginActivity.loggedUser.getCart().addProduct(product);
 
                 vh.quantity.setText(String.valueOf(product.getQuantity()));
                 if (product.getpType().equals("pizza")) {
@@ -141,7 +140,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
             @Override
             public void onClick(View v) {
-                CatalogActivity.count = CatalogActivity.count - 1;
                CatalogActivity.count--;
                 if (product.getQuantity() == 1) {
                     if (product.getpType().equals("pizza")) {
@@ -152,12 +150,12 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
                         ((CartListFragment.CartComunicator) activity).sumTotalPrice(total);
                     }
                     productsInCart.remove(product);
-                    MainActivity.loggedUser.getCart().removeProduct(product);
+                    LoginActivity.loggedUser.getCart().removeProduct(product);
                     // notify the adapter to remove the product from the recyclerview
                     notifyDataSetChanged();
 
                 } else {
-                    MainActivity.loggedUser.getCart().removeProduct(product);
+                    LoginActivity.loggedUser.getCart().removeProduct(product);
 
                     if (product.getpType().equals("pizza")) {
                         total = total - product.getDiscPrice();

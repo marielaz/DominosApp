@@ -47,7 +47,7 @@ public class DrinkCustomAdapter extends RecyclerView.Adapter<DrinkCustomAdapter.
             @Override
             public void onClick(View v) {
                 // TODO add to cart
-                MainActivity.loggedUser.getCart().addProduct(drinks.get(position));
+                LoginActivity.loggedUser.getCart().addProduct(drinks.get(position));
                 ((PizzaFragment.ProductsCommunicator) activity).increment();
             }
         });

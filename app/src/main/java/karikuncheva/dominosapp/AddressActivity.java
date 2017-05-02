@@ -48,7 +48,7 @@ public class AddressActivity extends AppCompatActivity {
         }
 
 
-        AddressAdapter adapter = new AddressAdapter(this, MainActivity.loggedUser.getAddresses());
+        AddressAdapter adapter = new AddressAdapter(this, LoginActivity.loggedUser.getAddresses());
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
 
@@ -67,7 +67,7 @@ public class AddressActivity extends AppCompatActivity {
         finalize.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (MainActivity.loggedUser.getAddresses().size() == 0) {
+                if (LoginActivity.loggedUser.getAddresses().size() == 0) {
                     finalize.setClickable(false);
 
                     final Dialog dialog = new Dialog(AddressActivity.this);
@@ -91,7 +91,7 @@ public class AddressActivity extends AppCompatActivity {
                 } else {
                     Intent i = new Intent(AddressActivity.this, TrackerActivity.class);
                     AddressActivity.this.startActivity(i);
-                    MainActivity.loggedUser.setCart(new Cart());
+                    LoginActivity.loggedUser.setCart(new Cart());
                    CatalogActivity.count =0;
                     finish();
                 }

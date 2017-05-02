@@ -44,10 +44,9 @@ public class MapsMarkerActivity extends AppCompatActivity
 
     private GoogleMap mMap;
     private GoogleApiClient mGoogleApiClient;
-    Location mLastLocation;
-    Marker mCurrLocationMarker;
-    LocationRequest mLocationRequest;
-    LatLng location;
+    private Location mLastLocation;
+    private Marker mCurrLocationMarker;
+    private LatLng location;
 
     /**
      * An activity that displays a Google map with a marker (pin) to indicate a particular location.
@@ -97,12 +96,13 @@ public class MapsMarkerActivity extends AppCompatActivity
             mMap.addMarker(new MarkerOptions().position(location).title("You are here"));
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 15));
         }
-        LatLng place1 = new LatLng(42.6730175,23.2855542);
-        LatLng place2 = new LatLng(42.6971674,23.3168656);
-        LatLng place3 = new LatLng(42.6800025,23.3564037);
-        LatLng place4 = new LatLng(42.6363762,23.3679974);
-        LatLng place5 = new LatLng(42.6615331,23.2649124); // ok
-        LatLng place6 = new LatLng(42.6745826,23.3092887);
+        LatLng place1 = new LatLng(42.6730175, 23.2855542);
+        LatLng place2 = new LatLng(42.6971674, 23.3168656);
+        LatLng place3 = new LatLng(42.6800025, 23.3564037);
+        LatLng place4 = new LatLng(42.6363762, 23.3679974);
+        LatLng place5 = new LatLng(42.6615331, 23.2649124);
+        LatLng place6 = new LatLng(42.6745826, 23.3092887);
+        LatLng sofia = new LatLng(42.6953468,23.1838616);
 
 
         mMap.addMarker(new MarkerOptions()
@@ -124,6 +124,8 @@ public class MapsMarkerActivity extends AppCompatActivity
                 .position(place6)
                 .icon(BitmapDescriptorFactory.fromResource(R.mipmap.map_logo)));
 
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(sofia));
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(11));
         mMap.setOnMarkerClickListener(this);
     }
 
@@ -158,66 +160,63 @@ public class MapsMarkerActivity extends AppCompatActivity
         return true;
     }
 
-        @Override
-        protected void onStart () {
-            super.onStart();
-            mGoogleApiClient.connect();
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mGoogleApiClient.connect();
+    }
+
+    @Override
+    public void onConnected(@Nullable Bundle bundle) {
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        mLastLocation = FusedLocationApi.getLastLocation(mGoogleApiClient);
+
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
+    }
+
+    @Override
+    public void onLocationChanged(Location location) {
+        mLastLocation = location;
+        if (mCurrLocationMarker != null) {
+            mCurrLocationMarker.remove();
         }
 
-        @Override
-        public void onConnected (@Nullable Bundle bundle){
+        //Place current location marker
+        LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+        MarkerOptions markerOptions = new MarkerOptions();
+        markerOptions.position(latLng);
+        markerOptions.title("Current Position");
+        mCurrLocationMarker = mMap.addMarker(markerOptions);
 
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                // TODO: Consider calling
-                //    ActivityCompat#requestPermissions
-                // here to request the missing permissions, and then overriding
-                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                //                                          int[] grantResults)
-                // to handle the case where the user grants the permission. See the documentation
-                // for ActivityCompat#requestPermissions for more details.
-                return;
-            }
-            mLastLocation = FusedLocationApi.getLastLocation(mGoogleApiClient);
+        //move map camera
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(11));
 
-            if (mLastLocation != null) {
-                location = new LatLng(mLastLocation.getLatitude(), mLastLocation.getLongitude());
-            }
+        //stop location updates
+        if (mGoogleApiClient != null) {
+            FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
         }
 
-        @Override
-        public void onConnectionSuspended ( int i){
-
-        }
-
-        @Override
-        public void onConnectionFailed (@NonNull ConnectionResult connectionResult){
-
-        }
-
-        @Override
-        public void onLocationChanged (Location location){
-            mLastLocation = location;
-            if (mCurrLocationMarker != null) {
-                mCurrLocationMarker.remove();
-            }
-
-            //Place current location marker
-            LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
-            MarkerOptions markerOptions = new MarkerOptions();
-            markerOptions.position(latLng);
-            markerOptions.title("Current Position");
-            mCurrLocationMarker = mMap.addMarker(markerOptions);
-
-            //move map camera
-            mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-            mMap.animateCamera(CameraUpdateFactory.zoomTo(11));
-
-            //stop location updates
-            if (mGoogleApiClient != null) {
-                FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
-            }
-
-        }
+    }
 
     protected synchronized void buildGoogleApiClient() {
         mGoogleApiClient = new GoogleApiClient.Builder(this)

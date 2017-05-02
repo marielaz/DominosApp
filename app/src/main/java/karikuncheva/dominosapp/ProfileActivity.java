@@ -47,13 +47,13 @@ public class ProfileActivity extends AppCompatActivity {
         cancel = (Button) findViewById(R.id.cancel);
 
 
-        welcome.setText("Welcome, " + MainActivity.loggedUser.getUsername());
+        welcome.setText("Welcome, " + LoginActivity.loggedUser.getUsername());
 
-        if (MainActivity.loggedUser.getName() != null) {
-            name.setText(MainActivity.loggedUser.getName());
+        if (LoginActivity.loggedUser.getName() != null) {
+            name.setText(LoginActivity.loggedUser.getName());
         }
-        if (MainActivity.loggedUser.getPhoneNumber() != null) {
-            phone.setText(MainActivity.loggedUser.getPhoneNumber());
+        if (LoginActivity.loggedUser.getPhoneNumber() != null) {
+            phone.setText(LoginActivity.loggedUser.getPhoneNumber());
         }
 
         save.setOnClickListener(new View.OnClickListener() {
@@ -61,7 +61,7 @@ public class ProfileActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 if (validateData()) {
-                    DBManager.getInstance(ProfileActivity.this).updateUser(MainActivity.loggedUser.getUsername());
+                    DBManager.getInstance(ProfileActivity.this).updateUser(LoginActivity.loggedUser.getUsername());
                     Toast.makeText(ProfileActivity.this, "Saved changes", Toast.LENGTH_SHORT).show();
                 }
 
@@ -87,17 +87,17 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private boolean validateData() {
-        MainActivity.loggedUser.setName(name.getText().toString());
+        LoginActivity.loggedUser.setName(name.getText().toString());
 
         if (!phone.getText().toString().isEmpty() && !validateMobileNumber(phone.getText().toString())) {
             phone.setError("Ivalid phone number!");
             phone.setText("");
             return false;
         } else {
-            MainActivity.loggedUser.setPhoneNumber(phone.getText().toString());
+            LoginActivity.loggedUser.setPhoneNumber(phone.getText().toString());
         }
         if (password.getText().toString().equals(confirm.getText().toString())) {
-            MainActivity.loggedUser.setPassword(password.getText().toString());
+            LoginActivity.loggedUser.setPassword(password.getText().toString());
         } else {
             if (!password.getText().toString().isEmpty() || !confirm.getText().toString().isEmpty())
                 password.setError("Please, make sure your passwords match!");

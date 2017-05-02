@@ -4,18 +4,14 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.support.v4.app.*;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import java.util.ArrayList;
 
 import karikuncheva.dominosapp.model.Shop;
@@ -72,59 +68,48 @@ public class ModifyAdapter extends RecyclerView.Adapter<ModifyAdapter.ModifyView
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
-                String i1 = pizza.getIngredients();
-                String[] in = i1.split(", ");
-                for (int i = 0; i < in.length; i++) {
-                    // if (!pizza.getIngredients().contains(ingr) && isChecked == true) {
-                    if (!in[i].equals(ingr) && isChecked == true) {
-                        counter++;
-                        if (counter > 10) {
+                if (!pizza.getIngredients().contains(ingr) && isChecked == true) {
+                    counter++;
+                    if (counter > 10) {
 
-                            setDialog(1);
-                            vh.check_ingr.setChecked(false);
-                            counter--;
-                        }
+                        setDialog(1);
+                        vh.check_ingr.setChecked(false);
+                        counter--;
                     } else {
                         ModifyPizzaFragment.sum += 0.60;
                         mc.modifyPrice(ModifyPizzaFragment.sum);
                         tempArr.set(position, 1);
                     }
                 }
-                for (int i = 0; i < in.length; i++) {
-                    // if (!pizza.getIngredients().contains(ingr) && isChecked == false) {
-                    if (!in[i].equals(ingr) && isChecked == true) {
 
-                        if (counter <= 1) {
-                            setDialog(-1);
-                            vh.check_ingr.setChecked(true);
+                if (!pizza.getIngredients().contains(ingr) && isChecked == false) {
 
-                        } else {
-                            counter--;
-                            if (tempArr.get(position) == 1) {
-                                ModifyPizzaFragment.sum -= 0.60;
-                                mc.modifyPrice(ModifyPizzaFragment.sum);
-                                tempArr.set(position, 0);
-                            }
-                        }
-                    } else if (in[i].equals(ingr) && isChecked == false) {
-                        // if (pizza.getIngredients().contains(ingr) && isChecked == false) {
-                        if (counter <= 1) {
-                            setDialog(-1);
-                            vh.check_ingr.setChecked(true);
-                        } else {
-                            counter--;
-                        }
-                    } else if (in[i].equals(ingr) && isChecked == true) {
-                        //  (pizza.getIngredients().contains(ingr) && isChecked == true) {
-                        counter++;
-                        if (counter > 10) {
-                            setDialog(1);
-                            vh.check_ingr.setChecked(false);
-                            counter--;
+                    if (counter <= 1) {
+                        setDialog(-1);
+                        vh.check_ingr.setChecked(true);
+
+                    } else {
+                        counter--;
+                        if (tempArr.get(position) == 1) {
+                            ModifyPizzaFragment.sum -= 0.60;
+                            mc.modifyPrice(ModifyPizzaFragment.sum);
+                            tempArr.set(position, 0);
                         }
                     }
-                    if (isChecked == false) {
-
+                }
+                if (pizza.getIngredients().contains(ingr) && isChecked == false) {
+                    if (counter <= 1) {
+                        setDialog(-1);
+                        vh.check_ingr.setChecked(true);
+                    } else {
+                        counter--;
+                    }
+                } else if (pizza.getIngredients().contains(ingr) && isChecked == true) {
+                    counter++;
+                    if (counter > 10) {
+                        setDialog(1);
+                        vh.check_ingr.setChecked(false);
+                        counter--;
                     }
                 }
                 //10 checked - stop
@@ -175,7 +160,6 @@ public class ModifyAdapter extends RecyclerView.Adapter<ModifyAdapter.ModifyView
         });
 
         dialog.show();
-
 
     }
 }

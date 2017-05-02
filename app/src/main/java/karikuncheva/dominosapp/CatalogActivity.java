@@ -52,8 +52,8 @@ public class CatalogActivity extends NavigDrawerActivity implements PizzaFragmen
         products = (TextView) findViewById(R.id.count_products);
         cart_bnt = (ImageButton) findViewById(R.id.cart_bnt);
 
-        name.setText(MainActivity.loggedUser.getName());
-        email.setText(MainActivity.loggedUser.getEmail());
+        name.setText(LoginActivity.loggedUser.getName());
+        email.setText(LoginActivity.loggedUser.getEmail());
         if (count != 0) {
             products.setVisibility(View.VISIBLE);
             products.setText(String.valueOf(count));
@@ -120,7 +120,7 @@ public class CatalogActivity extends NavigDrawerActivity implements PizzaFragmen
         int id = item.getItemId();
 
         if (id == R.id.action_log_out) {
-            Intent i = new Intent(this, MainActivity.class);
+            Intent i = new Intent(this, LoginActivity.class);
             this.startActivity(i);
             return true;
         }

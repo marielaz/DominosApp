@@ -66,7 +66,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.PizzaViewH
         vh.cart_pizza_bnt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainActivity.loggedUser.getCart().addProduct(pizzas.get(position));
+                LoginActivity.loggedUser.getCart().addProduct(pizzas.get(position));
                 ((PizzaFragment.ProductsCommunicator) activity).increment();
             }
         });
